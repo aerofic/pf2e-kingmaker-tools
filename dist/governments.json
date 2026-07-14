@@ -1,0 +1,92 @@
+[
+    {
+        "id": "despotism",
+        "name": "governments.despotism.name",
+        "description": "governments.despotism.description",
+        "boosts": [
+            "stability",
+            "economy"
+        ],
+        "freeBoosts": 1,
+        "bonusFeat": "crush-dissent",
+        "skillProficiencies": [
+            "intrigue",
+            "warfare"
+        ]
+    },
+    {
+        "id": "feudalism",
+        "name": "governments.feudalism.name",
+        "description": "governments.feudalism.description",
+        "boosts": [
+            "stability",
+            "culture"
+        ],
+        "freeBoosts": 1,
+        "bonusFeat": "fortified-fiefs",
+        "skillProficiencies": [
+            "defense",
+            "trade"
+        ]
+    },
+    {
+        "id": "oligarchy",
+        "name": "governments.oligarchy.name",
+        "description": "governments.oligarchy.description",
+        "boosts": [
+            "loyalty",
+            "economy"
+        ],
+        "freeBoosts": 1,
+        "bonusFeat": "insider-trading",
+        "skillProficiencies": [
+            "arts",
+            "industry"
+        ]
+    },
+    {
+        "id": "republic",
+        "name": "governments.republic.name",
+        "description": "governments.republic.description",
+        "boosts": [
+            "stability",
+            "loyalty"
+        ],
+        "freeBoosts": 1,
+        "bonusFeat": "pull-together",
+        "skillProficiencies": [
+            "engineering",
+            "politics"
+        ]
+    },
+    {
+        "id": "thaumocracy",
+        "name": "governments.thaumocracy.name",
+        "description": "governments.thaumocracy.description",
+        "boosts": [
+            "economy",
+            "culture"
+        ],
+        "freeBoosts": 1,
+        "bonusFeat": "practical-magic",
+        "skillProficiencies": [
+            "folklore",
+            "magic"
+        ]
+    },
+    {
+        "id": "yeomanry",
+        "name": "governments.yeomanry.name",
+        "description": "governments.yeomanry.description",
+        "boosts": [
+            "loyalty",
+            "culture"
+        ],
+        "freeBoosts": 1,
+        "bonusFeat": "muddle-through",
+        "skillProficiencies": [
+            "agriculture",
+            "wilderness"
+        ]
+    }
+]

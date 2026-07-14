@@ -1,0 +1,25 @@
+<div>
+    <header class="km-kingdom-sheet-header">
+        <div class="km-kingdom-sheet-name"><i class="fa-solid fa-crown"></i> {{> formElement kingdomNameInput }}</div>
+        <div class="km-kingdom-faith-counter-slot"></div>
+        <div class="km-kingdom-turn-counter-slot"></div>
+        <div class="km-fame">{{> formElement fameContext.now }}
+            {{> formElement fameContext.next }}</div>
+        <div class="km-xp-level-section">
+            <div class="km-kingdom-sheet-active-xp">{{> formElement xpInput }}/{{> formElement xpThresholdInput }}{{localizeKM "applications.xp"}}
+            </div>
+            <div class="km-kingdom-sheet-active-level">{{> formElement levelInput }}</div>
+        </div>
+    </header>
+
+    {{> tabs mainNav}}
+
+    <main class="km-kingdom-sheet-main" style="background-image: url({{sheetBackground}})">
+        {{> kingdom-character-sheet this}}
+        {{> kingdom-notes this}}
+        {{> kingdom-turn this}}
+        {{> kingdom-trade-agreements this}}
+        {{> kingdom-settlements this}}
+        {{> kingdom-modifiers this}}
+    </main>
+</div>

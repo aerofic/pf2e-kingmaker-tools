@@ -1,0 +1,87 @@
+<div class="km-browser">
+    <div class="km-structure-filters">
+        <div class="km-space-form-elements">{{> formElement activeSettlement}}</div>
+        {{#if settlementActions}}
+            <div class="km-space-form-elements">
+                <b>{{localizeKM "kingdom.settlementActions"}}</b>: {{settlementActions}}
+            </div>
+        {{/if}}
+        {{#if rpPerStructure}}
+            <div class="km-space-form-elements">
+                <b>{{localizeKM "kingdom.rpPerStructure"}}</b>: {{rpPerStructure}}
+            </div>
+        {{/if}}
+        <button type="button" class="full-width" data-action="settlement-details"
+                {{#unless settlementChosen}}disabled{{/unless}}>{{localizeKM "kingdom.details"}}</button>
+        <hr>
+        <button type="button" data-action="clear-filters">{{localizeKM "kingdom.clearFilters"}}</button>
+        <div class="km-space-form-elements">{{> formElement search}}</div>
+        <div class="km-space-form-elements">{{> formElement maxLevel}}</div>
+        <div class="km-space-form-elements">{{> formElement minLots}}</div>
+        <div class="km-space-form-elements">{{> formElement maxLots}}</div>
+        {{#each mainFilters}}
+            {{> formElement this}}
+        {{/each}}
+        <hr>
+        {{#each activityFilters}}
+            {{> formElement this}}
+        {{/each}}
+    </div>
+    <div class="km-structure-list">
+        {{> tabs nav}}
+        <ul class="km-structures">
+            {{#each structures}}
+                <li class="km-structure"
+                    {{#if notes}}title="{{notes}}"{{/if}}>
+                    <header><a href="#" data-action="open-structure" data-uuid="{{# if ../linkActorUuid}}{{actorUuid}}{{else}}{{uuid}}{{/if}}">{{name}}</a>
+                    </header>
+                    <div class="km-image km-lots-{{lots}}">
+                        <img src="{{img}}" alt="{{name}}">
+                    </div>
+                    {{# if ../underConstructionActive}}
+                        <ul class="km-resources">
+                            {{#if rp.value}}
+                                <li class="km-rp {{#if rp.lacksFunds}}km-lacks-funds{{/if}}">{{currentRp}}/{{constructedRp}}</li>{{/if}}
+                        </ul>
+                        <button type="button"
+                                {{#unless ../canSpendRp}}disabled{{/unless}}
+                                data-uuid="{{uuid}}"
+                                data-actor-uuid="{{actorUuid}}"
+                                data-action="advance-construction">
+                            {{localizeKM "kingdom.spendRp"}}
+                        </button>
+                    {{else}}
+                        <ul class="km-resources">
+                            {{#if rp.value}}
+                                <li class="km-rp {{#if rp.lacksFunds}}km-lacks-funds{{/if}}">{{rp.label}}</li>{{/if}}
+                            {{#if lumber.value}}
+                                <li class="km-lumber {{#if
+                                        lumber.lacksFunds}}km-lacks-funds{{/if}}">{{lumber.label}}</li>{{/if}}
+                            {{#if stone.value}}
+                                <li class="km-stone {{#if
+                                        stone.lacksFunds}}km-lacks-funds{{/if}}">{{stone.label}}</li>{{/if}}
+                            {{#if ore.value}}
+                                <li class="km-ore {{#if ore.lacksFunds}}km-lacks-funds{{/if}}">{{ore.label}}</li>{{/if}}
+                            {{#if luxuries.value}}
+                                <li class="km-luxuries {{#if
+                                        luxuries.lacksFunds}}km-lacks-funds{{/if}}">{{luxuries.label}}</li>{{/if}}
+                        </ul>
+                        <button {{#unless canBuild}}disabled{{/unless}}
+                                type="button"
+                                data-uuid="{{uuid}}"
+                                {{#if initialRp}}data-initial-rp="{{initialRp}}"{{/if}}
+                                data-ore="{{ore.value}}"
+                                data-lumber="{{lumber.value}}"
+                                data-stone="{{stone.value}}"
+                                data-luxuries="{{luxuries.value}}"
+                                data-rp="{{rp.value}}"
+                                data-repair="{{#if ../repairActive}}true{{else}}false{{/if}}"
+                                data-action="build-structure">
+                            {{localizeKM "kingdom.buildStructure"}}
+                        </button>
+                    {{/if}}
+                </li>
+            {{/each}}
+        </ul>
+    </div>
+</div>

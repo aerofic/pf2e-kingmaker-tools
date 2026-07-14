@@ -1,0 +1,18 @@
+<table>
+    <tr>
+        <th>{{localizeKM "kingdom.size"}}</th>
+        <th>{{localizeKM "kingdom.typeOfNation"}}</th>
+        <th>{{localizeKM "kingdom.resourceDie"}}</th>
+        <th>{{localizeKM "kingdom.controlDcModifier"}}</th>
+        <th>{{localizeKM "kingdom.commodityStorage"}}</th>
+    </tr>
+    {{#each data}}
+        <tr>
+            <td>{{size}}</td>
+            <td>{{type}}</td>
+            <td>{{dice}}</td>
+            <td>{{modifier}}</td>
+            <td>{{storage}}</td>
+        </tr>
+    {{/each}}
+</table>

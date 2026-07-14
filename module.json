@@ -1,0 +1,169 @@
+{
+    "title": "Kingdom Building, Camping & Weather",
+    "description": "A collection of utilities to run the most popular adventure for PFRPG 2e",
+    "version": "6.3.1",
+    "scripts": [
+        "dist/api/patches.js",
+        "dist/main.js"
+    ],
+    "url": "https://github.com/BernhardPosselt/pf2e-kingmaker-tools",
+    "license": "LICENSE",
+    "styles": [
+        "dist/style.css"
+    ],
+    "languages": [
+        {
+            "lang": "en",
+            "name": "English",
+            "path": "dist/lang/en.json"
+        },
+        {
+            "lang": "cn",
+            "name": "Chinese (Simplified)",
+            "path": "dist/lang/cn.json"
+        }
+    ],
+    "packs": [
+        {
+            "name": "kingmaker-tools-structures",
+            "path": "packs/kingmaker-tools-structures",
+            "label": "Structures",
+            "type": "Actor",
+            "system": "pf2e",
+            "private": false,
+            "banner": "systems/pf2e/assets/compendium-banner/red.webp",
+            "flags": {}
+        },
+        {
+            "name": "kingmaker-tools-army-merit-tactics",
+            "path": "packs/kingmaker-tools-army-merit-tactics",
+            "label": "军队功勋战术",
+            "type": "Item",
+            "system": "pf2e",
+            "private": true,
+            "banner": "systems/pf2e/assets/compendium-banner/red.webp",
+            "flags": {}
+        },
+        {
+            "name": "kingmaker-tools-army-tactics",
+            "path": "packs/kingmaker-tools-army-tactics",
+            "label": "军队战术",
+            "type": "Item",
+            "system": "pf2e",
+            "private": false,
+            "banner": "systems/pf2e/assets/compendium-banner/red.webp",
+            "flags": {}
+        },
+        {
+            "name": "kingmaker-tools-meal-effects",
+            "path": "packs/kingmaker-tools-meal-effects",
+            "label": "Meal Effects",
+            "type": "Item",
+            "system": "pf2e",
+            "banner": "systems/pf2e/assets/compendium-banner/red.webp",
+            "private": false,
+            "flags": {}
+        },
+        {
+            "name": "kingmaker-tools-camping-effects",
+            "path": "packs/kingmaker-tools-camping-effects",
+            "label": "Camping Effects",
+            "type": "Item",
+            "system": "pf2e",
+            "banner": "systems/pf2e/assets/compendium-banner/red.webp",
+            "private": false,
+            "flags": {}
+        },
+        {
+            "name": "kingmaker-tools-weather-effects",
+            "path": "packs/kingmaker-tools-weather-effects",
+            "label": "Weather Effects",
+            "type": "Item",
+            "system": "pf2e",
+            "banner": "systems/pf2e/assets/compendium-banner/red.webp",
+            "private": false,
+            "flags": {}
+        },
+        {
+            "name": "kingmaker-tools-journals",
+            "path": "packs/kingmaker-tools-journals",
+            "label": "Journals",
+            "type": "JournalEntry",
+            "private": false,
+            "banner": "systems/pf2e/assets/compendium-banner/red.webp",
+            "flags": {},
+            "system": "pf2e"
+        },
+        {
+            "name": "kingmaker-tools-rolltables",
+            "path": "packs/kingmaker-tools-rolltables",
+            "label": "Rolltables",
+            "type": "RollTable",
+            "private": false,
+            "flags": {},
+            "banner": "systems/pf2e/assets/compendium-banner/red.webp",
+            "system": "pf2e"
+        },
+        {
+            "name": "kingmaker-tools-random-encounters",
+            "path": "packs/kingmaker-tools-random-encounters",
+            "label": "Random Encounters",
+            "type": "RollTable",
+            "private": false,
+            "flags": {},
+            "banner": "systems/pf2e/assets/compendium-banner/red.webp",
+            "system": "pf2e"
+        },
+        {
+            "name": "kingmaker-tools-macros",
+            "path": "packs/kingmaker-tools-macros",
+            "label": "Macros",
+            "type": "Macro",
+            "private": false,
+            "flags": {},
+            "banner": "systems/pf2e/assets/compendium-banner/red.webp",
+            "system": "pf2e"
+        }
+    ],
+    "packFolders": [
+        {
+            "name": "Kingdom Building, Camping & Weather",
+            "sorting": "a",
+            "packs": [
+                "kingmaker-tools-structures",
+                "kingmaker-tools-army-merit-tactics",
+                "kingmaker-tools-army-tactics",
+                "kingmaker-tools-meal-effects",
+                "kingmaker-tools-camping-effects",
+                "kingmaker-tools-weather-effects",
+                "kingmaker-tools-journals",
+                "kingmaker-tools-rolltables",
+                "kingmaker-tools-random-encounters",
+                "kingmaker-tools-macros"
+            ]
+        }
+    ],
+    "id": "pf2e-kingmaker-tools",
+    "socket": true,
+    "authors": [
+        {
+            "name": "Bernhard Posselt",
+            "flags": {}
+        }
+    ],
+    "relationships": {
+        "systems": [
+            {
+                "id": "pf2e",
+                "compatibility": {
+                    "minimum": "7.5.0"
+                }
+            }
+        ]
+    },
+    "compatibility": {
+        "minimum": "14",
+        "maximum": "14",
+        "verified": "14"
+    }
+}

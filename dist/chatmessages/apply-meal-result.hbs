@@ -1,0 +1,13 @@
+<h3>{{name}} ({{label}})</h3>
+{{#if message}}<p>{{message}}</p>{{/if}}
+<button type="button"
+        class="km-apply-meal-effect"
+        data-camping-actor-uuid="{{campingActorUuid}}"
+        data-degree="{{degree}}"
+        data-recipe="{{id}}"
+>{{#if failure}}
+    {{localizeKM "chatMessages.applyMealResults.applyFailed"}}
+{{else}}
+    {{localizeKM "chatMessages.applyMealResults.apply"}}
+{{/if}}
+</button>

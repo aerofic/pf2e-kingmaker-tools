@@ -1,0 +1,33 @@
+<span class="km-skill-check-header">{{localizeKM "applications.skillCheck"}}: {{label}}, {{localizeKM "applications.dc"}} {{dc}}</span>
+<div class="km-roll-meta" hidden
+     data-activity-id="{{activityId}}"
+     data-degree="{{degree}}"
+     data-roll-mode="{{rollMode}}"
+     data-kingdom-actor-uuid="{{actorUuid}}"
+     data-skill="{{skill}}"
+     data-modifier="{{modifier}}"
+     data-modifier-with-creative-solution="{{modifierWithCreativeSolution}}"
+     data-modifier-without-free-and-fair="{{modifierWithoutFreeAndFair}}"
+     data-fortune="{{fortune}}"
+     data-event-id="{{eventId}}"
+     data-event-stage-index="{{eventStageIndex}}"
+     data-event-index="{{eventIndex}}"
+     data-dc="{{dc}}"
+     {{#if notes}}data-notes="{{notes}}"{{/if}}
+     {{#if upgrades}}data-upgrades="{{upgrades}}"{{/if}}
+     {{#if downgrades}}data-downgrades="{{downgrades}}"{{/if}}
+     {{#if additionalChatMessages}}data-additional-chat-messages="{{additionalChatMessages}}"{{/if}}
+>
+</div>
+<hr>
+<div class="km-modifier-breakdown">
+    {{#each freeAndFairPills}}
+        <div class="km-modifier-pill km-free-and-fair-pills {{#unless (eq ../pillMode 'freeAndFair')}}km-chat-hidden{{/unless}}">{{this}}</div>
+    {{/each}}
+    {{#each creativeSolutionPills}}
+        <div class="km-modifier-pill km-creative-solution-pills {{#unless (eq ../pillMode 'creativeSolution')}}km-chat-hidden{{/unless}}">{{this}}</div>
+    {{/each}}
+    {{#each pills}}
+        <div class="km-modifier-pill km-default-pills {{#unless (eq ../pillMode 'default')}}km-chat-hidden{{/unless}}">{{this}}</div>
+    {{/each}}
+</div>

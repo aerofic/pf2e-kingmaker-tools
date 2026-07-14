@@ -1,0 +1,49 @@
+<div>
+    <div class="row">
+        <table>
+            <thead>
+            <tr>
+                <th>{{localizeKM "applications.name"}}</th>
+                <th>{{localizeKM "applications.id"}}</th>
+                {{#each additionalColumnHeadings}}
+                    <th>{{this}}</th>
+                {{/each}}
+                <th>{{localizeKM "applications.enable"}}</th>
+                <th>{{localizeKM "applications.edit"}}</th>
+                <th>{{localizeKM "applications.delete"}}</th>
+            </tr>
+            </thead>
+            <tbody>
+            {{#each items}}
+                <tr>
+                    <td>{{#if nameIsHtml}}{{{name}}}{{else}}{{name}}{{/if}}</td>
+                    <td>{{id}}</td>
+                    {{#each additionalColumns}}
+                        <td>{{#if escapeHtml}}{{value}}{{else}}{{{value}}}{{/if}}</td>
+                    {{/each}}
+                    <td>{{> formElement enable }}</td>
+                    <td>
+                        <button
+                                type="button"
+                                data-action="edit"
+                                data-id="{{id}}"
+                                title="{{localizeKM "applications.edit"}}"
+                                {{#unless canBeEdited}}hidden{{/unless}}
+                        ><i class="fa-solid fa-pencil"></i></button>
+                    </td>
+                    <td>
+                        <button
+                                type="button"
+                                data-action="delete"
+                                data-id="{{id}}"
+                                title="{{localizeKM "applications.delete"}}"
+                                {{#unless canBeDeleted}}hidden{{/unless}}
+                        ><i class="fa-solid fa-minus"></i></button>
+                    </td>
+                </tr>
+            {{/each}}
+            </tbody>
+        </table>
+        <button type="button" data-action="add" class="full-width">{{localizeKM "applications.add"}}</button>
+    </div>
+</div>

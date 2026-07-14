@@ -1,0 +1,46 @@
+<div>
+    <div class="row">
+        <table>
+            <thead>
+            <tr>
+                {{#each heading}}
+                    <th class="{{#each classes}}{{this}}{{/each}}">{{label}}</th>
+                {{/each}}
+            </tr>
+            </thead>
+            <tbody>
+            {{#each formRows}}
+                <tr>
+                    {{#each this}}
+                        <td>{{> formElement this}}</td>
+                    {{/each}}
+                    <td>
+                        {{#if @index}}
+                            <button
+                                    type="button"
+                                    data-action="delete"
+                                    data-index="{{@index}}"
+                                    title="{{localizeKM "applications.delete"}}"
+                            >
+                                <i class="fa-solid fa-minus"></i>
+                            </button>
+                        {{else}}
+                            <button
+                                    type="button"
+                                    data-action="delete"
+                                    data-index="{{@index}}"
+                                    title="{{localizeKM "applications.delete"}}"
+                                    {{#unless ../allowDelete}}disabled{{/unless}}
+                            >
+                                <i class="fa-solid fa-minus"></i>
+                            </button>
+                        {{/if}}
+                    </td>
+                </tr>
+            {{/each}}
+            </tbody>
+        </table>
+        <button type="button" data-action="add" class="full-width">{{localizeKM "applications.add"}}</button>
+    </div>
+    <button data-action="km-save" {{#unless isFormValid}}disabled{{/unless}}>{{localizeKM "applications.save"}}</button>
+</div>

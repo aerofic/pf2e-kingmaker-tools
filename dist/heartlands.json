@@ -1,0 +1,26 @@
+[
+    {
+        "id": "forest-or-swamp",
+        "name": "heartlands.forest-or-swamp.name",
+        "description": "heartlands.forest-or-swamp.description",
+        "boost": "culture"
+    },
+    {
+        "id": "hill-or-plain",
+        "name": "heartlands.hill-or-plain.name",
+        "description": "heartlands.hill-or-plain.description",
+        "boost": "loyalty"
+    },
+    {
+        "id": "lake-or-river",
+        "name": "heartlands.lake-or-river.name",
+        "description": "heartlands.lake-or-river.description",
+        "boost": "economy"
+    },
+    {
+        "id": "mountain-or-ruins",
+        "name": "heartlands.mountain-or-ruins.name",
+        "description": "heartlands.mountain-or-ruins.description",
+        "boost": "stability"
+    }
+]

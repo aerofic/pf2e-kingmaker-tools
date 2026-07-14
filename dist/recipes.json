@@ -1,0 +1,1423 @@
+[
+    {
+        "id": "baked-spider-legs",
+        "name": "recipes.baked-spider-legs.name",
+        "icon": "icons/consumables/meat/kebab-skewer-vegetable-brown.webp",
+        "basicIngredients": 4,
+        "specialIngredients": 1,
+        "survivalDC": 22,
+        "cookingLoreDC": 20,
+        "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.OXKHrajfyBjEBLTM",
+        "level": 5,
+        "cost": {
+            "currency": "gp",
+            "value": 8
+        },
+        "rarity": "common",
+        "criticalFailure": {
+            "effects": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.0faDj5jOYlPTwB21"
+                }
+            ]
+        },
+        "favoriteMeal": {
+            "effects": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.M2gTzsYSnmcq7Lho",
+                    "removeWhenPreparingCampsite": false
+                }
+            ]
+        },
+        "criticalSuccess": {
+            "effects": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.MVrKXXHzxzyfy3mi",
+                    "removeWhenPreparingCampsite": false
+                }
+            ]
+        },
+        "success": {
+            "effects": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.kmHHmbR283uOoDK9",
+                    "removeWhenPreparingCampsite": false
+                }
+            ]
+        }
+    },
+    {
+        "id": "basic-meal",
+        "name": "recipes.basic-meal.name",
+        "icon": "icons/consumables/grains/bread-loaf-sliced-wheat-brown.webp",
+        "isSpecialMeal": false,
+        "basicIngredients": 2,
+        "specialIngredients": 0,
+        "cookingLoreDC": 18,
+        "survivalDC": 22,
+        "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.J5nci1DS7i1wDph4",
+        "level": 0,
+        "cost": {
+            "currency": "gp",
+            "value": 0
+        },
+        "rarity": "common",
+        "criticalFailure": {
+            "effects": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.2DLTsWVdUnjewzhQ",
+                    "removeAfterRest": true
+                }
+            ]
+        },
+        "criticalSuccess": {
+            "effects": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.6IguL0ipdLTiVthS",
+                    "removeAfterRest": true,
+                    "doublesHealing": true
+                }
+            ]
+        },
+        "success": {
+            "effects": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.gqy7D2LEWSak1pzM",
+                    "removeAfterRest": true
+                }
+            ]
+        }
+    },
+    {
+        "id": "berry-pie",
+        "name": "recipes.berry-pie.name",
+        "icon": "icons/consumables/grains/pastry-bread-brown.webp",
+        "basicIngredients": 3,
+        "specialIngredients": 2,
+        "cookingLoreDC": 27,
+        "survivalDC": 29,
+        "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.zX4S7wsOxB8CcVWw",
+        "level": 10,
+        "cost": {
+            "currency": "gp",
+            "value": 50
+        },
+        "rarity": "common",
+        "success": {
+            "effects": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.elsXArG4GqGin6LB",
+                    "removeAfterRest": true,
+                    "healFormula": "3d8",
+                    "healMode": "afterConsumptionAndRest"
+                }
+            ]
+        },
+        "criticalFailure": {
+            "effects": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.lWy7BZYGab0uNf9H",
+                    "removeWhenPreparingCampsite": false
+                }
+            ]
+        },
+        "criticalSuccess": {
+            "effects": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.n6ykp8NjXDFcvqXM",
+                    "removeAfterRest": true,
+                    "healFormula": "6d8",
+                    "healMode": "afterConsumptionAndRest"
+                }
+            ]
+        },
+        "favoriteMeal": {
+            "effects": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.sQz8ugumjOMSHiYt",
+                    "removeWhenPreparingCampsite": false
+                }
+            ]
+        }
+    },
+    {
+        "id": "black-linnorm-stew",
+        "name": "recipes.black-linnorm-stew.name",
+        "icon": "icons/tools/cooking/bowl-steaming-brown.webp",
+        "basicIngredients": 8,
+        "specialIngredients": 3,
+        "cookingLoreDC": 43,
+        "survivalDC": 45,
+        "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.V6uIWe6BVFV9Ewo3",
+        "level": 18,
+        "cost": {
+            "currency": "gp",
+            "value": 1200
+        },
+        "rarity": "rare",
+        "criticalSuccess": {
+            "effects": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.I2LiwNjrowS5u4UG"
+                }
+            ]
+        },
+        "success": {
+            "effects": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.m3FgRCWbVupkaORL"
+                }
+            ]
+        },
+        "criticalFailure": {
+            "effects": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.s1DfJpXFkJorHsuu",
+                    "removeWhenPreparingCampsite": false
+                }
+            ]
+        },
+        "favoriteMeal": {
+            "effects": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.sxr0BsJJGeLyNBgq"
+                }
+            ]
+        }
+    },
+    {
+        "id": "broiled-oysters",
+        "name": "recipes.broiled-oysters.name",
+        "icon": "icons/consumables/meat/oyster-shell-glowing-orange.webp",
+        "basicIngredients": 2,
+        "specialIngredients": 1,
+        "cookingLoreDC": 20,
+        "survivalDC": 22,
+        "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.aXmbLuQMQOMAlls3",
+        "level": 3,
+        "cost": {
+            "currency": "gp",
+            "value": 3
+        },
+        "rarity": "uncommon",
+        "favoriteMeal": {
+            "effects": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.57461QLkB8M3S0AS"
+                }
+            ]
+        },
+        "success": {
+            "effects": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.BlKsZq6anCMSEshB",
+                    "removeAfterRest": true
+                }
+            ]
+        },
+        "criticalFailure": {
+            "effects": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.X8sGtdz4yfVl2pKJ",
+                    "removeWhenPreparingCampsite": false
+                }
+            ]
+        },
+        "criticalSuccess": {
+            "effects": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.ebP1xWOh7vGZmmlz",
+                    "removeWhenPreparingCampsite": false
+                }
+            ]
+        }
+    },
+    {
+        "id": "chocolate-ice-cream",
+        "name": "recipes.chocolate-ice-cream.name",
+        "icon": "icons/tools/laboratory/powder-red.webp",
+        "basicIngredients": 2,
+        "specialIngredients": 1,
+        "cookingLoreDC": 19,
+        "survivalDC": 21,
+        "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.xfIwKyG1pNFp8JbN",
+        "level": 4,
+        "cost": {
+            "currency": "gp",
+            "value": 5
+        },
+        "rarity": "common",
+        "favoriteMeal": {
+            "effects": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.0QmbpFYAoyzUu1gi"
+                }
+            ]
+        },
+        "criticalSuccess": {
+            "effects": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.9brr5UKBsZcboAOx",
+                    "removeWhenPreparingCampsite": false
+                }
+            ]
+        },
+        "criticalFailure": {
+            "effects": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.KqktmooFbYLQQ2S1",
+                    "removeWhenPreparingCampsite": false
+                }
+            ]
+        },
+        "success": {
+            "effects": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.L85BNpJEFAozA9kW",
+                    "removeAfterRest": true
+                }
+            ]
+        }
+    },
+    {
+        "id": "giant-scrambled-egg",
+        "name": "recipes.giant-scrambled-egg.name",
+        "icon": "icons/consumables/food/bowl-stew-tofu-potato-brown.webp",
+        "basicIngredients": 6,
+        "specialIngredients": 2,
+        "cookingLoreDC": 33,
+        "survivalDC": 35,
+        "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.IiV8wHXKZS1HbLLW",
+        "level": 13,
+        "cost": {
+            "currency": "gp",
+            "value": 150
+        },
+        "rarity": "uncommon",
+        "favoriteMeal": {
+            "effects": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.Q1Qg8K9G7R9wU4rI"
+                }
+            ]
+        },
+        "success": {
+            "effects": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.TLxckltEWbHKCXDi",
+                    "removeWhenPreparingCampsite": false
+                }
+            ]
+        },
+        "criticalFailure": {
+            "effects": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.pTjrRRqxUJnbDRIB",
+                    "removeWhenPreparingCampsite": false
+                }
+            ]
+        },
+        "criticalSuccess": {
+            "effects": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.f2yKkelj374SNszb",
+                    "removeWhenPreparingCampsite": false
+                }
+            ]
+        }
+    },
+    {
+        "id": "grilled-silver-eel",
+        "name": "recipes.grilled-silver-eel.name",
+        "icon": "icons/commodities/biological/tail-rodent-orange.webp",
+        "basicIngredients": 4,
+        "specialIngredients": 1,
+        "cookingLoreDC": 24,
+        "survivalDC": 26,
+        "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.UMgvKT6nNTPvp28R",
+        "level": 6,
+        "cost": {
+            "currency": "gp",
+            "value": 13
+        },
+        "rarity": "uncommon",
+        "favoriteMeal": {
+            "effects": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.Dj9026jn8dI7oP0j",
+                    "removeWhenPreparingCampsite": false
+                }
+            ]
+        },
+        "criticalFailure": {
+            "effects": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.Vb39DIJ5OfWpN2ig",
+                    "removeAfterRest": true
+                }
+            ]
+        },
+        "criticalSuccess": {
+            "effects": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.Zw8I0G3RqDfNHuCl",
+                    "removeWhenPreparingCampsite": false
+                }
+            ]
+        },
+        "success": {
+            "effects": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.ta81jwzhkNsN88EZ",
+                    "removeWhenPreparingCampsite": false
+                }
+            ]
+        }
+    },
+    {
+        "id": "haggis",
+        "name": "recipes.haggis.name",
+        "icon": "icons/commodities/biological/organ-brain-red.webp",
+        "basicIngredients": 2,
+        "specialIngredients": 0,
+        "cookingLoreDC": 15,
+        "survivalDC": 17,
+        "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.tKcKHaxGW48w5UMj",
+        "level": 1,
+        "cost": {
+            "currency": "gp",
+            "value": 1
+        },
+        "rarity": "common",
+        "criticalSuccess": {
+            "effects": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.1CIuG1XTo4R8fmeL",
+                    "removeWhenPreparingCampsite": false
+                }
+            ]
+        },
+        "success": {
+            "effects": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.ISeHA2sG6wwJyV6I",
+                    "removeWhenPreparingCampsite": false
+                }
+            ]
+        },
+        "favoriteMeal": {
+            "effects": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.RttWd7ZJNbsFsQjE",
+                    "removeWhenPreparingCampsite": false
+                }
+            ]
+        },
+        "criticalFailure": {
+            "effects": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.k0BWf8aF5plRvhyk",
+                    "removeAfterRest": true
+                }
+            ]
+        }
+    },
+    {
+        "id": "hearty-meal",
+        "name": "recipes.hearty-meal.name",
+        "icon": "icons/consumables/food/bowl-stew-brown.webp ",
+        "basicIngredients": 4,
+        "specialIngredients": 0,
+        "cookingLoreDC": 14,
+        "survivalDC": 16,
+        "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.K5l6QZci2mCofOBg",
+        "level": 0,
+        "cost": {
+            "currency": "gp",
+            "value": 0
+        },
+        "rarity": "common",
+        "criticalSuccess": {
+            "effects": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.7aBiVefiVDXS2XmV",
+                    "removeWhenPreparingCampsite": false
+                }
+            ]
+        },
+        "favoriteMeal": {
+            "effects": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.KeiNZDcAiGZjyzhn",
+                    "removeAfterRest": true
+                }
+            ]
+        },
+        "criticalFailure": {
+            "effects": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.LbW38wFmd1JSBPK6",
+                    "removeAfterRest": true
+                }
+            ]
+        },
+        "success": {
+            "effects": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.uI4ZsdIGx7Yoy2rI",
+                    "removeWhenPreparingCampsite": false
+                }
+            ]
+        }
+    },
+    {
+        "id": "hearty-purple-soup",
+        "name": "recipes.hearty-purple-soup.name",
+        "icon": "icons/tools/laboratory/mortar-liquid-pink.webp",
+        "basicIngredients": 6,
+        "specialIngredients": 3,
+        "cookingLoreDC": 40,
+        "survivalDC": 42,
+        "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.yAB0s5JgzCZpf0dT",
+        "level": 16,
+        "cost": {
+            "currency": "gp",
+            "value": 500
+        },
+        "rarity": "rare",
+        "favoriteMeal": {
+            "effects": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.6RjaP1s58ITIVn6u"
+                }
+            ]
+        },
+        "success": {
+            "effects": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.Zn0CB7bL7vHrMNTU"
+                }
+            ]
+        },
+        "criticalSuccess": {
+            "effects": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.hLGCjXajAYEcII9J"
+                }
+            ]
+        },
+        "criticalFailure": {
+            "effects": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.o6F8QZbTvt9os8Ni",
+                    "removeWhenPreparingCampsite": false
+                },
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.TQXXVzD1ZZHnouTI",
+                    "removeWhenPreparingCampsite": false
+                },
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.SJvEGeMryIekwIKk",
+                    "removeWhenPreparingCampsite": false
+                }
+            ]
+        }
+    },
+    {
+        "id": "hunters-roast",
+        "name": "recipes.hunters-roast.name",
+        "icon": "icons/consumables/food/plate-chicken-grilled-mushroom-brown.webp",
+        "basicIngredients": 4,
+        "specialIngredients": 0,
+        "cookingLoreDC": 22,
+        "survivalDC": 24,
+        "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.5QyW0eFSJRgmyRzU",
+        "level": 6,
+        "cost": {
+            "currency": "gp",
+            "value": 13
+        },
+        "rarity": "common",
+        "success": {
+            "effects": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.0un8LMe7iv59He25",
+                    "removeAfterRest": true
+                }
+            ]
+        },
+        "criticalSuccess": {
+            "effects": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.LiXnKWPOkDBZRpLE",
+                    "removeWhenPreparingCampsite": false
+                }
+            ]
+        },
+        "criticalFailure": {
+            "effects": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.RzOGQxp3VHlpYtWJ",
+                    "removeAfterRest": true,
+                    "damageFormula": "2d6[poison]",
+                    "healMode": "afterConsumption"
+                }
+            ]
+        },
+        "favoriteMeal": {
+            "effects": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.zuPWMtCTzuD96Ykz"
+                }
+            ]
+        }
+    },
+    {
+        "id": "jeweled-rice",
+        "name": "recipes.jeweled-rice.name",
+        "icon": "icons/commodities/materials/bowl-powder-gold.webp",
+        "basicIngredients": 1,
+        "specialIngredients": 0,
+        "cookingLoreDC": 14,
+        "survivalDC": 16,
+        "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.N3k7OGUKHn4kTu59",
+        "level": 0,
+        "cost": {
+            "currency": "sp",
+            "value": 5
+        },
+        "rarity": "common",
+        "criticalFailure": {
+            "effects": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.MGFPIxwSgRLvkV71"
+                }
+            ],
+            "message": "recipes.jeweled-rice.criticalFailure.message"
+        },
+        "criticalSuccess": {
+            "effects": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.OxEApkXu0hw34Ci5",
+                    "removeWhenPreparingCampsite": false
+                }
+            ]
+        },
+        "success": {
+            "effects": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.Sc5N6l1oCY1oiTfA",
+                    "removeWhenPreparingCampsite": false
+                }
+            ]
+        },
+        "favoriteMeal": {
+            "effects": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.d8xr0i8GHY4195sa",
+                    "removeWhenPreparingCampsite": false
+                }
+            ]
+        }
+    },
+    {
+        "id": "mastodon-steak",
+        "name": "recipes.mastodon-steak.name",
+        "icon": "icons/consumables/food/steak-cooked-grilled-brown.webp",
+        "basicIngredients": 4,
+        "specialIngredients": 3,
+        "cookingLoreDC": 34,
+        "survivalDC": 36,
+        "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.SfNeVcYxBD4uCfrT",
+        "level": 14,
+        "cost": {
+            "currency": "gp",
+            "value": 225
+        },
+        "rarity": "uncommon",
+        "criticalFailure": {
+            "effects": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.0yH2V9UFRyGwXIRn",
+                    "removeWhenPreparingCampsite": false
+                }
+            ]
+        },
+        "favoriteMeal": {
+            "effects": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.Ln9Q3cH6NzGZAJUs",
+                    "removeWhenPreparingCampsite": false
+                }
+            ]
+        },
+        "success": {
+            "effects": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.M6jcQsHsPEkigTTG",
+                    "removeAfterRest": true,
+                    "healFormula": "4d8",
+                    "healMode": "afterConsumption",
+                    "reduceConditions": {
+                        "drained": 2,
+                        "stupefied": 2,
+                        "enfeebled": 2,
+                        "clumsy": 2,
+                        "mode": "random"
+                    }
+                }
+            ]
+        },
+        "criticalSuccess": {
+            "effects": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.xq4qNyrsL5wVYkcQ",
+                    "removeAfterRest": true,
+                    "healFormula": "7d8",
+                    "healMode": "afterConsumption",
+                    "reduceConditions": {
+                        "drained": 2,
+                        "stupefied": 2,
+                        "enfeebled": 2,
+                        "clumsy": 2
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "id": "monster-casserole",
+        "name": "recipes.monster-casserole.name",
+        "icon": "icons/consumables/food/soup-broth-bowl-tentacle.webp",
+        "basicIngredients": 7,
+        "specialIngredients": 2,
+        "cookingLoreDC": 28,
+        "survivalDC": 30,
+        "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.gqT2VQGYgDQIMYsW",
+        "level": 11,
+        "cost": {
+            "currency": "gp",
+            "value": 70
+        },
+        "rarity": "common",
+        "success": {
+            "effects": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.5GT0JeRjYJc8e5ZA",
+                    "removeAfterRest": true
+                }
+            ]
+        },
+        "criticalFailure": {
+            "effects": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.af6hFeUUfsF1GiX8",
+                    "removeWhenPreparingCampsite": false
+                }
+            ]
+        },
+        "criticalSuccess": {
+            "effects": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.gNGXKMmJdNQJZode",
+                    "removeWhenPreparingCampsite": false
+                }
+            ]
+        },
+        "favoriteMeal": {
+            "effects": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.qad6gIwEpQQIkZwQ",
+                    "removeWhenPreparingCampsite": false
+                }
+            ]
+        }
+    },
+    {
+        "id": "omelet",
+        "name": "recipes.omelet.name",
+        "icon": "icons/consumables/eggs/egg-nest-dotted-red.webp",
+        "basicIngredients": 4,
+        "specialIngredients": 1,
+        "cookingLoreDC": 25,
+        "survivalDC": 27,
+        "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.3ak0XG0Xf66q2ApV",
+        "level": 7,
+        "cost": {
+            "currency": "gp",
+            "value": 18
+        },
+        "rarity": "uncommon",
+        "criticalSuccess": {
+            "effects": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.JY3TBLbVAbQHtmtu",
+                    "removeWhenPreparingCampsite": false
+                }
+            ]
+        },
+        "favoriteMeal": {
+            "effects": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.O4XVtCWn4Hq5QKUP"
+                }
+            ]
+        },
+        "success": {
+            "effects": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.RLJuUa9tzPrC6PqP",
+                    "removeAfterRest": true
+                }
+            ]
+        },
+        "criticalFailure": {
+            "effects": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.kyzTn0AUN4Q8G6TH",
+                    "removeWhenPreparingCampsite": false
+                }
+            ]
+        }
+    },
+    {
+        "id": "onion-soup",
+        "name": "recipes.onion-soup.name",
+        "icon": "icons/consumables/food/soup-broth-bowl-wooden-yellow.webp",
+        "basicIngredients": 2,
+        "specialIngredients": 1,
+        "cookingLoreDC": 24,
+        "survivalDC": 26,
+        "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.laM0IfTV8eviU1vm",
+        "level": 8,
+        "cost": {
+            "currency": "gp",
+            "value": 25
+        },
+        "rarity": "common",
+        "criticalSuccess": {
+            "effects": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.6Vu7Ts4p79O6JsD2",
+                    "removeWhenPreparingCampsite": false
+                }
+            ]
+        },
+        "success": {
+            "effects": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.8IzlPm2joulb5r0p",
+                    "removeAfterRest": true
+                }
+            ]
+        },
+        "criticalFailure": {
+            "effects": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.hHTMldJIDoqpCF7U",
+                    "removeWhenPreparingCampsite": false
+                }
+            ]
+        },
+        "favoriteMeal": {
+            "effects": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.pIgoUydEo8wU2Avm"
+                }
+            ]
+        }
+    },
+    {
+        "id": "oysters",
+        "name": "recipes.oysters.name",
+        "icon": "icons/environment/creatures/crustacean-oyster.webp",
+        "basicIngredients": 3,
+        "specialIngredients": 2,
+        "cookingLoreDC": 26,
+        "survivalDC": 28,
+        "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.p08orFcjqQzA7KdE",
+        "level": 9,
+        "cost": {
+            "currency": "gp",
+            "value": 35
+        },
+        "rarity": "common",
+        "favoriteMeal": {
+            "effects": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.E3tZfxCJ5GQoIbei",
+                    "removeWhenPreparingCampsite": false
+                },
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.cCKgpxIsFevgENf2",
+                    "removeAfterRest": true
+                }
+            ]
+        },
+        "criticalSuccess": {
+            "effects": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.ZDDZz5ynEOR20LUC",
+                    "removeWhenPreparingCampsite": false
+                }
+            ]
+        },
+        "success": {
+            "effects": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.uw5M3YfEJs23RmX5",
+                    "removeAfterRest": true
+                }
+            ]
+        },
+        "criticalFailure": {
+            "effects": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.yMsjuwLmbF8h1jVt"
+                }
+            ]
+        }
+    },
+    {
+        "id": "rice-n-nut-pudding",
+        "name": "recipes.rice-n-nut-pudding.name",
+        "icon": "icons/consumables/food/pot-soup-white.webp",
+        "basicIngredients": 2,
+        "specialIngredients": 1,
+        "cookingLoreDC": 16,
+        "survivalDC": 18,
+        "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.IrrRh2yttdTDU1A5",
+        "level": 2,
+        "cost": {
+            "currency": "gp",
+            "value": 2
+        },
+        "rarity": "common",
+        "criticalSuccess": {
+            "effects": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.3Gj0AaUzqwN0CdTi",
+                    "removeWhenPreparingCampsite": false
+                }
+            ]
+        },
+        "criticalFailure": {
+            "effects": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.AI1hYVSAMmKgEO9u",
+                    "removeWhenPreparingCampsite": false
+                }
+            ]
+        },
+        "success": {
+            "effects": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.GzZYeBB1UGMAykXc",
+                    "removeAfterRest": true
+                }
+            ]
+        },
+        "favoriteMeal": {
+            "effects": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.IRTWUl4HjRa82A1B",
+                    "removeWhenPreparingCampsite": false
+                }
+            ]
+        }
+    },
+    {
+        "id": "seasoned-wings-and-thighs",
+        "name": "recipes.seasoned-wings-and-thighs.name",
+        "icon": "icons/consumables/food/chicken-bird-cooked.webp",
+        "basicIngredients": 4,
+        "specialIngredients": 2,
+        "cookingLoreDC": 30,
+        "survivalDC": 32,
+        "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.BTKN1IgANoof0tfB",
+        "level": 12,
+        "cost": {
+            "currency": "gp",
+            "value": 100
+        },
+        "rarity": "common",
+        "criticalSuccess": {
+            "effects": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.uchgkN3hm1T51zfM",
+                    "removeAfterRest": true
+                },
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.JqKhpMXiQCEsDSCw",
+                    "removeWhenPreparingCampsite": false
+                }
+            ]
+        },
+        "success": {
+            "effects": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.JqKhpMXiQCEsDSCw"
+                }
+            ]
+        },
+        "criticalFailure": {
+            "effects": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.q3vnRHRBn3HmRhkV",
+                    "removeAfterRest": true
+                }
+            ]
+        },
+        "favoriteMeal": {
+            "effects": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.xF0K40VzyjIbbRMA",
+                    "removeWhenPreparingCampsite": false
+                }
+            ]
+        }
+    },
+    {
+        "id": "shepherds-pie",
+        "name": "recipes.shepherds-pie.name",
+        "icon": "icons/consumables/food/bowl-ribs-meat-rice-mash-brown-white.webp",
+        "basicIngredients": 4,
+        "specialIngredients": 0,
+        "cookingLoreDC": 18,
+        "survivalDC": 20,
+        "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.GsPVSA1GNm4tvmcR",
+        "level": 2,
+        "cost": {
+            "currency": "gp",
+            "value": 2
+        },
+        "rarity": "uncommon",
+        "criticalSuccess": {
+            "effects": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.3a5uIGu77TLQE9ZB",
+                    "healFormula": "4d6",
+                    "healMode": "afterRest",
+                    "reduceConditions": {
+                        "drained": 1
+                    }
+                }
+            ]
+        },
+        "criticalFailure": {
+            "effects": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.84dIJjkOdLeHWkx2",
+                    "halvesHealing": true
+                }
+            ]
+        },
+        "success": {
+            "effects": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.COa19ug1vjTGHy04",
+                    "healMode": "afterRest",
+                    "healFormula": "2d6"
+                }
+            ]
+        },
+        "favoriteMeal": {
+            "effects": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.RL8zdU7YyoiduDva",
+                    "removeWhenPreparingCampsite": false
+                }
+            ]
+        }
+    },
+    {
+        "id": "smoked-trout-and-hydra-plate",
+        "name": "recipes.smoked-trout-and-hydra-plate.name",
+        "icon": "icons/consumables/food/plate-fish-grilled-brown.webp",
+        "basicIngredients": 6,
+        "specialIngredients": 2,
+        "cookingLoreDC": 26,
+        "survivalDC": 28,
+        "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.t5pXd39gRgNkPoiu",
+        "level": 8,
+        "cost": {
+            "currency": "gp",
+            "value": 25
+        },
+        "rarity": "uncommon",
+        "criticalSuccess": {
+            "effects": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.4d6roHW75xe52o7A",
+                    "removeWhenPreparingCampsite": false
+                }
+            ],
+            "message": "recipes.smoked-trout-and-hydra-plate.criticalSuccess.message"
+        },
+        "criticalFailure": {
+            "effects": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.LBzsqdKb182lO5Fm",
+                    "removeAfterRest": true
+                }
+            ]
+        },
+        "success": {
+            "effects": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.miTcZbTcQLJu2NKR",
+                    "removeAfterRest": true
+                }
+            ]
+        },
+        "favoriteMeal": {
+            "effects": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.ve7NrzeHMwLsmbl3",
+                    "removeWhenPreparingCampsite": false
+                }
+            ]
+        }
+    },
+    {
+        "id": "succulent-sausages",
+        "name": "recipes.succulent-sausages.name",
+        "icon": "icons/consumables/food/sausage-bratwurst-mustard-red-yellow.webp",
+        "basicIngredients": 3,
+        "specialIngredients": 1,
+        "cookingLoreDC": 18,
+        "survivalDC": 20,
+        "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.IZoPx6QH5NRY1HBi",
+        "level": 3,
+        "cost": {
+            "currency": "gp",
+            "value": 3
+        },
+        "rarity": "common",
+        "favoriteMeal": {
+            "effects": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.EULsp9VffKbWpD0b",
+                    "removeWhenPreparingCampsite": false
+                }
+            ]
+        },
+        "success": {
+            "effects": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.G0qnixpCakGeHTp1",
+                    "removeAfterRest": true
+                }
+            ]
+        },
+        "criticalFailure": {
+            "effects": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.WDJQpYYx0N91mkO0",
+                    "removeAfterRest": true
+                }
+            ]
+        },
+        "criticalSuccess": {
+            "effects": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.jseoPPvbPg4Vr7MI",
+                    "removeWhenPreparingCampsite": false
+                }
+            ]
+        }
+    },
+    {
+        "id": "supernatural-mince-pie",
+        "name": "recipes.supernatural-mince-pie.name",
+        "icon": "icons/consumables/food/cheese-round-glowing-yellow.webp",
+        "basicIngredients": 8,
+        "specialIngredients": 4,
+        "cookingLoreDC": 45,
+        "survivalDC": 47,
+        "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.RmMZWrzgd8Wh8z5H",
+        "level": 20,
+        "cost": {
+            "currency": "gp",
+            "value": 3500
+        },
+        "rarity": "rare",
+        "criticalSuccess": {
+            "effects": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.69VWFB5UNLau1Rzt",
+                    "removeWhenPreparingCampsite": false
+                },
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.OAxcELiLh04BLVvP",
+                    "removeWhenPreparingCampsite": false
+                },
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.WVRQf9SLX0iRh3Ur",
+                    "removeWhenPreparingCampsite": false
+                },
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.69MQw1WMMlN4hEzb",
+                    "removeWhenPreparingCampsite": false
+                },
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.yLf2n65zVocqsl6r",
+                    "removeWhenPreparingCampsite": false
+                },
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.sd45BQ4P7BtsYEuP",
+                    "removeWhenPreparingCampsite": false
+                }
+            ],
+            "chooseRandomly": true
+        },
+        "criticalFailure": {
+            "effects": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.72N0nZAAo2iuCGBd",
+                    "removeWhenPreparingCampsite": false
+                }
+            ]
+        },
+        "success": {
+            "effects": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.iV22sORhjIhWZMKw",
+                    "removeWhenPreparingCampsite": false
+                },
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.CQGJi8WiBq0T8Kc6",
+                    "removeWhenPreparingCampsite": false
+                },
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.L8HdDXKrfa3gDakt",
+                    "removeWhenPreparingCampsite": false
+                },
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.6CjFExnLSe9qij9z",
+                    "removeWhenPreparingCampsite": false
+                },
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.Af25wacbdYDnFKwM",
+                    "removeWhenPreparingCampsite": false
+                },
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.VhzUKWFVrZ7tgcEQ",
+                    "removeWhenPreparingCampsite": false
+                }
+            ],
+            "chooseRandomly": true
+        },
+        "favoriteMeal": {
+            "effects": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.Wfmt1NvfIqF3gFav"
+                }
+            ]
+        }
+    },
+    {
+        "id": "sweet-pancakes",
+        "name": "recipes.sweet-pancakes.name",
+        "icon": "icons/commodities/cloth/cloth-roll-orange.webp",
+        "basicIngredients": 2,
+        "specialIngredients": 2,
+        "cookingLoreDC": 23,
+        "survivalDC": 25,
+        "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.WrDLx0FVkaglg1hh",
+        "level": 7,
+        "cost": {
+            "currency": "gp",
+            "value": 18
+        },
+        "rarity": "common",
+        "success": {
+            "effects": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.BXTnX9xhnYvolrFk",
+                    "removeAfterRest": true
+                }
+            ]
+        },
+        "favoriteMeal": {
+            "effects": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.Lpo0XSUVmGDQaXtz",
+                    "removeWhenPreparingCampsite": false
+                }
+            ]
+        },
+        "criticalFailure": {
+            "effects": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.ovbBMpOBtB1CrLOv",
+                    "removeWhenPreparingCampsite": false
+                }
+            ]
+        },
+        "criticalSuccess": {
+            "effects": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.q5JHZeJeAIscA1ky",
+                    "removeWhenPreparingCampsite": false
+                }
+            ]
+        }
+    },
+    {
+        "id": "cheese-crostata",
+        "name": "recipes.cheese-crostata.name",
+        "icon": "icons/consumables/food/cheese-wheel-round-yellow.webp",
+        "basicIngredients": 4,
+        "specialIngredients": 0,
+        "cookingLoreDC": 22,
+        "survivalDC": 24,
+        "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.GAf8W01ppdseIGbq",
+        "level": 5,
+        "cost": {
+            "currency": "gp",
+            "value": 8
+        },
+        "rarity": "uncommon",
+        "success": {
+            "effects": [
+                {
+                    "changeFatigueDurationSeconds": 7200,
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.1VchCdA1LMBhYENe",
+                    "removeWhenPreparingCampsite": false
+                }
+            ]
+        },
+        "favoriteMeal": {
+            "effects": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.2c2nrlkL2XJXXQIA"
+                }
+            ]
+        },
+        "criticalFailure": {
+            "effects": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.EBa9BjdANCMLKMEy",
+                    "removeAfterRest": true
+                }
+            ]
+        },
+        "criticalSuccess": {
+            "effects": [
+                {
+                    "changeFatigueDurationSeconds": 14400,
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.MI6MF3R5OswdGBUd",
+                    "removeWhenPreparingCampsite": false
+                },
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.X7fTfenq4TukJJM4"
+                }
+            ]
+        }
+    },
+    {
+        "id": "fish-on-a-stick",
+        "name": "recipes.fish-on-a-stick.name",
+        "icon": "icons/consumables/food/cooked-kebab-meat-skewer-orange.webp",
+        "basicIngredients": 2,
+        "specialIngredients": 0,
+        "cookingLoreDC": 17,
+        "survivalDC": 19,
+        "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.b59ro2GHvRvBOko8",
+        "level": 1,
+        "cost": {
+            "currency": "gp",
+            "value": 1
+        },
+        "rarity": "common",
+        "success": {
+            "effects": [
+                {
+                    "changeFatigueDurationSeconds": 3600,
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.8eIGJPWFlg4L94wY",
+                    "removeWhenPreparingCampsite": false
+                }
+            ]
+        },
+        "criticalSuccess": {
+            "effects": [
+                {
+                    "changeFatigueDurationSeconds": 7200,
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.L5sACVlUjYP6lJ7q",
+                    "removeWhenPreparingCampsite": false
+                }
+            ]
+        },
+        "criticalFailure": {
+            "effects": [
+                {
+                    "changeRestDurationSeconds": 3600,
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.c9qgXgiAJikyTM0p",
+                    "removeAfterRest": true
+                }
+            ]
+        },
+        "favoriteMeal": {
+            "effects": [
+                {
+                    "changeRestDurationSeconds": -3600,
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.dZTQ5rfedrpLUTxE"
+                }
+            ]
+        }
+    },
+    {
+        "id": "ragout",
+        "name": "recipes.ragout.name",
+        "icon": "icons/consumables/food/bowl-stew-tofu-potato-red.webp",
+        "basicIngredients": 4,
+        "specialIngredients": 0,
+        "cookingLoreDC": 20,
+        "survivalDC": 22,
+        "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.agI35cH4peI3aIX5",
+        "level": 4,
+        "cost": {
+            "currency": "gp",
+            "value": 5
+        },
+        "rarity": "uncommon",
+        "criticalSuccess": {
+            "effects": [
+                {
+                    "changeFatigueDurationSeconds": 7200,
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.MADgm2doEOSlNe7u",
+                    "removeWhenPreparingCampsite": false
+                },
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.JqxNxAVZzAdCAoCZ",
+                    "removeWhenPreparingCampsite": false
+                }
+            ]
+        },
+        "favoriteMeal": {
+            "effects": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.Uh9fQWIE0Nc2hwLi"
+                }
+            ]
+        },
+        "criticalFailure": {
+            "effects": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.bH9QjKt6LybagxcR",
+                    "removeAfterRest": true
+                }
+            ]
+        },
+        "success": {
+            "effects": [
+                {
+                    "changeFatigueDurationSeconds": 7200,
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.x1lKNowlbhotDu0q",
+                    "removeWhenPreparingCampsite": false
+                }
+            ]
+        }
+    }
+]

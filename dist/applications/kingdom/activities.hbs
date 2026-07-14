@@ -1,0 +1,51 @@
+<ul class="km-kingdom-activities">
+    {{#each activities}}
+        <li class="km-kingdom-activity km-kingdom-details" data-activity-id="{{id}}">
+            <details {{#if open}}open{{/if}}>
+                <summary data-id="activity-{{id}}">{{#if order}}{{order}}){{/if}}{{#each actions}}{{#unless @first}}/{{/unless}}<span class="action-glyph">{{this}}</span>{{/each}}<span class="km-detail-label">{{label}}</span>{{#if fortune}}
+                    <i title="{{localizeKM "kingdom.fortune"}}" class="fa-solid fa-clover"></i>{{/if}}
+                    <div class="km-detail-controls">
+                        {{#if isCollectTaxes}}
+                            <button {{#if ../collectTaxesReduceUnrestDisabled}}disabled{{/if}}
+                                    type="button"
+                                    class="km-kingdom-activity-check"
+                                    data-action="skip-collect-taxes">
+                                {{localizeKM "kingdom.skipReduceUnrest"}} <i class="fa-solid fa-dice-d20"></i>
+                            </button>
+                        {{/if}}
+                        {{#if hasCheck}}
+                        <button {{#if disabled}}disabled{{/if}}
+                                data-activity="{{id}}"
+                                type="button"
+                                class="km-kingdom-activity-check"
+                                data-action="perform-activity">
+                            {{localizeKM "kingdom.check"}} <i class="fa-solid fa-dice-d20"></i>
+                        </button>
+                        {{/if}}
+                    </div>
+                </summary>
+                {{#if requirement}}<p><b>{{localizeKM "kingdom.requirement"}}:</b> {{requirement}}</p>{{/if}}
+                <div class="km-detail-description">
+                    <ul class="km-activity-skills">
+                        {{#each skills}}
+                            <li {{#unless usable}}class="km-skill-disabled" title="{{localizeKM "kingdom.skillNotUsable"}}"{{/unless}}>{{label}}</li>
+                        {{/each}}
+                    </ul>
+                    {{#if automationNotes}}<p><b>{{localizeKM "kingdom.automationNotes"}}:</b> {{automationNotes}}</p>{{/if}}{{{description}}}</div>
+                <ul class="km-summary-degrees">
+                    {{#if criticalSuccess}}
+                        <li><b>{{localizeKM "degreeOfSuccess.criticalSuccess"}}:</b> {{{criticalSuccess}}}</li>{{/if}}
+                    {{#if success}}
+                        <li><b>{{localizeKM "degreeOfSuccess.success"}}:</b> {{{success}}}</li>{{/if}}
+                    {{#if failure}}
+                        <li><b>{{localizeKM "degreeOfSuccess.failure"}}:</b> {{{failure}}}</li>{{/if}}
+                    {{#if criticalFailure}}
+                        <li><b>{{localizeKM "degreeOfSuccess.criticalFailure"}}:</b> {{{criticalFailure}}}</li>{{/if}}
+                </ul>
+                {{#if special}}
+                    <hr>
+                    <p><b>{{localizeKM "kingdom.special"}}:</b> {{special}}</p>{{/if}}
+            </details>
+        </li>
+    {{/each}}
+</ul>

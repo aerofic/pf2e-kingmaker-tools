@@ -1,0 +1,223 @@
+[
+    {
+        "id": "ability-boosts",
+        "levels": [
+            5,
+            10,
+            15,
+            20
+        ],
+        "name": "features.ability-boosts.name",
+        "description": "features.ability-boosts.description",
+        "abilityBoosts": 2
+    },
+    {
+        "id": "charter",
+        "levels": [
+            1
+        ],
+        "name": "features.charter.name",
+        "description": "features.charter.description"
+    },
+    {
+        "id": "civic-planning",
+        "levels": [
+            12
+        ],
+        "name": "features.civic-planning.name",
+        "description": "features.civic-planning.description"
+    },
+    {
+        "id": "envy-of-the-world",
+        "levels": [
+            20
+        ],
+        "name": "features.envy-of-the-world.name",
+        "description": "features.envy-of-the-world.description",
+        "automationNotes": "features.envy-of-the-world.automationNotes"
+    },
+    {
+        "id": "expansion-expert-1",
+        "levels": [
+            4
+        ],
+        "name": "features.expansion-expert-1.name",
+        "description": "features.expansion-expert-1.description",
+        "modifiers": [
+            {
+                "name": "features.expansion-expert-1.modifiers.claimHex.name",
+                "buttonLabel": "features.expansion-expert-1.modifiers.claimHex.buttonLabel",
+                "type": "circumstance",
+                "applyIf": [
+                    {
+                        "eq": [
+                            "@activity",
+                            "claim-hex"
+                        ]
+                    }
+                ],
+                "value": 2,
+                "enabled": true
+            }
+        ],
+        "claimHexAttempts": 2
+    },
+    {
+        "id": "expansion-expert-2",
+        "levels": [
+            9
+        ],
+        "claimHexAttempts": 3,
+        "name": "features.expansion-expert-2.name",
+        "description": "features.expansion-expert-2.description"
+    },
+    {
+        "id": "experienced-leadership-1",
+        "levels": [
+            8
+        ],
+        "name": "features.experienced-leadership-1.name",
+        "description": "features.experienced-leadership-1.description"
+    },
+    {
+        "id": "experienced-leadership-2",
+        "levels": [
+            16
+        ],
+        "name": "features.experienced-leadership-2.name",
+        "description": "features.experienced-leadership-2.description"
+    },
+    {
+        "id": "favored-land",
+        "levels": [
+            1
+        ],
+        "name": "features.favored-land.name",
+        "description": "features.favored-land.description"
+    },
+    {
+        "id": "fine-living",
+        "levels": [
+            4
+        ],
+        "name": "features.fine-living.name",
+        "description": "features.fine-living.description"
+    },
+    {
+        "id": "government",
+        "levels": [
+            1
+        ],
+        "name": "features.government.name",
+        "description": "features.government.description"
+    },
+    {
+        "id": "heartland",
+        "levels": [
+            1
+        ],
+        "name": "features.heartland.name",
+        "description": "features.heartland.description"
+    },
+    {
+        "id": "initial-proficiencies",
+        "levels": [
+            1
+        ],
+        "name": "features.initial-proficiencies.name",
+        "description": "features.initial-proficiencies.description",
+        "claimHexAttempts": 1
+    },
+    {
+        "id": "kingdom-feat",
+        "levels": [
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14,
+            16,
+            18,
+            20
+        ],
+        "kingdomFeat": true,
+        "name": "features.kingdom-feat.name",
+        "description": "features.kingdom-feat.description"
+    },
+    {
+        "id": "life-of-luxury",
+        "levels": [
+            10
+        ],
+        "name": "features.life-of-luxury.name",
+        "description": "features.life-of-luxury.description"
+    },
+    {
+        "id": "ruin-resistance",
+        "levels": [
+            5,
+            8,
+            11,
+            14,
+            17,
+            20
+        ],
+        "ruinThresholdIncreases": {
+            "amount": 1,
+            "increase": 2
+        },
+        "name": "features.ruin-resistance.name",
+        "description": "features.ruin-resistance.description"
+    },
+    {
+        "id": "settlement-construction-city",
+        "levels": [
+            9
+        ],
+        "name": "features.settlement-construction-city.name",
+        "description": "features.settlement-construction-city.description"
+    },
+    {
+        "id": "settlement-construction-metropolis",
+        "levels": [
+            15
+        ],
+        "name": "features.settlement-construction-metropolis.name",
+        "description": "features.settlement-construction-metropolis.description"
+    },
+    {
+        "id": "settlement-construction-town",
+        "levels": [
+            3
+        ],
+        "name": "features.settlement-construction-town.name",
+        "description": "features.settlement-construction-town.description"
+    },
+    {
+        "id": "settlement-construction-village",
+        "levels": [
+            1
+        ],
+        "name": "features.settlement-construction-village.name",
+        "description": "features.settlement-construction-village.description"
+    },
+    {
+        "id": "skill-increase",
+        "levels": [
+            3,
+            5,
+            7,
+            9,
+            11,
+            13,
+            15,
+            17,
+            19
+        ],
+        "skillIncrease": true,
+        "name": "features.skill-increase.name",
+        "description": "features.skill-increase.description"
+    }
+]

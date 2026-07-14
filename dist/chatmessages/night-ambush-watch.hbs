@@ -1,0 +1,12 @@
+<h3>夜袭守夜信息</h3>
+
+<p>遭遇时间：{{encounterAt}}（休息开始后）</p>
+<p>守夜人数：{{watcherCount}}</p>
+<p>每人守夜：{{shiftDuration}}</p>
+
+{{#if hasWatcher}}
+    <p>对应第 {{watcherIndex}} 位守夜人。</p>
+    <p>该班时段：{{watchStart}} - {{watchEnd}}</p>
+{{else}}
+    <p>未能计算对应守夜顺位。</p>
+{{/if}}

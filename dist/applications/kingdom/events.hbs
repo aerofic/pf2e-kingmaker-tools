@@ -1,0 +1,76 @@
+<ul class="km-kingdom-events">
+    {{#each ongoingEvents}}
+        <li class="km-kingdom-event km-kingdom-details">
+            <details {{#if open}}open{{/if}}>
+                <summary data-id="event-{{id}}"><span
+                        class="km-detail-label">{{label}}</span>
+                    <div class="km-detail-controls">
+                        {{#each stages}}
+                        <button data-stage="{{index}}"
+                                data-event-index="{{@../index}}"
+                                {{#if ../hideStageButton}}hidden="hidden"{{/if}}
+                                type="button"
+                                class="{{#if active}}km-event-stage-active{{/if}}"
+                                data-action="change-event-stage">
+                            {{label}}
+                        </button>
+                        {{/each}}
+                        {{#if allowToggleContinuous}}
+                        <button class="km-mark-continuous"
+                                type="button"
+                                data-event-index="{{@index}}"
+                                title="{{#if becameContinuous}}{{localizeKM "kingdom.unsetEventAsContinuous"}}{{else}}{{localizeKM "kingdom.setEventAsContinuous"}}{{/if}}"
+                                data-action="toggle-continuous"
+                        >
+                            {{#if becameContinuous}}<i class="fa-solid fa-bookmark"></i>{{else}}<i class="fa-regular fa-bookmark"></i>{{/if}}
+                        </button>
+                        {{/if}}
+                        <button data-index="{{@index}}"
+                                type="button"
+                                data-action="handle-event">
+                            {{localizeKM "kingdom.resolve"}} <i class="fa-solid fa-dice-d20"></i>
+                        </button>
+                        <button data-index="{{@index}}"
+                                {{#unless ../isGM}}hidden{{/unless}}
+                                type="button"
+                                class="km-icon-only"
+                                data-action="delete-event">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+                    </div>
+                </summary>
+                <div {{#unless ../isGM}}hidden{{/unless}}>
+                    <div class="km-detail-description">
+                        <ul class="km-event-traits">
+                            {{#each traits}}
+                                <li>{{this}}</li>
+                            {{/each}}
+                        </ul>
+                        {{#if location}}<p><b>{{localizeKM "kingdom.eventLocation"}}:</b> {{location}}</p>{{/if}}
+                        {{{description}}}
+                    </div>
+                    {{#if automationNotes}}<p><b>{{localizeKM "kingdom.automationNotes"}}:</b> {{automationNotes}}</p>{{/if}}
+                    <p><b>{{localizeKM "enums.leader"}}</b>: {{leader}}</p>
+                    <p><b>{{localizeKM "applications.skills"}}</b>: {{#each skills}}{{#unless @first}}, {{/unless}}{{this}}{{/each}}</p>
+                    <ul class="km-summary-degrees">
+                        {{#if criticalSuccess}}
+                            <li><b>{{localizeKM "degreeOfSuccess.criticalSuccess"}}:</b> {{{criticalSuccess}}}</li>{{/if}}
+                        {{#if success}}
+                            <li><b>{{localizeKM "degreeOfSuccess.success"}}:</b> {{{success}}}</li>{{/if}}
+                        {{#if failure}}
+                            <li><b>{{localizeKM "degreeOfSuccess.failure"}}:</b> {{{failure}}}</li>{{/if}}
+                        {{#if criticalFailure}}
+                            <li><b>{{localizeKM "degreeOfSuccess.criticalFailure"}}:</b> {{{criticalFailure}}}</li>{{/if}}
+                    </ul>
+                    {{#if resolution}}
+                        <hr>
+                        <p><b>{{localizeKM "kingdom.eventResolution"}}:</b> {{resolution}}</p>
+                    {{/if}}
+                    {{#if special}}
+                        <hr>
+                        <p><b>{{localizeKM "kingdom.special"}}:</b> {{special}}</p>{{/if}}
+                </div>
+            </details>
+        </li>
+    {{/each}}
+</ul>

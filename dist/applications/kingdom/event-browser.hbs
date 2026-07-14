@@ -1,0 +1,53 @@
+<div>
+    {{> formElement search}}
+    <ul class="km-add-events">
+        {{#each events}}
+            <li>
+                <details>
+                    <summary>
+                        <span>{{label}}</span>
+                        <button data-id="{{id}}"
+                                data-settlement-event="{{isSettlement}}"
+                                type="button"
+                                data-action="add-event">
+                            {{localizeKM "applications.add"}}
+                        </button>
+                    </summary>
+                    <div class="km-add-event-description">
+                        <ul class="km-event-traits">
+                            {{#each traits}}
+                                <li>{{this}}</li>
+                            {{/each}}
+                        </ul>
+                        {{#if location}}<p><b>{{localizeKM "kingdom.eventLocation"}}:</b> {{location}}</p>{{/if}}
+                        {{{description}}}
+                    </div>
+                    {{#if automationNotes}}<p><b>{{localizeKM "kingdom.automationNotes"}}:</b> {{automationNotes}}</p>{{/if}}
+                    {{#each stages}}
+                        {{#unless @first}}
+                            <hr>{{/unless}}
+                        <p><b>{{localizeKM "enums.leader"}}</b>: {{leader}}</p>
+                        <p><b>{{localizeKM "applications.skills"}}</b>: {{#each skills}}{{#unless @first}}, {{/unless}}{{this}}{{/each}}</p>
+                        <ul class="km-event-degrees">
+                            {{#if criticalSuccess}}
+                                <li><b>{{localizeKM "degreeOfSuccess.criticalSuccess"}}:</b> {{{criticalSuccess}}}</li>{{/if}}
+                            {{#if success}}
+                                <li><b>{{localizeKM "degreeOfSuccess.success"}}:</b> {{{success}}}</li>{{/if}}
+                            {{#if failure}}
+                                <li><b>{{localizeKM "degreeOfSuccess.failure"}}:</b> {{{failure}}}</li>{{/if}}
+                            {{#if criticalFailure}}
+                                <li><b>{{localizeKM "degreeOfSuccess.criticalFailure"}}:</b> {{{criticalFailure}}}</li>{{/if}}
+                        </ul>
+                    {{/each}}
+                    {{#if resolution}}
+                        <hr>
+                        <p><b>{{localizeKM "kingdom.eventResolution"}}:</b> {{resolution}}</p>
+                    {{/if}}
+                    {{#if special}}
+                        <hr>
+                        <p><b>{{localizeKM "kingdom.special"}}:</b> {{special}}</p>{{/if}}
+                </details>
+            </li>
+        {{/each}}
+    </ul>
+</div>

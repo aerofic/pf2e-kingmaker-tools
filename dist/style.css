@@ -1,0 +1,215 @@
+@import "./applications/camping/camping.css";
+@import "./components/forms/form.css";
+@import "./components/tabs/tabs.css";
+@import "./components/food-cost/food-cost.css";
+@import "./components/skill-picker/skill-picker.css";
+@import "./components/skill-picker/skill-picker-input.css";
+@import "./components/activity-effects/activity-effects-input.css";
+@import "./applications/kingdom/event-browser.css";
+@import "./applications/kingdom/check.css";
+@import "./applications/kingdom/kingdom-sheet.css";
+@import "./applications/kingdom/structure-browser.css";
+@import "./applications/kingdom/settlement.css";
+@import "./applications/settings/actor-actions.css";
+@import "./chatmessages/chat.css";
+@import "./components/simple-app.css";
+
+:root {
+    --primary-km: #275125;
+    --secondary-km: #789035;
+    --untrained: #424242;
+    --trained: #171f69;
+    --expert: #3c005e;
+    --master: #664400;
+    --legendary: #5e0000;
+    --critical-success: #171f69;
+    --success: #1e4597;
+    --failure: #c52424;
+    --critical-failure: #871b1b;
+    --sidebar-size: 301px;
+    --rarity-common: #323232;
+    --rarity-uncommon: #98513d;
+    --rarity-rare: #002664;
+    --rarity-unique: #54166e;
+}
+
+.km-scroll-application {
+    .window-content {
+        overflow: auto;
+    }
+}
+
+.km-degree-of-success {
+    option[value="criticalSuccess"],
+    &:has(option[value="criticalSuccess"]:checked) {
+        color: white;
+        background-color: var(--critical-success);
+    }
+
+    option[value="success"],
+    &:has(option[value="success"]:checked) {
+        color: white;
+        background-color: var(--success);
+    }
+
+    option[value="failure"],
+    &:has(option[value="failure"]:checked) {
+        color: white;
+        background-color: var(--failure);
+    }
+
+    option[value="criticalFailure"],
+    &:has(option[value="criticalFailure"]:checked) {
+        color: white;
+        background-color: var(--critical-failure);
+    }
+}
+
+.km-rarity {
+    option[value="common"],
+    option.km-rarity-common,
+    &:has(option[value="common"]:checked),
+    &:has(option.km-rarity-common:checked) {
+        color: white;
+        background-color: var(--rarity-common);
+    }
+
+    option[value="uncommon"],
+    option.km-rarity-uncommon,
+    &:has(option[value="uncommon"]:checked),
+    &:has(option.km-rarity-uncommon:checked) {
+        color: white;
+        background-color: var(--rarity-uncommon);
+    }
+
+    option[value="rare"],
+    option.km-rarity-rare,
+    &:has(option[value="rare"]:checked),
+    &:has(option.km-rarity-rare:checked) {
+        color: white;
+        background-color: var(--rarity-rare);
+    }
+
+    option[value="unique"],
+    option.km-rarity-unique,
+    &:has(option[value="unique"]:checked),
+    &:has(option.km-rarity-unique:checked) {
+        color: white;
+        background-color: var(--rarity-unique);
+    }
+}
+
+.km-proficiency {
+    &.km-proficiency-untrained,
+    option[value="untrained"],
+    option[value="0"],
+    option.km-proficiency-untrained,
+    &:has(option[value="untrained"]:checked),
+    &:has(option[value="0"]:checked),
+    &:has(option.km-proficiency-untrained:checked) {
+        color: white;
+        background-color: var(--untrained);
+    }
+
+    &.km-proficiency-trained,
+    option[value="trained"],
+    option[value="1"],
+    option.km-proficiency-trained,
+    &:has(option[value="trained"]:checked),
+    &:has(option[value="1"]:checked),
+    &:has(option.km-proficiency-trained:checked) {
+        color: white;
+        background-color: var(--trained);
+    }
+
+    &.km-proficiency-expert,
+    option[value="expert"],
+    option[value="2"],
+    option.km-proficiency-expert,
+    &:has(option[value="expert"]:checked),
+    &:has(option[value="2"]:checked),
+    &:has(option.km-proficiency-expert:checked) {
+        color: white;
+        background-color: var(--expert);
+    }
+
+    &.km-proficiency-master,
+    option[value="master"],
+    option[value="3"],
+    option.km-proficiency-master,
+    &:has(option[value="master"]:checked),
+    &:has(option[value="3"]:checked),
+    &:has(option.km-proficiency-master:checked) {
+        color: white;
+        background-color: var(--master);
+    }
+
+    &.km-proficiency-legendary,
+    option[value="legendary"],
+    option[value="4"],
+    option.km-proficiency-legendary,
+    &:has(option[value="legendary"]:checked),
+    &:has(option[value="4"]:checked),
+    &:has(option.km-proficiency-legendary:checked) {
+        color: white;
+        background-color: var(--legendary);
+    }
+}
+
+.km-hidden {
+    display: none;
+}
+
+#token-hud .km-army-status-effects .km-army-status-effect {
+    align-items: center;
+    border: 1px solid transparent;
+    border-radius: 3px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+#token-hud .km-army-status-effects .km-army-status-effect > img {
+    border: 0;
+    height: 100%;
+    object-fit: cover;
+    width: 100%;
+}
+
+#token-hud .km-army-status-effects .km-army-status-effect.active {
+    border-color: var(--control-active-border-color, var(--color-warm-2));
+    opacity: 1;
+}
+
+#token-hud .km-army-status-effects .km-army-status-effect:not(.active):hover {
+    border-color: var(--control-hover-border-color, rgba(201, 89, 63, 0.5));
+}
+
+#token-hud .km-army-status-effects .km-army-status-effect.valued .badge {
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid var(--color-warm-3);
+    border-radius: 50%;
+    color: var(--color-cool-4);
+    font-size: var(--font-size-12);
+    font-style: normal;
+    font-weight: 500;
+    height: 0.8rem;
+    line-height: var(--font-size-12);
+    pointer-events: none;
+    position: absolute;
+    right: -3px;
+    text-align: center;
+    top: -3px;
+    width: 0.8rem;
+    z-index: 1;
+}
+
+#token-hud .km-army-status-effects .km-army-status-loading {
+    color: var(--control-icon-color);
+    font-size: var(--font-size-12);
+    grid-column: 1 / -1;
+    line-height: 1.2;
+    padding: 4px;
+    text-align: center;
+}

@@ -1,0 +1,500 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://posselt.at/pf2e-kingmaker-tools/schemas/feature.json",
+  "title": "Kingdom Feature",
+  "description": "A Kingdom Feature",
+  "$ref": "#/$defs/Feature",
+  "$defs": {
+    "Feature": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "levels",
+        "description",
+        "id"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "automationNotes": {
+          "type": "string"
+        },
+        "skillIncrease": {
+          "type": "boolean"
+        },
+        "kingdomFeat": {
+          "type": "boolean"
+        },
+        "abilityBoosts": {
+          "type": "number"
+        },
+        "ruinThresholdIncreases": {
+          "type": "object",
+          "required": [
+            "amount",
+            "increase"
+          ],
+          "properties": {
+            "amount": {
+              "type": "number"
+            },
+            "increase": {
+              "type": "number"
+            }
+          }
+        },
+        "levels": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "description": {
+          "type": "string"
+        },
+        "claimHexAttempts": {
+          "type": "number"
+        },
+        "modifiers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Modifier"
+          }
+        },
+        "rollOptions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "Modifier": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "value",
+        "name",
+        "enabled",
+        "buttonLabel"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "ability",
+            "proficiency",
+            "item",
+            "status",
+            "circumstance",
+            "vacancy",
+            "untyped",
+            "leadership"
+          ]
+        },
+        "notes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["note"],
+            "properties": {
+              "note": {
+                "type": "string"
+              },
+              "degree": {
+                "$ref": "#/$defs/DegreeOfSuccess"
+              }
+            }
+          }
+        },
+        "downgradeResults": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/DowngradeResult"
+          }
+        },
+        "upgradeResults": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/UpgradeResult"
+          }
+        },
+        "fortune": {
+          "type": "boolean"
+        },
+        "rollTwiceKeepHighest": {
+          "type": "boolean"
+        },
+        "rollTwiceKeepLowest": {
+          "type": "boolean"
+        },
+        "value": {
+          "type": "number"
+        },
+        "valueExpression": {
+          "$ref": "#/$defs/When"
+        },
+        "name": {
+          "type": "string"
+        },
+        "buttonLabel": {
+          "type": "string"
+        },
+        "selector": {
+          "type": "string",
+          "enum": ["check", "consumption", "ore", "lumber", "stone"]
+        },
+        "enabled": {
+          "type": "boolean"
+        },
+        "turns": {
+          "type": "number"
+        },
+        "isConsumedAfterRoll": {
+          "type": "boolean"
+        },
+        "rollOptions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "applyIf": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Predicate"
+          }
+        }
+      }
+    },
+    "DowngradeResult": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "downgrade"
+      ],
+      "properties": {
+        "times": {
+          "type": "number"
+        },
+        "downgrade": {
+          "$ref": "#/$defs/DegreeOfSuccess"
+        }
+      }
+    },
+    "UpgradeResult": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "upgrade"
+      ],
+      "properties": {
+        "times": {
+          "type": "number"
+        },
+        "upgrade": {
+          "$ref": "#/$defs/DegreeOfSuccess"
+        }
+      }
+    },
+    "Predicate": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/GtePredicate"
+        },
+        {
+          "$ref": "#/$defs/GtPredicate"
+        },
+        {
+          "$ref": "#/$defs/LtePredicate"
+        },
+        {
+          "$ref": "#/$defs/LtPredicate"
+        },
+        {
+          "$ref": "#/$defs/EqPredicate"
+        },
+        {
+          "$ref": "#/$defs/SomePredicate"
+        },
+        {
+          "$ref": "#/$defs/AllPredicate"
+        },
+        {
+          "$ref": "#/$defs/NotPredicate"
+        },
+        {
+          "$ref": "#/$defs/HasRollOptionPredicate"
+        },
+        {
+          "$ref": "#/$defs/InPredicate"
+        }
+      ]
+    },
+    "InPredicate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "in"
+      ],
+      "properties": {
+        "in": {
+          "type": "array",
+          "prefixItems": [
+            {
+              "$ref": "#/$defs/AnyScalar"
+            },
+            {
+              "oneOf": [
+                {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/AnyScalar"
+                  }
+                },
+                {
+                  "type": "string"
+                }
+              ]
+            }
+          ],
+          "items": false,
+          "minItems": 2
+        }
+      }
+    },
+    "GtePredicate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "gte"
+      ],
+      "properties": {
+        "gte": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/AnyNumeric"
+          },
+          "minItems": 2,
+          "maxItems": 2
+        }
+      }
+    },
+    "GtPredicate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "gt"
+      ],
+      "properties": {
+        "gt": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/AnyNumeric"
+          },
+          "minItems": 2,
+          "maxItems": 2
+        }
+      }
+    },
+    "LtePredicate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "lte"
+      ],
+      "properties": {
+        "lte": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/AnyNumeric"
+          },
+          "minItems": 2,
+          "maxItems": 2
+        }
+      }
+    },
+    "LtPredicate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "lt"
+      ],
+      "properties": {
+        "lt": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/AnyNumeric"
+          },
+          "minItems": 2,
+          "maxItems": 2
+        }
+      }
+    },
+    "EqPredicate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "eq"
+      ],
+      "properties": {
+        "eq": {
+          "type": "array",
+          "prefixItems": [
+            {
+              "$ref": "#/$defs/AnyScalar"
+            },
+            {
+              "$ref": "#/$defs/AnyScalar"
+            }
+          ],
+          "items": false,
+          "minItems": 2
+        }
+      }
+    },
+    "SomePredicate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "some"
+      ],
+      "properties": {
+        "some": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Predicate"
+          },
+          "minItems": 1
+        }
+      }
+    },
+    "AllPredicate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "all"
+      ],
+      "properties": {
+        "all": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Predicate"
+          },
+          "minItems": 1
+        }
+      }
+    },
+    "NotPredicate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "not"
+      ],
+      "properties": {
+        "not": {
+          "$ref": "#/$defs/Predicate"
+        }
+      }
+    },
+    "HasRollOptionPredicate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "hasRollOption"
+      ],
+      "properties": {
+        "hasRollOption": {
+          "type": "string"
+        }
+      }
+    },
+    "When": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["when"],
+      "properties": {
+        "when": {
+          "type": "object",
+          "required": ["cases"],
+          "additionalProperties": false,
+          "properties": {
+            "cases": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "#/$defs/Case"
+              }
+            },
+            "default": {
+              "$ref": "#/$defs/AnyScalar"
+            }
+          }
+        }
+      }
+    },
+    "Case": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "case"
+      ],
+      "properties": {
+        "case": {
+          "type": "array",
+          "prefixItems": [
+            {
+              "$ref": "#/$defs/Predicate"
+            },
+            {
+              "$ref": "#/$defs/AnyScalar"
+            }
+          ],
+          "items": false,
+          "minItems": 2
+        }
+      }
+    },
+    "AnyNumeric": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "number"
+        }
+      ]
+    },
+    "AnyScalar": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        },
+        {
+          "type": "number"
+        },
+        {
+          "type": "boolean"
+        }
+      ]
+    },
+    "DegreeOfSuccess": {
+      "type": "string",
+      "enum": [
+        "criticalSuccess",
+        "success",
+        "failure",
+        "criticalFailure"
+      ]
+    }
+  }
+}

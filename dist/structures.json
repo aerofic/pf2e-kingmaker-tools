@@ -1,0 +1,4164 @@
+[
+  {
+    "id": "academy",
+    "name": "structures.academy.name",
+    "activityBonusRules": [
+      {
+        "value": 2,
+        "activity": "creative-solution"
+      }
+    ],
+    "notes": "structures.academy.notes",
+    "traits": [
+      "building",
+      "edifice"
+    ],
+    "affectsDowntime": true,
+    "level": 10,
+    "upgradeFrom": [
+      "library",
+      "library-vk"
+    ],
+    "construction": {
+      "skills": [
+        {
+          "skill": "scholarship",
+          "proficiencyRank": 2
+        }
+      ],
+      "dc": 27,
+      "rp": 52,
+      "lumber": 12,
+      "luxuries": 6,
+      "stone": 12
+    },
+    "lots": 2
+  },
+  {
+    "id": "alchemy-laboratory",
+    "name": "structures.alchemy-laboratory.name",
+    "activityBonusRules": [
+      {
+        "value": 1,
+        "activity": "demolish"
+      }
+    ],
+    "availableItemsRules": [
+      {
+        "value": 1,
+        "group": "alchemical"
+      }
+    ],
+    "notes": "structures.alchemy-laboratory.notes",
+    "traits": [
+      "building"
+    ],
+    "affectsDowntime": true,
+    "level": 3,
+    "construction": {
+      "skills": [
+        {
+          "skill": "industry",
+          "proficiencyRank": 1
+        }
+      ],
+      "rp": 18,
+      "ore": 2,
+      "stone": 5,
+      "dc": 16
+    },
+    "lots": 1
+  },
+  {
+    "id": "arcanists-tower",
+    "name": "structures.arcanists-tower.name",
+    "skillBonusRules": [
+      {
+        "value": 1,
+        "skill": "magic",
+        "activity": "quell-unrest"
+      }
+    ],
+    "availableItemsRules": [
+      {
+        "value": 1,
+        "group": "arcane"
+      }
+    ],
+    "notes": "structures.arcanists-tower.notes",
+    "traits": [
+      "building"
+    ],
+    "affectsDowntime": true,
+    "level": 5,
+    "construction": {
+      "skills": [
+        {
+          "skill": "magic",
+          "proficiencyRank": 1
+        }
+      ],
+      "rp": 30,
+      "stone": 6,
+      "dc": 20
+    },
+    "lots": 1,
+    "activityBonusRules": [
+      {
+        "value": 1,
+        "activity": "supernatural-solution"
+      }
+    ]
+  },
+  {
+    "id": "arena",
+    "name": "structures.arena.name",
+    "activityBonusRules": [
+      {
+        "value": 2,
+        "activity": "celebrate-holiday"
+      },
+      {
+        "value": 2,
+        "activity": "celebrate-holiday-vk"
+      }
+    ],
+    "skillBonusRules": [
+      {
+        "value": 1,
+        "skill": "warfare",
+        "activity": "quell-unrest"
+      }
+    ],
+    "notes": "structures.arena.notes",
+    "traits": [
+      "edifice",
+      "yard"
+    ],
+    "affectsDowntime": true,
+    "level": 9,
+    "construction": {
+      "skills": [
+        {
+          "skill": "warfare",
+          "proficiencyRank": 2
+        }
+      ],
+      "dc": 26,
+      "rp": 40,
+      "lumber": 6,
+      "stone": 12
+    },
+    "lots": 4
+  },
+  {
+    "id": "bank-vk",
+    "name": "structures.bank-vk.name",
+    "activityBonusRules": [
+      {
+        "value": 1,
+        "activity": "tap-treasury"
+      },
+      {
+        "value": 1,
+        "activity": "capital-investment"
+      },
+      {
+        "value": 1,
+        "activity": "collect-taxes"
+      }
+    ],
+    "enableCapitalInvestment": true,
+    "traits": [
+      "building"
+    ],
+    "level": 5,
+    "construction": {
+      "skills": [
+        {
+          "skill": "trade",
+          "proficiencyRank": 1
+        }
+      ],
+      "dc": 20,
+      "rp": 28,
+      "ore": 4,
+      "stone": 6
+    },
+    "lots": 1
+  },
+  {
+    "id": "bank",
+    "name": "structures.bank.name",
+    "activityBonusRules": [
+      {
+        "value": 1,
+        "activity": "tap-treasury"
+      }
+    ],
+    "enableCapitalInvestment": true,
+    "traits": [
+      "building"
+    ],
+    "level": 5,
+    "construction": {
+      "skills": [
+        {
+          "skill": "trade",
+          "proficiencyRank": 1
+        }
+      ],
+      "dc": 20,
+      "rp": 28,
+      "ore": 4,
+      "stone": 6
+    },
+    "lots": 1
+  },
+  {
+    "id": "barracks",
+    "name": "structures.barracks.name",
+    "activityBonusRules": [
+      {
+        "value": 1,
+        "activity": "garrison-army"
+      },
+      {
+        "value": 1,
+        "activity": "recover-army-damaged"
+      },
+      {
+        "value": 1,
+        "activity": "recover-army-defeated"
+      },
+      {
+        "value": 1,
+        "activity": "recover-army-lost"
+      },
+      {
+        "value": 1,
+        "activity": "recover-army-mired-pinned"
+      },
+      {
+        "value": 1,
+        "activity": "recover-army-shaken"
+      },
+      {
+        "value": 1,
+        "activity": "recover-army-weary"
+      },
+      {
+        "value": 1,
+        "activity": "recruit-army"
+      }
+    ],
+    "traits": [
+      "building",
+      "residential"
+    ],
+    "reducesUnrest": true,
+    "reduceUnrestBy": {
+      "value": "1",
+      "moreThanOncePerTurn": true
+    },
+    "level": 3,
+    "construction": {
+      "skills": [
+        {
+          "skill": "defense"
+        }
+      ],
+      "dc": 16,
+      "rp": 6,
+      "lumber": 2,
+      "stone": 1
+    },
+    "lots": 1
+  },
+  {
+    "id": "brewery",
+    "name": "structures.brewery.name",
+    "activityBonusRules": [
+      {
+        "value": 1,
+        "activity": "establish-trade-agreement"
+      }
+    ],
+    "traits": [
+      "building"
+    ],
+    "reducesUnrest": true,
+    "reduceUnrestBy": {
+      "value": "1",
+      "moreThanOncePerTurn": true,
+      "note": "as long as you have fewer than 4 breweries in the settlement at that time"
+    },
+    "level": 1,
+    "construction": {
+      "skills": [
+        {
+          "skill": "agriculture"
+        }
+      ],
+      "dc": 15,
+      "rp": 6,
+      "lumber": 2
+    },
+    "lots": 1
+  },
+  {
+    "id": "bridge-stone",
+    "name": "structures.bridge-stone.name",
+    "isBridge": true,
+    "traits": [
+      "infrastructure"
+    ],
+    "lots": 0,
+    "affectsDowntime": false,
+    "reducesUnrest": false,
+    "level": 2,
+    "construction": {
+      "skills": [
+        {
+          "skill": "engineering"
+        }
+      ],
+      "dc": 16,
+      "rp": 6,
+      "stone": 1
+    }
+  },
+  {
+    "id": "bridge",
+    "name": "structures.bridge.name",
+    "isBridge": true,
+    "traits": [
+      "infrastructure"
+    ],
+    "lots": 0,
+    "affectsDowntime": false,
+    "reducesUnrest": false,
+    "level": 2,
+    "construction": {
+      "skills": [
+        {
+          "skill": "engineering"
+        }
+      ],
+      "dc": 16,
+      "rp": 6,
+      "lumber": 1
+    }
+  },
+  {
+    "id": "castle-vk",
+    "name": "structures.castle-vk.name",
+    "maximumCivicRdLimit": 3,
+    "activityBonusRules": [
+      {
+        "value": 2,
+        "activity": "new-leadership"
+      },
+      {
+        "value": 2,
+        "activity": "new-leadership-vk"
+      },
+      {
+        "value": 2,
+        "activity": "pledge-of-fealty"
+      },
+      {
+        "value": 2,
+        "activity": "send-diplomatic-envoy"
+      },
+      {
+        "value": 2,
+        "activity": "garrison-army"
+      },
+      {
+        "value": 2,
+        "activity": "recruit-army"
+      },
+      {
+        "value": 2,
+        "activity": "recover-army-damaged"
+      },
+      {
+        "value": 2,
+        "activity": "recover-army-defeated"
+      },
+      {
+        "value": 2,
+        "activity": "recover-army-lost"
+      },
+      {
+        "value": 2,
+        "activity": "recover-army-mired-pinned"
+      },
+      {
+        "value": 2,
+        "activity": "recover-army-shaken"
+      },
+      {
+        "value": 2,
+        "activity": "recover-army-weary"
+      },
+      {
+        "value": 2,
+        "activity": "manage-trade-agreements"
+      },
+      {
+        "value": 2,
+        "activity": "relocate-capital"
+      },
+      {
+        "value": 2,
+        "activity": "retrain-vk"
+      }
+    ],
+    "traits": [
+      "building",
+      "edifice",
+      "famous",
+      "infamous"
+    ],
+    "affectsDowntime": false,
+    "reducesUnrest": true,
+    "reduceUnrestBy": {
+      "value": "1d4"
+    },
+    "level": 9,
+    "upgradeFrom": [
+      "town-hall",
+      "town-hall-vk"
+    ],
+    "construction": {
+      "skills": [
+        {
+          "skill": "defense",
+          "proficiencyRank": 2
+        },
+        {
+          "skill": "industry",
+          "proficiencyRank": 2
+        },
+        {
+          "skill": "magic",
+          "proficiencyRank": 2
+        },
+        {
+          "skill": "statecraft",
+          "proficiencyRank": 2
+        }
+      ],
+      "rp": 54,
+      "dc": 26,
+      "lumber": 12,
+      "stone": 12
+    },
+    "lots": 4,
+    "increaseResourceDice": {
+      "town": 1,
+      "city": 2,
+      "metropolis": 3
+    },
+    "increaseMinimumSettlementActions": 2,
+    "notes": "structures.castle-vk.notes"
+  },
+  {
+    "id": "castle",
+    "name": "structures.castle.name",
+    "activityBonusRules": [
+      {
+        "value": 2,
+        "activity": "new-leadership"
+      },
+      {
+        "value": 2,
+        "activity": "new-leadership-vk"
+      },
+      {
+        "value": 2,
+        "activity": "pledge-of-fealty"
+      },
+      {
+        "value": 2,
+        "activity": "send-diplomatic-envoy"
+      },
+      {
+        "value": 2,
+        "activity": "garrison-army"
+      },
+      {
+        "value": 2,
+        "activity": "recruit-army"
+      },
+      {
+        "value": 2,
+        "activity": "recover-army-damaged"
+      },
+      {
+        "value": 2,
+        "activity": "recover-army-defeated"
+      },
+      {
+        "value": 2,
+        "activity": "recover-army-lost"
+      },
+      {
+        "value": 2,
+        "activity": "recover-army-mired-pinned"
+      },
+      {
+        "value": 2,
+        "activity": "recover-army-shaken"
+      },
+      {
+        "value": 2,
+        "activity": "recover-army-weary"
+      }
+    ],
+    "increaseLeadershipActivities": true,
+    "traits": [
+      "building",
+      "edifice",
+      "famous",
+      "infamous"
+    ],
+    "affectsDowntime": false,
+    "reducesUnrest": true,
+    "reduceUnrestBy": {
+      "value": "1d4"
+    },
+    "level": 9,
+    "upgradeFrom": [
+      "town-hall",
+      "town-hall-vk"
+    ],
+    "construction": {
+      "skills": [
+        {
+          "skill": "defense",
+          "proficiencyRank": 2
+        },
+        {
+          "skill": "industry",
+          "proficiencyRank": 2
+        },
+        {
+          "skill": "magic",
+          "proficiencyRank": 2
+        },
+        {
+          "skill": "statecraft",
+          "proficiencyRank": 2
+        }
+      ],
+      "rp": 54,
+      "dc": 26,
+      "lumber": 12,
+      "stone": 12
+    },
+    "lots": 4
+  },
+  {
+    "id": "cathedral",
+    "name": "structures.cathedral.name",
+    "activityBonusRules": [
+      {
+        "value": 3,
+        "activity": "celebrate-holiday"
+      },
+      {
+        "value": 3,
+        "activity": "celebrate-holiday-vk"
+      },
+      {
+        "value": 3,
+        "activity": "provide-care"
+      },
+      {
+        "value": 3,
+        "activity": "repair-reputation-corruption"
+      },
+      {
+        "value": 3,
+        "activity": "blessed-solution"
+      },
+      {
+        "value": 3,
+        "activity": "observe-customs"
+      }
+    ],
+    "availableItemsRules": [
+      {
+        "value": 1,
+        "group": "divine"
+      }
+    ],
+    "notes": "structures.cathedral.notes",
+    "traits": [
+      "building",
+      "edifice",
+      "famous",
+      "infamous"
+    ],
+    "affectsDowntime": true,
+    "reducesUnrest": true,
+    "reduceUnrestBy": {
+      "value": "4"
+    },
+    "level": 15,
+    "upgradeFrom": [
+      "temple"
+    ],
+    "construction": {
+      "skills": [
+        {
+          "skill": "folklore",
+          "proficiencyRank": 3
+        }
+      ],
+      "rp": 58,
+      "dc": 34,
+      "lumber": 20,
+      "stone": 20
+    },
+    "lots": 4
+  },
+  {
+    "id": "cemetery",
+    "name": "structures.cemetery.name",
+    "traits": [
+      "yard"
+    ],
+    "affectsEvents": true,
+    "affectsDowntime": false,
+    "reducesUnrest": true,
+    "level": 1,
+    "construction": {
+      "skills": [
+        {
+          "skill": "folklore"
+        }
+      ],
+      "dc": 15,
+      "rp": 4,
+      "stone": 1
+    },
+    "lots": 1
+  },
+  {
+    "id": "construction-yard-vk",
+    "name": "structures.construction-yard-vk.name",
+    "activityBonusRules": [
+      {
+        "value": 1,
+        "activity": "build-structure"
+      },
+      {
+        "value": 1,
+        "activity": "repair-reputation-decay"
+      },
+      {
+        "value": 1,
+        "activity": "build-roads"
+      },
+      {
+        "value": 1,
+        "activity": "irrigation"
+      },
+      {
+        "value": 1,
+        "activity": "accelerate-project"
+      }
+    ],
+    "traits": [
+      "yard"
+    ],
+    "affectsDowntime": false,
+    "reducesUnrest": false,
+    "level": 10,
+    "construction": {
+      "skills": [
+        {
+          "skill": "engineering"
+        }
+      ],
+      "dc": 27,
+      "rp": 40,
+      "lumber": 10,
+      "stone": 10
+    },
+    "lots": 4,
+    "notes": "structures.construction-yard-vk.notes"
+  },
+  {
+    "id": "construction-yard",
+    "name": "structures.construction-yard.name",
+    "activityBonusRules": [
+      {
+        "value": 1,
+        "activity": "build-structure"
+      },
+      {
+        "value": 1,
+        "activity": "repair-reputation-decay"
+      }
+    ],
+    "traits": [
+      "yard"
+    ],
+    "affectsDowntime": false,
+    "reducesUnrest": false,
+    "level": 10,
+    "construction": {
+      "skills": [
+        {
+          "skill": "engineering"
+        }
+      ],
+      "dc": 27,
+      "rp": 40,
+      "lumber": 10,
+      "stone": 10
+    },
+    "lots": 4
+  },
+  {
+    "id": "dump",
+    "name": "structures.dump.name",
+    "activityBonusRules": [
+      {
+        "value": 1,
+        "activity": "demolish"
+      }
+    ],
+    "traits": [
+      "yard"
+    ],
+    "affectsEvents": true,
+    "affectsDowntime": false,
+    "reducesUnrest": false,
+    "level": 2,
+    "construction": {
+      "skills": [
+        {
+          "skill": "industry"
+        }
+      ],
+      "dc": 16,
+      "rp": 4
+    },
+    "lots": 1
+  },
+  {
+    "id": "embassy",
+    "name": "structures.embassy.name",
+    "activityBonusRules": [
+      {
+        "value": 1,
+        "activity": "send-diplomatic-envoy"
+      },
+      {
+        "value": 1,
+        "activity": "request-foreign-aid"
+      },
+      {
+        "value": 1,
+        "activity": "request-foreign-aid-vk"
+      }
+    ],
+    "traits": [
+      "building"
+    ],
+    "affectsDowntime": false,
+    "reducesUnrest": false,
+    "level": 8,
+    "construction": {
+      "skills": [
+        {
+          "skill": "politics"
+        }
+      ],
+      "dc": 24,
+      "rp": 26,
+      "lumber": 10,
+      "stone": 4,
+      "luxuries": 6
+    },
+    "lots": 2
+  },
+  {
+    "id": "festival-hall-vk",
+    "name": "structures.festival-hall-vk.name",
+    "activityBonusRules": [
+      {
+        "value": 1,
+        "activity": "celebrate-holiday"
+      },
+      {
+        "value": 1,
+        "activity": "celebrate-holiday-vk"
+      }
+    ],
+    "traits": [
+      "building"
+    ],
+    "affectsDowntime": false,
+    "reducesUnrest": false,
+    "level": 3,
+    "construction": {
+      "skills": [
+        {
+          "skill": "arts"
+        }
+      ],
+      "dc": 18,
+      "rp": 7,
+      "lumber": 3
+    },
+    "lots": 1,
+    "skillBonusRules": [
+      {
+        "activity": "quell-unrest",
+        "skill": "arts",
+        "value": 1
+      },
+      {
+        "value": 1,
+        "skill": "arts",
+        "activity": "rest-and-relax"
+      }
+    ],
+    "notes": "structures.festival-hall-vk.notes"
+  },
+  {
+    "id": "festival-hall",
+    "name": "structures.festival-hall.name",
+    "activityBonusRules": [
+      {
+        "value": 1,
+        "activity": "celebrate-holiday"
+      },
+      {
+        "value": 1,
+        "activity": "celebrate-holiday-vk"
+      }
+    ],
+    "traits": [
+      "building"
+    ],
+    "affectsDowntime": false,
+    "reducesUnrest": false,
+    "level": 3,
+    "construction": {
+      "skills": [
+        {
+          "skill": "arts"
+        }
+      ],
+      "dc": 18,
+      "rp": 7,
+      "lumber": 3
+    },
+    "lots": 1
+  },
+  {
+    "id": "fishing-fleets-vk",
+    "name": "structures.fishing-fleets-vk.name",
+    "level": 5,
+    "traits": [
+      "infrastructure"
+    ],
+    "lots": 0,
+    "construction": {
+      "skills": [
+        {
+          "skill": "boating",
+          "proficiencyRank": 1
+        }
+      ],
+      "dc": 20,
+      "rp": 10,
+      "lumber": 2
+    },
+    "activityBonusRules": [
+      {
+        "value": 1,
+        "activity": "go-fishing"
+      }
+    ],
+    "skillBonusRules": [
+      {
+        "value": 1,
+        "activity": "rest-and-relax",
+        "skill": "boating"
+      }
+    ],
+    "consumptionReduction": 1,
+    "consumptionReductionStacks": true,
+    "notes": "structures.fishing-fleets-vk.notes"
+  },
+  {
+    "id": "foundry",
+    "name": "structures.foundry.name",
+    "activityBonusRules": [
+      {
+        "value": 1,
+        "activity": "establish-work-site-mine"
+      }
+    ],
+    "storage": {
+      "ore": 1
+    },
+    "traits": [
+      "building"
+    ],
+    "affectsDowntime": false,
+    "reducesUnrest": false,
+    "level": 3,
+    "construction": {
+      "skills": [
+        {
+          "skill": "industry",
+          "proficiencyRank": 1
+        }
+      ],
+      "dc": 18,
+      "rp": 16,
+      "lumber": 5,
+      "stone": 3,
+      "ore": 2
+    },
+    "lots": 2,
+    "notes": "structures.foundry.notes"
+  },
+  {
+    "id": "garrison-vk",
+    "name": "structures.garrison-vk.name",
+    "activityBonusRules": [
+      {
+        "value": 1,
+        "activity": "outfit-army"
+      },
+      {
+        "value": 1,
+        "activity": "train-army"
+      },
+      {
+        "value": 1,
+        "activity": "fortify-hex"
+      },
+      {
+        "value": 1,
+        "activity": "fortify-hex-vk"
+      }
+    ],
+    "traits": [
+      "building",
+      "residential"
+    ],
+    "affectsDowntime": false,
+    "reducesUnrest": true,
+    "reduceUnrestBy": {
+      "moreThanOncePerTurn": true,
+      "value": "1"
+    },
+    "level": 5,
+    "upgradeFrom": [
+      "barracks"
+    ],
+    "construction": {
+      "skills": [
+        {
+          "skill": "warfare",
+          "proficiencyRank": 1
+        }
+      ],
+      "dc": 20,
+      "rp": 28,
+      "lumber": 6,
+      "stone": 3
+    },
+    "lots": 2
+  },
+  {
+    "id": "garrison",
+    "name": "structures.garrison.name",
+    "activityBonusRules": [
+      {
+        "value": 1,
+        "activity": "outfit-army"
+      },
+      {
+        "value": 1,
+        "activity": "train-army"
+      }
+    ],
+    "traits": [
+      "building",
+      "residential"
+    ],
+    "affectsDowntime": false,
+    "reducesUnrest": true,
+    "reduceUnrestBy": {
+      "moreThanOncePerTurn": true,
+      "value": "1"
+    },
+    "level": 5,
+    "upgradeFrom": [
+      "barracks"
+    ],
+    "construction": {
+      "skills": [
+        {
+          "skill": "warfare",
+          "proficiencyRank": 1
+        }
+      ],
+      "dc": 20,
+      "rp": 28,
+      "lumber": 6,
+      "stone": 3
+    },
+    "lots": 2
+  },
+  {
+    "id": "general-store",
+    "name": "structures.general-store.name",
+    "preventItemLevelPenalty": true,
+    "traits": [
+      "building"
+    ],
+    "affectsDowntime": false,
+    "reducesUnrest": false,
+    "level": 1,
+    "construction": {
+      "skills": [
+        {
+          "skill": "trade"
+        }
+      ],
+      "dc": 15,
+      "rp": 8,
+      "lumber": 1
+    },
+    "lots": 1,
+    "notes": "structures.general-store.notes"
+  },
+  {
+    "id": "gladiatorial-arena",
+    "name": "structures.gladiatorial-arena.name",
+    "activityBonusRules": [
+      {
+        "value": 3,
+        "activity": "celebrate-holiday"
+      },
+      {
+        "value": 3,
+        "activity": "celebrate-holiday-vk"
+      },
+      {
+        "value": 3,
+        "activity": "hire-adventurers"
+      }
+    ],
+    "skillBonusRules": [
+      {
+        "value": 3,
+        "skill": "warfare",
+        "activity": "quell-unrest"
+      }
+    ],
+    "notes": "structures.gladiatorial-arena.notes",
+    "traits": [
+      "edifice",
+      "famous",
+      "infamous",
+      "yard"
+    ],
+    "affectsDowntime": true,
+    "reducesUnrest": false,
+    "level": 15,
+    "construction": {
+      "rp": 58,
+      "lumber": 10,
+      "stone": 30,
+      "skills": [
+        {
+          "skill": "warfare",
+          "proficiencyRank": 3
+        }
+      ],
+      "dc": 34
+    },
+    "lots": 4
+  },
+  {
+    "id": "granary-vk",
+    "name": "structures.granary-vk.name",
+    "storage": {
+      "food": 1
+    },
+    "traits": [
+      "building"
+    ],
+    "affectsDowntime": false,
+    "reducesUnrest": false,
+    "level": 1,
+    "construction": {
+      "rp": 12,
+      "lumber": 2,
+      "skills": [
+        {
+          "skill": "agriculture",
+          "proficiencyRank": 1
+        }
+      ],
+      "dc": 15
+    },
+    "lots": 1,
+    "activityBonusRules": [
+      {
+        "value": 1,
+        "activity": "establish-farmland"
+      }
+    ]
+  },
+  {
+    "id": "granary",
+    "name": "structures.granary.name",
+    "storage": {
+      "food": 1
+    },
+    "traits": [
+      "building"
+    ],
+    "affectsDowntime": false,
+    "reducesUnrest": false,
+    "level": 1,
+    "construction": {
+      "rp": 12,
+      "lumber": 2,
+      "skills": [
+        {
+          "skill": "agriculture"
+        }
+      ],
+      "dc": 15
+    },
+    "lots": 1
+  },
+  {
+    "id": "guildhall",
+    "name": "structures.guildhall.name",
+    "notes": "structures.guildhall.notes",
+    "traits": [
+      "building"
+    ],
+    "affectsDowntime": true,
+    "reducesUnrest": false,
+    "level": 5,
+    "construction": {
+      "rp": 34,
+      "lumber": 8,
+      "skills": [
+        {
+          "skill": "trade",
+          "proficiencyRank": 2
+        }
+      ],
+      "dc": 20
+    },
+    "upgradeFrom": [
+      "trade-shop"
+    ],
+    "lots": 2
+  },
+  {
+    "id": "herbalist",
+    "name": "structures.herbalist.name",
+    "activityBonusRules": [
+      {
+        "value": 1,
+        "activity": "provide-care"
+      }
+    ],
+    "traits": [
+      "building"
+    ],
+    "affectsDowntime": false,
+    "reducesUnrest": false,
+    "level": 1,
+    "construction": {
+      "rp": 10,
+      "lumber": 1,
+      "skills": [
+        {
+          "skill": "wilderness"
+        }
+      ],
+      "dc": 15
+    },
+    "lots": 1
+  },
+  {
+    "id": "hospital",
+    "name": "structures.hospital.name",
+    "activityBonusRules": [
+      {
+        "value": 1,
+        "activity": "provide-care"
+      },
+      {
+        "value": 1,
+        "activity": "quell-unrest"
+      }
+    ],
+    "notes": "structures.hospital.notes",
+    "traits": [
+      "building"
+    ],
+    "affectsDowntime": true,
+    "reducesUnrest": false,
+    "level": 9,
+    "upgradeFrom": [
+      "herbalist"
+    ],
+    "construction": {
+      "rp": 30,
+      "lumber": 10,
+      "stone": 6,
+      "skills": [
+        {
+          "skill": "defense",
+          "proficiencyRank": 2
+        }
+      ],
+      "dc": 26
+    },
+    "lots": 2
+  },
+  {
+    "id": "houses",
+    "name": "structures.houses.name",
+    "traits": [
+      "building",
+      "residential"
+    ],
+    "affectsDowntime": false,
+    "reducesUnrest": false,
+    "level": 1,
+    "upgradeFrom": [
+      "tenement"
+    ],
+    "construction": {
+      "rp": 3,
+      "lumber": 1,
+      "skills": [
+        {
+          "skill": "industry"
+        }
+      ],
+      "dc": 15
+    },
+    "lots": 1
+  },
+  {
+    "id": "illicit-market",
+    "name": "structures.illicit-market.name",
+    "activityBonusRules": [
+      {
+        "value": 1,
+        "activity": "clandestine-business"
+      }
+    ],
+    "availableItemsRules": [
+      {
+        "value": 1,
+        "alwaysStacks": true
+      }
+    ],
+    "traits": [
+      "building",
+      "infamous"
+    ],
+    "gainRuin": {
+      "value": "1",
+      "ruin": "crime",
+      "moreThanOncePerTurn": true
+    },
+    "affectsDowntime": false,
+    "reducesUnrest": false,
+    "level": 6,
+    "construction": {
+      "rp": 50,
+      "lumber": 5,
+      "skills": [
+        {
+          "skill": "intrigue",
+          "proficiencyRank": 1
+        }
+      ],
+      "dc": 22
+    },
+    "lots": 1
+  },
+  {
+    "id": "inn-vk",
+    "name": "structures.inn-vk.name",
+    "activityBonusRules": [
+      {
+        "value": 1,
+        "activity": "hire-adventurers"
+      }
+    ],
+    "traits": [
+      "building",
+      "residential"
+    ],
+    "affectsDowntime": false,
+    "reducesUnrest": false,
+    "level": 1,
+    "construction": {
+      "rp": 10,
+      "lumber": 2,
+      "skills": [
+        {
+          "skill": "trade"
+        }
+      ],
+      "dc": 15
+    },
+    "lots": 1,
+    "skillBonusRules": [
+      {
+        "value": 1,
+        "activity": "clear-hex",
+        "skill": "exploration"
+      },
+      {
+        "value": 1,
+        "activity": "clear-hex-vk",
+        "skill": "exploration"
+      }
+    ]
+  },
+  {
+    "id": "inn",
+    "name": "structures.inn.name",
+    "activityBonusRules": [
+      {
+        "value": 1,
+        "activity": "hire-adventurers"
+      }
+    ],
+    "traits": [
+      "building",
+      "residential"
+    ],
+    "affectsDowntime": false,
+    "reducesUnrest": false,
+    "level": 1,
+    "construction": {
+      "rp": 10,
+      "lumber": 2,
+      "skills": [
+        {
+          "skill": "trade"
+        }
+      ],
+      "dc": 15
+    },
+    "lots": 1
+  },
+  {
+    "id": "jail",
+    "name": "structures.jail.name",
+    "skillBonusRules": [
+      {
+        "value": 1,
+        "skill": "intrigue",
+        "activity": "quell-unrest"
+      }
+    ],
+    "reduceRuinBy": {
+      "value": "1",
+      "ruin": "crime"
+    },
+    "traits": [
+      "building"
+    ],
+    "affectsDowntime": false,
+    "reducesRuin": true,
+    "level": 2,
+    "construction": {
+      "rp": 14,
+      "lumber": 4,
+      "stone": 4,
+      "ore": 2,
+      "skills": [
+        {
+          "skill": "defense"
+        }
+      ],
+      "dc": 16
+    },
+    "lots": 1
+  },
+  {
+    "id": "keep",
+    "name": "structures.keep.name",
+    "activityBonusRules": [
+      {
+        "value": 1,
+        "activity": "deploy-army"
+      },
+      {
+        "value": 1,
+        "activity": "garrison-army"
+      },
+      {
+        "value": 1,
+        "activity": "train-army"
+      }
+    ],
+    "traits": [
+      "building",
+      "edifice"
+    ],
+    "affectsDowntime": false,
+    "reducesUnrest": true,
+    "reduceUnrestBy": {
+      "value": "1"
+    },
+    "level": 3,
+    "construction": {
+      "rp": 32,
+      "lumber": 8,
+      "stone": 8,
+      "skills": [
+        {
+          "skill": "defense",
+          "proficiencyRank": 1
+        }
+      ],
+      "dc": 18
+    },
+    "lots": 2
+  },
+  {
+    "id": "library-vk",
+    "name": "structures.library-vk.name",
+    "skillBonusRules": [
+      {
+        "value": 1,
+        "skill": "scholarship",
+        "activity": "rest-and-relax"
+      }
+    ],
+    "notes": "structures.library-vk.notes",
+    "traits": [
+      "building"
+    ],
+    "affectsDowntime": true,
+    "reducesUnrest": false,
+    "level": 2,
+    "construction": {
+      "rp": 6,
+      "lumber": 4,
+      "stone": 2,
+      "skills": [
+        {
+          "skill": "scholarship",
+          "proficiencyRank": 1
+        }
+      ],
+      "dc": 16
+    },
+    "lots": 1,
+    "activityBonusRules": [
+      {
+        "value": 1,
+        "activity": "creative-solution"
+      }
+    ]
+  },
+  {
+    "id": "library",
+    "name": "structures.library.name",
+    "skillBonusRules": [
+      {
+        "value": 1,
+        "skill": "scholarship",
+        "activity": "rest-and-relax"
+      }
+    ],
+    "notes": "structures.library.notes",
+    "traits": [
+      "building"
+    ],
+    "affectsDowntime": true,
+    "reducesUnrest": false,
+    "level": 2,
+    "construction": {
+      "rp": 6,
+      "lumber": 4,
+      "stone": 2,
+      "skills": [
+        {
+          "skill": "scholarship",
+          "proficiencyRank": 1
+        }
+      ],
+      "dc": 16
+    },
+    "lots": 1
+  },
+  {
+    "id": "lumberyard",
+    "name": "structures.lumberyard.name",
+    "activityBonusRules": [
+      {
+        "value": 1,
+        "activity": "establish-work-site-lumber"
+      }
+    ],
+    "storage": {
+      "lumber": 1
+    },
+    "traits": [
+      "yard"
+    ],
+    "affectsDowntime": false,
+    "reducesUnrest": false,
+    "level": 3,
+    "construction": {
+      "rp": 16,
+      "lumber": 5,
+      "ore": 1,
+      "skills": [
+        {
+          "skill": "industry",
+          "proficiencyRank": 1
+        }
+      ],
+      "dc": 18
+    },
+    "lots": 2,
+    "notes": "structures.lumberyard.notes"
+  },
+  {
+    "id": "luxury-store",
+    "name": "structures.luxury-store.name",
+    "activityBonusRules": [
+      {
+        "value": 1,
+        "activity": "establish-trade-agreement"
+      }
+    ],
+    "traits": [
+      "building"
+    ],
+    "affectsDowntime": false,
+    "reducesUnrest": false,
+    "level": 8,
+    "upgradeFrom": [
+      "general-store"
+    ],
+    "construction": {
+      "rp": 28,
+      "lumber": 10,
+      "luxuries": 6,
+      "skills": [
+        {
+          "skill": "trade",
+          "proficiencyRank": 2
+        }
+      ],
+      "dc": 24
+    },
+    "lots": 1,
+    "notes": "structures.luxury-store.notes"
+  },
+  {
+    "id": "magic-shop-vk",
+    "name": "structures.magic-shop-vk.name",
+    "activityBonusRules": [
+      {
+        "value": 1,
+        "activity": "supernatural-solution"
+      },
+      {
+        "value": 1,
+        "activity": "prognostication"
+      }
+    ],
+    "availableItemsRules": [
+      {
+        "value": 1,
+        "group": "magical"
+      }
+    ],
+    "traits": [
+      "building"
+    ],
+    "affectsDowntime": false,
+    "reducesUnrest": false,
+    "level": 8,
+    "upgradeFrom": [
+      "oddity-emporium"
+    ],
+    "construction": {
+      "rp": 44,
+      "lumber": 8,
+      "stone": 6,
+      "luxuries": 6,
+      "skills": [
+        {
+          "skill": "magic",
+          "proficiencyRank": 2
+        }
+      ],
+      "dc": 24
+    },
+    "lots": 1,
+    "notes": "structures.magic-shop-vk.notes"
+  },
+  {
+    "id": "magic-shop",
+    "name": "structures.magic-shop.name",
+    "activityBonusRules": [
+      {
+        "value": 1,
+        "activity": "supernatural-solution"
+      }
+    ],
+    "availableItemsRules": [
+      {
+        "value": 1,
+        "group": "magical",
+        "maximumStacks": 3
+      }
+    ],
+    "traits": [
+      "building"
+    ],
+    "affectsDowntime": false,
+    "reducesUnrest": false,
+    "level": 8,
+    "upgradeFrom": [
+      "luxury-store"
+    ],
+    "construction": {
+      "rp": 44,
+      "lumber": 8,
+      "stone": 6,
+      "luxuries": 6,
+      "skills": [
+        {
+          "skill": "magic",
+          "proficiencyRank": 2
+        }
+      ],
+      "dc": 24
+    },
+    "lots": 1
+  },
+  {
+    "id": "magical-streetlamps",
+    "name": "structures.magical-streetlamps.name",
+    "traits": [
+      "infrastructure"
+    ],
+    "lots": 0,
+    "affectsDowntime": false,
+    "reducesRuin": true,
+    "reduceRuinBy": {
+      "value": "1",
+      "ruin": "crime"
+    },
+    "level": 5,
+    "construction": {
+      "rp": 20,
+      "skills": [
+        {
+          "skill": "magic",
+          "proficiencyRank": 2
+        }
+      ],
+      "dc": 20
+    }
+  },
+  {
+    "id": "mansion",
+    "name": "structures.mansion.name",
+    "activityBonusRules": [
+      {
+        "value": 1,
+        "activity": "improve-lifestyle"
+      }
+    ],
+    "traits": [
+      "building",
+      "residential"
+    ],
+    "affectsDowntime": false,
+    "reducesUnrest": false,
+    "level": 5,
+    "upgradeFrom": [
+      "houses"
+    ],
+    "construction": {
+      "rp": 10,
+      "lumber": 6,
+      "stone": 3,
+      "luxuries": 6,
+      "skills": [
+        {
+          "skill": "industry",
+          "proficiencyRank": 1
+        }
+      ],
+      "dc": 20
+    },
+    "lots": 1
+  },
+  {
+    "id": "marketplace",
+    "name": "structures.marketplace.name",
+    "activityBonusRules": [
+      {
+        "value": 1,
+        "activity": "establish-trade-agreement"
+      }
+    ],
+    "preventItemLevelPenalty": true,
+    "traits": [
+      "building",
+      "residential"
+    ],
+    "affectsDowntime": false,
+    "reducesUnrest": false,
+    "level": 4,
+    "upgradeFrom": [
+      "general-store"
+    ],
+    "construction": {
+      "rp": 48,
+      "lumber": 4,
+      "skills": [
+        {
+          "skill": "trade",
+          "proficiencyRank": 1
+        }
+      ],
+      "dc": 19
+    },
+    "lots": 2,
+    "availableItemsRules": [
+      {
+        "value": 1,
+        "group": "other"
+      }
+    ],
+    "notes": "structures.marketplace.notes"
+  },
+  {
+    "id": "menagerie",
+    "name": "structures.menagerie.name",
+    "skillBonusRules": [
+      {
+        "value": 2,
+        "skill": "wilderness",
+        "activity": "rest-and-relax"
+      }
+    ],
+    "notes": "structures.menagerie.notes",
+    "traits": [
+      "building",
+      "edifice"
+    ],
+    "affectsDowntime": false,
+    "reducesUnrest": false,
+    "reducesRuin": true,
+    "level": 12,
+    "upgradeFrom": [
+      "park"
+    ],
+    "construction": {
+      "rp": 26,
+      "lumber": 14,
+      "stone": 10,
+      "ore": 10,
+      "skills": [
+        {
+          "skill": "wilderness",
+          "proficiencyRank": 2
+        }
+      ],
+      "dc": 30
+    },
+    "lots": 4
+  },
+  {
+    "id": "military-academy",
+    "name": "structures.military-academy.name",
+    "activityBonusRules": [
+      {
+        "value": 2,
+        "activity": "train-army"
+      }
+    ],
+    "skillBonusRules": [
+      {
+        "value": 2,
+        "skill": "warfare",
+        "activity": "pledge-of-fealty"
+      }
+    ],
+    "traits": [
+      "building",
+      "edifice"
+    ],
+    "affectsDowntime": false,
+    "reducesUnrest": false,
+    "level": 12,
+    "upgradeFrom": [
+      "academy"
+    ],
+    "construction": {
+      "rp": 36,
+      "lumber": 12,
+      "stone": 10,
+      "ore": 6,
+      "skills": [
+        {
+          "skill": "warfare",
+          "proficiencyRank": 2
+        }
+      ],
+      "dc": 30
+    },
+    "lots": 2
+  },
+  {
+    "id": "mill",
+    "name": "structures.mill.name",
+    "activityBonusRules": [
+      {
+        "value": 1,
+        "activity": "harvest-crops"
+      }
+    ],
+    "consumptionReduction": 1,
+    "traits": [
+      "building"
+    ],
+    "affectsDowntime": false,
+    "reducesUnrest": false,
+    "level": 2,
+    "construction": {
+      "rp": 6,
+      "lumber": 2,
+      "stone": 1,
+      "skills": [
+        {
+          "skill": "industry",
+          "proficiencyRank": 1
+        }
+      ],
+      "dc": 16
+    },
+    "lots": 1
+  },
+  {
+    "id": "mint",
+    "name": "structures.mint.name",
+    "activityBonusRules": [
+      {
+        "value": 3,
+        "activity": "capital-investment"
+      },
+      {
+        "value": 3,
+        "activity": "collect-taxes"
+      },
+      {
+        "value": 3,
+        "activity": "repair-reputation-crime"
+      }
+    ],
+    "traits": [
+      "building",
+      "edifice"
+    ],
+    "affectsDowntime": false,
+    "reducesUnrest": false,
+    "level": 15,
+    "construction": {
+      "rp": 30,
+      "lumber": 12,
+      "stone": 16,
+      "ore": 20,
+      "skills": [
+        {
+          "skill": "trade",
+          "proficiencyRank": 3
+        }
+      ],
+      "dc": 34
+    },
+    "lots": 1
+  },
+  {
+    "id": "monument-vk",
+    "name": "structures.monument-vk.name",
+    "traits": [
+      "building",
+      "edifice"
+    ],
+    "affectsDowntime": false,
+    "reducesUnrest": true,
+    "reduceUnrestBy": {
+      "value": "1"
+    },
+    "reduceRuinBy": {
+      "value": "1",
+      "ruin": "any"
+    },
+    "level": 3,
+    "construction": {
+      "rp": 6,
+      "stone": 1,
+      "skills": [
+        {
+          "skill": "arts",
+          "proficiencyRank": 1
+        }
+      ],
+      "dc": 18
+    },
+    "lots": 1,
+    "activityBonusRules": [
+      {
+        "value": 1,
+        "activity": "create-a-masterpiece"
+      }
+    ]
+  },
+  {
+    "id": "monument",
+    "name": "structures.monument.name",
+    "traits": [
+      "building",
+      "edifice"
+    ],
+    "affectsDowntime": false,
+    "reducesUnrest": true,
+    "reduceUnrestBy": {
+      "value": "1"
+    },
+    "reduceRuinBy": {
+      "value": "1",
+      "ruin": "any"
+    },
+    "level": 3,
+    "construction": {
+      "rp": 6,
+      "stone": 1,
+      "skills": [
+        {
+          "skill": "arts",
+          "proficiencyRank": 1
+        }
+      ],
+      "dc": 18
+    },
+    "lots": 1
+  },
+  {
+    "id": "museum",
+    "name": "structures.museum.name",
+    "skillBonusRules": [
+      {
+        "value": 1,
+        "skill": "arts",
+        "activity": "rest-and-relax"
+      }
+    ],
+    "notes": "structures.museum.notes",
+    "traits": [
+      "building",
+      "edifice"
+    ],
+    "affectsDowntime": false,
+    "reducesUnrest": true,
+    "level": 5,
+    "construction": {
+      "rp": 30,
+      "lumber": 6,
+      "stone": 2,
+      "skills": [
+        {
+          "skill": "exploration",
+          "proficiencyRank": 1
+        }
+      ],
+      "dc": 20
+    },
+    "lots": 2
+  },
+  {
+    "id": "noble-villa",
+    "name": "structures.noble-villa.name",
+    "activityBonusRules": [
+      {
+        "value": 1,
+        "activity": "improve-lifestyle"
+      }
+    ],
+    "skillBonusRules": [
+      {
+        "value": 1,
+        "skill": "politics",
+        "activity": "quell-unrest"
+      }
+    ],
+    "traits": [
+      "building",
+      "residential"
+    ],
+    "affectsDowntime": false,
+    "reducesUnrest": true,
+    "reduceUnrestBy": {
+      "value": "2"
+    },
+    "level": 9,
+    "upgradeFrom": [
+      "mansion"
+    ],
+    "construction": {
+      "rp": 24,
+      "lumber": 10,
+      "stone": 8,
+      "luxuries": 6,
+      "skills": [
+        {
+          "skill": "politics",
+          "proficiencyRank": 2
+        }
+      ],
+      "dc": 19
+    },
+    "lots": 2
+  },
+  {
+    "id": "occult-shop-vk",
+    "name": "structures.occult-shop-vk.name",
+    "activityBonusRules": [
+      {
+        "value": 2,
+        "activity": "prognostication"
+      },
+      {
+        "value": 2,
+        "activity": "supernatural-solution"
+      }
+    ],
+    "availableItemsRules": [
+      {
+        "value": 1,
+        "group": "magical"
+      }
+    ],
+    "notes": "structures.occult-shop-vk.notes",
+    "traits": [
+      "building"
+    ],
+    "upgradeFrom": [
+      "magic-shop-vk"
+    ],
+    "affectsDowntime": true,
+    "reducesUnrest": false,
+    "level": 13,
+    "construction": {
+      "rp": 68,
+      "lumber": 12,
+      "stone": 6,
+      "luxuries": 12,
+      "skills": [
+        {
+          "skill": "magic",
+          "proficiencyRank": 3
+        }
+      ],
+      "dc": 32
+    },
+    "lots": 1
+  },
+  {
+    "id": "occult-shop",
+    "name": "structures.occult-shop.name",
+    "activityBonusRules": [
+      {
+        "value": 2,
+        "activity": "prognostication"
+      }
+    ],
+    "availableItemsRules": [
+      {
+        "value": 1,
+        "group": "magical",
+        "maximumStacks": 3
+      }
+    ],
+    "notes": "structures.occult-shop.notes",
+    "traits": [
+      "building"
+    ],
+    "upgradeFrom": [
+      "magic-shop"
+    ],
+    "affectsDowntime": true,
+    "reducesUnrest": false,
+    "level": 13,
+    "construction": {
+      "rp": 68,
+      "lumber": 12,
+      "stone": 6,
+      "luxuries": 12,
+      "skills": [
+        {
+          "skill": "magic",
+          "proficiencyRank": 3
+        }
+      ],
+      "dc": 32
+    },
+    "lots": 1
+  },
+  {
+    "id": "opera-house",
+    "name": "structures.opera-house.name",
+    "activityBonusRules": [
+      {
+        "value": 3,
+        "activity": "celebrate-holiday"
+      },
+      {
+        "value": 3,
+        "activity": "celebrate-holiday-vk"
+      },
+      {
+        "value": 3,
+        "activity": "create-a-masterpiece"
+      }
+    ],
+    "notes": "structures.opera-house.notes",
+    "traits": [
+      "building",
+      "edifice",
+      "famous",
+      "infamous"
+    ],
+    "affectsDowntime": true,
+    "reducesUnrest": true,
+    "reduceUnrestBy": {
+      "value": "4"
+    },
+    "level": 15,
+    "upgradeFrom": [
+      "theater"
+    ],
+    "construction": {
+      "rp": 40,
+      "lumber": 20,
+      "stone": 16,
+      "luxuries": 18,
+      "skills": [
+        {
+          "skill": "arts",
+          "proficiencyRank": 3
+        }
+      ],
+      "dc": 34
+    },
+    "lots": 2,
+    "skillBonusRules": [
+      {
+        "value": 3,
+        "skill": "arts",
+        "activity": "rest-and-relax"
+      }
+    ]
+  },
+  {
+    "id": "orphanage",
+    "name": "structures.orphanage.name",
+    "traits": [
+      "building",
+      "residential"
+    ],
+    "affectsDowntime": false,
+    "reducesUnrest": true,
+    "reduceUnrestBy": {
+      "value": "1"
+    },
+    "level": 2,
+    "upgradeFrom": [
+      "houses"
+    ],
+    "construction": {
+      "rp": 6,
+      "lumber": 2,
+      "skills": [
+        {
+          "skill": "industry"
+        }
+      ],
+      "dc": 16
+    },
+    "lots": 1
+  },
+  {
+    "id": "palace-vk",
+    "name": "structures.palace-vk.name",
+    "maximumCivicRdLimit": 4,
+    "activityBonusRules": [
+      {
+        "value": 3,
+        "activity": "new-leadership"
+      },
+      {
+        "value": 3,
+        "activity": "new-leadership-vk"
+      },
+      {
+        "value": 3,
+        "activity": "pledge-of-fealty"
+      },
+      {
+        "value": 3,
+        "activity": "send-diplomatic-envoy"
+      },
+      {
+        "value": 3,
+        "activity": "garrison-army"
+      },
+      {
+        "value": 3,
+        "activity": "recover-army-damaged"
+      },
+      {
+        "value": 3,
+        "activity": "recover-army-defeated"
+      },
+      {
+        "value": 3,
+        "activity": "recover-army-lost"
+      },
+      {
+        "value": 3,
+        "activity": "recover-army-mired-pinned"
+      },
+      {
+        "value": 3,
+        "activity": "recover-army-shaken"
+      },
+      {
+        "value": 3,
+        "activity": "recover-army-weary"
+      },
+      {
+        "value": 3,
+        "activity": "recruit-army"
+      },
+      {
+        "value": 3,
+        "activity": "manage-trade-agreements"
+      },
+      {
+        "value": 3,
+        "activity": "relocate-capital"
+      },
+      {
+        "value": 3,
+        "activity": "retrain-vk"
+      }
+    ],
+    "leadershipActivityRules": [
+      {
+        "value": 3
+      }
+    ],
+    "traits": [
+      "building",
+      "edifice",
+      "famous",
+      "infamous"
+    ],
+    "affectsDowntime": false,
+    "reducesUnrest": true,
+    "reduceUnrestBy": {
+      "value": "10"
+    },
+    "level": 15,
+    "upgradeFrom": [
+      "castle",
+      "castle-vk"
+    ],
+    "construction": {
+      "rp": 108,
+      "lumber": 20,
+      "stone": 20,
+      "ore": 15,
+      "luxuries": 12,
+      "skills": [
+        {
+          "skill": "defense",
+          "proficiencyRank": 3
+        },
+        {
+          "skill": "industry",
+          "proficiencyRank": 3
+        },
+        {
+          "skill": "magic",
+          "proficiencyRank": 3
+        },
+        {
+          "skill": "statecraft",
+          "proficiencyRank": 3
+        }
+      ],
+      "dc": 34
+    },
+    "lots": 4,
+    "increaseResourceDice": {
+      "town": 1,
+      "city": 2,
+      "metropolis": 4
+    },
+    "increaseMinimumSettlementActions": 2,
+    "notes": "structures.palace-vk.notes"
+  },
+  {
+    "id": "palace",
+    "name": "structures.palace.name",
+    "activityBonusRules": [
+      {
+        "value": 3,
+        "activity": "new-leadership"
+      },
+      {
+        "value": 3,
+        "activity": "new-leadership-vk"
+      },
+      {
+        "value": 3,
+        "activity": "pledge-of-fealty"
+      },
+      {
+        "value": 3,
+        "activity": "send-diplomatic-envoy"
+      },
+      {
+        "value": 3,
+        "activity": "garrison-army"
+      },
+      {
+        "value": 3,
+        "activity": "recover-army-damaged"
+      },
+      {
+        "value": 3,
+        "activity": "recover-army-defeated"
+      },
+      {
+        "value": 3,
+        "activity": "recover-army-lost"
+      },
+      {
+        "value": 3,
+        "activity": "recover-army-mired-pinned"
+      },
+      {
+        "value": 3,
+        "activity": "recover-army-shaken"
+      },
+      {
+        "value": 3,
+        "activity": "recover-army-weary"
+      },
+      {
+        "value": 3,
+        "activity": "recruit-army"
+      }
+    ],
+    "leadershipActivityRules": [
+      {
+        "value": 3
+      }
+    ],
+    "increaseLeadershipActivities": true,
+    "traits": [
+      "building",
+      "edifice",
+      "famous",
+      "infamous"
+    ],
+    "affectsDowntime": false,
+    "reducesUnrest": true,
+    "reduceUnrestBy": {
+      "value": "10"
+    },
+    "level": 15,
+    "upgradeFrom": [
+      "castle",
+      "castle-vk"
+    ],
+    "construction": {
+      "rp": 108,
+      "lumber": 20,
+      "stone": 20,
+      "ore": 15,
+      "luxuries": 12,
+      "skills": [
+        {
+          "skill": "defense",
+          "proficiencyRank": 3
+        },
+        {
+          "skill": "industry",
+          "proficiencyRank": 3
+        },
+        {
+          "skill": "magic",
+          "proficiencyRank": 3
+        },
+        {
+          "skill": "statecraft",
+          "proficiencyRank": 3
+        }
+      ],
+      "dc": 34
+    },
+    "lots": 4
+  },
+  {
+    "id": "park",
+    "name": "structures.park.name",
+    "skillBonusRules": [
+      {
+        "value": 1,
+        "skill": "wilderness",
+        "activity": "rest-and-relax"
+      }
+    ],
+    "traits": [
+      "yard"
+    ],
+    "affectsDowntime": false,
+    "reducesUnrest": true,
+    "reduceUnrestBy": {
+      "value": "1"
+    },
+    "level": 3,
+    "construction": {
+      "rp": 5,
+      "skills": [
+        {
+          "skill": "wilderness"
+        }
+      ],
+      "dc": 18
+    },
+    "lots": 1
+  },
+  {
+    "id": "paved-streets",
+    "name": "structures.paved-streets.name",
+    "traits": [
+      "infrastructure"
+    ],
+    "lots": 0,
+    "affectsDowntime": false,
+    "reducesUnrest": false,
+    "level": 4,
+    "construction": {
+      "rp": 12,
+      "stone": 6,
+      "skills": [
+        {
+          "skill": "industry",
+          "proficiencyRank": 1
+        }
+      ],
+      "dc": 19
+    }
+  },
+  {
+    "id": "pier-vk",
+    "name": "structures.pier-vk.name",
+    "activityBonusRules": [
+      {
+        "value": 1,
+        "activity": "go-fishing"
+      }
+    ],
+    "traits": [
+      "yard"
+    ],
+    "affectsDowntime": false,
+    "reducesUnrest": false,
+    "level": 3,
+    "construction": {
+      "rp": 16,
+      "lumber": 2,
+      "skills": [
+        {
+          "skill": "boating"
+        }
+      ],
+      "dc": 18
+    },
+    "lots": 1,
+    "consumptionReduction": 1
+  },
+  {
+    "id": "pier",
+    "name": "structures.pier.name",
+    "activityBonusRules": [
+      {
+        "value": 1,
+        "activity": "go-fishing"
+      }
+    ],
+    "traits": [
+      "yard"
+    ],
+    "affectsDowntime": false,
+    "reducesUnrest": false,
+    "level": 3,
+    "construction": {
+      "rp": 16,
+      "lumber": 2,
+      "skills": [
+        {
+          "skill": "boating"
+        }
+      ],
+      "dc": 18
+    },
+    "lots": 1
+  },
+  {
+    "id": "printing-house",
+    "name": "structures.printing-house.name",
+    "activityBonusRules": [
+      {
+        "value": 2,
+        "activity": "improve-lifestyle"
+      },
+      {
+        "value": 2,
+        "activity": "quell-unrest"
+      }
+    ],
+    "notes": "structures.printing-house.notes",
+    "unlockActivities": [
+      "read-all-about-it"
+    ],
+    "traits": [
+      "building",
+      "edifice"
+    ],
+    "affectsDowntime": true,
+    "reducesUnrest": false,
+    "level": 10,
+    "construction": {
+      "rp": 48,
+      "lumber": 14,
+      "luxuries": 12,
+      "skills": [
+        {
+          "skill": "industry",
+          "proficiencyRank": 3
+        }
+      ],
+      "dc": 27
+    },
+    "lots": 2
+  },
+  {
+    "id": "rubble",
+    "name": "structures.rubble.name",
+    "traits": [
+      "yard"
+    ],
+    "affectsDowntime": false,
+    "reducesUnrest": false,
+    "level": 0,
+    "lots": 1
+  },
+  {
+    "id": "sacred-grove",
+    "name": "structures.sacred-grove.name",
+    "skillBonusRules": [
+      {
+        "value": 1,
+        "skill": "folklore",
+        "activity": "quell-unrest"
+      }
+    ],
+    "availableItemsRules": [
+      {
+        "value": 1,
+        "group": "primal"
+      }
+    ],
+    "traits": [
+      "yard"
+    ],
+    "affectsDowntime": false,
+    "reducesUnrest": false,
+    "level": 5,
+    "construction": {
+      "rp": 36,
+      "skills": [
+        {
+          "skill": "wilderness",
+          "proficiencyRank": 1
+        }
+      ],
+      "dc": 20
+    },
+    "lots": 1,
+    "activityBonusRules": [
+      {
+        "value": 1,
+        "activity": "blessed-solution"
+      },
+      {
+        "value": 1,
+        "activity": "observe-customs"
+      }
+    ],
+    "notes": "structures.sacred-grove.notes"
+  },
+  {
+    "id": "secure-warehouse",
+    "name": "structures.secure-warehouse.name",
+    "activityBonusRules": [
+      {
+        "value": 1,
+        "activity": "craft-luxuries"
+      }
+    ],
+    "storage": {
+      "luxuries": 1
+    },
+    "traits": [
+      "building"
+    ],
+    "affectsDowntime": false,
+    "reducesUnrest": false,
+    "level": 6,
+    "construction": {
+      "rp": 24,
+      "lumber": 6,
+      "stone": 6,
+      "ore": 4,
+      "skills": [
+        {
+          "skill": "industry",
+          "proficiencyRank": 2
+        }
+      ],
+      "dc": 22
+    },
+    "lots": 2
+  },
+  {
+    "id": "sewer-system",
+    "name": "structures.sewer-system.name",
+    "activityBonusRules": [
+      {
+        "value": 1,
+        "activity": "clandestine-business"
+      }
+    ],
+    "consumptionReduction": 1,
+    "traits": [
+      "infrastructure"
+    ],
+    "lots": 0,
+    "affectsEvents": true,
+    "affectsDowntime": false,
+    "reducesUnrest": false,
+    "level": 7,
+    "construction": {
+      "rp": 24,
+      "lumber": 8,
+      "stone": 8,
+      "skills": [
+        {
+          "skill": "engineering",
+          "proficiencyRank": 2
+        }
+      ],
+      "dc": 23
+    }
+  },
+  {
+    "id": "shrine",
+    "name": "structures.shrine.name",
+    "activityBonusRules": [
+      {
+        "value": 1,
+        "activity": "celebrate-holiday"
+      },
+      {
+        "value": 1,
+        "activity": "celebrate-holiday-vk"
+      }
+    ],
+    "traits": [
+      "building"
+    ],
+    "affectsDowntime": false,
+    "reducesUnrest": false,
+    "level": 1,
+    "construction": {
+      "rp": 8,
+      "lumber": 2,
+      "stone": 1,
+      "skills": [
+        {
+          "skill": "folklore",
+          "proficiencyRank": 1
+        }
+      ],
+      "dc": 15
+    },
+    "lots": 1
+  },
+  {
+    "id": "smithy-vk",
+    "name": "structures.smithy-vk.name",
+    "activityBonusRules": [
+      {
+        "value": 1,
+        "activity": "trade-commodities"
+      },
+      {
+        "value": 1,
+        "activity": "outfit-army"
+      }
+    ],
+    "notes": "structures.smithy-vk.notes",
+    "traits": [
+      "building"
+    ],
+    "affectsDowntime": true,
+    "reducesUnrest": false,
+    "level": 3,
+    "construction": {
+      "rp": 8,
+      "lumber": 2,
+      "stone": 1,
+      "ore": 1,
+      "skills": [
+        {
+          "skill": "industry",
+          "proficiencyRank": 1
+        }
+      ],
+      "dc": 18
+    },
+    "lots": 1,
+    "skillBonusRules": [
+      {
+        "value": 1,
+        "activity": "clear-hex",
+        "skill": "engineering"
+      },
+      {
+        "value": 1,
+        "activity": "clear-hex-vk",
+        "skill": "engineering"
+      }
+    ]
+  },
+  {
+    "id": "smithy",
+    "name": "structures.smithy.name",
+    "activityBonusRules": [
+      {
+        "value": 1,
+        "activity": "trade-commodities"
+      },
+      {
+        "value": 1,
+        "activity": "outfit-army"
+      }
+    ],
+    "notes": "structures.smithy.notes",
+    "traits": [
+      "building"
+    ],
+    "affectsDowntime": true,
+    "reducesUnrest": false,
+    "level": 3,
+    "construction": {
+      "rp": 8,
+      "lumber": 2,
+      "stone": 1,
+      "ore": 1,
+      "skills": [
+        {
+          "skill": "industry",
+          "proficiencyRank": 1
+        }
+      ],
+      "dc": 18
+    },
+    "lots": 1
+  },
+  {
+    "id": "specialized-artisan",
+    "name": "structures.specialized-artisan.name",
+    "activityBonusRules": [
+      {
+        "value": 1,
+        "activity": "craft-luxuries"
+      }
+    ],
+    "notes": "structures.specialized-artisan.notes",
+    "traits": [
+      "building"
+    ],
+    "affectsDowntime": true,
+    "reducesUnrest": false,
+    "level": 4,
+    "construction": {
+      "rp": 10,
+      "lumber": 4,
+      "luxuries": 1,
+      "skills": [
+        {
+          "skill": "trade",
+          "proficiencyRank": 2
+        }
+      ],
+      "dc": 19
+    },
+    "lots": 1
+  },
+  {
+    "id": "stable",
+    "name": "structures.stable.name",
+    "activityBonusRules": [
+      {
+        "value": 1,
+        "activity": "establish-trade-agreement"
+      }
+    ],
+    "traits": [
+      "yard"
+    ],
+    "affectsDowntime": false,
+    "reducesUnrest": false,
+    "level": 3,
+    "construction": {
+      "rp": 10,
+      "lumber": 2,
+      "skills": [
+        {
+          "skill": "wilderness",
+          "proficiencyRank": 1
+        }
+      ],
+      "dc": 18
+    },
+    "lots": 1
+  },
+  {
+    "id": "stockyard",
+    "name": "structures.stockyard.name",
+    "activityBonusRules": [
+      {
+        "value": 1,
+        "activity": "gather-livestock"
+      }
+    ],
+    "consumptionReduction": 1,
+    "traits": [
+      "yard"
+    ],
+    "affectsDowntime": false,
+    "reducesUnrest": false,
+    "level": 3,
+    "construction": {
+      "rp": 20,
+      "lumber": 4,
+      "skills": [
+        {
+          "skill": "industry"
+        }
+      ],
+      "dc": 18
+    },
+    "lots": 4
+  },
+  {
+    "id": "stonemason",
+    "name": "structures.stonemason.name",
+    "activityBonusRules": [
+      {
+        "value": 1,
+        "activity": "establish-work-site-quarry"
+      }
+    ],
+    "storage": {
+      "stone": 1
+    },
+    "traits": [
+      "building"
+    ],
+    "affectsDowntime": false,
+    "reducesUnrest": false,
+    "level": 3,
+    "construction": {
+      "rp": 16,
+      "lumber": 2,
+      "skills": [
+        {
+          "skill": "industry",
+          "proficiencyRank": 1
+        }
+      ],
+      "dc": 18
+    },
+    "lots": 2
+  },
+  {
+    "id": "tannery",
+    "name": "structures.tannery.name",
+    "activityBonusRules": [
+      {
+        "value": 1,
+        "activity": "trade-commodities"
+      }
+    ],
+    "traits": [
+      "building"
+    ],
+    "affectsDowntime": false,
+    "reducesUnrest": false,
+    "level": 3,
+    "construction": {
+      "rp": 6,
+      "lumber": 2,
+      "skills": [
+        {
+          "skill": "industry",
+          "proficiencyRank": 1
+        }
+      ],
+      "dc": 18
+    },
+    "lots": 1,
+    "notes": "structures.tannery.notes"
+  },
+  {
+    "id": "tavern-dive-vk",
+    "name": "structures.tavern-dive-vk.name",
+    "traits": [
+      "building"
+    ],
+    "affectsDowntime": false,
+    "reducesUnrest": true,
+    "reduceUnrestBy": {
+      "value": "1"
+    },
+    "level": 1,
+    "construction": {
+      "rp": 12,
+      "lumber": 1,
+      "skills": [
+        {
+          "skill": "trade",
+          "proficiencyRank": 1
+        }
+      ],
+      "dc": 15
+    },
+    "lots": 1,
+    "skillBonusRules": [
+      {
+        "value": 1,
+        "activity": "clear-hex",
+        "skill": "exploration"
+      },
+      {
+        "value": 1,
+        "activity": "clear-hex-vk",
+        "skill": "exploration"
+      }
+    ]
+  },
+  {
+    "id": "tavern-dive",
+    "name": "structures.tavern-dive.name",
+    "traits": [
+      "building"
+    ],
+    "affectsDowntime": false,
+    "reducesUnrest": true,
+    "reduceUnrestBy": {
+      "value": "1"
+    },
+    "level": 1,
+    "construction": {
+      "rp": 12,
+      "lumber": 1,
+      "skills": [
+        {
+          "skill": "trade",
+          "proficiencyRank": 1
+        }
+      ],
+      "dc": 15
+    },
+    "lots": 1
+  },
+  {
+    "id": "tavern-luxury-vk",
+    "name": "structures.tavern-luxury-vk.name",
+    "activityBonusRules": [
+      {
+        "value": 2,
+        "activity": "hire-adventurers"
+      }
+    ],
+    "skillBonusRules": [
+      {
+        "value": 2,
+        "skill": "trade",
+        "activity": "rest-and-relax"
+      }
+    ],
+    "notes": "structures.tavern-luxury-vk.notes",
+    "traits": [
+      "building",
+      "famous"
+    ],
+    "affectsDowntime": true,
+    "reducesUnrest": true,
+    "reduceUnrestBy": {
+      "value": "1d4+1"
+    },
+    "level": 9,
+    "upgradeFrom": [
+      "tavern-popular",
+      "tavern-popular-vk"
+    ],
+    "construction": {
+      "rp": 48,
+      "lumber": 10,
+      "stone": 8,
+      "luxuries": 8,
+      "skills": [
+        {
+          "skill": "trade",
+          "proficiencyRank": 3
+        }
+      ],
+      "dc": 26
+    },
+    "lots": 2
+  },
+  {
+    "id": "tavern-luxury",
+    "name": "structures.tavern-luxury.name",
+    "activityBonusRules": [
+      {
+        "value": 2,
+        "activity": "hire-adventurers"
+      }
+    ],
+    "skillBonusRules": [
+      {
+        "value": 2,
+        "skill": "trade",
+        "activity": "rest-and-relax"
+      }
+    ],
+    "notes": "structures.tavern-luxury.notes",
+    "traits": [
+      "building",
+      "famous"
+    ],
+    "affectsDowntime": true,
+    "reducesUnrest": true,
+    "reduceUnrestBy": {
+      "value": "1d4+1"
+    },
+    "level": 9,
+    "upgradeFrom": [
+      "tavern-popular",
+      "tavern-popular-vk"
+    ],
+    "construction": {
+      "rp": 48,
+      "lumber": 10,
+      "stone": 8,
+      "luxuries": 8,
+      "skills": [
+        {
+          "skill": "trade",
+          "proficiencyRank": 3
+        }
+      ],
+      "dc": 26
+    },
+    "lots": 2
+  },
+  {
+    "id": "tavern-popular-vk",
+    "name": "structures.tavern-popular-vk.name",
+    "activityBonusRules": [
+      {
+        "value": 1,
+        "activity": "hire-adventurers"
+      }
+    ],
+    "skillBonusRules": [
+      {
+        "value": 1,
+        "skill": "trade",
+        "activity": "rest-and-relax"
+      }
+    ],
+    "notes": "structures.tavern-popular-vk.notes",
+    "traits": [
+      "building"
+    ],
+    "affectsDowntime": true,
+    "reducesUnrest": true,
+    "reduceUnrestBy": {
+      "value": "2"
+    },
+    "level": 3,
+    "upgradeFrom": [
+      "tavern-dive",
+      "tavern-dive-vk"
+    ],
+    "construction": {
+      "rp": 24,
+      "lumber": 6,
+      "stone": 2,
+      "skills": [
+        {
+          "skill": "trade",
+          "proficiencyRank": 2
+        }
+      ],
+      "dc": 18
+    },
+    "lots": 1
+  },
+  {
+    "id": "tavern-popular",
+    "name": "structures.tavern-popular.name",
+    "activityBonusRules": [
+      {
+        "value": 1,
+        "activity": "hire-adventurers"
+      }
+    ],
+    "skillBonusRules": [
+      {
+        "value": 1,
+        "skill": "trade",
+        "activity": "rest-and-relax"
+      }
+    ],
+    "notes": "structures.tavern-popular.notes",
+    "traits": [
+      "building"
+    ],
+    "affectsDowntime": true,
+    "reducesUnrest": true,
+    "reduceUnrestBy": {
+      "value": "2"
+    },
+    "level": 3,
+    "upgradeFrom": [
+      "tavern-dive",
+      "tavern-dive-vk"
+    ],
+    "construction": {
+      "rp": 24,
+      "lumber": 6,
+      "stone": 2,
+      "skills": [
+        {
+          "skill": "trade",
+          "proficiencyRank": 2
+        }
+      ],
+      "dc": 18
+    },
+    "lots": 1
+  },
+  {
+    "id": "tavern-world-class-vk",
+    "name": "structures.tavern-world-class-vk.name",
+    "activityBonusRules": [
+      {
+        "value": 3,
+        "activity": "hire-adventurers"
+      },
+      {
+        "value": 3,
+        "activity": "repair-reputation-strife"
+      }
+    ],
+    "skillBonusRules": [
+      {
+        "value": 3,
+        "skill": "trade",
+        "activity": "rest-and-relax"
+      }
+    ],
+    "notes": "structures.tavern-world-class-vk.notes",
+    "traits": [
+      "building",
+      "edifice",
+      "famous"
+    ],
+    "affectsDowntime": true,
+    "reducesUnrest": true,
+    "reduceUnrestBy": {
+      "value": "2d4"
+    },
+    "level": 15,
+    "upgradeFrom": [
+      "tavern-luxury",
+      "tavern-luxury-vk"
+    ],
+    "construction": {
+      "rp": 64,
+      "lumber": 18,
+      "stone": 15,
+      "luxuries": 15,
+      "skills": [
+        {
+          "skill": "trade",
+          "proficiencyRank": 3
+        }
+      ],
+      "dc": 34
+    },
+    "lots": 2
+  },
+  {
+    "id": "tavern-world-class",
+    "name": "structures.tavern-world-class.name",
+    "activityBonusRules": [
+      {
+        "value": 3,
+        "activity": "hire-adventurers"
+      },
+      {
+        "value": 3,
+        "activity": "repair-reputation-strife"
+      }
+    ],
+    "skillBonusRules": [
+      {
+        "value": 3,
+        "skill": "trade",
+        "activity": "rest-and-relax"
+      }
+    ],
+    "notes": "structures.tavern-world-class.notes",
+    "traits": [
+      "building",
+      "edifice",
+      "famous"
+    ],
+    "affectsDowntime": true,
+    "reducesUnrest": true,
+    "reduceUnrestBy": {
+      "value": "2d4"
+    },
+    "level": 15,
+    "upgradeFrom": [
+      "tavern-luxury",
+      "tavern-luxury-vk"
+    ],
+    "construction": {
+      "rp": 64,
+      "lumber": 18,
+      "stone": 15,
+      "luxuries": 15,
+      "skills": [
+        {
+          "skill": "trade",
+          "proficiencyRank": 3
+        }
+      ],
+      "dc": 34
+    },
+    "lots": 2
+  },
+  {
+    "id": "temple",
+    "name": "structures.temple.name",
+    "activityBonusRules": [
+      {
+        "value": 1,
+        "activity": "celebrate-holiday"
+      },
+      {
+        "value": 1,
+        "activity": "celebrate-holiday-vk"
+      },
+      {
+        "value": 1,
+        "activity": "provide-care"
+      },
+      {
+        "value": 1,
+        "activity": "blessed-solution"
+      },
+      {
+        "value": 1,
+        "activity": "observe-customs"
+      }
+    ],
+    "availableItemsRules": [
+      {
+        "value": 1,
+        "group": "divine"
+      }
+    ],
+    "traits": [
+      "building",
+      "famous",
+      "infamous"
+    ],
+    "affectsDowntime": false,
+    "reducesUnrest": true,
+    "reduceUnrestBy": {
+      "value": "2"
+    },
+    "level": 5,
+    "upgradeFrom": [
+      "shrine"
+    ],
+    "construction": {
+      "rp": 32,
+      "lumber": 6,
+      "stone": 6,
+      "skills": [
+        {
+          "skill": "folklore",
+          "proficiencyRank": 2
+        }
+      ],
+      "dc": 20
+    },
+    "lots": 2
+  },
+  {
+    "id": "tenement",
+    "name": "structures.tenement.name",
+    "traits": [
+      "building",
+      "residential"
+    ],
+    "affectsDowntime": false,
+    "reducesUnrest": true,
+    "reduceUnrestBy": {
+      "value": "1"
+    },
+    "gainRuin": {
+      "value": "1",
+      "ruin": "any",
+      "moreThanOncePerTurn": true
+    },
+    "level": 0,
+    "construction": {
+      "rp": 1,
+      "lumber": 1,
+      "skills": [
+        {
+          "skill": "industry"
+        }
+      ],
+      "dc": 14
+    },
+    "lots": 1
+  },
+  {
+    "id": "theater",
+    "name": "structures.theater.name",
+    "activityBonusRules": [
+      {
+        "value": 2,
+        "activity": "celebrate-holiday"
+      },
+      {
+        "value": 2,
+        "activity": "celebrate-holiday-vk"
+      }
+    ],
+    "notes": "structures.theater.notes",
+    "traits": [
+      "building"
+    ],
+    "affectsDowntime": true,
+    "reducesUnrest": true,
+    "reduceUnrestBy": {
+      "value": "1"
+    },
+    "level": 9,
+    "upgradeFrom": [
+      "festival-hall",
+      "festival-hall-vk"
+    ],
+    "construction": {
+      "rp": 24,
+      "lumber": 8,
+      "stone": 3,
+      "skills": [
+        {
+          "skill": "arts",
+          "proficiencyRank": 2
+        }
+      ],
+      "dc": 26
+    },
+    "lots": 2,
+    "skillBonusRules": [
+      {
+        "value": 2,
+        "skill": "arts",
+        "activity": "rest-and-relax"
+      }
+    ]
+  },
+  {
+    "id": "thieves-guild",
+    "name": "structures.thieves-guild.name",
+    "activityBonusRules": [
+      {
+        "value": 1,
+        "activity": "infiltration"
+      }
+    ],
+    "notes": "structures.thieves-guild.notes",
+    "traits": [
+      "building",
+      "infamous"
+    ],
+    "affectsDowntime": true,
+    "reducesUnrest": false,
+    "gainRuin": {
+      "value": "1",
+      "ruin": "crime",
+      "moreThanOncePerTurn": true
+    },
+    "level": 5,
+    "construction": {
+      "rp": 25,
+      "lumber": 4,
+      "skills": [
+        {
+          "skill": "intrigue",
+          "proficiencyRank": 1
+        }
+      ],
+      "dc": 20
+    },
+    "lots": 1
+  },
+  {
+    "id": "town-hall-vk",
+    "name": "structures.town-hall-vk.name",
+    "traits": [
+      "building",
+      "edifice"
+    ],
+    "maximumCivicRdLimit": 2,
+    "increaseMinimumSettlementActions": 1,
+    "affectsDowntime": false,
+    "level": 2,
+    "construction": {
+      "rp": 22,
+      "lumber": 4,
+      "stone": 4,
+      "skills": [
+        {
+          "skill": "defense",
+          "proficiencyRank": 1
+        },
+        {
+          "skill": "industry",
+          "proficiencyRank": 1
+        },
+        {
+          "skill": "magic",
+          "proficiencyRank": 1
+        },
+        {
+          "skill": "statecraft",
+          "proficiencyRank": 1
+        }
+      ],
+      "dc": 16
+    },
+    "lots": 2,
+    "activityBonusRules": [
+      {
+        "value": 1,
+        "activity": "manage-trade-agreements"
+      },
+      {
+        "value": 1,
+        "activity": "retrain-vk"
+      }
+    ],
+    "increaseResourceDice": {
+      "town": 1
+    },
+    "notes": "structures.town-hall-vk.notes"
+  },
+  {
+    "id": "town-hall",
+    "name": "structures.town-hall.name",
+    "increaseLeadershipActivities": true,
+    "traits": [
+      "building",
+      "edifice"
+    ],
+    "affectsDowntime": false,
+    "reducesUnrest": true,
+    "reduceUnrestBy": {
+      "value": "1"
+    },
+    "level": 2,
+    "construction": {
+      "rp": 22,
+      "lumber": 4,
+      "stone": 4,
+      "skills": [
+        {
+          "skill": "defense",
+          "proficiencyRank": 1
+        },
+        {
+          "skill": "industry",
+          "proficiencyRank": 1
+        },
+        {
+          "skill": "magic",
+          "proficiencyRank": 1
+        },
+        {
+          "skill": "statecraft",
+          "proficiencyRank": 1
+        }
+      ],
+      "dc": 16
+    },
+    "lots": 2
+  },
+  {
+    "id": "trade-shop",
+    "name": "structures.trade-shop.name",
+    "activityBonusRules": [
+      {
+        "value": 1,
+        "activity": "purchase-commodities"
+      }
+    ],
+    "notes": "structures.trade-shop.notes",
+    "traits": [
+      "building"
+    ],
+    "affectsDowntime": true,
+    "reducesUnrest": false,
+    "level": 3,
+    "construction": {
+      "rp": 10,
+      "lumber": 2,
+      "skills": [
+        {
+          "skill": "trade",
+          "proficiencyRank": 1
+        }
+      ],
+      "dc": 18
+    },
+    "lots": 1
+  },
+  {
+    "id": "university",
+    "name": "structures.university.name",
+    "activityBonusRules": [
+      {
+        "value": 3,
+        "activity": "creative-solution"
+      }
+    ],
+    "notes": "structures.university.notes",
+    "traits": [
+      "building",
+      "edifice",
+      "famous"
+    ],
+    "affectsDowntime": true,
+    "reducesUnrest": false,
+    "level": 15,
+    "upgradeFrom": [
+      "academy"
+    ],
+    "construction": {
+      "rp": 78,
+      "lumber": 18,
+      "stone": 18,
+      "luxuries": 18,
+      "skills": [
+        {
+          "skill": "scholarship",
+          "proficiencyRank": 3
+        }
+      ],
+      "dc": 34
+    },
+    "lots": 4
+  },
+  {
+    "id": "wall-stone",
+    "name": "structures.wall-stone.name",
+    "traits": [
+      "infrastructure"
+    ],
+    "lots": 0,
+    "affectsDowntime": false,
+    "reducesUnrest": true,
+    "reduceUnrestBy": {
+      "value": "1",
+      "moreThanOncePerTurn": true,
+      "note": "as long as it's the first wall in a settlement"
+    },
+    "level": 5,
+    "upgradeFrom": [
+      "wall-wooden"
+    ],
+    "construction": {
+      "rp": 4,
+      "stone": 8,
+      "skills": [
+        {
+          "skill": "defense",
+          "proficiencyRank": 1
+        }
+      ],
+      "dc": 20
+    }
+  },
+  {
+    "id": "wall-wooden",
+    "name": "structures.wall-wooden.name",
+    "traits": [
+      "infrastructure"
+    ],
+    "lots": 0,
+    "affectsDowntime": false,
+    "reducesUnrest": true,
+    "reduceUnrestBy": {
+      "value": "1",
+      "moreThanOncePerTurn": true,
+      "note": "as long as it's the first wall in a settlement"
+    },
+    "level": 1,
+    "construction": {
+      "rp": 2,
+      "lumber": 4,
+      "skills": [
+        {
+          "skill": "defense"
+        }
+      ],
+      "dc": 15
+    }
+  },
+  {
+    "id": "watchtower-stone",
+    "name": "structures.watchtower-stone.name",
+    "stacksWith": "watchtower",
+    "settlementEventRules": [
+      {
+        "value": 1
+      }
+    ],
+    "traits": [
+      "building"
+    ],
+    "affectsDowntime": false,
+    "reducesUnrest": true,
+    "reduceUnrestBy": {
+      "value": "1"
+    },
+    "level": 3,
+    "construction": {
+      "rp": 12,
+      "stone": 4,
+      "skills": [
+        {
+          "skill": "defense",
+          "proficiencyRank": 1
+        }
+      ],
+      "dc": 18
+    },
+    "lots": 1
+  },
+  {
+    "id": "watchtower",
+    "name": "structures.watchtower.name",
+    "settlementEventRules": [
+      {
+        "value": 1
+      }
+    ],
+    "traits": [
+      "building"
+    ],
+    "affectsDowntime": false,
+    "reducesUnrest": true,
+    "reduceUnrestBy": {
+      "value": "1"
+    },
+    "level": 3,
+    "construction": {
+      "rp": 12,
+      "lumber": 4,
+      "skills": [
+        {
+          "skill": "defense",
+          "proficiencyRank": 1
+        }
+      ],
+      "dc": 18
+    },
+    "lots": 1
+  },
+  {
+    "id": "waterfront-vk",
+    "name": "structures.waterfront-vk.name",
+    "activityBonusRules": [
+      {
+        "value": 1,
+        "activity": "go-fishing"
+      },
+      {
+        "value": 1,
+        "activity": "establish-trade-agreement"
+      }
+    ],
+    "availableItemsRules": [
+      {
+        "value": 1,
+        "alwaysStacks": true
+      }
+    ],
+    "traits": [
+      "yard"
+    ],
+    "affectsDowntime": false,
+    "reducesUnrest": false,
+    "level": 8,
+    "upgradeFrom": [
+      "pier",
+      "pier-vk"
+    ],
+    "construction": {
+      "rp": 90,
+      "lumber": 10,
+      "skills": [
+        {
+          "skill": "boating",
+          "proficiencyRank": 2
+        }
+      ],
+      "dc": 24
+    },
+    "lots": 4,
+    "consumptionReduction": 2,
+    "ignoreConsumptionReductionOf": [
+      "pier-vk"
+    ],
+    "skillBonusRules": [
+      {
+        "value": 1,
+        "skill": "boating",
+        "activity": "rest-and-relax"
+      }
+    ],
+    "notes": "structures.waterfront-vk.notes"
+  },
+  {
+    "id": "waterfront",
+    "name": "structures.waterfront.name",
+    "activityBonusRules": [
+      {
+        "value": 1,
+        "activity": "go-fishing"
+      },
+      {
+        "value": 1,
+        "activity": "establish-trade-agreement"
+      }
+    ],
+    "availableItemsRules": [
+      {
+        "value": 1,
+        "alwaysStacks": true
+      }
+    ],
+    "traits": [
+      "yard"
+    ],
+    "affectsDowntime": false,
+    "reducesUnrest": false,
+    "level": 8,
+    "upgradeFrom": [
+      "pier",
+      "pier-vk"
+    ],
+    "construction": {
+      "rp": 90,
+      "lumber": 10,
+      "skills": [
+        {
+          "skill": "boating",
+          "proficiencyRank": 2
+        }
+      ],
+      "dc": 24
+    },
+    "lots": 4,
+    "skillBonusRules": [
+      {
+        "value": 1,
+        "skill": "boating",
+        "activity": "rest-and-relax"
+      }
+    ]
+  },
+  {
+    "id": "town-watch",
+    "name": "structures.town-watch.name",
+    "notes": "structures.town-watch.notes",
+    "traits": [
+      "infrastructure"
+    ],
+    "affectsDowntime": false,
+    "reducesUnrest": false,
+    "level": 3,
+    "construction": {
+      "rp": 6,
+      "lumber": 1,
+      "skills": [
+        {
+          "skill": "trade",
+          "proficiencyRank": 1
+        }
+      ],
+      "dc": 18
+    },
+    "lots": 0,
+    "activityBonusRules": [
+      {
+        "value": 1,
+        "activity": "repair-reputation-crime"
+      }
+    ]
+  },
+  {
+    "id": "town-square",
+    "name": "structures.town-square.name",
+    "notes": "structures.town-square.notes",
+    "traits": [
+      "infrastructure"
+    ],
+    "affectsDowntime": false,
+    "reducesUnrest": false,
+    "level": 3,
+    "construction": {
+      "rp": 6,
+      "lumber": 1,
+      "skills": [
+        {
+          "skill": "arts",
+          "proficiencyRank": 1
+        }
+      ],
+      "dc": 18
+    },
+    "lots": 0,
+    "activityBonusRules": [
+      {
+        "value": 1,
+        "activity": "repair-reputation-corruption"
+      }
+    ]
+  },
+  {
+    "id": "planning-office",
+    "name": "structures.planning-office.name",
+    "notes": "structures.planning-office.notes",
+    "traits": [
+      "infrastructure"
+    ],
+    "affectsDowntime": false,
+    "reducesUnrest": false,
+    "level": 3,
+    "construction": {
+      "rp": 6,
+      "lumber": 1,
+      "skills": [
+        {
+          "skill": "engineering",
+          "proficiencyRank": 1
+        }
+      ],
+      "dc": 18
+    },
+    "lots": 0,
+    "activityBonusRules": [
+      {
+        "value": 1,
+        "activity": "accelerate-project"
+      },
+      {
+        "value": 1,
+        "activity": "repair-reputation-decay"
+      }
+    ]
+  },
+  {
+    "id": "publicity-office",
+    "name": "structures.publicity-office.name",
+    "notes": "structures.publicity-office.notes",
+    "traits": [
+      "infrastructure"
+    ],
+    "affectsDowntime": false,
+    "reducesUnrest": false,
+    "level": 3,
+    "construction": {
+      "rp": 6,
+      "lumber": 1,
+      "skills": [
+        {
+          "skill": "intrigue",
+          "proficiencyRank": 1
+        }
+      ],
+      "dc": 18
+    },
+    "lots": 0,
+    "activityBonusRules": [
+      {
+        "value": 1,
+        "activity": "repair-reputation-strife"
+      }
+    ]
+  },
+  {
+    "id": "oddity-emporium",
+    "name": "structures.oddity-emporium.name",
+    "notes": "structures.oddity-emporium.notes",
+    "traits": [
+      "building"
+    ],
+    "affectsDowntime": false,
+    "reducesUnrest": false,
+    "level": 5,
+    "construction": {
+      "rp": 34,
+      "lumber": 3,
+      "luxuries": 2,
+      "skills": [
+        {
+          "skill": "magic",
+          "proficiencyRank": 1
+        }
+      ],
+      "dc": 20
+    },
+    "lots": 1,
+    "activityBonusRules": [
+      {
+        "value": 1,
+        "activity": "prognostication"
+      },
+      {
+        "value": 1,
+        "activity": "supernatural-solution"
+      }
+    ],
+    "availableItemsRules": [
+      {
+        "value": 1,
+        "group": "occult"
+      }
+    ]
+  },
+  {
+    "id": "city-watch",
+    "name": "structures.city-watch.name",
+    "notes": "structures.city-watch.notes",
+    "traits": [
+      "infrastructure"
+    ],
+    "affectsDowntime": false,
+    "reducesUnrest": false,
+    "level": 9,
+    "construction": {
+      "rp": 16,
+      "lumber": 1,
+      "stone": 1,
+      "skills": [
+        {
+          "skill": "trade",
+          "proficiencyRank": 2
+        }
+      ],
+      "dc": 26
+    },
+    "lots": 0,
+    "upgradeFrom": [
+      "town-watch"
+    ],
+    "activityBonusRules": [
+      {
+        "value": 2,
+        "activity": "repair-reputation-crime"
+      }
+    ]
+  },
+  {
+    "id": "public-forum",
+    "name": "structures.public-forum.name",
+    "notes": "structures.public-forum.notes",
+    "traits": [
+      "infrastructure"
+    ],
+    "affectsDowntime": false,
+    "reducesUnrest": false,
+    "level": 9,
+    "construction": {
+      "rp": 16,
+      "lumber": 1,
+      "stone": 1,
+      "skills": [
+        {
+          "skill": "arts",
+          "proficiencyRank": 2
+        }
+      ],
+      "dc": 26
+    },
+    "lots": 0,
+    "upgradeFrom": [
+      "town-square"
+    ],
+    "activityBonusRules": [
+      {
+        "value": 2,
+        "activity": "repair-reputation-corruption"
+      }
+    ]
+  },
+  {
+    "id": "planning-department",
+    "name": "structures.planning-department.name",
+    "notes": "structures.planning-department.notes",
+    "traits": [
+      "infrastructure"
+    ],
+    "affectsDowntime": false,
+    "reducesUnrest": false,
+    "level": 9,
+    "construction": {
+      "rp": 16,
+      "lumber": 1,
+      "stone": 1,
+      "skills": [
+        {
+          "skill": "engineering",
+          "proficiencyRank": 2
+        }
+      ],
+      "dc": 26
+    },
+    "lots": 0,
+    "upgradeFrom": [
+      "planning-office"
+    ],
+    "activityBonusRules": [
+      {
+        "value": 2,
+        "activity": "accelerate-project"
+      },
+      {
+        "value": 2,
+        "activity": "repair-reputation-decay"
+      }
+    ]
+  },
+  {
+    "id": "information-department",
+    "name": "structures.information-department.name",
+    "notes": "structures.information-department.notes",
+    "traits": [
+      "infrastructure"
+    ],
+    "affectsDowntime": false,
+    "reducesUnrest": false,
+    "level": 9,
+    "construction": {
+      "rp": 16,
+      "lumber": 1,
+      "stone": 1,
+      "skills": [
+        {
+          "skill": "intrigue",
+          "proficiencyRank": 2
+        }
+      ],
+      "dc": 26
+    },
+    "lots": 0,
+    "upgradeFrom": [
+      "publicity-office"
+    ],
+    "activityBonusRules": [
+      {
+        "value": 2,
+        "activity": "repair-reputation-strife"
+      }
+    ]
+  }
+]

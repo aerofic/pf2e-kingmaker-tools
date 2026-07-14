@@ -1,0 +1,435 @@
+[
+    {
+        "id": "blend-into-the-night",
+        "name": "campingActivities.blend-into-the-night.name",
+        "journalUuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-journals.JournalEntry.uSTTCqRYCWj7a38F.JournalEntryPage.jz1FI7zSoPLR8iBL",
+        "isLocked": true,
+        "isSecret": false,
+        "isHomebrew": false,
+        "skills": [],
+        "modifyRandomEncounterDc": {
+            "day": 0,
+            "night": 2
+        }
+    },
+    {
+        "id": "bolster-confidence",
+        "name": "campingActivities.bolster-confidence.name",
+        "journalUuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-journals.JournalEntry.uSTTCqRYCWj7a38F.JournalEntryPage.pxHYFLK7VYGppCzS",
+        "isLocked": true,
+        "isSecret": false,
+        "skills": [],
+        "isHomebrew": false,
+        "effectUuids": [
+            {
+                "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-camping-effects.Item.mAEvnTqFuLIASQLB"
+            }
+        ]
+    },
+    {
+        "id": "camouflage-campsite",
+        "name": "campingActivities.camouflage-campsite.name",
+        "journalUuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-journals.JournalEntry.uSTTCqRYCWj7a38F.JournalEntryPage.mlLCjokti3RXAlUP",
+        "isLocked": false,
+        "isSecret": true,
+        "isHomebrew": false,
+        "skills": [
+            {
+                "name": "stealth",
+                "proficiency": "trained",
+                "dcType": "zone"
+            }
+        ],
+        "criticalSuccess": {
+            "message": "campingActivities.camouflage-campsite.criticalSuccess.message",
+            "modifyRandomEncounterDc": {
+                "day": 2,
+                "night": 2
+            }
+        },
+        "success": {
+            "message": "campingActivities.camouflage-campsite.success.message",
+            "modifyRandomEncounterDc": {
+                "day": 1,
+                "night": 1
+            }
+        },
+        "criticalFailure": {
+            "message": "campingActivities.camouflage-campsite.criticalFailure.message",
+            "modifyRandomEncounterDc": {
+                "day": -2,
+                "night": -2
+            }
+        }
+    },
+    {
+        "id": "camp-management",
+        "name": "campingActivities.camp-management.name",
+        "journalUuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-journals.JournalEntry.uSTTCqRYCWj7a38F.JournalEntryPage.JRScwsFTXTpTwWYA",
+        "isLocked": true,
+        "isSecret": false,
+        "isHomebrew": false,
+        "skills": [
+            {
+                "name": "survival",
+                "proficiency": "untrained",
+                "dcType": "zone"
+            }
+        ],
+        "criticalSuccess": {
+            "message": "campingActivities.camp-management.criticalSuccess.message"
+        },
+        "success": {
+            "message": "campingActivities.camp-management.success.message"
+        },
+        "criticalFailure": {
+            "message": "campingActivities.camp-management.criticalFailure.message",
+            "effectUuids": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-camping-effects.Item.vpH13xgAqX4zsU6o"
+                }
+            ]
+        }
+    },
+    {
+        "id": "cook-meal",
+        "name": "campingActivities.cook-meal.name",
+        "journalUuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-journals.JournalEntry.uSTTCqRYCWj7a38F.JournalEntryPage.S72BNBTfKfkCjriU",
+        "isLocked": false,
+        "isSecret": false,
+        "isHomebrew": false,
+        "skills": [],
+        "criticalSuccess": {
+            "message": "campingActivities.cook-meal.criticalSuccess.message"
+        },
+        "success": {
+            "message": "campingActivities.cook-meal.success.message"
+        },
+        "failure": {
+            "message": "campingActivities.cook-meal.failure.message"
+        },
+        "criticalFailure": {
+            "message": "campingActivities.cook-meal.criticalFailure.message"
+        }
+    },
+    {
+        "id": "discover-special-meal",
+        "name": "campingActivities.discover-special-meal.name",
+        "journalUuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-journals.JournalEntry.uSTTCqRYCWj7a38F.JournalEntryPage.5I8jnFjirbbIUkGy",
+        "isLocked": false,
+        "isSecret": false,
+        "isHomebrew": false,
+        "skills": [
+            {
+                "name": "cooking",
+                "proficiency": "trained",
+                "dcType": "none"
+            }
+        ],
+        "criticalSuccess": {
+            "message": "campingActivities.discover-special-meal.criticalSuccess.message"
+        },
+        "success": {
+            "message": "campingActivities.discover-special-meal.success.message"
+        },
+        "failure": {
+            "message": "campingActivities.discover-special-meal.failure.message"
+        },
+        "criticalFailure": {
+            "message": "campingActivities.discover-special-meal.criticalFailure.message"
+        }
+    },
+    {
+        "id": "enhance-campfire",
+        "name": "campingActivities.enhance-campfire.name",
+        "journalUuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-journals.JournalEntry.uSTTCqRYCWj7a38F.JournalEntryPage.ytyW9F39m7xf0gx5",
+        "isLocked": true,
+        "isSecret": false,
+        "isHomebrew": false,
+        "skills": [],
+        "effectUuids": [
+            {
+                "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-camping-effects.Item.NFPQHxvpJd2vsKMe"
+            }
+        ]
+    },
+    {
+        "id": "enhance-weapons",
+        "name": "campingActivities.enhance-weapons.name",
+        "journalUuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-journals.JournalEntry.uSTTCqRYCWj7a38F.JournalEntryPage.2Dn89HrY7gyvQiOH",
+        "isLocked": true,
+        "isSecret": false,
+        "isHomebrew": false,
+        "skills": []
+    },
+    {
+        "id": "healers-blessing",
+        "name": "campingActivities.healers-blessing.name",
+        "journalUuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-journals.JournalEntry.uSTTCqRYCWj7a38F.JournalEntryPage.X4ggcXUe0wPiW4jt",
+        "isLocked": true,
+        "isSecret": false,
+        "isHomebrew": false,
+        "skills": [],
+        "effectUuids": [
+            {
+                "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-camping-effects.Item.eaWmjDOIvUF9aDbq",
+                "doublesHealing": true
+            }
+        ]
+    },
+    {
+        "id": "hunt-and-gather",
+        "name": "campingActivities.hunt-and-gather.name",
+        "journalUuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-journals.JournalEntry.uSTTCqRYCWj7a38F.JournalEntryPage.RujdVNvLpoQBBdVV",
+        "isLocked": false,
+        "isSecret": false,
+        "isHomebrew": false,
+        "skills": [
+            {
+                "name": "survival",
+                "proficiency": "trained",
+                "dcType": "zone",
+                "required": true
+            },
+            {
+                "name": "hunting",
+                "proficiency": "trained",
+                "dcType": "zone"
+            }
+        ],
+        "criticalSuccess": {
+            "message": "campingActivities.hunt-and-gather.criticalSuccess.message"
+        },
+        "success": {
+            "message": "campingActivities.hunt-and-gather.success.message"
+        },
+        "failure": {
+            "message": "campingActivities.hunt-and-gather.failure.message"
+        },
+        "criticalFailure": {
+            "message": "campingActivities.hunt-and-gather.criticalFailure.message",
+            "checkRandomEncounter": true
+        }
+    },
+    {
+        "id": "intimidating-posture",
+        "name": "campingActivities.intimidating-posture.name",
+        "journalUuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-journals.JournalEntry.uSTTCqRYCWj7a38F.JournalEntryPage.LhhERalHv4QA14fQ",
+        "isLocked": true,
+        "isSecret": false,
+        "isHomebrew": false,
+        "skills": []
+    },
+    {
+        "id": "learn-from-a-companion",
+        "name": "campingActivities.learn-from-a-companion.name",
+        "journalUuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-journals.JournalEntry.uSTTCqRYCWj7a38F.JournalEntryPage.MyeB2g0yDwEsqfI9",
+        "isLocked": true,
+        "isSecret": false,
+        "isHomebrew": false,
+        "skills": [
+            {
+                "name": "perception",
+                "dcType": "static",
+                "proficiency": "untrained",
+                "dc": 20
+            }
+        ],
+        "criticalSuccess": {
+            "message": "campingActivities.learn-from-a-companion.criticalSuccess.message"
+        },
+        "success": {
+            "message": "campingActivities.learn-from-a-companion.success.message"
+        },
+        "failure": {
+            "message": "campingActivities.learn-from-a-companion.failure.message"
+        },
+        "criticalFailure": {
+            "message": "campingActivities.learn-from-a-companion.criticalFailure.message"
+        }
+    },
+    {
+        "id": "maintain-armor",
+        "name": "campingActivities.maintain-armor.name",
+        "journalUuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-journals.JournalEntry.uSTTCqRYCWj7a38F.JournalEntryPage.zUaeA8Ud9dv3hhnc",
+        "isLocked": true,
+        "isSecret": false,
+        "isHomebrew": false,
+        "skills": []
+    },
+    {
+        "id": "organize-watch",
+        "name": "campingActivities.organize-watch.name",
+        "journalUuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-journals.JournalEntry.uSTTCqRYCWj7a38F.JournalEntryPage.wgyPZBRgPjTeK0Ch",
+        "isLocked": false,
+        "isSecret": false,
+        "isHomebrew": false,
+        "skills": [
+            {
+                "name": "perception",
+                "proficiency": "expert",
+                "dcType": "zone"
+            }
+        ],
+        "criticalSuccess": {
+            "message": "campingActivities.organize-watch.criticalSuccess.message",
+            "effectUuids": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-camping-effects.Item.010XlkzzjX38BHsO"
+                }
+            ]
+        },
+        "success": {
+            "message": "campingActivities.organize-watch.success.message",
+            "effectUuids": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-camping-effects.Item.MOXWga7l8dsypUPy"
+                }
+            ]
+        },
+        "failure": {
+            "message": "campingActivities.organize-watch.failure.message"
+        },
+        "criticalFailure": {
+            "message": "campingActivities.organize-watch.criticalFailure.message",
+            "checkRandomEncounter": true
+        }
+    },
+    {
+        "id": "prepare-campsite",
+        "name": "campingActivities.prepare-campsite.name",
+        "isHomebrew": false,
+        "skills": [
+            {
+                "name": "survival",
+                "proficiency": "untrained",
+                "dcType": "zone"
+            }
+        ],
+        "isSecret": false,
+        "journalUuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-journals.JournalEntry.uSTTCqRYCWj7a38F.JournalEntryPage.Iuen7iSvZAlnAJFB",
+        "isLocked": false,
+        "criticalSuccess": {
+            "message": "campingActivities.prepare-campsite.criticalSuccess.message",
+            "modifyRandomEncounterDc": {
+                "day": 2,
+                "night": 2
+            }
+        },
+        "success": {
+            "message": "campingActivities.prepare-campsite.success.message"
+        },
+        "failure": {
+            "message": "campingActivities.prepare-campsite.failure.message",
+            "effectUuids": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-camping-effects.Item.X1OvR5j1cAXZ4Lbp"
+                }
+            ]
+        },
+        "criticalFailure": {
+            "message": "campingActivities.prepare-campsite.criticalFailure.message",
+            "checkRandomEncounter": true
+        }
+    },
+    {
+        "id": "set-alarms",
+        "name": "campingActivities.set-alarms.name",
+        "journalUuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-journals.JournalEntry.uSTTCqRYCWj7a38F.JournalEntryPage.vWSQmYLKlrk3rLDE",
+        "isLocked": true,
+        "isSecret": false,
+        "isHomebrew": false,
+        "skills": [],
+        "effectUuids": [
+            {
+                "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-camping-effects.Item.ptjs54eoEX8EAQNq"
+            }
+        ]
+    },
+    {
+        "id": "set-traps",
+        "name": "campingActivities.set-traps.name",
+        "journalUuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-journals.JournalEntry.uSTTCqRYCWj7a38F.JournalEntryPage.5ynOh085kwNp75t4",
+        "isLocked": true,
+        "isSecret": false,
+        "isHomebrew": false,
+        "skills": []
+    },
+    {
+        "id": "tell-campfire-story",
+        "name": "campingActivities.tell-campfire-story.name",
+        "journalUuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-journals.JournalEntry.uSTTCqRYCWj7a38F.JournalEntryPage.XaKD1oGTAgZUjlQ5",
+        "isLocked": false,
+        "isSecret": false,
+        "skills": [
+            {
+                "name": "performance",
+                "dcType": "actorLevel",
+                "proficiency": "untrained"
+            }
+        ],
+        "isHomebrew": false,
+        "criticalSuccess": {
+            "message": "campingActivities.tell-campfire-story.criticalSuccess.message",
+            "effectUuids": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-camping-effects.Item.2vdskbqd0VrWKR9Y",
+                    "target": "allies"
+                }
+            ]
+        },
+        "success": {
+            "message": "campingActivities.tell-campfire-story.success.message",
+            "effectUuids": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-camping-effects.Item.wT2NzrfgmWmCMRtv",
+                    "target": "allies"
+                }
+            ]
+        },
+        "failure": {
+            "message": "campingActivities.tell-campfire-story.failure.message"
+        },
+        "criticalFailure": {
+            "message": "campingActivities.tell-campfire-story.criticalFailure.message",
+            "effectUuids": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-camping-effects.Item.y5Jqw40SWNOgcxvC",
+                    "target": "allies"
+                }
+            ]
+        }
+    },
+    {
+        "id": "undead-guardians",
+        "name": "campingActivities.undead-guardians.name",
+        "journalUuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-journals.JournalEntry.uSTTCqRYCWj7a38F.JournalEntryPage.YzOixXzCwfXOBjtx",
+        "isLocked": true,
+        "isSecret": false,
+        "isHomebrew": false,
+        "skills": []
+    },
+    {
+        "id": "water-hazards",
+        "name": "campingActivities.water-hazards.name",
+        "journalUuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-journals.JournalEntry.uSTTCqRYCWj7a38F.JournalEntryPage.HGcwmsfjVqfLeYhu",
+        "isLocked": true,
+        "isSecret": false,
+        "isHomebrew": false,
+        "skills": []
+    },
+    {
+        "id": "wilderness-survival",
+        "name": "campingActivities.wilderness-survival.name",
+        "journalUuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-journals.JournalEntry.uSTTCqRYCWj7a38F.JournalEntryPage.8PNH77YHVkw9KoAv",
+        "isLocked": true,
+        "isSecret": false,
+        "isHomebrew": false,
+        "skills": [],
+        "effectUuids": [
+            {
+                "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-camping-effects.Item.v9i9W49PeJ9NkfXX"
+            }
+        ]
+    }
+]

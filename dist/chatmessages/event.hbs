@@ -1,0 +1,38 @@
+<h3>{{label}}</h3>
+<ul class="km-chat-event-traits">
+    {{#each traits}}
+        <li>{{this}}</li>
+    {{/each}}
+</ul>
+{{#if location}}<p><b>{{localizeKM "kingdom.eventLocation"}}:</b> {{location}}</p>{{/if}}
+{{{description}}}
+{{#each stages}}
+    {{#unless @first}}
+        <hr>{{/unless}}
+    <p><b>{{localizeKM "enums.leader"}}</b>: {{leader}}</p>
+    <p><b>{{localizeKM "applications.skills"}}</b>: {{#each skills}}{{#unless @first}}, {{/unless}}{{this}}{{/each}}</p>
+    <ul class="km-event-degrees">
+        {{#if criticalSuccess}}
+            <li><b>{{localizeKM "degreeOfSuccess.criticalSuccess"}}:</b> {{{criticalSuccess}}}</li>{{/if}}
+        {{#if success}}
+            <li><b>{{localizeKM "degreeOfSuccess.success"}}:</b> {{{success}}}</li>{{/if}}
+        {{#if failure}}
+            <li><b>{{localizeKM "degreeOfSuccess.failure"}}:</b> {{{failure}}}</li>{{/if}}
+        {{#if criticalFailure}}
+            <li><b>{{localizeKM "degreeOfSuccess.criticalFailure"}}:</b> {{{criticalFailure}}}</li>{{/if}}
+    </ul>
+{{/each}}
+{{#if resolution}}
+    <hr>
+    <p><b>{{localizeKM "kingdom.eventResolution"}}:</b> {{resolution}}</p>
+{{/if}}
+{{#if special}}
+    <hr>
+    <p><b>{{localizeKM "kingdom.special"}}:</b> {{special}}</p>{{/if}}
+<hr>
+<button type="button"
+        class="km-add-ongoing-event"
+        data-kingdom-actor-uuid="{{actorUuid}}"
+        data-event-id="{{eventId}}"
+>{{localizeKM "kingdom.addToActiveEvents"}}
+</button>

@@ -1,0 +1,24 @@
+<form>
+    <div class="row">
+        <table>
+            <thead>
+            <tr>
+                <th>{{localizeKM "camping.recipe"}}</th>
+                <th>{{localizeKM "applications.dc"}}</th>
+                <th>{{localizeKM "camping.cost"}}</th>
+                <th>{{localizeKM "camping.pick"}}</th>
+            </tr>
+            </thead>
+            <tbody>
+            {{#each formRows}}
+                <tr>
+                    <td>{{{label}}}</td>
+                    <td>{{dc}}</td>
+                    <td>{{> foodCost discoverCost title="camping.consumed"}}</td>
+                    <td>{{> formElement input}}</td>
+                </tr>
+            {{/each}}
+            </tbody>
+        </table>
+    </div>
+</form>

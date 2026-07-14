@@ -1,0 +1,169 @@
+<div>
+    {{> tabs tabs}}
+    <div class="km-settlement-content">
+        <div {{#unless (eq currentTab 'status')}}hidden{{/unless}}>
+            <table class="km-settlement-status">
+                <tbody>
+                <tr>
+                    <th>{{localizeKM "kingdom.manualManagement"}}</th>
+                    <td>{{> formElement manualSettlementLevelInput}}</td>
+                </tr>
+                <tr>
+                    <th>{{localizeKM "enums.settlementType" }}</th>
+                    <td>{{> formElement typeInput}}</td>
+                </tr>
+                <tr>
+                    <th>{{localizeKM "enums.settlementLayoutType" }}</th>
+                    <td>{{> formElement layoutInput}}</td>
+                </tr>
+                {{# if settlementActions}}
+                    <tr>
+                        <th>{{localizeKM "kingdom.settlementActions"}}</th>
+                        <td>{{settlementActions}}</td>
+                    </tr>
+                {{/if}}
+                <tr>
+                    <th>{{localizeKM "kingdom.blocksWithMaximum" count=maximumBlocks}}</th>
+                    <td>
+                        {{> formElement blocksInput}}
+                        {{#unless manualSettlementLevel}}
+                            {{blocks}}
+                        {{/unless}}</td>
+                </tr>
+                <tr>
+                    <th>{{localizeKM "kingdom.population"}}</th>
+                    <td>{{population}}</td>
+                </tr>
+                <tr>
+                    <th>{{localizeKM "kingdom.residentialLots"}}</th>
+                    <td>{{residentialLots}}</td>
+                </tr>
+                <tr>
+                    <th>{{localizeKM "applications.level"}}</th>
+                    <td>
+                        {{level}}
+                    </td>
+                </tr>
+                <tr>
+                    <th>{{localizeKM "kingdom.consumption"}}</th>
+                    <td>{{consumption}} {{#if consumptionSurplus}}({{localizeKM "kingdom.surplus"}}: {{consumptionSurplus}}){{/if}}</td>
+                </tr>
+                <tr>
+                    <th>{{localizeKM "kingdom.maxItemBonus"}}</th>
+                    <td>{{maxItemBonus}}</td>
+                </tr>
+                <tr>
+                    <th>{{localizeKM "kingdom.influence"}}</th>
+                    <td>{{influence}}</td>
+                </tr>
+                <tr>
+                    <th>{{localizeKM "kingdom.capitalInvestment"}}</th>
+                    <td>{{#if allowCapitalInvestment}}<i class="fa-solid fa-circle-check"></i>{{/if}}</td>
+                </tr>
+                <tr>
+                    <th>{{localizeKM "kingdom.secondaryTerritory"}}</th>
+                    <td>{{> formElement secondaryTerritoryInput}}</td>
+                </tr>
+                <tr>
+                    <th>{{localizeKM "kingdom.waterBorders"}}</th>
+                    <td>{{> formElement waterBordersInput}}</td>
+                </tr>
+                <tr>
+                    <th>{{localizeKM "kingdom.lacksBridge"}}</th>
+                    <td>{{#if lacksBridge}}{{localizeKM "yes"}}{{else}}{{localizeKM "no"}}{{/if}}</td>
+                </tr>
+                <tr>
+                    <th>{{localizeKM "kingdom.overcrowded"}}</th>
+                    <td>{{#if isOvercrowded}}{{localizeKM "yes"}}{{else}}{{localizeKM "no"}}{{/if}}</td>
+                </tr>
+                </tbody>
+            </table>
+            <button type="submit" class="full-width" data-action="km-save"
+                    {{#unless isFormValid}}disabled{{/unless}}>{{#if
+                    saveLabel}}{{saveLabel}}{{else}}{{localizeKM "applications.save"}}{{/if}}</button>
+        </div>
+        <div {{#unless (eq currentTab 'shopping')}}hidden{{/unless}}>
+            {{#if purchasableItemUnlocks}}
+                <h3>建筑解锁类别</h3>
+                <table>
+                    <thead>
+                    <th>{{localizeKM "kingdom.itemType"}}</th>
+                    <th>{{localizeKM "settlementNav.structures"}}</th>
+                    </thead>
+                    <tbody>
+                    {{#each purchasableItemUnlocks}}
+                        <tr>
+                            <td{{#if description}} title="{{description}}"{{/if}}>{{type}}</td>
+                            <td>{{sourceStructures}}</td>
+                        </tr>
+                    {{/each}}
+                    </tbody>
+                </table>
+            {{/if}}
+            <h3>物品等级上限</h3>
+            <table>
+                <thead>
+                <th>{{localizeKM "kingdom.itemType"}}</th>
+                <th>{{localizeKM "kingdom.maxItemLevel"}}</th>
+                </thead>
+                <tbody>
+                {{#each availableItems}}
+                    <tr>
+                        <td>{{@key}}</td>
+                        <td>{{this}}</td>
+                    </tr>
+                {{/each}}
+                </tbody>
+            </table>
+            {{#if retrainClassUnlocks}}
+                <h3>{{retrainClassesTitle}}</h3>
+                <table>
+                    <thead>
+                    <th>{{retrainClassesHeader}}</th>
+                    <th>{{localizeKM "settlementNav.structures"}}</th>
+                    </thead>
+                    <tbody>
+                    {{#each retrainClassUnlocks}}
+                        <tr>
+                            <td>{{classes}}</td>
+                            <td>{{sourceStructures}}</td>
+                        </tr>
+                    {{/each}}
+                    </tbody>
+                </table>
+                <p>{{retrainClassesNote}}</p>
+            {{/if}}
+        </div>
+        <div {{#unless (eq currentTab 'bonuses')}}hidden{{/unless}}>
+            <ul>
+                {{#each bonuses}}
+                    <li>{{this}}</li>
+                {{/each}}
+            </ul>
+        </div>
+        <div {{#unless (eq currentTab 'storage')}}hidden{{/unless}}>
+            <table>
+                {{#each storage}}
+                    <tr>
+                        <td>{{label}}</td>
+                        <td>{{value}}</td>
+                    </tr>
+                {{/each}}
+            </table>
+        </div>
+        <div {{#unless (eq currentTab 'structures')}}hidden{{/unless}}>
+            <ul>
+                {{#each structures}}
+                    <li>{{value}}x {{{label}}}</li>
+                {{/each}}
+            </ul>
+        </div>
+        <div {{#unless (eq currentTab 'notes')}}hidden{{/unless}}>
+            <ul>
+                {{#each notes}}
+                    <li>{{this}}</li>
+                {{/each}}
+            </ul>
+        </div>
+    </div>
+</div>

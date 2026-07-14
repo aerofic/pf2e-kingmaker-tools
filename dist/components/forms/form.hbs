@@ -1,0 +1,21 @@
+<form>
+    {{#if description}}<p>{{description}}</p>{{/if}}
+    {{#if sections}}
+        {{#each sections}}
+            <fieldset>
+                <legend>{{legend}}</legend>
+                {{#each formRows}}
+                    <div class="row">
+                        {{> formElement this }}
+                    </div>
+                {{/each}}
+            </fieldset>
+        {{/each}}
+    {{else}}
+        {{#each formRows}}
+            <div class="row">
+                {{> formElement this }}
+            </div>
+        {{/each}}
+    {{/if}}
+</form>

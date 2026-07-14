@@ -1,0 +1,93 @@
+{{#unless hideLabel}}
+    <{{labelElement}} class="km-label {{#unless stacked}}form-element-inline{{/unless}} {{labelClasses}}" {{# if title}}title="{{title}}"{{/if}}>
+    {{#if escapeLabel}}{{label}}{{else}}{{{label}}}{{/if}}{{/unless}}
+{{#if (eq type 'select')}}
+    {{#if link}}
+        <div class="km-select-with-link">
+    {{/if}}
+        <select name="{{name}}" {{#if hideLabel}}aria-label="{{label}}"{{/if}} {{#if
+                required}}required{{/if}} {{#if overrideType}}data-dtype="{{overrideType}}"{{/if}} {{#if
+                elementClasses}}class="{{elementClasses}}"{{/if}} {{#if disabled}}disabled{{/if}}>
+            {{#if required}}
+                {{#each options}}
+                    <option class="{{classes}}" value="{{value}}" {{#if selected}}selected{{/if}}>{{label}}</option>
+                {{/each}}
+            {{else}}
+                <option value="">-</option>
+                {{#each options}}
+                    <option class="{{classes}}" value="{{value}}" {{#if selected}}selected{{/if}}>{{label}}</option>
+                {{/each}}
+            {{/if}}
+        </select>
+{{else if (eq type 'number')}}
+        <input type="number" name="{{name}}" value="{{value}}" {{#if hideLabel}}aria-label="{{label}}"{{/if}} {{#if
+                required}}required{{/if}} {{#if elementClasses}}class="{{elementClasses}}"{{/if}} {{#if
+                disabled}}disabled{{/if}} {{#if readonly}}readonly{{/if}}>
+{{else if  (eq type 'range')}}
+        <div class="km-range-group">
+            <input type="range" name="{{name}}" value="{{value}}" {{#if hideLabel}}aria-label="{{label}}"{{/if}} {{#if
+                    required}}required{{/if}} {{#if elementClasses}}class="{{elementClasses}}"{{/if}} {{#if
+                    disabled}}disabled{{/if}} {{#if readonly}}readonly{{/if}} min="{{min}}" max="{{max}}" step="{{step}}">
+            <div>{{value}}</div>
+        </div>
+{{else if  (eq type 'radio')}}
+        <input type="radio" name="{{name}}" value="{{value}}" {{#if hideLabel}}aria-label="{{label}}"{{/if}} {{#if
+                required}}required{{/if}} {{#if elementClasses}}class="{{elementClasses}}"{{/if}} {{#if
+                disabled}}disabled{{/if}} {{checked checked}} {{#if readonly}}readonly{{/if}}>
+{{else if  (eq type 'file')}}
+        <input type="file" name="{{name}}" {{#if accept}}accept="{{accept}}"{{/if}} {{#if hideLabel}}aria-label="{{label}}"{{/if}} {{#if
+                required}}required{{/if}} {{#if
+                elementClasses}}class="{{elementClasses}}"{{/if}} {{#if disabled}}disabled{{/if}}>
+{{else if  (eq type 'color')}}
+        <input type="color" name="{{name}}" value="{{value}}" {{#if hideLabel}}aria-label="{{label}}"{{/if}} {{#if
+                required}}required{{/if}}{{#if elementClasses}}class="{{elementClasses}}"{{/if}} {{#if disabled}}disabled{{/if}} {{#if readonly}}readonly{{/if}}>
+{{else if  (eq type 'text')}}
+        <input type="text" name="{{name}}" value="{{value}}" {{#if hideLabel}}aria-label="{{label}}"{{/if}} {{#if
+                required}}required{{/if}} {{#if overrideType}}data-dtype="{{overrideType}}"{{/if}} {{#if
+                elementClasses}}class="{{elementClasses}}"{{/if}} {{#if disabled}}disabled{{/if}} {{#if
+                placeholder}}placeholder="{{placeholder}}"{{/if}} {{#if readonly}}readonly{{/if}}>
+{{else if  (eq type 'search')}}
+        <input type="search" name="{{name}}" value="{{value}}" {{#if hideLabel}}aria-label="{{label}}"{{/if}} {{#if
+                required}}required{{/if}} {{#if overrideType}}data-dtype="{{overrideType}}"{{/if}} {{#if
+                elementClasses}}class="{{elementClasses}}"{{/if}} {{#if disabled}}disabled{{/if}} {{#if
+                placeholder}}placeholder="{{placeholder}}"{{/if}} {{#if readonly}}readonly{{/if}}>
+{{else if  (eq type 'checkbox')}}
+        <input type="checkbox" name="{{name}}" {{checked value}}  {{#if hideLabel}}aria-label="{{label}}"{{/if}} {{#if
+                required}}required{{/if}} {{#if elementClasses}}class="{{elementClasses}}"{{/if}} {{#if
+                disabled}}disabled{{/if}} {{#if readonly}}readonly{{/if}}>
+{{else if  (eq type 'time')}}
+        <input type="time" name="{{name}}" value="{{value}}" {{#if hideLabel}}aria-label="{{label}}"{{/if}} {{#if
+                required}}required{{/if}} {{#if elementClasses}}class="{{elementClasses}}"{{/if}} {{#if
+                disabled}}disabled{{/if}} {{#if readonly}}readonly{{/if}}>
+{{else if  (eq type 'hidden')}}
+        <input type="hidden" name="{{name}}" value="{{value}}" {{#if overrideType}}data-dtype="{{overrideType}}"{{/if}}>
+{{else if  (eq type 'textarea')}}
+        <textarea name="{{name}}"  {{#if hideLabel}}aria-label="{{label}}"{{/if}} {{#if
+                required}}required{{/if}} {{#if overrideType}}data-dtype="{{overrideType}}"{{/if}} {{#if
+                elementClasses}}class="{{elementClasses}}"{{/if}} {{#if disabled}}disabled{{/if}}>{{value}}</textarea>
+{{else if  (eq type 'menu')}}
+        <button type="button" data-action="{{value}}"  {{#if
+                elementClasses}}class="{{elementClasses}}"{{/if}} {{#if disabled}}disabled{{/if}} {{#each data}}data-{{{@key}}}="{{this}}"{{/each}}>{{name}}</button>
+{{else if  (eq type 'button')}}
+    <button type="button" data-action="{{value}}" {{#if
+            elementClasses}}class="{{elementClasses}}"{{/if}} {{#if disabled}}disabled{{/if}} {{#each data}}data-{{{@key}}}="{{this}}"{{/each}}>{{#if label}}{{label}} {{/if}}{{#if icon}}<i class="{{icon}}"></i>{{/if}}</button>
+{{else if  (eq type 'component')}}
+    {{> (lookup . 'templatePartial') value}}
+{{else if  (eq type 'image')}}
+        <img src="{{value}}" data-name="{{name}}" class="image-upload {{#if elementClasses}}{{elementClasses}}{{/if}}"
+             {{#if disabled}}disabled{{/if}}>
+{{/if}}
+{{#if link}}
+        <!-- This does not work for stacked=true yet -->
+        <div class="km-form-document-link">
+            <a href="#" data-action="openDocumentLink" data-uuid="{{link.uuid}}" title="{{localizeKM "applications.open"}}">
+                <img src="{{link.img}}" alt="{{localizeKM "applications.formElement.openDocument"}}">
+            </a>
+        </div>
+    </div>
+{{/if}}
+{{#unless hideLabel}}</{{labelElement}}>{{/unless}}
+
+{{#if help}}
+    <div class="help">{{help}}</div>
+{{/if}}

@@ -1,0 +1,9 @@
+<button type="button"
+        class="km-add-recipe"
+        data-actor-uuid="{{actorUuid}}"
+        data-id="{{id}}"
+        data-degree="{{degree}}"
+        data-camping-actor-uuid="{{campingActorUuid}}"
+>{{localizeKM "chatMessages.discoverSpecialMeal.removeIngredients"}} {{#if learnRecipe}}& {{localizeKM "chatMessages.discoverSpecialMeal.learn" recipeName=name}}{{/if}}
+    {{#if criticalFailure}}& {{localizeKM "chatMessages.discoverSpecialMeal.criticalFailure"}}{{/if}}
+</button>

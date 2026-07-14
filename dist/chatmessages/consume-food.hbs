@@ -1,0 +1,20 @@
+<p>{{localizeKM "camping.consumingFood"}}:</p>
+<ul>
+    {{#if rations}}
+        <li><b>{{localizeKM "camping.rations"}}</b>: {{rations}}</li>{{/if}}
+    {{#if basicIngredients}}
+        <li><b>{{localizeKM "camping.basicIngredients"}}</b>: {{basicIngredients}}</li>{{/if}}
+    {{#if specialIngredients}}
+        <li><b>{{localizeKM "camping.specialIngredients"}}</b>: {{specialIngredients}}</li>{{/if}}
+</ul>
+{{#if missing}}
+    <p>{{localizeKM "camping.missingFood"}}</p>
+    <ul>
+        {{#if missingRations}}
+            <li><b>{{localizeKM "camping.rations"}}</b>: {{missingRations}}</li>{{/if}}
+        {{#if missingBasicIngredients}}
+            <li><b>{{localizeKM "camping.basicIngredients"}}</b>: {{missingBasicIngredients}}</li>{{/if}}
+        {{#if missingSpecialIngredients}}
+            <li><b>{{localizeKM "camping.specialIngredients"}}</b>: {{missingSpecialIngredients}}</li>{{/if}}
+    </ul>
+{{/if}}

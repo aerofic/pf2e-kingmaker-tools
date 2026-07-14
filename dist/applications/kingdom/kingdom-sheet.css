@@ -1,0 +1,925 @@
+.theme-light {
+    .application.km-kingdom-sheet,
+    .application.km-inspect-settlement {
+        .km-kingdom-sheet-sub-nav,
+        .km-kingdom-sheet-sub-content,
+        .km-kingdom-sheet-sidebar,
+        .km-choose-leaders li {
+            background-image: url('../../../../../ui/parchment.jpg');
+            border-radius: 5px;
+            border: 1px solid;
+            box-shadow: 0 0 5px 1px rgba(0, 0, 0, .5);
+        }
+
+        h2,
+        h3,
+        .km-grow-subnav a[href],
+        .km-tabs a[href],
+        .km-kingdom-sheet-sub-nav a[href] {
+            color: black;
+            text-shadow: none;
+        }
+
+        .km-leader-portrait {
+            &:hover button {
+                color: black;
+                background-color: white;
+            }
+        }
+
+        .km-detail-description p {
+            color: #000;
+        }
+
+        .km-activity-skills li.km-skill-disabled {
+            background-color: rgba(0 0 0 / 20%);
+            border-color: transparent;
+            color: var(--color-dark-3);
+        }
+
+        .km-kingdom-sheet-sub-content details:hover,
+        .km-kingdom-sheet-sub-content .km-upkeep-button:hover{
+            background-color: var(--color-light-1);
+        }
+    }
+}
+
+.theme-dark {
+    .km-kingdom-sheet {
+        .km-kingdom-sheet-sub-nav,
+        .km-kingdom-sheet-sub-content,
+        .km-kingdom-sheet-sidebar,
+        .km-choose-leaders li {
+            background-color: rgba(11, 10, 19, .95);
+            border-radius: 5px;
+            border: 1px solid;
+            box-shadow: 0 0 5px 1px rgba(0, 0, 0, .5);
+        }
+    }
+}
+
+.km-kingdom-sheet {
+    .km-activity-skills {
+        list-style-type: none;
+        margin: 0;
+        display: flex;
+        gap: .5em;
+        padding: 0;
+        flex-wrap: wrap;
+
+        li {
+            padding: .3em;
+            font-size: var(--font-size-12);
+            border: 1px solid;
+            border-radius: 5px;
+        }
+
+        li.km-skill-disabled {
+            background-color: var(--color-cool-5);
+            border-color: transparent;
+            color: var(--color-light-5);
+        }
+    }
+
+    .km-settlement-utilities {
+        display: flex;
+        gap: 5px;
+    }
+
+    .km-settlement-mayor {
+        min-width: 150px;
+    }
+
+    .km-settlement-mayor-assigned,
+    .km-settlement-mayor-empty {
+        align-items: center;
+        display: flex;
+        gap: .5em;
+        min-height: 34px;
+    }
+
+    .km-settlement-mayor-assigned img {
+        border: 0;
+        border-radius: 4px;
+        flex: 0 0 32px;
+        height: 32px;
+        object-fit: cover;
+        width: 32px;
+    }
+
+    .km-settlement-mayor-assigned span {
+        min-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .km-settlement-mayor-assigned button {
+        flex: 0 0 30px;
+        margin-left: auto;
+    }
+
+    .km-settlement-mayor-empty {
+        border: 1px dashed currentColor;
+        border-radius: 4px;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .km-settlement-utilities-header {
+        max-width: 0;
+        width: 0;
+        min-width: fit-content;
+    }
+
+    button[data-action="add-settlement-block"] {
+        width: 36px;
+    }
+
+    .controls-dropdown {
+        z-index: 2;
+    }
+
+    .km-inline-button {
+        display: inline-block;
+    }
+
+    .window-content {
+        padding: 0;
+    }
+
+    select.km-width-small {
+        padding: 0 .2rem;
+    }
+    .km-width-small {
+        width: 50px !important;;
+    }
+
+    .km-width-medium {
+        width: 120px !important;
+    }
+
+    .km-slim-inputs input,
+    .km-slim-inputs select,
+    select.km-slim-inputs,
+    input.km-slim-inputs {
+        option {
+            background-color: var(--background);
+        }
+
+        background: transparent;
+        border-bottom: 1px solid;
+        border-radius: 0;
+
+        &:focus {
+            outline: none;
+            box-shadow: none;
+            border: none;
+            border-bottom: 1px solid
+        }
+    }
+
+    .km-kingdom-sheet-header {
+        align-items: center;
+        display: flex;
+        border-bottom: 1px solid;
+        justify-content: space-between;
+        padding: 1em;
+
+        > div,
+        .km-label,
+        .km-xp-level-section > div {
+            align-items: center;
+            min-height: 30px;
+        }
+
+        input:not([type="checkbox"]),
+        select {
+            box-sizing: border-box;
+            height: 30px;
+            margin-block: 0;
+        }
+
+        .km-xp-level-section {
+            display: flex;
+        }
+
+        .km-kingdom-sheet-name {
+            display: flex;
+            align-items: center;
+
+            .km-width-medium {
+                width: 100px !important;
+            }
+
+            i {
+                margin-right: .5em;
+                font-size: 24px;
+            }
+        }
+
+        .km-kingdom-faith-counter,
+        .km-kingdom-turn-counter {
+            align-items: center;
+            display: flex;
+            gap: .4em;
+            white-space: nowrap;
+
+            input {
+                background: transparent;
+                border: 0;
+                border-bottom: 1px solid;
+                border-radius: 0;
+                height: 2em;
+                padding: 0 .2em;
+                text-align: center;
+                width: 3.5em;
+            }
+
+            input:disabled {
+                color: inherit;
+                opacity: 1;
+            }
+        }
+
+        .km-kingdom-faith-counter img {
+            border: 0;
+            height: 28px;
+            object-fit: contain;
+            vertical-align: middle;
+            width: 28px;
+        }
+
+        .km-kingdom-sheet-active-settlement {
+        }
+
+        .km-kingdom-sheet-active-xp {
+            display: flex;
+            align-items: center;
+            margin-right: 3em;
+        }
+
+        .km-fame {
+            display: flex;
+            gap: 1em
+        }
+    }
+
+    .km-leader-vacant-label {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    button.km-mark-continuous {
+        i {
+            margin-left: 0 !important;
+        }
+    }
+
+    .km-kingdom-sheet-main {
+        display: flex;
+        background-size: cover;
+        height: calc(100vh - 220px);
+        position: relative;
+        z-index: 0;
+
+        .km-header-right-align {
+            display: flex;
+            margin-left: auto;
+            margin-top: -4px;
+
+            select {
+                margin-top: -4px;
+                font-size: 14px;
+                font-weight: normal;
+            }
+        }
+    }
+
+    .km-kingdom-sheet-sidebar {
+        border-radius: 10px;
+        margin: 10px 0 10px 10px;
+        padding: .5em;
+        overflow: auto;
+
+        .km-sidebar-spacer {
+            height: 1.5em;
+        }
+
+        h3 {
+            font-size: 16pt;
+            display: flex;
+        }
+
+        .km-skill-checks {
+            border-radius: 0;
+
+            .km-skills-label {
+                text-overflow: ellipsis;
+                overflow-y: hidden;
+                white-space: nowrap;
+                max-width: 105px;
+                overflow-x: hidden;
+            }
+
+            .km-proficiency-value,
+            select {
+                border: 1px solid var(--color-light-5);
+            }
+
+            .km-proficiency-value {
+                border-radius: 4px;
+                display: block;
+                padding: 0 0.8rem;
+                height: 32px;
+                line-height: 32px;
+                width: 101px;
+                margin-left: auto;
+                text-align: left;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                overflow: hidden;
+            }
+
+            select {
+                width: 101px;
+            }
+
+            td {
+                padding: 3px;
+            }
+
+            td:last-child {
+                text-align: right;
+            }
+
+            td {
+                button {
+                    width: 60px;
+
+                    i {
+                        margin-left: .25em;
+                    }
+                }
+            }
+        }
+
+
+        .km-worksites {
+            border-radius: 0;
+            border: 0;
+
+            .km-worksite-label{
+                text-overflow: ellipsis;
+                overflow-x: hidden;
+                max-width: 116px;
+                white-space: nowrap;
+            }
+
+            td {
+                padding: 3px;
+
+                .km-worksite-value {
+                    display: block;
+                    padding: 0 0.3rem 0 0.8rem;
+                    height: 32px;
+                    line-height: 32px;
+                    width: 54px;
+                }
+            }
+        }
+
+        .km-unrest {
+            td {
+                padding: 3px;
+            }
+
+            td:nth-of-type(1) {
+                width: 131px;
+            }
+
+            td:nth-of-type(3) {
+                width: 54px;
+                text-align: center;
+            }
+
+            td:nth-of-type(5) {
+                width: 61px;
+                text-align: center;
+            }
+        }
+
+        .km-slash-header {
+            padding: 0;
+            width: 5px;
+        }
+
+        .km-next-header {
+            max-width: 75px;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+            padding: 0.2rem 0;
+        }
+
+        .km-unrest-ruin {
+            border-radius: 0;
+            border: 0;
+
+            .km-ability-stat {
+                display: block;
+                padding: 0 0.3rem 0 0.8rem;
+                height: 32px;
+                line-height: 32px;
+            }
+
+            td.km-ability-score-label {
+                text-align: left;
+                width: 1%;
+                white-space: nowrap;
+            }
+
+            td {
+                text-align: center;
+                padding: 3px;
+
+                .km-threshold-value {
+                    /*width: 54px;*/
+                }
+
+                &.km-capacity {
+                    /*padding-right: 34px;*/
+                }
+            }
+        }
+    }
+
+    .km-kingdom-sheet-sidebar-kingdom {
+        min-width: 256px;
+        width: 256px;
+    }
+
+    .km-kingdom-sheet-sidebar-turn {
+        min-width: 300px;
+    }
+
+    .km-kingdom-sheet-content {
+        flex-grow: 1;
+        margin: 10px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .km-leadership-modifier-info {
+        display: flex;
+        margin-top: 1em;
+
+        button {
+            flex-grow: 1;
+        }
+    }
+
+    .km-kingdom-sheet-sub-nav {
+        margin-bottom: 10px;
+
+        ul {
+            font-size: .8em;
+
+            &.km-grow-subnav {
+                li {
+                    flex-grow: 1;
+
+                    a {
+                        width: 100%;
+                        text-align: center;
+                    }
+                }
+            }
+
+            &.km-center-middle {
+                li:first-child,
+                li:last-child {
+                    flex-grow: 2;
+                }
+
+                li:last-child {
+                    a {
+                        margin-left: auto;
+                    }
+                }
+            }
+        }
+    }
+
+    .km-kingdom-sheet-main-nav {
+        ul {
+            justify-content: center;
+        }
+
+        border-bottom: 1px solid;
+        border-top: 1px solid;
+        box-shadow: 0 4px 4px 0 #00000082;
+        z-index: 1;
+        position: relative;
+    }
+
+    .km-kingdom-sheet-sub-nav,
+    .km-kingdom-sheet-main-nav {
+        padding: .5em;
+
+        ul {
+            display: flex;
+            gap: .5em;
+            padding: 0;
+            margin: 0;
+            list-style-type: none;
+
+            li {
+                display: flex;
+                margin: 0;
+            }
+
+            a {
+                border: 1px solid;
+                border-radius: .5em;
+                padding: .5em;
+                text-decoration: none;
+
+                &:hover, &.active {
+                    border: 1px solid;
+                    color: var(--color-dark-1);
+                    background-color: var(--color-warm-1);
+                }
+            }
+        }
+    }
+
+    .km-unsatisfied-requirement {
+        color: red;
+    }
+
+    .km-kingdom-sheet-sub-content,
+    .km-kingdom-sheet-sub-nav {
+        border-radius: 10px;
+    }
+
+    .km-kingdom-sheet-sub-content,
+    .km-kingdom-sheet-sub-nav,
+    .km-kingdom-sheet-sidebar {
+        button {
+            height: auto;
+            margin-left: 5px;
+
+            i {
+                margin-right: 0;
+            }
+        }
+    }
+
+    .km-kingdom-sheet-sub-content {
+        overflow: auto;
+        padding: 1em;
+
+        .km-gain-lose {
+            display: inline-block;
+            margin: 2px 0;
+            height: auto;
+        }
+
+        p,
+        .km-detail-description li,
+        .km-summary-degrees li {
+            line-height: 1.5;
+        }
+
+
+        .km-detail-description {
+            padding-top: .6em;
+        }
+
+
+        details {
+            margin: .5em 0 0 0;
+            border: 1px solid;
+            border-radius: .5em;
+            padding: .3em 1em;
+            border-color: #5c5c5c;
+
+            .km-detail-description {
+                margin-top: .3em;
+                border-top: 1px solid;
+                border-color: #5c5c5c;
+            }
+        }
+
+        .km-kingdom-sheet-section h2 {
+            margin-top: 1em;
+            font-size: 1.5em;
+            font-family: Signika, "Palatino Linotype", sans-serif;
+            font-weight: 700;
+            color: #ee9b3a;
+        }
+
+        .km-detail-description p {
+            color: #ccc;
+        }
+
+        details:hover {
+            background-color: rgba(0, 0, 0, 0.5); 
+            transition: background-color 0.15s ease; 
+        }
+
+        td, th {
+            text-align: left
+        }
+
+        .km-kingdom-sheet-section:not(:nth-of-type(1)) {
+            margin-top: 1em;
+        }
+
+        h2, h3 {
+            display: flex;
+        }
+
+        h2 {
+            font-size: 2em;
+        }
+
+        table {
+            button {
+                margin: inherit;
+            }
+        }
+    }
+
+    .km-kingdom-sheet-notes {
+        display: flex;
+        flex: 1 1 auto;
+        flex-direction: column;
+        gap: 2em;
+        min-height: 0;
+
+        section {
+            display: flex;
+            flex: 2 1 0;
+            flex-direction: column;
+            min-height: 0;
+        }
+
+        section:last-child {
+            flex-grow: 3;
+            margin-top: 0;
+        }
+
+        h2 {
+            flex: 0 0 auto;
+        }
+
+        .editor {
+            border-radius: 10px;
+            border: 1px solid;
+            display: flex;
+            flex: 1 1 auto;
+            flex-direction: column;
+            min-height: 250px;
+        }
+
+        .editor-content {
+            border-radius: 10px;
+            flex: 1 1 auto;
+            min-height: 0;
+            padding: 1em;
+            overflow-y: auto;
+        }
+    }
+
+    .km-kingdom-sheet-turn {
+
+        .km-upkeep-button {
+            font-size: 1.2em;
+            display: flex;
+            align-items: center;
+            gap: .3em;
+            margin: .3em 0 0 0;
+            border: 1px solid;
+            border-radius: .5em;
+            padding: .3em 1em;
+            border-color: #5c5c5c;
+
+            button {
+                margin-left: auto;
+
+                i {
+                    margin-left: .25em;
+                }
+            }
+        }
+
+        .km-upkeep-button:hover {
+            background-color: rgba(0, 0, 0, 0.5); 
+            transition: background-color 0.15s ease; 
+        }
+
+        .km-kingdom-activities,
+        .km-kingdom-events {
+            margin: 0;
+            padding: 0;
+            list-style-type: none;
+        }
+
+        .km-kingdom-event {
+            .km-event-stage-active {
+                color: black;
+                background-color: var(--color-warm-1);
+            }
+
+            .km-detail-description {
+                margin-top: 1rem;
+            }
+        }
+
+        .km-event-traits {
+            display: flex;
+            padding: 0;
+            list-style-type: none;
+            gap: 0.2em;
+
+            li {
+                padding: .5em;
+                border: 1px solid;
+            }
+
+            margin: .5em 0 1em;
+        }
+
+        .km-kingdom-details {
+            .km-detail-label {
+                cursor: pointer;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+
+            details {
+                summary {
+                    font-size: 1.2em;
+                    display: flex;
+                    align-items: center;
+                    gap: .5em;
+                    width: 602px;
+
+                    .km-detail-controls {
+                        display: flex;
+                        margin-left: auto;
+                    }
+
+                    button:not(.km-icon-only) {
+                        i {
+                            margin-left: .25em;
+                        }
+                    }
+                }
+            }
+
+        }
+    }
+
+    .km-kingdom-sheet-kingdom {
+        .km-choose-leaders {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            width: 100%;
+            list-style-type: none;
+            padding: 0;
+            gap: 1em;
+
+            li {
+                margin: 0;
+
+                header {
+                    font-weight: bold;
+                    padding: .5em;
+                    border-bottom: 1px solid;
+                    display: flex;
+
+                    .km-leader-bonus {
+                        margin-left: auto;
+                    }
+                }
+
+                .km-leader-portrait {
+                    position: relative;
+
+                    &:hover button {
+                        display: flex;
+                    }
+
+                    button {
+                        display: none;
+                        position: absolute;
+                        width: 1em;
+                        height: 1em;
+                        min-height: 1em;
+                        font-size: 1.5em;
+                        top: .3em;
+                        right: .3em;
+                        background-color: black;
+                        border: 0;
+                        border-radius: 100%;
+                    }
+                }
+
+                img {
+                    height: 10.5em;
+                    width: 100%;
+                    object-fit: cover;
+                    object-position: top center;
+                    border-radius: 0;
+                    display: block;
+                    cursor: pointer;
+                }
+
+                select {
+                    border-top: 1px solid;
+                    border-top-right-radius: 0;
+                    border-top-left-radius: 0;
+                }
+
+                label {
+                    padding: 3px 13px;
+                    border-top: 1px solid;
+
+                    input {
+                        margin-right: 0;
+                    }
+                }
+
+                .km-choose-leader-placeholder {
+                    position: relative;
+                    height: 10.5em;
+                    box-shadow: inset 0 0 5px 2px #5c5c5c;
+                    display: flex;
+
+                    &:hover span {
+                        display: block;
+                    }
+
+                    span {
+                        display: none;
+                        position: absolute;
+                        font-size: 1.2em;
+                        text-align: center;
+                        margin: 0 4px;
+                        top: .4em;
+                    }
+
+                    i {
+                        margin: auto;
+                        font-size: 3em;
+                    }
+                }
+            }
+        }
+
+        .km-government-pick-label {
+            margin-left: 5em;
+        }
+
+        .km-choose-skills {
+            margin-top: 1em;
+
+            ul {
+                width: 100%;
+                justify-content: space-around;
+            }
+        }
+
+        .km-choose-boosts,
+        .km-choose-skills,
+        .km-choose-ruins {
+            display: flex;
+            justify-content: space-between;
+
+            ul {
+                display: flex;
+                margin: 0;
+                padding: 0;
+                list-style-type: none;
+                gap: 1.5em;
+            }
+        }
+    }
+
+    .km-kingdom-sheet-turn {
+        .km-turn-buttons {
+            display: flex;
+            align-items: flex-end;
+
+            button {
+                flex-grow: 1;
+            }
+        }
+    }
+}

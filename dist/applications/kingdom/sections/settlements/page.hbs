@@ -1,0 +1,69 @@
+<div {{#if (ne currentNavEntry 'settlements')}}hidden{{/if}} class="km-kingdom-sheet-content">
+    <div class="km-kingdom-sheet-sub-content km-kingdom-sheet-settlements">
+        <section>
+            <h2>{{localizeKM "kingdom.settlements"}}  <span class="km-header-right-align">
+
+                <button type="button" data-action="create-settlement">{{localizeKM "kingdom.newSettlement"}}</button>
+
+                <button type="button" data-action="add-settlement" {{#unless canAddCurrentSceneAsSettlement}}disabled{{/unless}}>{{localizeKM "kingdom.addCurrentScene"}}</button>
+
+                <button type="button" data-action="settlement-size-info" title="{{localizeKM "kingdom.settlementSize"}}"><i class="fa-solid fa-circle-info"></i></button></span></h2>
+            <table>
+                <thead>
+                <tr>
+                    <td>{{localizeKM "applications.name"}}</td>
+                    <td>{{localizeKM "kingdom.mayor"}}</td>
+                    <td>{{localizeKM "kingdom.size"}}</td>
+                    <td>{{localizeKM "applications.level"}}</td>
+                    <td>{{localizeKM "kingdom.residentialLots"}}</td>
+                    <td>{{localizeKM "kingdom.issues"}}</td>
+                    <td class="km-settlement-utilities-header">{{localizeKM "kingdom.utilities"}}</td>
+                </tr>
+                </thead>
+                <tbody>
+                {{#each settlements}}
+                    <tr>
+                        <td>{{name}} {{#if isCapital}}<i class="fa-solid fa-star"></i>{{/if}}</td>
+                        <td class="km-settlement-mayor" data-settlement-id="{{id}}">
+                            {{#if mayor}}
+                                <div class="km-settlement-mayor-assigned">
+                                    <img src="{{mayor.img}}" alt="{{mayor.name}}">
+                                    <span title="{{mayor.name}}">{{mayor.name}}</span>
+                                    <button type="button" data-action="clear-settlement-mayor" data-settlement-id="{{id}}" title="{{localizeKM "kingdom.clearSettlementMayor"}}" aria-label="{{localizeKM "kingdom.clearSettlementMayor"}}">
+                                        <i class="fa-solid fa-xmark"></i>
+                                    </button>
+                                </div>
+                            {{else}}
+                                <div class="km-settlement-mayor-empty" title="{{localizeKM "kingdom.settlementMayorDrop"}}" aria-label="{{localizeKM "kingdom.settlementMayorDrop"}}">
+                                    <i class="fa-solid fa-user-plus"></i>
+                                </div>
+                            {{/if}}
+                        </td>
+                        <td>{{size}}</td>
+                        <td>{{level}}</span></td>
+                        <td>{{residentialLots}}</td>
+                        <td>{{#if isOvercrowded}}<i class="fa-solid fa-people-roof" title="{{localizeKM "kingdom.overcrowded"}}"></i>{{/if}}
+                        {{#if isSecondaryTerritory}}<i class="fa-solid fa-road-circle-xmark" title="{{localizeKM "kingdom.secondaryTerritory"}}"></i>{{/if}}
+                        {{#if lacksBridge}}<i class="fa-solid fa-bridge-circle-xmark" title="{{localizeKM "kingdom.lacksBridge"}}"></i>{{/if}}</td>
+                        <td class="km-settlement-utilities">
+                            <button type="button" title="{{localizeKM "kingdom.view"}}" data-action="view-settlement" data-id="{{id}}">
+                                <i class="fa-solid fa-eye"></i></button>
+                            <button type="button" title="{{localizeKM "kingdom.activate"}}" data-action="activate-settlement" data-id="{{id}}">
+                                <i class="fa-solid fa-bullseye"></i></button>
+                            <button {{#unless isRigid}}hidden{{/unless}} type="button" data-action="level-up-settlement" data-id="{{id}}" data-level-up-to="{{canLevelUpTo}}" {{#unless canLevelUpTo}}disabled{{/unless}} {{#if nextLevelUp}} title="{{localizeKM "kingdom.canLevelUpTo" target=nextLevelUp}}"{{/if}}>
+                                <i class="fa-solid fa-arrow-turn-up"></i>
+                            </button>
+                            <button {{# if isRigid}}hidden{{/if}} type="button" title="{{localizeKM "addSettlementBlock.title"}}" data-action="add-settlement-block" data-id="{{id}}">
+                                <img alt="{{localizeKM "addSettlementBlock.title"}}" src="modules/pf2e-kingmaker-tools/img/settlements/block.webp"></button>
+                            <button type="button" title="{{localizeKM "kingdom.details"}}" data-action="inspect-settlement" data-id="{{id}}">
+                                <i class="fa-solid fa-magnifying-glass"></i></button>
+                            <button type="button" title="{{localizeKM "applications.delete"}}" data-action="delete-settlement" data-id="{{id}}">
+                            <i class="fa-solid fa-trash"></i>
+                        </button></td>
+                    </tr>
+                {{/each}}
+                </tbody>
+            </table>
+        </section>
+    </div>
+</div>

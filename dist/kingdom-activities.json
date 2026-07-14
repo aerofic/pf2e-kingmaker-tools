@@ -1,0 +1,4999 @@
+[
+    {
+        "id": "abandon-hex",
+        "oncePerRound": false,
+        "fortune": false,
+        "enabled": true,
+        "phase": "region",
+        "dc": "control",
+        "skills": {
+            "exploration": 0,
+            "wilderness": 0
+        },
+        "defaultToBestSkill": true,
+        "title": "activities.abandon-hex.title",
+        "description": "activities.abandon-hex.description",
+        "requirement": "activities.abandon-hex.requirement",
+        "criticalSuccess": {
+            "msg": "activities.abandon-hex.criticalSuccess.msg"
+        },
+        "success": {
+            "msg": "activities.abandon-hex.success.msg"
+        },
+        "failure": {
+            "msg": "activities.abandon-hex.failure.msg"
+        },
+        "criticalFailure": {
+            "msg": "activities.abandon-hex.criticalFailure.msg"
+        },
+        "special": "activities.abandon-hex.special",
+        "automationNotes": "activities.abandon-hex.automationNotes"
+    },
+    {
+        "id": "build-roads",
+        "oncePerRound": false,
+        "fortune": false,
+        "enabled": true,
+        "phase": "region",
+        "dc": "control",
+        "skills": {
+            "engineering": 0
+        },
+        "title": "activities.build-roads.title",
+        "description": "activities.build-roads.description",
+        "requirement": "activities.build-roads.requirement",
+        "criticalSuccess": {
+            "msg": "activities.build-roads.criticalSuccess.msg"
+        },
+        "success": {
+            "msg": "activities.build-roads.success.msg"
+        },
+        "failure": {
+            "msg": "activities.build-roads.failure.msg"
+        },
+        "criticalFailure": {
+            "msg": "activities.build-roads.criticalFailure.msg"
+        },
+        "automationNotes": "activities.build-roads.automationNotes"
+    },
+    {
+        "id": "build-structure",
+        "oncePerRound": false,
+        "fortune": false,
+        "enabled": true,
+        "phase": "civic",
+        "dc": "custom",
+        "title": "activities.build-structure.title",
+        "description": "activities.build-structure.description",
+        "skills": {
+            "agriculture": 0,
+            "arts": 0,
+            "boating": 0,
+            "defense": 0,
+            "engineering": 0,
+            "exploration": 0,
+            "folklore": 0,
+            "industry": 0,
+            "intrigue": 0,
+            "magic": 0,
+            "politics": 0,
+            "scholarship": 0,
+            "statecraft": 0,
+            "trade": 0,
+            "warfare": 0,
+            "wilderness": 0
+        },
+        "criticalSuccess": {
+            "msg": "activities.build-structure.criticalSuccess.msg"
+        },
+        "success": {
+            "msg": "activities.build-structure.success.msg"
+        },
+        "failure": {
+            "msg": "activities.build-structure.failure.msg"
+        },
+        "criticalFailure": {
+            "msg": "activities.build-structure.criticalFailure.msg"
+        },
+        "automationNotes": "activities.build-structure.automationNotes"
+    },
+    {
+        "id": "accelerate-project",
+        "oncePerRound": false,
+        "fortune": false,
+        "enabled": false,
+        "phase": "leadership",
+        "dc": "custom",
+        "title": "activities.accelerate-project.title",
+        "description": "activities.accelerate-project.description",
+        "automationNotes": "activities.accelerate-project.automationNotes",
+        "skills": {
+            "agriculture": 0,
+            "arts": 0,
+            "boating": 0,
+            "defense": 0,
+            "engineering": 0,
+            "exploration": 0,
+            "folklore": 0,
+            "industry": 0,
+            "intrigue": 0,
+            "magic": 0,
+            "politics": 0,
+            "scholarship": 0,
+            "statecraft": 0,
+            "trade": 0,
+            "warfare": 0,
+            "wilderness": 0
+        },
+        "criticalSuccess": {
+            "msg": "activities.accelerate-project.criticalSuccess.msg"
+        },
+        "success": {
+            "msg": "activities.accelerate-project.success.msg"
+        },
+        "failure": {
+            "msg": "activities.accelerate-project.failure.msg"
+        },
+        "criticalFailure": {
+            "msg": "activities.accelerate-project.criticalFailure.msg"
+        },
+        "special": "activities.accelerate-project.special"
+    },
+    {
+        "id": "capital-investment",
+        "oncePerRound": false,
+        "fortune": false,
+        "enabled": true,
+        "phase": "leadership",
+        "dc": "control",
+        "title": "activities.capital-investment.title",
+        "description": "activities.capital-investment.description",
+        "requirement": "activities.capital-investment.requirement",
+        "skills": {
+            "trade": 0
+        },
+        "criticalSuccess": {
+            "msg": "activities.capital-investment.criticalSuccess.msg",
+            "modifiers": [
+                {
+                    "turns": 1,
+                    "enabled": true,
+                    "value": 0,
+                    "type": "untyped",
+                    "name": "activities.capital-investment.modifiers.investedThisTurn.name",
+                    "buttonLabel": "activities.capital-investment.modifiers.investedThisTurn.buttonLabel",
+                    "applyIf": [
+                        {
+                            "eq": [
+                                "@activity",
+                                "capital-investment"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        "success": {
+            "msg": "activities.capital-investment.success.msg",
+            "modifiers": [
+                {
+                    "turns": 1,
+                    "enabled": true,
+                    "value": 0,
+                    "type": "untyped",
+                    "name": "activities.capital-investment.modifiers.investedThisTurn.name",
+                    "buttonLabel": "activities.capital-investment.modifiers.investedThisTurn.buttonLabel",
+                    "applyIf": [
+                        {
+                            "eq": [
+                                "@activity",
+                                "capital-investment"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        "failure": {
+            "msg": "activities.capital-investment.failure.msg",
+            "modifiers": [
+                {
+                    "turns": 1,
+                    "enabled": true,
+                    "value": 0,
+                    "type": "untyped",
+                    "name": "activities.capital-investment.modifiers.investedThisTurn.name",
+                    "buttonLabel": "activities.capital-investment.modifiers.investedThisTurn.buttonLabel",
+                    "applyIf": [
+                        {
+                            "eq": [
+                                "@activity",
+                                "capital-investment"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        "criticalFailure": {
+            "msg": "activities.capital-investment.criticalFailure.msg",
+            "modifiers": [
+                {
+                    "turns": 1,
+                    "enabled": true,
+                    "value": 0,
+                    "type": "untyped",
+                    "name": "activities.capital-investment.modifiers.investedThisTurn.name",
+                    "buttonLabel": "activities.capital-investment.modifiers.investedThisTurn.buttonLabel",
+                    "applyIf": [
+                        {
+                            "eq": [
+                                "@activity",
+                                "capital-investment"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        "automationNotes": "activities.capital-investment.automationNotes"
+    },
+    {
+        "id": "celebrate-holiday-vk",
+        "oncePerRound": true,
+        "fortune": false,
+        "enabled": false,
+        "phase": "leadership",
+        "dc": "control",
+        "title": "activities.celebrate-holiday-vk.title",
+        "description": "activities.celebrate-holiday-vk.description",
+        "defaultToBestSkill": true,
+        "skills": {
+            "folklore": 0,
+            "politics": 0
+        },
+        "criticalSuccess": {
+            "msg": "activities.celebrate-holiday-vk.criticalSuccess.msg",
+            "modifiers": [
+                {
+                    "turns": 2,
+                    "enabled": true,
+                    "buttonLabel": "activities.celebrate-holiday-vk.criticalSuccess.modifiers.delightfulHolidays.buttonLabel",
+                    "name": "activities.celebrate-holiday-vk.criticalSuccess.modifiers.delightfulHolidays.name",
+                    "applyIf": [
+                        {
+                            "eq": [
+                                "@ability",
+                                "loyalty"
+                            ]
+                        }
+                    ],
+                    "value": 2,
+                    "type": "circumstance"
+                },
+                {
+                    "name": "activities.celebrate-holiday.modifiers.celebratedLastTurn.name",
+                    "buttonLabel": "activities.celebrate-holiday.modifiers.celebratedLastTurn.buttonLabel",
+                    "type": "untyped",
+                    "turns": 2,
+                    "enabled": true,
+                    "value": -4,
+                    "applyIf": [
+                        {
+                            "in": [
+                                "@activity",
+                                [
+                                    "celebrate-holiday",
+                                    "celebrate-holiday-vk"
+                                ]
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        "success": {
+            "msg": "activities.celebrate-holiday-vk.success.msg",
+            "modifiers": [
+                {
+                    "turns": 2,
+                    "enabled": true,
+                    "buttonLabel": "activities.celebrate-holiday-vk.success.modifiers.expensiveHolidays.buttonLabel",
+                    "name": "activities.celebrate-holiday-vk.success.modifiers.expensiveHolidays.name",
+                    "applyIf": [
+                        {
+                            "eq": [
+                                "@ability",
+                                "loyalty"
+                            ]
+                        }
+                    ],
+                    "value": 1,
+                    "type": "circumstance"
+                },
+                {
+                    "name": "activities.celebrate-holiday.modifiers.celebratedLastTurn.name",
+                    "buttonLabel": "activities.celebrate-holiday.modifiers.celebratedLastTurn.buttonLabel",
+                    "type": "untyped",
+                    "turns": 2,
+                    "enabled": true,
+                    "value": -4,
+                    "applyIf": [
+                        {
+                            "in": [
+                                "@activity",
+                                [
+                                    "celebrate-holiday",
+                                    "celebrate-holiday-vk"
+                                ]
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        "failure": {
+            "msg": "activities.celebrate-holiday-vk.failure.msg",
+            "modifiers": [
+                {
+                    "name": "activities.celebrate-holiday.modifiers.celebratedLastTurn.name",
+                    "buttonLabel": "activities.celebrate-holiday.modifiers.celebratedLastTurn.buttonLabel",
+                    "type": "untyped",
+                    "turns": 2,
+                    "enabled": true,
+                    "value": -4,
+                    "applyIf": [
+                        {
+                            "in": [
+                                "@activity",
+                                [
+                                    "celebrate-holiday",
+                                    "celebrate-holiday-vk"
+                                ]
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        "criticalFailure": {
+            "msg": "activities.celebrate-holiday-vk.criticalFailure.msg",
+            "modifiers": [
+                {
+                    "turns": 2,
+                    "enabled": true,
+                    "buttonLabel": "activities.celebrate-holiday-vk.criticalFailure.modifiers.poorlyOrganized.buttonLabel",
+                    "name": "activities.celebrate-holiday-vk.criticalFailure.modifiers.poorlyOrganized.name",
+                    "applyIf": [
+                        {
+                            "eq": [
+                                "@ability",
+                                "loyalty"
+                            ]
+                        }
+                    ],
+                    "value": -1,
+                    "type": "circumstance"
+                },
+                {
+                    "name": "activities.celebrate-holiday.modifiers.celebratedLastTurn.name",
+                    "buttonLabel": "activities.celebrate-holiday.modifiers.celebratedLastTurn.buttonLabel",
+                    "type": "untyped",
+                    "turns": 2,
+                    "enabled": true,
+                    "value": -4,
+                    "applyIf": [
+                        {
+                            "in": [
+                                "@activity",
+                                [
+                                    "celebrate-holiday",
+                                    "celebrate-holiday-vk"
+                                ]
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        "automationNotes": "activities.celebrate-holiday-vk.automationNotes"
+    },
+    {
+        "id": "celebrate-holiday",
+        "oncePerRound": false,
+        "fortune": false,
+        "enabled": true,
+        "phase": "leadership",
+        "dc": "control",
+        "title": "activities.celebrate-holiday.title",
+        "description": "activities.celebrate-holiday.description",
+        "skills": {
+            "folklore": 0
+        },
+        "criticalSuccess": {
+            "msg": "activities.celebrate-holiday.criticalSuccess.msg",
+            "modifiers": [
+                {
+                    "turns": 2,
+                    "buttonLabel": "activities.celebrate-holiday.criticalSuccess.modifiers.delightfulHolidays.buttonLabel",
+                    "name": "activities.celebrate-holiday.criticalSuccess.modifiers.delightfulHolidays.name",
+                    "enabled": true,
+                    "applyIf": [
+                        {
+                            "eq": [
+                                "@ability",
+                                "loyalty"
+                            ]
+                        }
+                    ],
+                    "value": 2,
+                    "type": "circumstance"
+                },
+                {
+                    "name": "activities.celebrate-holiday.modifiers.celebratedLastTurn.name",
+                    "buttonLabel": "activities.celebrate-holiday.modifiers.celebratedLastTurn.buttonLabel",
+                    "type": "untyped",
+                    "turns": 2,
+                    "enabled": true,
+                    "value": -4,
+                    "applyIf": [
+                        {
+                            "in": [
+                                "@activity",
+                                [
+                                    "celebrate-holiday",
+                                    "celebrate-holiday-vk"
+                                ]
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        "success": {
+            "msg": "activities.celebrate-holiday.success.msg",
+            "modifiers": [
+                {
+                    "turns": 2,
+                    "enabled": true,
+                    "buttonLabel": "activities.celebrate-holiday.success.modifiers.expensiveHolidays.buttonLabel",
+                    "name": "activities.celebrate-holiday.success.modifiers.expensiveHolidays.name",
+                    "applyIf": [
+                        {
+                            "eq": [
+                                "@ability",
+                                "loyalty"
+                            ]
+                        }
+                    ],
+                    "value": 1,
+                    "type": "circumstance"
+                },
+                {
+                    "name": "activities.celebrate-holiday.modifiers.celebratedLastTurn.name",
+                    "buttonLabel": "activities.celebrate-holiday.modifiers.celebratedLastTurn.buttonLabel",
+                    "type": "untyped",
+                    "turns": 2,
+                    "enabled": true,
+                    "value": -4,
+                    "applyIf": [
+                        {
+                            "in": [
+                                "@activity",
+                                [
+                                    "celebrate-holiday",
+                                    "celebrate-holiday-vk"
+                                ]
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        "failure": {
+            "msg": "activities.celebrate-holiday.failure.msg",
+            "modifiers": [
+                {
+                    "name": "activities.celebrate-holiday.modifiers.celebratedLastTurn.name",
+                    "buttonLabel": "activities.celebrate-holiday.modifiers.celebratedLastTurn.buttonLabel",
+                    "type": "untyped",
+                    "turns": 2,
+                    "enabled": true,
+                    "value": -4,
+                    "applyIf": [
+                        {
+                            "in": [
+                                "@activity",
+                                [
+                                    "celebrate-holiday",
+                                    "celebrate-holiday-vk"
+                                ]
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        "criticalFailure": {
+            "msg": "activities.celebrate-holiday.criticalFailure.msg",
+            "modifiers": [
+                {
+                    "turns": 2,
+                    "enabled": true,
+                    "buttonLabel": "activities.celebrate-holiday.criticalFailure.modifiers.poorlyOrganized.buttonLabel",
+                    "name": "activities.celebrate-holiday.criticalFailure.modifiers.poorlyOrganized.name",
+                    "applyIf": [
+                        {
+                            "eq": [
+                                "@ability",
+                                "loyalty"
+                            ]
+                        }
+                    ],
+                    "value": -1,
+                    "type": "circumstance"
+                },
+                {
+                    "name": "activities.celebrate-holiday.modifiers.celebratedLastTurn.name",
+                    "buttonLabel": "activities.celebrate-holiday.modifiers.celebratedLastTurn.buttonLabel",
+                    "type": "untyped",
+                    "turns": 2,
+                    "enabled": true,
+                    "value": -4,
+                    "applyIf": [
+                        {
+                            "in": [
+                                "@activity",
+                                [
+                                    "celebrate-holiday",
+                                    "celebrate-holiday-vk"
+                                ]
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        "automationNotes": "activities.celebrate-holiday.automationNotes"
+    },
+    {
+        "id": "claim-hex",
+        "title": "activities.claim-hex.title",
+        "oncePerRound": false,
+        "fortune": false,
+        "enabled": true,
+        "phase": "region",
+        "dc": "control",
+        "requirement": "activities.claim-hex.requirement",
+        "description": "activities.claim-hex.description",
+        "defaultToBestSkill": true,
+        "skills": {
+            "exploration": 0,
+            "intrigue": 0,
+            "magic": 0,
+            "wilderness": 0
+        },
+        "criticalSuccess": {
+            "msg": "activities.claim-hex.criticalSuccess.msg"
+        },
+        "success": {
+            "msg": "activities.claim-hex.success.msg"
+        },
+        "failure": {
+            "msg": "activities.claim-hex.failure.msg"
+        },
+        "criticalFailure": {
+            "msg": "activities.claim-hex.criticalFailure.msg",
+            "modifiers": [
+                {
+                    "turns": 2,
+                    "enabled": true,
+                    "buttonLabel": "activities.claim-hex.criticalFailure.modifiers.settlersLost.buttonLabel",
+                    "name": "activities.claim-hex.criticalFailure.modifiers.settlersLost.name",
+                    "applyIf": [
+                        {
+                            "eq": [
+                                "@ability",
+                                "stability"
+                            ]
+                        }
+                    ],
+                    "value": -1,
+                    "type": "circumstance"
+                }
+            ]
+        },
+        "special": "activities.claim-hex.special"
+    },
+    {
+        "id": "clandestine-business",
+        "oncePerRound": false,
+        "fortune": false,
+        "enabled": true,
+        "phase": "leadership",
+        "dc": "control",
+        "title": "activities.clandestine-business.title",
+        "automationNotes": "activities.clandestine-business.automationNotes",
+        "description": "activities.clandestine-business.description",
+        "skills": {
+            "intrigue": 1
+        },
+        "criticalSuccess": {
+            "msg": "activities.clandestine-business.criticalSuccess.msg"
+        },
+        "success": {
+            "msg": "activities.clandestine-business.success.msg"
+        },
+        "failure": {
+            "msg": "activities.clandestine-business.failure.msg"
+        },
+        "criticalFailure": {
+            "msg": "activities.clandestine-business.criticalFailure.msg"
+        }
+    },
+    {
+        "id": "moonlit-secret-detention",
+        "oncePerRound": false,
+        "fortune": false,
+        "enabled": true,
+        "phase": "leadership",
+        "dc": "control",
+        "actions": 1,
+        "title": "activities.moonlit-secret-detention.title",
+        "requirement": "activities.moonlit-secret-detention.requirement",
+        "description": "activities.moonlit-secret-detention.description",
+        "special": "activities.moonlit-secret-detention.special",
+        "automationNotes": "activities.moonlit-secret-detention.automationNotes",
+        "skills": {
+            "intrigue": 0
+        },
+        "criticalSuccess": {
+            "msg": "activities.moonlit-secret-detention.criticalSuccess.msg",
+            "modifiers": [
+                {
+                    "enabled": false,
+                    "isConsumedAfterRoll": true,
+                    "value": 2,
+                    "type": "circumstance",
+                    "name": "activities.moonlit-secret-detention.criticalSuccess.modifiers.sameTarget.name",
+                    "buttonLabel": "activities.moonlit-secret-detention.criticalSuccess.modifiers.sameTarget.buttonLabel",
+                    "applyIf": [
+                        {
+                            "eq": [
+                                "@activity",
+                                "moonlit-secret-detention"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        "success": {
+            "msg": "activities.moonlit-secret-detention.success.msg"
+        },
+        "failure": {
+            "msg": "activities.moonlit-secret-detention.failure.msg"
+        },
+        "criticalFailure": {
+            "msg": "activities.moonlit-secret-detention.criticalFailure.msg"
+        }
+    },
+    {
+        "id": "clear-hex-vk",
+        "oncePerRound": false,
+        "fortune": false,
+        "enabled": false,
+        "title": "activities.clear-hex-vk.title",
+        "phase": "region",
+        "dc": "custom",
+        "modifiers": [
+            {
+                "name": "activities.clear-hex-vk.modifiers.notPartOfKingdom.name",
+                "buttonLabel": "activities.clear-hex-vk.modifiers.notPartOfKingdom.buttonLabel",
+                "type": "untyped",
+                "enabled": false,
+                "value": -2
+            }
+        ],
+        "description": "activities.clear-hex-vk.description",
+        "skills": {
+            "engineering": 0,
+            "exploration": 0
+        },
+        "criticalSuccess": {
+            "msg": "activities.clear-hex-vk.criticalSuccess.msg"
+        },
+        "success": {
+            "msg": "activities.clear-hex-vk.success.msg"
+        },
+        "failure": {
+            "msg": "activities.clear-hex-vk.failure.msg"
+        },
+        "criticalFailure": {
+            "msg": "activities.clear-hex-vk.criticalFailure.msg"
+        },
+        "special": "activities.clear-hex-vk.special"
+    },
+    {
+        "id": "clear-hex",
+        "oncePerRound": false,
+        "fortune": false,
+        "enabled": true,
+        "title": "activities.clear-hex.title",
+        "phase": "region",
+        "dc": "custom",
+        "modifiers": [
+            {
+                "name": "activities.clear-hex.modifiers.notPartOfKingdom.name",
+                "buttonLabel": "activities.clear-hex.modifiers.notPartOfKingdom.buttonLabel",
+                "type": "untyped",
+                "enabled": false,
+                "value": -2
+            }
+        ],
+        "description": "activities.clear-hex.description",
+        "skills": {
+            "engineering": 0,
+            "exploration": 0
+        },
+        "criticalSuccess": {
+            "msg": "activities.clear-hex.criticalSuccess.msg"
+        },
+        "success": {
+            "msg": "activities.clear-hex.success.msg"
+        },
+        "failure": {
+            "msg": "activities.clear-hex.failure.msg"
+        },
+        "criticalFailure": {
+            "msg": "activities.clear-hex.criticalFailure.msg"
+        }
+    },
+    {
+        "order": 1,
+        "id": "collect-taxes",
+        "oncePerRound": false,
+        "fortune": false,
+        "enabled": true,
+        "phase": "commerce",
+        "dc": "control",
+        "title": "activities.collect-taxes.title",
+        "description": "activities.collect-taxes.description",
+        "skills": {
+            "trade": 1
+        },
+        "criticalSuccess": {
+            "msg": "activities.collect-taxes.criticalSuccess.msg",
+            "modifiers": [
+                {
+                    "turns": 1,
+                    "buttonLabel": "activities.collect-taxes.criticalSuccess.modifiers.wildlySuccessful.buttonLabel",
+                    "name": "activities.collect-taxes.criticalSuccess.modifiers.wildlySuccessful.name",
+                    "enabled": true,
+                    "applyIf": [
+                        {
+                            "eq": [
+                                "@ability",
+                                "economy"
+                            ]
+                        }
+                    ],
+                    "value": 2,
+                    "type": "circumstance"
+                },
+                {
+                    "turns": 2,
+                    "enabled": true,
+                    "value": 0,
+                    "type": "untyped",
+                    "name": "activities.collect-taxes.modifiers.attemptedThisTurn.name",
+                    "buttonLabel": "activities.collect-taxes.modifiers.attemptedThisTurn.buttonLabel",
+                    "applyIf": [
+                        {
+                            "eq": [
+                                "@activity",
+                                "collect-taxes"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        "success": {
+            "msg": "activities.collect-taxes.success.msg",
+            "modifiers": [
+                {
+                    "buttonLabel": "activities.collect-taxes.success.modifiers.gatheredEnough.buttonLabel",
+                    "name": "activities.collect-taxes.success.modifiers.gatheredEnough.name",
+                    "turns": 1,
+                    "enabled": true,
+                    "applyIf": [
+                        {
+                            "eq": [
+                                "@ability",
+                                "economy"
+                            ]
+                        }
+                    ],
+                    "value": 1,
+                    "type": "circumstance"
+                },
+                {
+                    "turns": 2,
+                    "enabled": true,
+                    "value": 0,
+                    "type": "untyped",
+                    "name": "activities.collect-taxes.modifiers.attemptedThisTurn.name",
+                    "buttonLabel": "activities.collect-taxes.modifiers.attemptedThisTurn.buttonLabel",
+                    "applyIf": [
+                        {
+                            "eq": [
+                                "@activity",
+                                "collect-taxes"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        "failure": {
+            "msg": "activities.collect-taxes.failure.msg",
+            "modifiers": [
+                {
+                    "turns": 1,
+                    "enabled": true,
+                    "buttonLabel": "activities.collect-taxes.failure.modifiers.gatheredEnoughButUnhappy.buttonLabel",
+                    "name": "activities.collect-taxes.failure.modifiers.gatheredEnoughButUnhappy.name",
+                    "applyIf": [
+                        {
+                            "eq": [
+                                "@ability",
+                                "economy"
+                            ]
+                        }
+                    ],
+                    "value": 1,
+                    "type": "circumstance"
+                },
+                {
+                    "turns": 2,
+                    "enabled": true,
+                    "value": 0,
+                    "type": "untyped",
+                    "name": "activities.collect-taxes.modifiers.attemptedThisTurn.name",
+                    "buttonLabel": "activities.collect-taxes.modifiers.attemptedThisTurn.buttonLabel",
+                    "applyIf": [
+                        {
+                            "eq": [
+                                "@activity",
+                                "collect-taxes"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        "criticalFailure": {
+            "msg": "activities.collect-taxes.criticalFailure.msg",
+            "modifiers": [
+                {
+                    "turns": 2,
+                    "enabled": true,
+                    "value": 0,
+                    "type": "untyped",
+                    "name": "activities.collect-taxes.modifiers.attemptedThisTurn.name",
+                    "buttonLabel": "activities.collect-taxes.modifiers.attemptedThisTurn.buttonLabel",
+                    "applyIf": [
+                        {
+                            "eq": [
+                                "@activity",
+                                "collect-taxes"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        "automationNotes": "activities.collect-taxes.automationNotes"
+    },
+    {
+        "id": "craft-luxuries",
+        "oncePerRound": false,
+        "fortune": false,
+        "enabled": true,
+        "phase": "leadership",
+        "dc": "control",
+        "title": "activities.craft-luxuries.title",
+        "description": "activities.craft-luxuries.description",
+        "skills": {
+            "arts": 0
+        },
+        "criticalSuccess": {
+            "msg": "activities.craft-luxuries.criticalSuccess.msg"
+        },
+        "success": {
+            "msg": "activities.craft-luxuries.success.msg"
+        },
+        "failure": {
+            "msg": "activities.craft-luxuries.failure.msg"
+        },
+        "criticalFailure": {
+            "msg": "activities.craft-luxuries.criticalFailure.msg"
+        }
+    },
+    {
+        "id": "create-a-masterpiece",
+        "oncePerRound": true,
+        "fortune": false,
+        "enabled": true,
+        "phase": "leadership",
+        "dc": "control",
+        "title": "activities.create-a-masterpiece.title",
+        "description": "activities.create-a-masterpiece.description",
+        "skills": {
+            "arts": 1
+        },
+        "criticalSuccess": {
+            "msg": "activities.create-a-masterpiece.criticalSuccess.msg"
+        },
+        "success": {
+            "msg": "activities.create-a-masterpiece.success.msg"
+        },
+        "failure": {
+            "msg": "activities.create-a-masterpiece.failure.msg"
+        },
+        "criticalFailure": {
+            "msg": "activities.create-a-masterpiece.criticalFailure.msg"
+        }
+    },
+    {
+        "id": "creative-solution",
+        "enabled": true,
+        "oncePerRound": false,
+        "fortune": true,
+        "phase": "leadership",
+        "dc": "control",
+        "title": "activities.creative-solution.title",
+        "description": "activities.creative-solution.description",
+        "skills": {
+            "scholarship": 0
+        },
+        "criticalSuccess": {
+            "msg": "activities.creative-solution.criticalSuccess.msg"
+        },
+        "success": {
+            "msg": "activities.creative-solution.success.msg"
+        },
+        "failure": {
+            "msg": "activities.creative-solution.failure.msg"
+        },
+        "criticalFailure": {
+            "msg": "activities.creative-solution.criticalFailure.msg",
+            "modifiers": [
+                {
+                    "turns": 2,
+                    "enabled": true,
+                    "value": -1,
+                    "buttonLabel": "activities.creative-solution.criticalFailure.modifiers.frustratedScholars.buttonLabel",
+                    "name": "activities.creative-solution.criticalFailure.modifiers.frustratedScholars.name",
+                    "type": "circumstance",
+                    "applyIf": [
+                        {
+                            "eq": [
+                                "@ability",
+                                "culture"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        "special": "activities.creative-solution.special"
+    },
+    {
+        "id": "decadent-feasts",
+        "oncePerRound": false,
+        "fortune": false,
+        "enabled": false,
+        "phase": "leadership",
+        "dc": "control",
+        "title": "activities.decadent-feasts.title",
+        "automationNotes": "activities.decadent-feasts.automationNotes",
+        "description": "activities.decadent-feasts.description",
+        "skills": {
+            "agriculture": 0
+        },
+        "criticalSuccess": {
+            "msg": "activities.decadent-feasts.criticalSuccess.msg"
+        },
+        "success": {
+            "msg": "activities.decadent-feasts.success.msg"
+        },
+        "failure": {
+            "msg": "activities.decadent-feasts.failure.msg"
+        },
+        "criticalFailure": {
+            "msg": "activities.decadent-feasts.criticalFailure.msg"
+        }
+    },
+    {
+        "id": "deliberate-planning",
+        "oncePerRound": false,
+        "fortune": true,
+        "enabled": false,
+        "phase": "leadership",
+        "dc": "event",
+        "title": "activities.deliberate-planning.title",
+        "description": "activities.deliberate-planning.description",
+        "skills": {
+            "scholarship": 0
+        },
+        "criticalSuccess": {
+            "msg": "activities.deliberate-planning.criticalSuccess.msg",
+            "modifiers": [
+                {
+                    "turns": 1,
+                    "enabled": false,
+                    "value": 1,
+                    "isConsumedAfterRoll": true,
+                    "buttonLabel": "activities.deliberate-planning.criticalSuccess.modifiers.monumentallyHelpful.buttonLabel",
+                    "name": "activities.deliberate-planning.criticalSuccess.modifiers.monumentallyHelpful.name",
+                    "type": "circumstance",
+                    "fortune": true,
+                    "applyIf": [
+                        {
+                            "in": [
+                                "continuous",
+                                "@eventTraits"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        "success": {
+            "msg": "activities.deliberate-planning.success.msg",
+            "modifiers": [
+                {
+                    "turns": 1,
+                    "enabled": false,
+                    "value": 1,
+                    "isConsumedAfterRoll": true,
+                    "buttonLabel": "activities.deliberate-planning.success.modifiers.useful.buttonLabel",
+                    "name": "activities.deliberate-planning.success.modifiers.useful.name",
+                    "type": "circumstance",
+                    "applyIf": [
+                        {
+                            "in": [
+                                "continuous",
+                                "@eventTraits"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        "failure": {
+            "msg": "activities.deliberate-planning.failure.msg"
+        },
+        "criticalFailure": {
+            "msg": "activities.deliberate-planning.criticalFailure.msg",
+            "modifiers": [
+                {
+                    "turns": 1,
+                    "enabled": false,
+                    "value": 0,
+                    "buttonLabel": "activities.deliberate-planning.criticalFailure.modifiers.tooMuchTimePreparing.buttonLabel",
+                    "name": "activities.deliberate-planning.criticalFailure.modifiers.tooMuchTimePreparing.name",
+                    "type": "untyped",
+                    "isConsumedAfterRoll": true,
+                    "rollTwiceKeepLowest": true,
+                    "applyIf": [
+                        {
+                            "in": [
+                                "continuous",
+                                "@eventTraits"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    {
+        "id": "demolish",
+        "oncePerRound": false,
+        "fortune": false,
+        "enabled": true,
+        "phase": "civic",
+        "dc": "control",
+        "title": "activities.demolish.title",
+        "description": "activities.demolish.description",
+        "skills": {
+            "engineering": 0
+        },
+        "criticalSuccess": {
+            "msg": "activities.demolish.criticalSuccess.msg"
+        },
+        "success": {
+            "msg": "activities.demolish.success.msg"
+        },
+        "failure": {
+            "msg": "activities.demolish.failure.msg"
+        },
+        "criticalFailure": {
+            "msg": "activities.demolish.criticalFailure.msg"
+        }
+    },
+    {
+        "id": "deploy-army",
+        "oncePerRound": false,
+        "fortune": false,
+        "enabled": true,
+        "phase": "army",
+        "dc": "control",
+        "title": "activities.deploy-army.title",
+        "automationNotes": "activities.deploy-army.automationNotes",
+        "description": "activities.deploy-army.description",
+        "modifiers": [
+            {
+                "enabled": false,
+                "value": 0,
+                "upgradeResults": [
+                    {
+                        "upgrade": "criticalFailure"
+                    },
+                    {
+                        "upgrade": "failure"
+                    },
+                    {
+                        "upgrade": "success"
+                    }
+                ],
+                "buttonLabel": "activities.deploy-army.modifiers.connectedByRoad.buttonLabel",
+                "name": "activities.deploy-army.modifiers.connectedByRoad.name",
+                "type": "untyped",
+                "applyIf": [
+                    {
+                        "eq": [
+                            "@skill",
+                            "exploration"
+                        ]
+                    }
+                ]
+            },
+            {
+                "enabled": false,
+                "value": 4,
+                "buttonLabel": "activities.deploy-army.modifiers.forceAMarch.buttonLabel",
+                "name": "activities.deploy-army.modifiers.forceAMarch.name",
+                "type": "circumstance",
+                "applyIf": [
+                    {
+                        "eq": [
+                            "@skill",
+                            "exploration"
+                        ]
+                    }
+                ]
+            },
+            {
+                "enabled": false,
+                "value": -5,
+                "buttonLabel": "activities.deploy-army.modifiers.crossingBorders.buttonLabel",
+                "name": "activities.deploy-army.modifiers.crossingBorders.name",
+                "type": "untyped",
+                "applyIf": [
+                    {
+                        "eq": [
+                            "@skill",
+                            "magic"
+                        ]
+                    }
+                ]
+            },
+            {
+                "enabled": false,
+                "value": -10,
+                "buttonLabel": "activities.deploy-army.modifiers.crossingEnemyBorders.buttonLabel",
+                "name": "activities.deploy-army.modifiers.crossingEnemyBorders.name",
+                "type": "untyped",
+                "applyIf": [
+                    {
+                        "eq": [
+                            "@skill",
+                            "magic"
+                        ]
+                    }
+                ]
+            }
+        ],
+        "skills": {
+            "exploration": 0,
+            "boating": 0,
+            "magic": 3
+        },
+        "criticalSuccess": {
+            "msg": "activities.deploy-army.criticalSuccess.msg"
+        },
+        "success": {
+            "msg": "activities.deploy-army.success.msg"
+        },
+        "failure": {
+            "msg": "activities.deploy-army.failure.msg"
+        },
+        "criticalFailure": {
+            "msg": "activities.deploy-army.criticalFailure.msg"
+        }
+    },
+    {
+        "id": "disband-army",
+        "oncePerRound": false,
+        "fortune": false,
+        "enabled": true,
+        "phase": "army",
+        "dc": "none",
+        "title": "activities.disband-army.title",
+        "description": "activities.disband-army.description",
+        "skills": {}
+    },
+    {
+        "id": "establish-farmland",
+        "title": "activities.establish-farmland.title",
+        "oncePerRound": false,
+        "fortune": false,
+        "enabled": true,
+        "phase": "region",
+        "dc": "control",
+        "description": "activities.establish-farmland.description",
+        "requirement": "activities.establish-farmland.requirement",
+        "skills": {
+            "agriculture": 0
+        },
+        "modifiers": [
+            {
+                "enabled": false,
+                "value": -5,
+                "buttonLabel": "activities.establish-farmland.modifiers.predominantlyHills.buttonLabel",
+                "name": "activities.establish-farmland.modifiers.predominantlyHills.name",
+                "type": "untyped"
+            }
+        ],
+        "criticalSuccess": {
+            "msg": "activities.establish-farmland.criticalSuccess.msg"
+        },
+        "success": {
+            "msg": "activities.establish-farmland.success.msg"
+        },
+        "failure": {
+            "msg": "activities.establish-farmland.failure.msg"
+        },
+        "criticalFailure": {
+            "msg": "activities.establish-farmland.criticalFailure.msg"
+        }
+    },
+    {
+        "id": "establish-settlement",
+        "title": "activities.establish-settlement.title",
+        "oncePerRound": false,
+        "fortune": false,
+        "enabled": true,
+        "phase": "region",
+        "dc": "control",
+        "description": "activities.establish-settlement.description",
+        "requirement": "activities.establish-settlement.requirement",
+        "defaultToBestSkill": true,
+        "skills": {
+            "engineering": 0,
+            "industry": 0,
+            "politics": 0,
+            "scholarship": 0
+        },
+        "criticalSuccess": {
+            "msg": "activities.establish-settlement.criticalSuccess.msg"
+        },
+        "success": {
+            "msg": "activities.establish-settlement.success.msg"
+        },
+        "failure": {
+            "msg": "activities.establish-settlement.failure.msg"
+        },
+        "criticalFailure": {
+            "msg": "activities.establish-settlement.criticalFailure.msg"
+        }
+    },
+    {
+        "id": "establish-trade-agreement",
+        "oncePerRound": false,
+        "fortune": false,
+        "enabled": true,
+        "phase": "leadership",
+        "dc": "negotiationOrControl",
+        "title": "activities.establish-trade-agreement.title",
+        "description": "activities.establish-trade-agreement.description",
+        "requirement": "activities.establish-trade-agreement.requirement",
+        "defaultToBestSkill": true,
+        "skills": {
+            "boating": 0,
+            "trade": 0,
+            "magic": 3
+        },
+        "criticalSuccess": {
+            "msg": "activities.establish-trade-agreement.criticalSuccess.msg"
+        },
+        "success": {
+            "msg": "activities.establish-trade-agreement.success.msg"
+        },
+        "failure": {
+            "msg": "activities.establish-trade-agreement.failure.msg"
+        },
+        "criticalFailure": {
+            "msg": "activities.establish-trade-agreement.criticalFailure.msg",
+            "modifiers": [
+                {
+                    "turns": 2,
+                    "enabled": false,
+                    "value": -1,
+                    "buttonLabel": "activities.establish-trade-agreement.criticalFailure.modifiers.totalLoss.buttonLabel",
+                    "name": "activities.establish-trade-agreement.criticalFailure.modifiers.totalLoss.name",
+                    "type": "circumstance",
+                    "applyIf": [
+                        {
+                            "eq": [
+                                "@ability",
+                                "economy"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    {
+        "id": "establish-work-site-lumber",
+        "title": "activities.establish-work-site-lumber.title",
+        "oncePerRound": false,
+        "fortune": false,
+        "enabled": true,
+        "phase": "region",
+        "dc": "control",
+        "description": "activities.establish-work-site-lumber.description",
+        "skills": {
+            "engineering": 0
+        },
+        "criticalSuccess": {
+            "msg": "activities.establish-work-site-lumber.criticalSuccess.msg",
+            "modifiers": [
+                {
+                    "name": "activities.establish-work-site-lumber.criticalSuccess.modifiers.doubleIncome.name",
+                    "buttonLabel": "activities.establish-work-site-lumber.criticalSuccess.modifiers.doubleIncome.buttonLabel",
+                    "value": 1,
+                    "type": "untyped",
+                    "turns": 2,
+                    "selector": "lumber",
+                    "enabled": true
+                }
+            ]
+        },
+        "success": {
+            "msg": "activities.establish-work-site-lumber.success.msg"
+        },
+        "failure": {
+            "msg": "activities.establish-work-site-lumber.failure.msg"
+        },
+        "criticalFailure": {
+            "msg": "activities.establish-work-site-lumber.criticalFailure.msg"
+        }
+    },
+    {
+        "id": "establish-work-site-mine",
+        "title": "activities.establish-work-site-mine.title",
+        "oncePerRound": false,
+        "fortune": false,
+        "enabled": true,
+        "phase": "region",
+        "dc": "control",
+        "description": "activities.establish-work-site-mine.description",
+        "skills": {
+            "engineering": 0
+        },
+        "criticalSuccess": {
+            "msg": "activities.establish-work-site-mine.criticalSuccess.msg",
+            "modifiers": [
+                {
+                    "name": "activities.establish-work-site-mine.criticalSuccess.modifiers.doubleIncome.name",
+                    "buttonLabel": "activities.establish-work-site-mine.criticalSuccess.modifiers.doubleIncome.buttonLabel",
+                    "value": 1,
+                    "type": "untyped",
+                    "turns": 2,
+                    "selector": "ore",
+                    "enabled": true
+                }
+            ]
+        },
+        "success": {
+            "msg": "activities.establish-work-site-mine.success.msg"
+        },
+        "failure": {
+            "msg": "activities.establish-work-site-mine.failure.msg"
+        },
+        "criticalFailure": {
+            "msg": "activities.establish-work-site-mine.criticalFailure.msg"
+        }
+    },
+    {
+        "id": "establish-work-site-quarry",
+        "title": "activities.establish-work-site-quarry.title",
+        "oncePerRound": false,
+        "fortune": false,
+        "enabled": true,
+        "phase": "region",
+        "dc": "control",
+        "description": "activities.establish-work-site-quarry.description",
+        "skills": {
+            "engineering": 0
+        },
+        "criticalSuccess": {
+            "msg": "activities.establish-work-site-quarry.criticalSuccess.msg",
+            "modifiers": [
+                {
+                    "name": "activities.establish-work-site-quarry.criticalSuccess.modifiers.doubleIncome.name",
+                    "buttonLabel": "activities.establish-work-site-quarry.criticalSuccess.modifiers.doubleIncome.buttonLabel",
+                    "value": 1,
+                    "type": "untyped",
+                    "turns": 2,
+                    "selector": "stone",
+                    "enabled": true
+                }
+            ]
+        },
+        "success": {
+            "msg": "activities.establish-work-site-quarry.success.msg"
+        },
+        "failure": {
+            "msg": "activities.establish-work-site-quarry.failure.msg"
+        },
+        "criticalFailure": {
+            "msg": "activities.establish-work-site-quarry.criticalFailure.msg"
+        }
+    },
+    {
+        "id": "evangelize-the-end",
+        "oncePerRound": false,
+        "fortune": false,
+        "enabled": false,
+        "phase": "leadership",
+        "dc": "control",
+        "title": "activities.evangelize-the-end.title",
+        "description": "activities.evangelize-the-end.description",
+        "skills": {
+            "folklore": 0
+        },
+        "criticalSuccess": {
+            "msg": "activities.evangelize-the-end.criticalSuccess.msg"
+        },
+        "success": {
+            "msg": "activities.evangelize-the-end.success.msg"
+        },
+        "failure": {
+            "msg": "activities.evangelize-the-end.failure.msg"
+        },
+        "criticalFailure": {
+            "msg": "activities.evangelize-the-end.criticalFailure.msg"
+        }
+    },
+    {
+        "id": "false-victory",
+        "oncePerRound": false,
+        "fortune": false,
+        "enabled": false,
+        "phase": "leadership",
+        "dc": "control",
+        "title": "activities.false-victory.title",
+        "automationNotes": "activities.false-victory.automationNotes",
+        "description": "activities.false-victory.description",
+        "skills": {
+            "intrigue": 0
+        },
+        "criticalSuccess": {
+            "msg": "activities.false-victory.criticalSuccess.msg",
+            "modifiers": [
+                {
+                    "turns": 5,
+                    "enabled": false,
+                    "value": 1,
+                    "name": "activities.false-victory.criticalSuccess.modifiers.resolvedEvent.name",
+                    "buttonLabel": "activities.false-victory.criticalSuccess.modifiers.resolvedEvent.buttonLabel",
+                    "type": "circumstance",
+                    "applyIf": [
+                        {
+                            "eq": [
+                                "@phase",
+                                "event"
+                            ]
+                        },
+                        {
+                            "eq": [
+                                "@skill",
+                                "intrigue"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        "success": {
+            "msg": "activities.false-victory.success.msg"
+        },
+        "failure": {
+            "msg": "activities.false-victory.failure.msg",
+            "modifiers": [
+                {
+                    "turns": 2,
+                    "enabled": true,
+                    "value": 0,
+                    "type": "untyped",
+                    "name": "activities.false-victory.failure.modifiers.lockout.name",
+                    "buttonLabel": "activities.false-victory.failure.modifiers.lockout.buttonLabel",
+                    "applyIf": [{"eq": ["@activity", "false-victory"]}]
+                }
+            ]
+        },
+        "criticalFailure": {
+            "msg": "activities.false-victory.criticalFailure.msg",
+            "modifiers": [
+                {
+                    "turns": 7,
+                    "enabled": true,
+                    "value": 0,
+                    "type": "untyped",
+                    "name": "activities.false-victory.criticalFailure.modifiers.lockout.name",
+                    "buttonLabel": "activities.false-victory.criticalFailure.modifiers.lockout.buttonLabel",
+                    "applyIf": [{"eq": ["@activity", "false-victory"]}]
+                }
+            ]
+        }
+    },
+    {
+        "id": "focused-attention-vk",
+        "oncePerRound": false,
+        "fortune": false,
+        "enabled": false,
+        "phase": "leadership",
+        "dc": 15,
+        "title": "activities.focused-attention-vk.title",
+        "description": "activities.focused-attention-vk.description",
+        "skills": {
+            "agriculture": 0,
+            "arts": 0,
+            "boating": 0,
+            "defense": 0,
+            "engineering": 0,
+            "exploration": 0,
+            "folklore": 0,
+            "industry": 0,
+            "intrigue": 0,
+            "magic": 0,
+            "politics": 0,
+            "scholarship": 0,
+            "statecraft": 0,
+            "trade": 0,
+            "warfare": 0,
+            "wilderness": 0
+        },
+        "criticalSuccess": {
+            "msg": "activities.focused-attention-vk.criticalSuccess.msg",
+            "modifiers": [
+                {
+                    "turns": 1,
+                    "enabled": false,
+                    "isConsumedAfterRoll": true,
+                    "buttonLabel": "activities.focused-attention-vk.criticalSuccess.modifiers.aided.buttonLabel",
+                    "name": "activities.focused-attention-vk.criticalSuccess.modifiers.aided.name",
+                    "value": 0,
+                    "valueExpression": {
+                        "when": {
+                            "cases": [
+                                {
+                                    "case": [
+                                        {
+                                            "not": {
+                                                "hasRollOption": "cooperative-leadership"
+                                            }
+                                        },
+                                        2
+                                    ]
+                                },
+                                {
+                                    "case": [
+                                        {
+                                            "hasRollOption": "cooperative-leadership"
+                                        },
+                                        3
+                                    ]
+                                }
+                            ],
+                            "default": 2
+                        }
+                    },
+                    "type": "circumstance",
+                    "rollOptions": [
+                        "focused-attention"
+                    ]
+                }
+            ]
+        },
+        "success": {
+            "msg": "activities.focused-attention-vk.success.msg",
+            "modifiers": [
+                {
+                    "turns": 1,
+                    "enabled": false,
+                    "isConsumedAfterRoll": true,
+                    "buttonLabel": "activities.focused-attention-vk.success.modifiers.aided.buttonLabel",
+                    "name": "activities.focused-attention-vk.success.modifiers.aided.name",
+                    "value": 0,
+                    "valueExpression": {
+                        "when": {
+                            "cases": [
+                                {
+                                    "case": [
+                                        {
+                                            "not": {
+                                                "hasRollOption": "cooperative-leadership"
+                                            }
+                                        },
+                                        2
+                                    ]
+                                },
+                                {
+                                    "case": [
+                                        {
+                                            "hasRollOption": "cooperative-leadership"
+                                        },
+                                        3
+                                    ]
+                                }
+                            ],
+                            "default": 2
+                        }
+                    },
+                    "type": "circumstance",
+                    "rollOptions": [
+                        "focused-attention"
+                    ]
+                }
+            ]
+        },
+        "automationNotes": "activities.focused-attention-vk.automationNotes"
+    },
+    {
+        "id": "focused-attention",
+        "oncePerRound": false,
+        "fortune": false,
+        "enabled": true,
+        "phase": "leadership",
+        "dc": 20,
+        "title": "activities.focused-attention.title",
+        "description": "activities.focused-attention.description",
+        "skills": {
+            "agriculture": 0,
+            "arts": 0,
+            "boating": 0,
+            "defense": 0,
+            "engineering": 0,
+            "exploration": 0,
+            "folklore": 0,
+            "industry": 0,
+            "intrigue": 0,
+            "magic": 0,
+            "politics": 0,
+            "scholarship": 0,
+            "statecraft": 0,
+            "trade": 0,
+            "warfare": 0,
+            "wilderness": 0
+        },
+        "criticalSuccess": {
+            "msg": "activities.focused-attention.criticalSuccess.msg",
+            "modifiers": [
+                {
+                    "turns": 1,
+                    "enabled": false,
+                    "isConsumedAfterRoll": true,
+                    "buttonLabel": "activities.focused-attention.criticalSuccess.modifiers.aided.buttonLabel",
+                    "name": "activities.focused-attention.criticalSuccess.modifiers.aided.name",
+                    "value": 0,
+                    "valueExpression": {
+                        "when": {
+                            "cases": [
+                                {
+                                    "case": [
+                                        {
+                                            "not": {
+                                                "hasRollOption": "cooperative-leadership"
+                                            }
+                                        },
+                                        2
+                                    ]
+                                },
+                                {
+                                    "case": [
+                                        {
+                                            "hasRollOption": "cooperative-leadership"
+                                        },
+                                        3
+                                    ]
+                                }
+                            ],
+                            "default": 2
+                        }
+                    },
+                    "type": "circumstance",
+                    "rollOptions": [
+                        "focused-attention"
+                    ]
+                }
+            ]
+        },
+        "success": {
+            "msg": "activities.focused-attention.success.msg",
+            "modifiers": [
+                {
+                    "turns": 1,
+                    "enabled": false,
+                    "buttonLabel": "activities.focused-attention.success.modifiers.aided.buttonLabel",
+                    "name": "activities.focused-attention.success.modifiers.aided.name",
+                    "isConsumedAfterRoll": true,
+                    "value": 0,
+                    "valueExpression": {
+                        "when": {
+                            "cases": [
+                                {
+                                    "case": [
+                                        {
+                                            "not": {
+                                                "hasRollOption": "cooperative-leadership"
+                                            }
+                                        },
+                                        2
+                                    ]
+                                },
+                                {
+                                    "case": [
+                                        {
+                                            "hasRollOption": "cooperative-leadership"
+                                        },
+                                        3
+                                    ]
+                                }
+                            ],
+                            "default": 2
+                        }
+                    },
+                    "type": "circumstance",
+                    "rollOptions": [
+                        "focused-attention"
+                    ]
+                }
+            ]
+        },
+        "automationNotes": "activities.focused-attention.automationNotes"
+    },
+    {
+        "id": "fortify-hex-vk",
+        "oncePerRound": false,
+        "fortune": false,
+        "enabled": false,
+        "phase": "region",
+        "dc": "control",
+        "title": "activities.fortify-hex-vk.title",
+        "description": "activities.fortify-hex-vk.description",
+        "requirement": "activities.fortify-hex-vk.requirement",
+        "skills": {
+            "defense": 0
+        },
+        "criticalSuccess": {
+            "msg": "activities.fortify-hex-vk.criticalSuccess.msg"
+        },
+        "success": {
+            "msg": "activities.fortify-hex-vk.success.msg"
+        },
+        "failure": {
+            "msg": "activities.fortify-hex-vk.failure.msg"
+        },
+        "criticalFailure": {
+            "msg": "activities.fortify-hex-vk.criticalFailure.msg"
+        }
+    },
+    {
+        "id": "fortify-hex",
+        "oncePerRound": false,
+        "fortune": false,
+        "enabled": true,
+        "phase": "region",
+        "dc": "control",
+        "title": "activities.fortify-hex.title",
+        "description": "activities.fortify-hex.description",
+        "requirement": "activities.fortify-hex.requirement",
+        "skills": {
+            "defense": 0
+        },
+        "criticalSuccess": {
+            "msg": "activities.fortify-hex.criticalSuccess.msg"
+        },
+        "success": {
+            "msg": "activities.fortify-hex.success.msg"
+        },
+        "failure": {
+            "msg": "activities.fortify-hex.failure.msg"
+        },
+        "criticalFailure": {
+            "msg": "activities.fortify-hex.criticalFailure.msg"
+        }
+    },
+    {
+        "id": "garrison-army",
+        "oncePerRound": false,
+        "fortune": false,
+        "enabled": true,
+        "phase": "army",
+        "dc": "control",
+        "title": "activities.garrison-army.title",
+        "automationNotes": "activities.garrison-army.automationNotes",
+        "description": "activities.garrison-army.description",
+        "requirement": "activities.garrison-army.requirement",
+        "modifiers": [
+            {
+                "enabled": false,
+                "value": -5,
+                "buttonLabel": "activities.garrison-army.modifiers.outsideKingdom.buttonLabel",
+                "name": "activities.garrison-army.modifiers.outsideKingdom.name",
+                "type": "untyped"
+            },
+            {
+                "enabled": false,
+                "value": -10,
+                "buttonLabel": "activities.garrison-army.modifiers.enemyTerritory.buttonLabel",
+                "name": "activities.garrison-army.modifiers.enemyTerritory.name",
+                "type": "untyped"
+            }
+        ],
+        "skills": {
+            "defense": 0,
+            "politics": 0,
+            "engineering": 0
+        },
+        "criticalSuccess": {
+            "msg": "activities.garrison-army.criticalSuccess.msg"
+        },
+        "success": {
+            "msg": "activities.garrison-army.success.msg"
+        },
+        "failure": {
+            "msg": "activities.garrison-army.failure.msg"
+        },
+        "criticalFailure": {
+            "msg": "activities.garrison-army.criticalFailure.msg",
+            "modifiers": [
+                {
+                    "turns": 5,
+                    "enabled": true,
+                    "value": 0,
+                    "type": "untyped",
+                    "name": "activities.garrison-army.criticalFailure.modifiers.lockout.name",
+                    "buttonLabel": "activities.garrison-army.criticalFailure.modifiers.lockout.buttonLabel",
+                    "applyIf": [
+                        {
+                            "eq": [
+                                "@activity",
+                                "garrison-army"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    {
+        "id": "gather-livestock",
+        "title": "activities.gather-livestock.title",
+        "oncePerRound": false,
+        "fortune": false,
+        "enabled": true,
+        "phase": "region",
+        "dc": "control",
+        "description": "activities.gather-livestock.description",
+        "skills": {
+            "wilderness": 0
+        },
+        "criticalSuccess": {
+            "msg": "activities.gather-livestock.criticalSuccess.msg"
+        },
+        "success": {
+            "msg": "activities.gather-livestock.success.msg"
+        },
+        "failure": {
+            "msg": "activities.gather-livestock.failure.msg"
+        },
+        "criticalFailure": {
+            "msg": "activities.gather-livestock.criticalFailure.msg"
+        }
+    },
+    {
+        "id": "go-fishing",
+        "title": "activities.go-fishing.title",
+        "oncePerRound": false,
+        "fortune": false,
+        "enabled": true,
+        "phase": "region",
+        "dc": "control",
+        "description": "activities.go-fishing.description",
+        "requirement": "activities.go-fishing.requirement",
+        "skills": {
+            "boating": 0
+        },
+        "criticalSuccess": {
+            "msg": "activities.go-fishing.criticalSuccess.msg"
+        },
+        "success": {
+            "msg": "activities.go-fishing.success.msg"
+        },
+        "failure": {
+            "msg": "activities.go-fishing.failure.msg"
+        },
+        "criticalFailure": {
+            "msg": "activities.go-fishing.criticalFailure.msg"
+        }
+    },
+    {
+        "id": "harvest-crops",
+        "title": "activities.harvest-crops.title",
+        "oncePerRound": false,
+        "fortune": false,
+        "enabled": true,
+        "phase": "region",
+        "dc": "control",
+        "description": "activities.harvest-crops.description",
+        "skills": {
+            "agriculture": 0
+        },
+        "criticalSuccess": {
+            "msg": "activities.harvest-crops.criticalSuccess.msg"
+        },
+        "success": {
+            "msg": "activities.harvest-crops.success.msg"
+        },
+        "failure": {
+            "msg": "activities.harvest-crops.failure.msg"
+        },
+        "criticalFailure": {
+            "msg": "activities.harvest-crops.criticalFailure.msg"
+        }
+    },
+    {
+        "id": "harvest-lily-pollen",
+        "oncePerRound": false,
+        "fortune": false,
+        "enabled": false,
+        "phase": "region",
+        "dc": "control",
+        "title": "activities.harvest-lily-pollen.title",
+        "description": "activities.harvest-lily-pollen.description",
+        "skills": {
+            "agriculture": 3
+        },
+        "criticalSuccess": {
+            "msg": "activities.harvest-lily-pollen.criticalSuccess.msg"
+        },
+        "success": {
+            "msg": "activities.harvest-lily-pollen.success.msg"
+        },
+        "failure": {
+            "msg": "activities.harvest-lily-pollen.failure.msg"
+        },
+        "criticalFailure": {
+            "msg": "activities.harvest-lily-pollen.criticalFailure.msg"
+        }
+    },
+    {
+        "id": "hire-adventurers",
+        "oncePerRound": false,
+        "fortune": false,
+        "enabled": true,
+        "phase": "leadership",
+        "dc": "event",
+        "title": "activities.hire-adventurers.title",
+        "automationNotes": "activities.hire-adventurers.automationNotes",
+        "description": "activities.hire-adventurers.description",
+        "skills": {
+            "exploration": 0
+        },
+        "criticalSuccess": {
+            "msg": "activities.hire-adventurers.criticalSuccess.msg"
+        },
+        "success": {
+            "msg": "activities.hire-adventurers.success.msg",
+            "modifiers": [
+                {
+                    "turns": 2,
+                    "buttonLabel": "activities.hire-adventurers.success.modifiers.resolveBonus.buttonLabel",
+                    "name": "activities.hire-adventurers.success.modifiers.resolveBonus.name",
+                    "enabled": false,
+                    "applyIf": [
+                        {
+                            "in": [
+                                "continuous",
+                                "@eventTraits"
+                            ]
+                        }
+                    ],
+                    "value": 2,
+                    "type": "circumstance"
+                }
+            ]
+        },
+        "failure": {
+            "msg": "activities.hire-adventurers.failure.msg"
+        },
+        "criticalFailure": {
+            "msg": "activities.hire-adventurers.criticalFailure.msg"
+        }
+    },
+    {
+        "id": "blessed-solution",
+        "oncePerRound": false,
+        "fortune": true,
+        "enabled": false,
+        "phase": "leadership",
+        "dc": "control",
+        "title": "activities.blessed-solution.title",
+        "description": "activities.blessed-solution.description",
+        "automationNotes": "activities.blessed-solution.automationNotes",
+        "skills": {
+            "folklore": 0
+        },
+        "criticalSuccess": {
+            "msg": "activities.blessed-solution.criticalSuccess.msg",
+            "modifiers": [
+                {
+                    "turns": 1,
+                    "enabled": false,
+                    "isConsumedAfterRoll": true,
+                    "buttonLabel": "activities.blessed-solution.criticalSuccess.modifiers.blessedAttempt.buttonLabel",
+                    "name": "activities.blessed-solution.criticalSuccess.modifiers.blessedAttempt.name",
+                    "value": 2,
+                    "type": "status"
+                }
+            ]
+        },
+        "success": {
+            "msg": "activities.blessed-solution.success.msg",
+            "modifiers": [
+                {
+                    "turns": 1,
+                    "enabled": false,
+                    "isConsumedAfterRoll": true,
+                    "buttonLabel": "activities.blessed-solution.success.modifiers.blessedAttempt.buttonLabel",
+                    "name": "activities.blessed-solution.success.modifiers.blessedAttempt.name",
+                    "value": 2,
+                    "type": "status"
+                }
+            ]
+        },
+        "failure": {
+            "msg": "activities.blessed-solution.failure.msg"
+        },
+        "criticalFailure": {
+            "msg": "activities.blessed-solution.criticalFailure.msg",
+            "modifiers": [
+                {
+                    "turns": 3,
+                    "enabled": true,
+                    "value": 0,
+                    "type": "untyped",
+                    "name": "activities.blessed-solution.criticalFailure.modifiers.lockout.name",
+                    "buttonLabel": "activities.blessed-solution.criticalFailure.modifiers.lockout.buttonLabel",
+                    "applyIf": [
+                        {
+                            "eq": [
+                                "@activity",
+                                "blessed-solution"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        "special": "activities.blessed-solution.special"
+    },
+    {
+        "id": "observe-customs",
+        "oncePerRound": true,
+        "fortune": false,
+        "enabled": false,
+        "phase": "leadership",
+        "dc": "control",
+        "title": "activities.observe-customs.title",
+        "description": "activities.observe-customs.description",
+        "skills": {
+            "folklore": 0
+        },
+        "criticalSuccess": {
+            "msg": "activities.observe-customs.criticalSuccess.msg",
+            "modifiers": [
+                {
+                    "turns": 1,
+                    "enabled": true,
+                    "buttonLabel": "activities.observe-customs.criticalSuccess.modifiers.blessedRites.buttonLabel",
+                    "name": "activities.observe-customs.criticalSuccess.modifiers.blessedRites.name",
+                    "applyIf": [
+                        {
+                            "eq": [
+                                "@ability",
+                                "stability"
+                            ]
+                        }
+                    ],
+                    "value": 2,
+                    "type": "circumstance"
+                }
+            ]
+        },
+        "success": {
+            "msg": "activities.observe-customs.success.msg",
+            "modifiers": [
+                {
+                    "turns": 1,
+                    "enabled": true,
+                    "buttonLabel": "activities.observe-customs.success.modifiers.blessedRites.buttonLabel",
+                    "name": "activities.observe-customs.success.modifiers.blessedRites.name",
+                    "applyIf": [
+                        {
+                            "eq": [
+                                "@ability",
+                                "stability"
+                            ]
+                        }
+                    ],
+                    "value": 1,
+                    "type": "circumstance"
+                }
+            ]
+        },
+        "failure": {
+            "msg": "activities.observe-customs.failure.msg",
+            "modifiers": [
+                {
+                    "turns": 1,
+                    "enabled": true,
+                    "buttonLabel": "activities.observe-customs.failure.modifiers.blessedRites.buttonLabel",
+                    "name": "activities.observe-customs.failure.modifiers.blessedRites.name",
+                    "applyIf": [
+                        {
+                            "eq": [
+                                "@ability",
+                                "stability"
+                            ]
+                        }
+                    ],
+                    "value": 1,
+                    "type": "circumstance"
+                }
+            ]
+        },
+        "criticalFailure": {
+            "msg": "activities.observe-customs.criticalFailure.msg"
+        }
+    },
+    {
+        "id": "improve-lifestyle",
+        "order": 2,
+        "oncePerRound": false,
+        "fortune": false,
+        "enabled": true,
+        "phase": "commerce",
+        "dc": "control",
+        "title": "activities.improve-lifestyle.title",
+        "description": "activities.improve-lifestyle.description",
+        "skills": {
+            "politics": 0
+        },
+        "criticalSuccess": {
+            "msg": "activities.improve-lifestyle.criticalSuccess.msg",
+            "modifiers": [
+                {
+                    "turns": 1,
+                    "name": "activities.improve-lifestyle.criticalSuccess.modifiers.freeTime.name",
+                    "buttonLabel": "activities.improve-lifestyle.criticalSuccess.modifiers.freeTime.buttonLabel",
+                    "enabled": true,
+                    "applyIf": [
+                        {
+                            "eq": [
+                                "@ability",
+                                "culture"
+                            ]
+                        }
+                    ],
+                    "value": 2,
+                    "type": "circumstance"
+                }
+            ]
+        },
+        "success": {
+            "msg": "activities.improve-lifestyle.success.msg",
+            "modifiers": [
+                {
+                    "turns": 1,
+                    "enabled": true,
+                    "name": "activities.improve-lifestyle.success.modifiers.improving.name",
+                    "buttonLabel": "activities.improve-lifestyle.success.modifiers.improving.buttonLabel",
+                    "applyIf": [
+                        {
+                            "eq": [
+                                "@ability",
+                                "culture"
+                            ]
+                        }
+                    ],
+                    "value": 1,
+                    "type": "circumstance"
+                }
+            ]
+        },
+        "failure": {
+            "msg": "activities.improve-lifestyle.failure.msg",
+            "modifiers": [
+                {
+                    "turns": 1,
+                    "enabled": true,
+                    "buttonLabel": "activities.improve-lifestyle.failure.modifiers.enjoyablePenalty.buttonLabel",
+                    "name": "activities.improve-lifestyle.failure.modifiers.enjoyablePenalty.name",
+                    "applyIf": [
+                        {
+                            "eq": [
+                                "@ability",
+                                "economy"
+                            ]
+                        }
+                    ],
+                    "value": -1,
+                    "type": "circumstance"
+                },
+                {
+                    "turns": 1,
+                    "enabled": true,
+                    "buttonLabel": "activities.improve-lifestyle.failure.modifiers.enjoyableBonus.buttonLabel",
+                    "name": "activities.improve-lifestyle.failure.modifiers.enjoyableBonus.name",
+                    "applyIf": [
+                        {
+                            "eq": [
+                                "@ability",
+                                "culture"
+                            ]
+                        }
+                    ],
+                    "value": 1,
+                    "type": "circumstance"
+                }
+            ]
+        },
+        "criticalFailure": {
+            "msg": "activities.improve-lifestyle.criticalFailure.msg",
+            "modifiers": [
+                {
+                    "turns": 1,
+                    "enabled": true,
+                    "buttonLabel": "activities.improve-lifestyle.criticalFailure.modifiers.backfires.buttonLabel",
+                    "name": "activities.improve-lifestyle.criticalFailure.modifiers.backfires.name",
+                    "applyIf": [
+                        {
+                            "eq": [
+                                "@ability",
+                                "economy"
+                            ]
+                        }
+                    ],
+                    "value": -1,
+                    "type": "circumstance"
+                }
+            ]
+        }
+    },
+    {
+        "id": "infiltration",
+        "oncePerRound": false,
+        "fortune": false,
+        "enabled": true,
+        "phase": "leadership",
+        "dc": "control",
+        "title": "activities.infiltration.title",
+        "description": "activities.infiltration.description",
+        "skills": {
+            "intrigue": 0
+        },
+        "criticalSuccess": {
+            "msg": "activities.infiltration.criticalSuccess.msg"
+        },
+        "success": {
+            "msg": "activities.infiltration.success.msg"
+        },
+        "failure": {
+            "msg": "activities.infiltration.failure.msg"
+        },
+        "criticalFailure": {
+            "msg": "activities.infiltration.criticalFailure.msg",
+            "modifiers": [
+                {
+                    "turns": 2,
+                    "enabled": true,
+                    "value": -2,
+                    "name": "activities.infiltration.criticalFailure.modifiers.captured.name",
+                    "buttonLabel": "activities.infiltration.criticalFailure.modifiers.captured.buttonLabel",
+                    "type": "circumstance"
+                }
+            ]
+        }
+    },
+    {
+        "id": "irrigation",
+        "oncePerRound": false,
+        "fortune": false,
+        "enabled": true,
+        "phase": "region",
+        "dc": "control",
+        "title": "activities.irrigation.title",
+        "automationNotes": "activities.irrigation.automationNotes",
+        "description": "activities.irrigation.description",
+        "requirement": "activities.irrigation.requirement",
+        "skills": {
+            "engineering": 1
+        },
+        "criticalSuccess": {
+            "msg": "activities.irrigation.criticalSuccess.msg"
+        },
+        "success": {
+            "msg": "activities.irrigation.success.msg"
+        },
+        "failure": {
+            "msg": "activities.irrigation.failure.msg"
+        },
+        "criticalFailure": {
+            "msg": "activities.irrigation.criticalFailure.msg"
+        }
+    },
+    {
+        "id": "manage-trade-agreements",
+        "order": 5,
+        "oncePerRound": false,
+        "fortune": false,
+        "enabled": true,
+        "phase": "commerce",
+        "dc": "control",
+        "title": "activities.manage-trade-agreements.title",
+        "description": "activities.manage-trade-agreements.description",
+        "skills": {
+            "trade": 0
+        },
+        "criticalSuccess": {
+            "msg": "activities.manage-trade-agreements.criticalSuccess.msg",
+            "modifiers": [
+                {
+                    "enabled": true,
+                    "value": -5,
+                    "buttonLabel": "activities.manage-trade-agreements.modifiers.previousTurn.buttonLabel",
+                    "name": "activities.manage-trade-agreements.modifiers.previousTurn.name",
+                    "type": "untyped",
+                    "turns": 2,
+                    "applyIf": [
+                        {
+                            "eq": [
+                                "@activity",
+                                "manage-trade-agreements"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        "success": {
+            "msg": "activities.manage-trade-agreements.success.msg",
+            "modifiers": [
+                {
+                    "enabled": true,
+                    "value": -5,
+                    "buttonLabel": "activities.manage-trade-agreements.modifiers.previousTurn.buttonLabel",
+                    "name": "activities.manage-trade-agreements.modifiers.previousTurn.name",
+                    "type": "untyped",
+                    "turns": 2,
+                    "applyIf": [
+                        {
+                            "eq": [
+                                "@activity",
+                                "manage-trade-agreements"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        "failure": {
+            "msg": "activities.manage-trade-agreements.failure.msg",
+            "modifiers": [
+                {
+                    "enabled": true,
+                    "value": -5,
+                    "buttonLabel": "activities.manage-trade-agreements.modifiers.previousTurn.buttonLabel",
+                    "name": "activities.manage-trade-agreements.modifiers.previousTurn.name",
+                    "type": "untyped",
+                    "turns": 2,
+                    "applyIf": [
+                        {
+                            "eq": [
+                                "@activity",
+                                "manage-trade-agreements"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        "criticalFailure": {
+            "msg": "activities.manage-trade-agreements.criticalFailure.msg",
+            "modifiers": [
+                {
+                    "enabled": true,
+                    "value": -5,
+                    "buttonLabel": "activities.manage-trade-agreements.modifiers.previousTurn.buttonLabel",
+                    "name": "activities.manage-trade-agreements.modifiers.previousTurn.name",
+                    "type": "untyped",
+                    "turns": 2,
+                    "applyIf": [
+                        {
+                            "eq": [
+                                "@activity",
+                                "manage-trade-agreements"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "turns": 2,
+                    "enabled": true,
+                    "value": 0,
+                    "type": "untyped",
+                    "name": "activities.manage-trade-agreements.criticalFailure.modifiers.lockout.name",
+                    "buttonLabel": "activities.manage-trade-agreements.criticalFailure.modifiers.lockout.buttonLabel",
+                    "applyIf": [
+                        {
+                            "eq": [
+                                "@activity",
+                                "manage-trade-agreements"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        "automationNotes": "activities.manage-trade-agreements.automationNotes"
+    },
+    {
+        "id": "new-leadership-vk",
+        "oncePerRound": false,
+        "fortune": false,
+        "enabled": false,
+        "order": 2,
+        "phase": "upkeep",
+        "dc": "control",
+        "title": "activities.new-leadership-vk.title",
+        "description": "activities.new-leadership-vk.description",
+        "defaultToBestSkill": true,
+        "skills": {
+            "intrigue": 0,
+            "politics": 0,
+            "statecraft": 0,
+            "warfare": 0
+        },
+        "modifiers": [
+            {
+                "type": "circumstance",
+                "value": 2,
+                "enabled": false,
+                "buttonLabel": "activities.new-leadership-vk.modifiers.matchingSkillBonus.buttonLabel",
+                "name": "activities.new-leadership-vk.modifiers.matchingSkillBonus.name"
+            },
+            {
+                "type": "circumstance",
+                "value": -4,
+                "enabled": false,
+                "buttonLabel": "activities.new-leadership-vk.modifiers.appointingRulerPenalty.buttonLabel",
+                "name": "activities.new-leadership-vk.modifiers.appointingRulerPenalty.name"
+            }
+        ],
+        "criticalSuccess": {
+            "msg": "activities.new-leadership-vk.criticalSuccess.msg",
+            "modifiers": [
+                {
+                    "turns": 2,
+                    "enabled": false,
+                    "value": 1,
+                    "buttonLabel": "activities.new-leadership-vk.criticalSuccess.modifiers.buttonLabel",
+                    "name": "activities.new-leadership-vk.criticalSuccess.modifiers.name",
+                    "type": "circumstance"
+                }
+            ]
+        },
+        "success": {
+            "msg": "activities.new-leadership-vk.success.msg"
+        },
+        "failure": {
+            "msg": "activities.new-leadership-vk.failure.msg",
+            "modifiers": [
+                {
+                    "enabled": false,
+                    "buttonLabel": "activities.new-leadership-vk.failure.modifiers.buttonLabel",
+                    "name": "activities.new-leadership-vk.failure.modifiers.name",
+                    "value": -1,
+                    "type": "circumstance",
+                    "applyIf": [
+                        {
+                            "in": [
+                                "@phase",
+                                [
+                                    "leadership",
+                                    "commerce",
+                                    "region",
+                                    "civic",
+                                    "army"
+                                ]
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        "criticalFailure": {
+            "msg": "activities.new-leadership-vk.criticalFailure.msg"
+        },
+        "automationNotes": "activities.new-leadership-vk.automationNotes"
+    },
+    {
+        "id": "new-leadership",
+        "oncePerRound": false,
+        "fortune": false,
+        "enabled": true,
+        "order": 2,
+        "phase": "upkeep",
+        "dc": "control",
+        "title": "activities.new-leadership.title",
+        "description": "activities.new-leadership.description",
+        "defaultToBestSkill": true,
+        "modifiers": [
+            {
+                "type": "circumstance",
+                "value": 2,
+                "enabled": false,
+                "buttonLabel": "activities.new-leadership.modifiers.matchingSkillBonus.buttonLabel",
+                "name": "activities.new-leadership.modifiers.matchingSkillBonus.name"
+            },
+            {
+                "type": "circumstance",
+                "value": -4,
+                "enabled": false,
+                "buttonLabel": "activities.new-leadership.modifiers.appointingRulerPenalty.buttonLabel",
+                "name": "activities.new-leadership.modifiers.appointingRulerPenalty.name"
+            }
+        ],
+        "skills": {
+            "intrigue": 0,
+            "politics": 0,
+            "statecraft": 0,
+            "warfare": 0
+        },
+        "criticalSuccess": {
+            "msg": "activities.new-leadership.criticalSuccess.msg",
+            "modifiers": [
+                {
+                    "turns": 2,
+                    "enabled": false,
+                    "value": 1,
+                    "buttonLabel": "activities.new-leadership.criticalSuccess.modifiers.buttonLabel",
+                    "name": "activities.new-leadership.criticalSuccess.modifiers.name",
+                    "type": "circumstance"
+                }
+            ]
+        },
+        "success": {
+            "msg": "activities.new-leadership.success.msg"
+        },
+        "failure": {
+            "msg": "activities.new-leadership.failure.msg",
+            "modifiers": [
+                {
+                    "enabled": false,
+                    "buttonLabel": "activities.new-leadership.failure.modifiers.buttonLabel",
+                    "name": "activities.new-leadership.failure.modifiers.name",
+                    "value": -1,
+                    "type": "circumstance",
+                    "applyIf": [
+                        {
+                            "in": [
+                                "@phase",
+                                [
+                                    "leadership",
+                                    "army",
+                                    "region",
+                                    "civic"
+                                ]
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        "criticalFailure": {
+            "msg": "activities.new-leadership.criticalFailure.msg"
+        }
+    },
+    {
+        "id": "offensive-gambit",
+        "oncePerRound": false,
+        "fortune": false,
+        "enabled": true,
+        "phase": "army",
+        "dc": "scouting",
+        "title": "activities.offensive-gambit.title",
+        "description": "activities.offensive-gambit.description",
+        "requirement": "activities.offensive-gambit.requirement",
+        "skills": {
+            "intrigue": 0
+        },
+        "criticalSuccess": {
+            "msg": "activities.offensive-gambit.criticalSuccess.msg"
+        },
+        "success": {
+            "msg": "activities.offensive-gambit.success.msg"
+        },
+        "failure": {
+            "msg": "activities.offensive-gambit.failure.msg"
+        },
+        "criticalFailure": {
+            "msg": "activities.offensive-gambit.criticalFailure.msg"
+        }
+    },
+    {
+        "id": "outfit-army",
+        "oncePerRound": false,
+        "fortune": false,
+        "enabled": true,
+        "phase": "army",
+        "dc": "control",
+        "title": "activities.outfit-army.title",
+        "description": "activities.outfit-army.description",
+        "skills": {
+            "trade": 0,
+            "warfare": 0
+        },
+        "criticalSuccess": {
+            "msg": "activities.outfit-army.criticalSuccess.msg"
+        },
+        "success": {
+            "msg": "activities.outfit-army.success.msg"
+        },
+        "failure": {
+            "msg": "activities.outfit-army.failure.msg"
+        },
+        "criticalFailure": {
+            "msg": "activities.outfit-army.criticalFailure.msg"
+        }
+    },
+    {
+        "id": "pledge-of-fealty",
+        "oncePerRound": false,
+        "fortune": false,
+        "enabled": true,
+        "phase": "leadership",
+        "dc": "negotiation",
+        "title": "activities.pledge-of-fealty.title",
+        "description": "activities.pledge-of-fealty.description",
+        "defaultToBestSkill": true,
+        "skills": {
+            "intrigue": 1,
+            "statecraft": 1,
+            "warfare": 1
+        },
+        "criticalSuccess": {
+            "msg": "activities.pledge-of-fealty.criticalSuccess.msg"
+        },
+        "success": {
+            "msg": "activities.pledge-of-fealty.success.msg"
+        },
+        "failure": {
+            "msg": "activities.pledge-of-fealty.failure.msg"
+        },
+        "criticalFailure": {
+            "msg": "activities.pledge-of-fealty.criticalFailure.msg"
+        }
+    },
+    {
+        "id": "preventative-measures",
+        "oncePerRound": false,
+        "fortune": false,
+        "enabled": false,
+        "phase": "leadership",
+        "dc": "control",
+        "title": "activities.preventative-measures.title",
+        "description": "activities.preventative-measures.description",
+        "automationNotes": "activities.preventative-measures.automationNotes",
+        "skills": {
+            "magic": 0
+        },
+        "criticalSuccess": {
+            "msg": "activities.preventative-measures.criticalSuccess.msg",
+            "modifiers": [
+                {
+                    "turns": 1,
+                    "buttonLabel": "activities.preventative-measures.criticalSuccess.modifiers.greatSuccess.buttonLabel",
+                    "name": "activities.preventative-measures.criticalSuccess.modifiers.greatSuccess.name",
+                    "isConsumedAfterRoll": true,
+                    "applyIf": [
+                        {
+                            "in": [
+                                "dangerous",
+                                "@eventTraits"
+                            ]
+                        }
+                    ],
+                    "enabled": false,
+                    "value": 2,
+                    "type": "circumstance",
+                    "upgradeResults": [
+                        {
+                            "upgrade": "failure"
+                        },
+                        {
+                            "upgrade": "success"
+                        }
+                    ]
+                }
+            ]
+        },
+        "success": {
+            "msg": "activities.preventative-measures.success.msg",
+            "modifiers": [
+                {
+                    "turns": 1,
+                    "buttonLabel": "activities.preventative-measures.success.modifiers.simpleSuccess.buttonLabel",
+                    "name": "activities.preventative-measures.success.modifiers.simpleSuccess.buttonLabel",
+                    "isConsumedAfterRoll": true,
+                    "applyIf": [
+                        {
+                            "in": [
+                                "dangerous",
+                                "@eventTraits"
+                            ]
+                        }
+                    ],
+                    "enabled": false,
+                    "value": 2,
+                    "type": "circumstance"
+                }
+            ]
+        },
+        "criticalFailure": {
+            "msg": "activities.preventative-measures.criticalFailure.msg",
+            "modifiers": [
+                {
+                    "turns": 2,
+                    "enabled": true,
+                    "value": 0,
+                    "type": "untyped",
+                    "name": "activities.preventative-measures.criticalFailure.modifiers.lockout.name",
+                    "buttonLabel": "activities.preventative-measures.criticalFailure.modifiers.lockout.buttonLabel",
+                    "applyIf": [
+                        {
+                            "eq": [
+                                "@activity",
+                                "preventative-measures"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    {
+        "id": "process-hidden-fees",
+        "oncePerRound": false,
+        "fortune": false,
+        "enabled": false,
+        "phase": "leadership",
+        "dc": "control",
+        "title": "activities.process-hidden-fees.title",
+        "automationNotes": "activities.process-hidden-fees.automationNotes",
+        "description": "activities.process-hidden-fees.description",
+        "skills": {
+            "trade": 0
+        },
+        "criticalSuccess": {
+            "msg": "activities.process-hidden-fees.criticalSuccess.msg"
+        },
+        "success": {
+            "msg": "activities.process-hidden-fees.success.msg",
+            "modifiers": [
+                {
+                    "name": "activities.process-hidden-fees.success.modifiers.nextTurn.name",
+                    "buttonLabel": "activities.process-hidden-fees.success.modifiers.nextTurn.buttonLabel",
+                    "downgradeResults": [
+                        {
+                            "downgrade": "criticalSuccess"
+                        },
+                        {
+                            "downgrade": "success"
+                        },
+                        {
+                            "downgrade": "failure"
+                        }
+                    ],
+                    "turns": 2,
+                    "applyIf": [
+                        {
+                            "eq": [
+                                "@activity",
+                                "process-hidden-fees"
+                            ]
+                        }
+                    ],
+                    "value": 0,
+                    "type": "untyped",
+                    "enabled": true
+                }
+            ]
+        },
+        "failure": {
+            "msg": "activities.process-hidden-fees.failure.msg",
+            "modifiers": [
+                {
+                    "turns": 2,
+                    "enabled": true,
+                    "value": 0,
+                    "type": "untyped",
+                    "name": "activities.process-hidden-fees.failure.modifiers.lockout.name",
+                    "buttonLabel": "activities.process-hidden-fees.failure.modifiers.lockout.buttonLabel",
+                    "applyIf": [
+                        {
+                            "eq": [
+                                "@activity",
+                                "process-hidden-fees"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        "criticalFailure": {
+            "msg": "activities.process-hidden-fees.criticalFailure.msg",
+            "modifiers": [
+                {
+                    "turns": 2,
+                    "enabled": true,
+                    "value": 0,
+                    "type": "untyped",
+                    "name": "activities.process-hidden-fees.criticalFailure.modifiers.lockout.name",
+                    "buttonLabel": "activities.process-hidden-fees.criticalFailure.modifiers.lockout.buttonLabel",
+                    "applyIf": [
+                        {
+                            "eq": [
+                                "@activity",
+                                "process-hidden-fees"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    {
+        "id": "prognostication",
+        "oncePerRound": false,
+        "fortune": false,
+        "enabled": true,
+        "phase": "leadership",
+        "dc": "control",
+        "title": "activities.prognostication.title",
+        "description": "activities.prognostication.description",
+        "skills": {
+            "magic": 1
+        },
+        "criticalSuccess": {
+            "msg": "activities.prognostication.criticalSuccess.msg",
+            "modifiers": [
+                {
+                    "turns": 1,
+                    "buttonLabel": "activities.prognostication.criticalSuccess.modifiers.randomEvent.buttonLabel",
+                    "name": "activities.prognostication.criticalSuccess.modifiers.randomEvent.name",
+                    "isConsumedAfterRoll": true,
+                    "applyIf": [
+                        {
+                            "eq": [
+                                "@phase",
+                                "event"
+                            ]
+                        }
+                    ],
+                    "enabled": true,
+                    "value": 2,
+                    "type": "circumstance"
+                }
+            ]
+        },
+        "success": {
+            "msg": "activities.prognostication.success.msg",
+            "modifiers": [
+                {
+                    "turns": 1,
+                    "buttonLabel": "activities.prognostication.success.modifiers.randomEvent.buttonLabel",
+                    "name": "activities.prognostication.success.modifiers.randomEvent.name",
+                    "applyIf": [
+                        {
+                            "eq": [
+                                "@phase",
+                                "event"
+                            ]
+                        }
+                    ],
+                    "enabled": true,
+                    "value": 1,
+                    "type": "circumstance"
+                }
+            ]
+        },
+        "failure": {
+            "msg": "activities.prognostication.failure.msg"
+        },
+        "criticalFailure": {
+            "msg": "activities.prognostication.criticalFailure.msg"
+        }
+    },
+    {
+        "id": "provide-care",
+        "oncePerRound": false,
+        "fortune": false,
+        "enabled": true,
+        "phase": "leadership",
+        "dc": "control",
+        "title": "activities.provide-care.title",
+        "description": "activities.provide-care.description",
+        "skills": {
+            "defense": 0
+        },
+        "criticalSuccess": {
+            "msg": "activities.provide-care.criticalSuccess.msg"
+        },
+        "success": {
+            "msg": "activities.provide-care.success.msg"
+        },
+        "failure": {
+            "msg": "activities.provide-care.failure.msg"
+        },
+        "criticalFailure": {
+            "msg": "activities.provide-care.criticalFailure.msg"
+        }
+    },
+    {
+        "id": "purchase-commodities",
+        "oncePerRound": false,
+        "fortune": false,
+        "enabled": true,
+        "phase": "leadership",
+        "dc": "control",
+        "title": "activities.purchase-commodities.title",
+        "description": "activities.purchase-commodities.description",
+        "skills": {
+            "trade": 0
+        },
+        "criticalSuccess": {
+            "msg": "activities.purchase-commodities.criticalSuccess.msg"
+        },
+        "success": {
+            "msg": "activities.purchase-commodities.success.msg"
+        },
+        "failure": {
+            "msg": "activities.purchase-commodities.failure.msg"
+        },
+        "criticalFailure": {
+            "msg": "activities.purchase-commodities.criticalFailure.msg"
+        }
+    },
+    {
+        "id": "quell-unrest",
+        "oncePerRound": true,
+        "fortune": false,
+        "enabled": true,
+        "phase": "leadership",
+        "dc": "control",
+        "title": "activities.quell-unrest.title",
+        "description": "activities.quell-unrest.description",
+        "defaultToBestSkill": true,
+        "skills": {
+            "arts": 0,
+            "folklore": 0,
+            "intrigue": 0,
+            "magic": 0,
+            "politics": 0,
+            "warfare": 0
+        },
+        "criticalSuccess": {
+            "msg": "activities.quell-unrest.criticalSuccess.msg"
+        },
+        "success": {
+            "msg": "activities.quell-unrest.success.msg"
+        },
+        "failure": {
+            "msg": "activities.quell-unrest.failure.msg"
+        },
+        "criticalFailure": {
+            "msg": "activities.quell-unrest.criticalFailure.msg"
+        },
+        "automationNotes": "activities.quell-unrest.automationNotes"
+    },
+    {
+        "id": "read-all-about-it",
+        "oncePerRound": false,
+        "fortune": false,
+        "enabled": false,
+        "phase": "leadership",
+        "dc": "control",
+        "title": "activities.read-all-about-it.title",
+        "description": "activities.read-all-about-it.description",
+        "requirement": "activities.read-all-about-it.requirement",
+        "skills": {
+            "scholarship": 0
+        },
+        "criticalSuccess": {
+            "msg": "activities.read-all-about-it.criticalSuccess.msg",
+            "modifiers": [
+                {
+                    "turns": 1,
+                    "buttonLabel": "activities.read-all-about-it.criticalSuccess.modifiers.prepared.buttonLabel",
+                    "name": "activities.read-all-about-it.criticalSuccess.modifiers.prepared.name",
+                    "isConsumedAfterRoll": true,
+                    "applyIf": [
+                        {
+                            "eq": [
+                                "@phase",
+                                "event"
+                            ]
+                        }
+                    ],
+                    "enabled": true,
+                    "value": 4,
+                    "type": "circumstance"
+                }
+            ]
+        },
+        "success": {
+            "msg": "activities.read-all-about-it.success.msg",
+            "modifiers": [
+                {
+                    "turns": 1,
+                    "buttonLabel": "activities.read-all-about-it.success.modifiers.helpful.buttonLabel",
+                    "name": "activities.read-all-about-it.success.modifiers.helpful.name",
+                    "isConsumedAfterRoll": true,
+                    "applyIf": [
+                        {
+                            "in": [
+                                "continuous",
+                                "@eventTraits"
+                            ]
+                        }
+                    ],
+                    "enabled": false,
+                    "value": 2,
+                    "type": "circumstance"
+                }
+            ]
+        },
+        "failure": {
+            "msg": "activities.read-all-about-it.failure.msg"
+        },
+        "criticalFailure": {
+            "msg": "activities.read-all-about-it.criticalFailure.msg",
+            "modifiers": [
+                {
+                    "buttonLabel": "activities.read-all-about-it.criticalFailure.modifiers.falseInformation.buttonLabel",
+                    "name": "activities.read-all-about-it.criticalFailure.modifiers.falseInformation.name",
+                    "turns": 1,
+                    "applyIf": [
+                        {
+                            "eq": [
+                                "@phase",
+                                "event"
+                            ]
+                        }
+                    ],
+                    "enabled": true,
+                    "value": -2,
+                    "type": "circumstance"
+                }
+            ]
+        }
+    },
+    {
+        "id": "recover-army-damaged",
+        "oncePerRound": false,
+        "fortune": false,
+        "enabled": true,
+        "phase": "army",
+        "dc": "control",
+        "title": "activities.recover-army-damaged.title",
+        "description": "activities.recover-army-damaged.description",
+        "defaultToBestSkill": true,
+        "skills": {
+            "defense": 0,
+            "folklore": 2
+        },
+        "criticalSuccess": {
+            "msg": "activities.recover-army-damaged.criticalSuccess.msg"
+        },
+        "success": {
+            "msg": "activities.recover-army-damaged.success.msg"
+        },
+        "failure": {
+            "msg": "activities.recover-army-damaged.failure.msg"
+        },
+        "criticalFailure": {
+            "msg": "activities.recover-army-damaged.criticalFailure.msg"
+        }
+    },
+    {
+        "id": "recover-army-defeated",
+        "oncePerRound": false,
+        "fortune": false,
+        "enabled": true,
+        "phase": "army",
+        "dc": "control",
+        "dcAdjustment": 5,
+        "title": "activities.recover-army-defeated.title",
+        "description": "activities.recover-army-defeated.description",
+        "defaultToBestSkill": true,
+        "skills": {
+            "politics": 3,
+            "warfare": 2
+        },
+        "criticalSuccess": {
+            "msg": "activities.recover-army-defeated.criticalSuccess.msg"
+        },
+        "success": {
+            "msg": "activities.recover-army-defeated.success.msg"
+        },
+        "failure": {
+            "msg": "activities.recover-army-defeated.failure.msg"
+        },
+        "criticalFailure": {
+            "msg": "activities.recover-army-defeated.criticalFailure.msg"
+        }
+    },
+    {
+        "id": "recover-army-lost",
+        "oncePerRound": false,
+        "fortune": false,
+        "enabled": true,
+        "phase": "army",
+        "dc": "control",
+        "title": "activities.recover-army-lost.title",
+        "description": "activities.recover-army-lost.description",
+        "defaultToBestSkill": true,
+        "skills": {
+            "exploration": 0,
+            "wilderness": 2
+        },
+        "criticalSuccess": {
+            "msg": "activities.recover-army-lost.criticalSuccess.msg"
+        },
+        "success": {
+            "msg": "activities.recover-army-lost.success.msg"
+        },
+        "failure": {
+            "msg": "activities.recover-army-lost.failure.msg"
+        },
+        "criticalFailure": {
+            "msg": "activities.recover-army-lost.criticalFailure.msg"
+        }
+    },
+    {
+        "id": "recover-army-mired-pinned",
+        "oncePerRound": false,
+        "fortune": false,
+        "enabled": true,
+        "phase": "army",
+        "dc": "control",
+        "title": "activities.recover-army-mired-pinned.title",
+        "description": "activities.recover-army-mired-pinned.description",
+        "defaultToBestSkill": true,
+        "skills": {
+            "engineering": 0,
+            "magic": 2
+        },
+        "criticalSuccess": {
+            "msg": "activities.recover-army-mired-pinned.criticalSuccess.msg"
+        },
+        "success": {
+            "msg": "activities.recover-army-mired-pinned.success.msg"
+        },
+        "failure": {
+            "msg": "activities.recover-army-mired-pinned.failure.msg"
+        },
+        "criticalFailure": {
+            "msg": "activities.recover-army-mired-pinned.criticalFailure.msg"
+        }
+    },
+    {
+        "id": "recover-army-shaken",
+        "oncePerRound": false,
+        "fortune": false,
+        "enabled": true,
+        "phase": "army",
+        "dc": "control",
+        "title": "activities.recover-army-shaken.title",
+        "description": "activities.recover-army-shaken.description",
+        "defaultToBestSkill": true,
+        "skills": {
+            "arts": 0,
+            "warfare": 2
+        },
+        "criticalSuccess": {
+            "msg": "activities.recover-army-shaken.criticalSuccess.msg"
+        },
+        "success": {
+            "msg": "activities.recover-army-shaken.success.msg"
+        },
+        "failure": {
+            "msg": "activities.recover-army-shaken.failure.msg"
+        },
+        "criticalFailure": {
+            "msg": "activities.recover-army-shaken.criticalFailure.msg"
+        }
+    },
+    {
+        "id": "recover-army-weary",
+        "oncePerRound": false,
+        "fortune": false,
+        "enabled": true,
+        "phase": "army",
+        "dc": "control",
+        "title": "activities.recover-army-weary.title",
+        "description": "activities.recover-army-weary.description",
+        "defaultToBestSkill": true,
+        "skills": {
+            "defense": 0,
+            "arts": 2
+        },
+        "criticalSuccess": {
+            "msg": "activities.recover-army-weary.criticalSuccess.msg"
+        },
+        "success": {
+            "msg": "activities.recover-army-weary.success.msg"
+        },
+        "failure": {
+            "msg": "activities.recover-army-weary.failure.msg"
+        },
+        "criticalFailure": {
+            "msg": "activities.recover-army-weary.criticalFailure.msg"
+        }
+    },
+    {
+        "id": "recruit-army",
+        "oncePerRound": false,
+        "fortune": false,
+        "enabled": true,
+        "phase": "leadership",
+        "dc": "custom",
+        "title": "activities.recruit-army.title",
+        "description": "activities.recruit-army.description",
+        "skills": {
+            "warfare": 0,
+            "statecraft": 0
+        },
+        "criticalSuccess": {
+            "msg": "activities.recruit-army.criticalSuccess.msg"
+        },
+        "success": {
+            "msg": "activities.recruit-army.success.msg"
+        },
+        "failure": {
+            "msg": "activities.recruit-army.failure.msg"
+        },
+        "criticalFailure": {
+            "msg": "activities.recruit-army.criticalFailure.msg"
+        }
+    },
+    {
+        "id": "recruit-monsters",
+        "oncePerRound": false,
+        "fortune": true,
+        "enabled": false,
+        "phase": "region",
+        "dc": "control",
+        "title": "activities.recruit-monsters.title",
+        "description": "activities.recruit-monsters.description",
+        "skills": {
+            "intrigue": 0
+        },
+        "criticalSuccess": {
+            "msg": "activities.recruit-monsters.criticalSuccess.msg",
+            "modifiers": [
+                {
+                    "type": "untyped",
+                    "name": "activities.recruit-monsters.criticalSuccess.modifiers.gainMonster.name",
+                    "buttonLabel": "activities.recruit-monsters.criticalSuccess.modifiers.gainMonster.buttonLabel",
+                    "isConsumedAfterRoll": true,
+                    "enabled": false,
+                    "rollTwiceKeepHighest": true,
+                    "fortune": true,
+                    "applyIf": [
+                        {
+                            "in": [
+                                "dangerous",
+                                "@eventTraits"
+                            ]
+                        },
+                        {
+                            "in": [
+                                "hex",
+                                "@eventTraits"
+                            ]
+                        }
+                    ],
+                    "value": 0
+                }
+            ]
+        },
+        "success": {
+            "msg": "activities.recruit-monsters.success.msg",
+            "modifiers": [
+                {
+                    "type": "untyped",
+                    "name": "activities.recruit-monsters.success.modifiers.befriendMonster.name",
+                    "buttonLabel": "activities.recruit-monsters.success.modifiers.befriendMonster.buttonLabel",
+                    "isConsumedAfterRoll": true,
+                    "enabled": false,
+                    "upgradeResults": [
+                        {
+                            "upgrade": "criticalFailure"
+                        },
+                        {
+                            "upgrade": "failure"
+                        },
+                        {
+                            "upgrade": "success"
+                        }
+                    ],
+                    "turns": 2,
+                    "applyIf": [
+                        {
+                            "eq": [
+                                "@activity",
+                                "recruit-monsters"
+                            ]
+                        }
+                    ],
+                    "value": 0
+                }
+            ]
+        },
+        "failure": {
+            "msg": "activities.recruit-monsters.failure.msg"
+        },
+        "criticalFailure": {
+            "msg": "activities.recruit-monsters.criticalFailure.msg"
+        }
+    },
+    {
+        "id": "relocate-capital",
+        "oncePerRound": false,
+        "fortune": false,
+        "enabled": true,
+        "phase": "leadership",
+        "dc": "control",
+        "dcAdjustment": 5,
+        "title": "activities.relocate-capital.title",
+        "requirement": "activities.relocate-capital.requirement",
+        "description": "activities.relocate-capital.description",
+        "automationNotes": "activities.relocate-capital.automationNotes",
+        "skills": {
+            "industry": 1
+        },
+        "criticalSuccess": {
+            "msg": "activities.relocate-capital.criticalSuccess.msg",
+            "modifiers": [
+                {
+                    "turns": 4,
+                    "enabled": true,
+                    "value": 0,
+                    "type": "untyped",
+                    "name": "activities.relocate-capital.modifiers.cooldown.name",
+                    "buttonLabel": "activities.relocate-capital.modifiers.cooldown.buttonLabel",
+                    "applyIf": [
+                        {
+                            "eq": [
+                                "@activity",
+                                "relocate-capital"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        "success": {
+            "msg": "activities.relocate-capital.success.msg",
+            "modifiers": [
+                {
+                    "turns": 4,
+                    "enabled": true,
+                    "value": 0,
+                    "type": "untyped",
+                    "name": "activities.relocate-capital.modifiers.cooldown.name",
+                    "buttonLabel": "activities.relocate-capital.modifiers.cooldown.buttonLabel",
+                    "applyIf": [
+                        {
+                            "eq": [
+                                "@activity",
+                                "relocate-capital"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        "failure": {
+            "msg": "activities.relocate-capital.failure.msg",
+            "modifiers": [
+                {
+                    "turns": 4,
+                    "enabled": true,
+                    "value": 0,
+                    "type": "untyped",
+                    "name": "activities.relocate-capital.modifiers.cooldown.name",
+                    "buttonLabel": "activities.relocate-capital.modifiers.cooldown.buttonLabel",
+                    "applyIf": [
+                        {
+                            "eq": [
+                                "@activity",
+                                "relocate-capital"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        "criticalFailure": {
+            "msg": "activities.relocate-capital.criticalFailure.msg",
+            "modifiers": [
+                {
+                    "turns": 4,
+                    "enabled": true,
+                    "value": 0,
+                    "type": "untyped",
+                    "name": "activities.relocate-capital.modifiers.cooldown.name",
+                    "buttonLabel": "activities.relocate-capital.modifiers.cooldown.buttonLabel",
+                    "applyIf": [
+                        {
+                            "eq": [
+                                "@activity",
+                                "relocate-capital"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        "actions": 2
+    },
+    {
+        "id": "repair-reputation-corruption",
+        "oncePerRound": false,
+        "fortune": false,
+        "enabled": true,
+        "phase": "leadership",
+        "dc": "control",
+        "dcAdjustment": 2,
+        "title": "activities.repair-reputation-corruption.title",
+        "description": "activities.repair-reputation-corruption.description",
+        "automationNotes": "activities.repair-reputation-crime.automationNotes",
+        "skills": {
+            "arts": 1
+        },
+        "criticalSuccess": {
+            "msg": "activities.repair-reputation-corruption.criticalSuccess.msg"
+        },
+        "success": {
+            "msg": "activities.repair-reputation-corruption.success.msg"
+        },
+        "failure": {
+            "msg": "activities.repair-reputation-corruption.failure.msg",
+            "modifiers": [
+                {
+                    "turns": 2,
+                    "enabled": true,
+                    "value": 0,
+                    "type": "untyped",
+                    "name": "activities.repair-reputation-corruption.failure.modifiers.cooldown.name",
+                    "buttonLabel": "activities.repair-reputation-corruption.failure.modifiers.cooldown.buttonLabel",
+                    "applyIf": [{"eq": ["@activity", "repair-reputation-corruption"]}]
+                }
+            ]
+        },
+        "criticalFailure": {
+            "msg": "activities.repair-reputation-corruption.criticalFailure.msg",
+            "modifiers": [
+                {
+                    "turns": 4,
+                    "enabled": true,
+                    "value": 0,
+                    "type": "untyped",
+                    "name": "activities.repair-reputation-corruption.criticalFailure.modifiers.cooldown.name",
+                    "buttonLabel": "activities.repair-reputation-corruption.criticalFailure.modifiers.cooldown.buttonLabel",
+                    "applyIf": [{"eq": ["@activity", "repair-reputation-corruption"]}]
+                }
+            ]
+        }
+    },
+    {
+        "id": "repair-reputation-crime",
+        "oncePerRound": false,
+        "fortune": false,
+        "enabled": true,
+        "phase": "leadership",
+        "dc": "control",
+        "dcAdjustment": 2,
+        "title": "activities.repair-reputation-crime.title",
+        "description": "activities.repair-reputation-crime.description",
+        "automationNotes": "activities.repair-reputation-crime.automationNotes",
+        "skills": {
+            "trade": 1
+        },
+        "criticalSuccess": {
+            "msg": "activities.repair-reputation-crime.criticalSuccess.msg"
+        },
+        "success": {
+            "msg": "activities.repair-reputation-crime.success.msg"
+        },
+        "failure": {
+            "msg": "activities.repair-reputation-crime.failure.msg",
+            "modifiers": [
+                {
+                    "turns": 2,
+                    "enabled": true,
+                    "value": 0,
+                    "type": "untyped",
+                    "name": "activities.repair-reputation-crime.failure.modifiers.cooldown.name",
+                    "buttonLabel": "activities.repair-reputation-crime.failure.modifiers.cooldown.buttonLabel",
+                    "applyIf": [{"eq": ["@activity", "repair-reputation-crime"]}]
+                }
+            ]
+        },
+        "criticalFailure": {
+            "msg": "activities.repair-reputation-crime.criticalFailure.msg",
+            "modifiers": [
+                {
+                    "turns": 4,
+                    "enabled": true,
+                    "value": 0,
+                    "type": "untyped",
+                    "name": "activities.repair-reputation-crime.criticalFailure.modifiers.cooldown.name",
+                    "buttonLabel": "activities.repair-reputation-crime.criticalFailure.modifiers.cooldown.buttonLabel",
+                    "applyIf": [{"eq": ["@activity", "repair-reputation-crime"]}]
+                }
+            ]
+        }
+    },
+    {
+        "id": "repair-reputation-decay",
+        "oncePerRound": false,
+        "fortune": false,
+        "enabled": true,
+        "phase": "leadership",
+        "dc": "control",
+        "dcAdjustment": 2,
+        "title": "activities.repair-reputation-decay.title",
+        "description": "activities.repair-reputation-decay.description",
+        "automationNotes": "activities.repair-reputation-crime.automationNotes",
+        "skills": {
+            "engineering": 1
+        },
+        "criticalSuccess": {
+            "msg": "activities.repair-reputation-decay.criticalSuccess.msg"
+        },
+        "success": {
+            "msg": "activities.repair-reputation-decay.success.msg"
+        },
+        "failure": {
+            "msg": "activities.repair-reputation-decay.failure.msg",
+            "modifiers": [
+                {
+                    "turns": 2,
+                    "enabled": true,
+                    "value": 0,
+                    "type": "untyped",
+                    "name": "activities.repair-reputation-decay.failure.modifiers.cooldown.name",
+                    "buttonLabel": "activities.repair-reputation-decay.failure.modifiers.cooldown.buttonLabel",
+                    "applyIf": [{"eq": ["@activity", "repair-reputation-decay"]}]
+                }
+            ]
+        },
+        "criticalFailure": {
+            "msg": "activities.repair-reputation-decay.criticalFailure.msg",
+            "modifiers": [
+                {
+                    "turns": 4,
+                    "enabled": true,
+                    "value": 0,
+                    "type": "untyped",
+                    "name": "activities.repair-reputation-decay.criticalFailure.modifiers.cooldown.name",
+                    "buttonLabel": "activities.repair-reputation-decay.criticalFailure.modifiers.cooldown.buttonLabel",
+                    "applyIf": [{"eq": ["@activity", "repair-reputation-decay"]}]
+                }
+            ]
+        }
+    },
+    {
+        "id": "repair-reputation-strife",
+        "oncePerRound": false,
+        "fortune": false,
+        "enabled": true,
+        "phase": "leadership",
+        "dc": "control",
+        "dcAdjustment": 2,
+        "title": "activities.repair-reputation-strife.title",
+        "description": "activities.repair-reputation-strife.description",
+        "automationNotes": "activities.repair-reputation-crime.automationNotes",
+        "skills": {
+            "intrigue": 1
+        },
+        "criticalSuccess": {
+            "msg": "activities.repair-reputation-strife.criticalSuccess.msg"
+        },
+        "success": {
+            "msg": "activities.repair-reputation-strife.success.msg"
+        },
+        "failure": {
+            "msg": "activities.repair-reputation-strife.failure.msg",
+            "modifiers": [
+                {
+                    "turns": 2,
+                    "enabled": true,
+                    "value": 0,
+                    "type": "untyped",
+                    "name": "activities.repair-reputation-strife.failure.modifiers.cooldown.name",
+                    "buttonLabel": "activities.repair-reputation-strife.failure.modifiers.cooldown.buttonLabel",
+                    "applyIf": [{"eq": ["@activity", "repair-reputation-strife"]}]
+                }
+            ]
+        },
+        "criticalFailure": {
+            "msg": "activities.repair-reputation-strife.criticalFailure.msg",
+            "modifiers": [
+                {
+                    "turns": 4,
+                    "enabled": true,
+                    "value": 0,
+                    "type": "untyped",
+                    "name": "activities.repair-reputation-strife.criticalFailure.modifiers.cooldown.name",
+                    "buttonLabel": "activities.repair-reputation-strife.criticalFailure.modifiers.cooldown.buttonLabel",
+                    "applyIf": [{"eq": ["@activity", "repair-reputation-strife"]}]
+                }
+            ]
+        }
+    },
+    {
+        "id": "repair-the-flooded-mine",
+        "oncePerRound": false,
+        "fortune": false,
+        "enabled": false,
+        "phase": "leadership",
+        "dc": 32,
+        "title": "activities.repair-the-flooded-mine.title",
+        "description": "activities.repair-the-flooded-mine.description",
+        "skills": {
+            "engineering": 3
+        },
+        "criticalSuccess": {
+            "msg": "activities.repair-the-flooded-mine.criticalSuccess.msg"
+        },
+        "success": {
+            "msg": "activities.repair-the-flooded-mine.success.msg"
+        },
+        "failure": {
+            "msg": "activities.repair-the-flooded-mine.failure.msg"
+        },
+        "criticalFailure": {
+            "msg": "activities.repair-the-flooded-mine.criticalFailure.msg"
+        }
+    },
+    {
+        "id": "request-foreign-aid-vk",
+        "oncePerRound": false,
+        "fortune": false,
+        "enabled": false,
+        "phase": "leadership",
+        "dc": "negotiation",
+        "title": "activities.request-foreign-aid-vk.title",
+        "automationNotes": "activities.request-foreign-aid-vk.automationNotes",
+        "description": "activities.request-foreign-aid-vk.description",
+        "requirement": "activities.request-foreign-aid-vk.requirement",
+        "skills": {
+            "statecraft": 1
+        },
+        "criticalSuccess": {
+            "msg": "activities.request-foreign-aid-vk.criticalSuccess.msg",
+            "modifiers": [
+                {
+                    "turns": 1,
+                    "buttonLabel": "activities.request-foreign-aid-vk.criticalSuccess.modifiers.greatAid.buttonLabel",
+                    "name": "activities.request-foreign-aid-vk.criticalSuccess.modifiers.greatAid.name",
+                    "isConsumedAfterRoll": true,
+                    "enabled": false,
+                    "value": 4,
+                    "type": "circumstance"
+                },
+                {
+                    "turns": 2,
+                    "enabled": true,
+                    "value": 0,
+                    "type": "untyped",
+                    "name": "activities.request-foreign-aid-vk.modifiers.sameGroupDcMemory.name",
+                    "buttonLabel": "activities.request-foreign-aid-vk.modifiers.sameGroupDcMemory.buttonLabel",
+                    "applyIf": [
+                        {
+                            "eq": [
+                                "@activity",
+                                "request-foreign-aid-vk"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        "success": {
+            "msg": "activities.request-foreign-aid-vk.success.msg",
+            "modifiers": [
+                {
+                    "turns": 1,
+                    "isConsumedAfterRoll": true,
+                    "buttonLabel": "activities.request-foreign-aid-vk.success.modifiers.aid.buttonLabel",
+                    "name": "activities.request-foreign-aid-vk.success.modifiers.aid.name",
+                    "enabled": false,
+                    "value": 2,
+                    "type": "circumstance"
+                },
+                {
+                    "turns": 2,
+                    "enabled": true,
+                    "value": 0,
+                    "type": "untyped",
+                    "name": "activities.request-foreign-aid-vk.modifiers.sameGroupDcMemory.name",
+                    "buttonLabel": "activities.request-foreign-aid-vk.modifiers.sameGroupDcMemory.buttonLabel",
+                    "applyIf": [
+                        {
+                            "eq": [
+                                "@activity",
+                                "request-foreign-aid-vk"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        "failure": {
+            "msg": "activities.request-foreign-aid-vk.failure.msg",
+            "modifiers": [
+                {
+                    "turns": 2,
+                    "enabled": true,
+                    "value": 0,
+                    "type": "untyped",
+                    "name": "activities.request-foreign-aid-vk.modifiers.sameGroupDcMemory.name",
+                    "buttonLabel": "activities.request-foreign-aid-vk.modifiers.sameGroupDcMemory.buttonLabel",
+                    "applyIf": [
+                        {
+                            "eq": [
+                                "@activity",
+                                "request-foreign-aid-vk"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        "criticalFailure": {
+            "msg": "activities.request-foreign-aid-vk.criticalFailure.msg",
+            "modifiers": [
+                {
+                    "turns": 2,
+                    "enabled": true,
+                    "value": 0,
+                    "type": "untyped",
+                    "name": "activities.request-foreign-aid-vk.modifiers.sameGroupDcMemory.name",
+                    "buttonLabel": "activities.request-foreign-aid-vk.modifiers.sameGroupDcMemory.buttonLabel",
+                    "applyIf": [
+                        {
+                            "eq": [
+                                "@activity",
+                                "request-foreign-aid-vk"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    {
+        "id": "request-foreign-aid",
+        "oncePerRound": false,
+        "fortune": false,
+        "enabled": true,
+        "phase": "leadership",
+        "dc": "negotiation",
+        "dcAdjustment": 2,
+        "title": "activities.request-foreign-aid.title",
+        "description": "activities.request-foreign-aid.description",
+        "requirement": "activities.request-foreign-aid.requirement",
+        "automationNotes": "activities.request-foreign-aid.automationNotes",
+        "skills": {
+            "statecraft": 1
+        },
+        "criticalSuccess": {
+            "msg": "activities.request-foreign-aid.criticalSuccess.msg",
+            "modifiers": [
+                {
+                    "turns": 1,
+                    "buttonLabel": "activities.request-foreign-aid.criticalSuccess.modifiers.greatAid.buttonLabel",
+                    "name": "activities.request-foreign-aid.criticalSuccess.modifiers.greatAid.name",
+                    "isConsumedAfterRoll": true,
+                    "enabled": false,
+                    "value": 4,
+                    "type": "circumstance"
+                }
+            ]
+        },
+        "success": {
+            "msg": "activities.request-foreign-aid.success.msg",
+            "modifiers": [
+                {
+                    "turns": 1,
+                    "isConsumedAfterRoll": true,
+                    "buttonLabel": "activities.request-foreign-aid.success.modifiers.aid.buttonLabel",
+                    "name": "activities.request-foreign-aid.success.modifiers.aid.name",
+                    "enabled": false,
+                    "value": 2,
+                    "type": "circumstance"
+                }
+            ]
+        },
+        "failure": {
+            "msg": "activities.request-foreign-aid.failure.msg"
+        },
+        "criticalFailure": {
+            "msg": "activities.request-foreign-aid.criticalFailure.msg"
+        }
+    },
+    {
+        "id": "rest-and-relax",
+        "oncePerRound": false,
+        "fortune": false,
+        "enabled": true,
+        "phase": "leadership",
+        "dc": "control",
+        "title": "activities.rest-and-relax.title",
+        "description": "activities.rest-and-relax.description",
+        "defaultToBestSkill": true,
+        "skills": {
+            "arts": 0,
+            "boating": 0,
+            "scholarship": 0,
+            "trade": 0,
+            "wilderness": 0
+        },
+        "criticalSuccess": {
+            "msg": "activities.rest-and-relax.criticalSuccess.msg",
+            "modifiers": [
+                {
+                    "turns": 1,
+                    "isConsumedAfterRoll": true,
+                    "name": "activities.rest-and-relax.criticalSuccess.modifiers.timeOff.name",
+                    "buttonLabel": "activities.rest-and-relax.criticalSuccess.modifiers.timeOff.buttonLabel",
+                    "applyIf": [
+                        {
+                            "eq": [
+                                "@phase",
+                                "leadership"
+                            ]
+                        }
+                    ],
+                    "enabled": true,
+                    "value": 2,
+                    "type": "circumstance"
+                },
+                {
+                    "name": "activities.rest-and-relax.criticalSuccess.modifiers.nextTurn.name",
+                    "buttonLabel": "activities.rest-and-relax.criticalSuccess.modifiers.nextTurn.buttonLabel",
+                    "turns": 2,
+                    "applyIf": [
+                        {
+                            "eq": [
+                                "@activity",
+                                "rest-and-relax"
+                            ]
+                        }
+                    ],
+                    "value": -4,
+                    "type": "untyped",
+                    "enabled": true
+                }
+            ]
+        },
+        "success": {
+            "msg": "activities.rest-and-relax.success.msg",
+            "modifiers": [
+                {
+                    "name": "activities.rest-and-relax.success.modifiers.nextTurn.name",
+                    "buttonLabel": "activities.rest-and-relax.success.modifiers.nextTurn.buttonLabel",
+                    "turns": 2,
+                    "applyIf": [
+                        {
+                            "eq": [
+                                "@activity",
+                                "rest-and-relax"
+                            ]
+                        }
+                    ],
+                    "value": -4,
+                    "type": "untyped",
+                    "enabled": true
+                }
+            ]
+        },
+        "failure": {
+            "msg": "activities.rest-and-relax.failure.msg",
+            "modifiers": [
+                {
+                    "name": "activities.rest-and-relax.failure.modifiers.nextTurn.name",
+                    "buttonLabel": "activities.rest-and-relax.failure.modifiers.nextTurn.buttonLabel",
+                    "turns": 2,
+                    "applyIf": [
+                        {
+                            "eq": [
+                                "@activity",
+                                "rest-and-relax"
+                            ]
+                        }
+                    ],
+                    "value": -4,
+                    "type": "untyped",
+                    "enabled": true
+                }
+            ]
+        },
+        "criticalFailure": {
+            "msg": "activities.rest-and-relax.criticalFailure.msg",
+            "modifiers": [
+                {
+                    "turns": 2,
+                    "name": "activities.rest-and-relax.criticalFailure.modifiers.wastedTime.name",
+                    "buttonLabel": "activities.rest-and-relax.criticalFailure.modifiers.wastedTime.buttonLabel",
+                    "isConsumedAfterRoll": true,
+                    "applyIf": [
+                        {
+                            "eq": [
+                                "@phase",
+                                "leadership"
+                            ]
+                        }
+                    ],
+                    "enabled": true,
+                    "value": -2,
+                    "type": "circumstance"
+                },
+                {
+                    "name": "activities.rest-and-relax.criticalFailure.modifiers.nextTurn.name",
+                    "buttonLabel": "activities.rest-and-relax.criticalFailure.modifiers.nextTurn.buttonLabel",
+                    "turns": 2,
+                    "applyIf": [
+                        {
+                            "eq": [
+                                "@activity",
+                                "rest-and-relax"
+                            ]
+                        }
+                    ],
+                    "value": -4,
+                    "type": "untyped",
+                    "enabled": true
+                }
+            ]
+        },
+        "automationNotes": "activities.rest-and-relax.automationNotes"
+    },
+    {
+        "id": "restore-the-temple",
+        "oncePerRound": false,
+        "fortune": false,
+        "enabled": false,
+        "phase": "leadership",
+        "dc": 25,
+        "title": "activities.restore-the-temple.title",
+        "description": "activities.restore-the-temple.description",
+        "skills": {
+            "folklore": 0
+        },
+        "criticalSuccess": {
+            "msg": "activities.restore-the-temple.criticalSuccess.msg"
+        },
+        "success": {
+            "msg": "activities.restore-the-temple.success.msg"
+        },
+        "failure": {
+            "msg": "activities.restore-the-temple.failure.msg"
+        },
+        "criticalFailure": {
+            "msg": "activities.restore-the-temple.criticalFailure.msg",
+            "modifiers": [
+                {
+                    "name": "activities.restore-the-temple.criticalFailure.modifiers.disaster.name",
+                    "buttonLabel": "activities.restore-the-temple.criticalFailure.modifiers.disaster.buttonLabel",
+                    "applyIf": [
+                        {
+                            "eq": [
+                                "@activity",
+                                "restore-the-temple"
+                            ]
+                        }
+                    ],
+                    "value": -4,
+                    "type": "untyped",
+                    "enabled": true
+                }
+            ]
+        }
+    },
+    {
+        "id": "retrain-vk",
+        "title": "activities.retrain-vk.title",
+        "phase": "leadership",
+        "actions": 2,
+        "enabled": false,
+        "dc": "control",
+        "oncePerRound": true,
+        "fortune": false,
+        "skills": {
+            "agriculture": 0,
+            "arts": 0,
+            "boating": 0,
+            "defense": 0,
+            "engineering": 0,
+            "exploration": 0,
+            "folklore": 0,
+            "industry": 0,
+            "intrigue": 0,
+            "magic": 0,
+            "politics": 0,
+            "scholarship": 0,
+            "statecraft": 0,
+            "trade": 0,
+            "warfare": 0,
+            "wilderness": 0
+        },
+        "description": "activities.retrain-vk.description",
+        "criticalSuccess": {
+            "msg": "activities.retrain-vk.criticalSuccess.msg"
+        },
+        "success": {
+            "msg": "activities.retrain-vk.success.msg"
+        },
+        "failure": {
+            "msg": "activities.retrain-vk.failure.msg"
+        },
+        "criticalFailure": {
+            "msg": "activities.retrain-vk.criticalFailure.msg"
+        }
+    },
+    {
+        "id": "send-diplomatic-envoy",
+        "oncePerRound": false,
+        "fortune": false,
+        "enabled": true,
+        "phase": "leadership",
+        "dc": "negotiation",
+        "title": "activities.send-diplomatic-envoy.title",
+        "description": "activities.send-diplomatic-envoy.description",
+        "automationNotes": "activities.send-diplomatic-envoy.automationNotes",
+        "skills": {
+            "statecraft": 1
+        },
+        "modifiers": [
+            {
+                "enabled": true,
+                "name": "activities.send-diplomatic-envoy.modifiers.atWar.name",
+                "buttonLabel": "activities.send-diplomatic-envoy.modifiers.atWar.buttonLabel",
+                "value": -4,
+                "type": "circumstance",
+                "applyIf": [
+                    {
+                        "hasRollOption": "group-at-war"
+                    }
+                ],
+                "downgradeResults": [
+                    {
+                        "downgrade": "criticalSuccess"
+                    },
+                    {
+                        "downgrade": "success"
+                    },
+                    {
+                        "downgrade": "failure"
+                    }
+                ]
+            }
+        ],
+        "criticalSuccess": {
+            "msg": "activities.send-diplomatic-envoy.criticalSuccess.msg",
+            "modifiers": [
+                {
+                    "turns": 1,
+                    "buttonLabel": "activities.send-diplomatic-envoy.criticalSuccess.modifiers.goodFirstImpression.buttonLabel",
+                    "name": "activities.send-diplomatic-envoy.criticalSuccess.modifiers.goodFirstImpression.name",
+                    "enabled": false,
+                    "value": 2,
+                    "type": "circumstance"
+                }
+            ]
+        },
+        "success": {
+            "msg": "activities.send-diplomatic-envoy.success.msg"
+        },
+        "failure": {
+            "msg": "activities.send-diplomatic-envoy.failure.msg",
+            "modifiers": [
+                {
+                    "turns": 2,
+                    "buttonLabel": "activities.send-diplomatic-envoy.failure.modifiers.notReady.buttonLabel",
+                    "name": "activities.send-diplomatic-envoy.failure.modifiers.notReady.name",
+                    "enabled": false,
+                    "value": 2,
+                    "applyIf": [
+                        {
+                            "eq": [
+                                "@activity",
+                                "send-diplomatic-envoy"
+                            ]
+                        }
+                    ],
+                    "type": "circumstance"
+                }
+            ]
+        },
+        "criticalFailure": {
+            "msg": "activities.send-diplomatic-envoy.criticalFailure.msg",
+            "modifiers": [
+                {
+                    "turns": 4,
+                    "enabled": true,
+                    "value": 0,
+                    "type": "untyped",
+                    "name": "activities.send-diplomatic-envoy.criticalFailure.modifiers.lockout.name",
+                    "buttonLabel": "activities.send-diplomatic-envoy.criticalFailure.modifiers.lockout.buttonLabel",
+                    "applyIf": [
+                        {
+                            "eq": [
+                                "@activity",
+                                "send-diplomatic-envoy"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    {
+        "id": "show-of-force",
+        "oncePerRound": false,
+        "fortune": false,
+        "enabled": false,
+        "phase": "leadership",
+        "dc": "control",
+        "title": "activities.show-of-force.title",
+        "description": "activities.show-of-force.description",
+        "skills": {
+            "warfare": 0
+        },
+        "criticalSuccess": {
+            "msg": "activities.show-of-force.criticalSuccess.msg"
+        },
+        "success": {
+            "msg": "activities.show-of-force.success.msg"
+        },
+        "failure": {
+            "msg": "activities.show-of-force.failure.msg"
+        },
+        "criticalFailure": {
+            "msg": "activities.show-of-force.criticalFailure.msg"
+        }
+    },
+    {
+        "id": "spread-the-legend",
+        "oncePerRound": false,
+        "fortune": false,
+        "enabled": false,
+        "phase": "leadership",
+        "dc": "control",
+        "title": "activities.spread-the-legend.title",
+        "description": "activities.spread-the-legend.description",
+        "skills": {
+            "arts": 0
+        },
+        "criticalSuccess": {
+            "msg": "activities.spread-the-legend.criticalSuccess.msg",
+            "modifiers": [
+                {
+                    "name": "activities.spread-the-legend.criticalSuccess.modifiers.increaseGlory.name",
+                    "buttonLabel": "activities.spread-the-legend.criticalSuccess.modifiers.increaseGlory.buttonLabel",
+                    "enabled": true,
+                    "value": 1,
+                    "type": "untyped",
+                    "applyIf": [
+                        {
+                            "in": [
+                                "dangerous",
+                                "@eventTraits"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        "success": {
+            "msg": "activities.spread-the-legend.success.msg"
+        },
+        "failure": {
+            "msg": "activities.spread-the-legend.failure.msg"
+        },
+        "criticalFailure": {
+            "msg": "activities.spread-the-legend.criticalFailure.msg"
+        }
+    },
+    {
+        "id": "spread-the-legend-printing",
+        "oncePerRound": false,
+        "fortune": false,
+        "enabled": false,
+        "phase": "leadership",
+        "dc": "control",
+        "title": "activities.spread-the-legend-printing.title",
+        "description": "activities.spread-the-legend.description",
+        "skills": {
+            "arts": 0
+        },
+        "modifiers": [
+            {
+                "type": "item",
+                "buttonLabel": "activities.spread-the-legend.modifiers.printingPress.buttonLabel",
+                "name": "activities.spread-the-legend.modifiers.printingPress.name",
+                "value": 2,
+                "enabled": true
+            }
+        ],
+        "criticalSuccess": {
+            "msg": "activities.spread-the-legend.criticalSuccess.msg",
+            "modifiers": [
+                {
+                    "name": "activities.spread-the-legend.criticalSuccess.modifiers.increaseGlory.name",
+                    "buttonLabel": "activities.spread-the-legend.criticalSuccess.modifiers.increaseGlory.buttonLabel",
+                    "enabled": true,
+                    "value": 1,
+                    "type": "untyped",
+                    "applyIf": [
+                        {
+                            "in": [
+                                "dangerous",
+                                "@eventTraits"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        "success": {
+            "msg": "activities.spread-the-legend.success.msg"
+        },
+        "failure": {
+            "msg": "activities.spread-the-legend.failure.msg"
+        },
+        "criticalFailure": {
+            "msg": "activities.spread-the-legend.criticalFailure.msg"
+        }
+    },
+    {
+        "id": "supernatural-solution",
+        "enabled": true,
+        "phase": "leadership",
+        "dc": "control",
+        "title": "activities.supernatural-solution.title",
+        "description": "activities.supernatural-solution.description",
+        "automationNotes": "activities.supernatural-solution.automationNotes",
+        "oncePerRound": false,
+        "fortune": true,
+        "skills": {
+            "magic": 0
+        },
+        "criticalSuccess": {
+            "msg": "activities.supernatural-solution.criticalSuccess.msg"
+        },
+        "success": {
+            "msg": "activities.supernatural-solution.success.msg"
+        },
+        "failure": {
+            "msg": "activities.supernatural-solution.failure.msg"
+        },
+        "criticalFailure": {
+            "msg": "activities.supernatural-solution.criticalFailure.msg",
+            "modifiers": [
+                {
+                    "turns": 3,
+                    "enabled": true,
+                    "value": 0,
+                    "type": "untyped",
+                    "name": "activities.supernatural-solution.criticalFailure.modifiers.lockout.name",
+                    "buttonLabel": "activities.supernatural-solution.criticalFailure.modifiers.lockout.buttonLabel",
+                    "applyIf": [
+                        {
+                            "eq": [
+                                "@activity",
+                                "supernatural-solution"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        "special": "activities.supernatural-solution.special"
+    },
+    {
+        "id": "supplementary-hunting",
+        "oncePerRound": false,
+        "fortune": false,
+        "enabled": false,
+        "phase": "region",
+        "dc": "control",
+        "title": "activities.supplementary-hunting.title",
+        "description": "activities.supplementary-hunting.description",
+        "automationNotes": "activities.supplementary-hunting.automationNotes",
+        "skills": {
+            "wilderness": 0
+        },
+        "criticalSuccess": {
+            "msg": "activities.supplementary-hunting.criticalSuccess.msg"
+        },
+        "success": {
+            "msg": "activities.supplementary-hunting.success.msg"
+        },
+        "failure": {
+            "msg": "activities.supplementary-hunting.failure.msg",
+            "modifiers": [
+                {
+                    "turns": 2,
+                    "enabled": true,
+                    "value": 0,
+                    "type": "untyped",
+                    "name": "activities.supplementary-hunting.failure.modifiers.lockout.name",
+                    "buttonLabel": "activities.supplementary-hunting.failure.modifiers.lockout.buttonLabel",
+                    "applyIf": [
+                        {
+                            "eq": [
+                                "@activity",
+                                "supplementary-hunting"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        "criticalFailure": {
+            "msg": "activities.supplementary-hunting.criticalFailure.msg",
+            "modifiers": [
+                {
+                    "turns": 2,
+                    "enabled": true,
+                    "value": 0,
+                    "type": "untyped",
+                    "name": "activities.supplementary-hunting.criticalFailure.modifiers.lockout.name",
+                    "buttonLabel": "activities.supplementary-hunting.criticalFailure.modifiers.lockout.buttonLabel",
+                    "applyIf": [
+                        {
+                            "eq": [
+                                "@activity",
+                                "supplementary-hunting"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    {
+        "id": "take-charge-vk",
+        "oncePerRound": false,
+        "fortune": false,
+        "enabled": false,
+        "phase": "leadership",
+        "dc": "control",
+        "title": "activities.take-charge-vk.title",
+        "description": "activities.take-charge-vk.description",
+        "defaultToBestSkill": true,
+        "skills": {
+            "agriculture": 1,
+            "arts": 1,
+            "boating": 1,
+            "defense": 1,
+            "engineering": 1,
+            "exploration": 1,
+            "folklore": 1,
+            "industry": 1,
+            "intrigue": 1,
+            "magic": 1,
+            "politics": 1,
+            "scholarship": 1,
+            "statecraft": 1,
+            "trade": 1,
+            "warfare": 1,
+            "wilderness": 1
+        },
+        "criticalSuccess": {
+            "msg": "activities.take-charge-vk.criticalSuccess.msg",
+            "modifiers": [
+                {
+                    "turns": 1,
+                    "name": "activities.take-charge-vk.criticalSuccess.modifiers.nextCheck.name",
+                    "buttonLabel": "activities.take-charge-vk.criticalSuccess.modifiers.nextCheck.buttonLabel",
+                    "isConsumedAfterRoll": true,
+                    "enabled": false,
+                    "value": 1,
+                    "type": "circumstance"
+                }
+            ]
+        },
+        "success": {
+            "msg": "activities.take-charge-vk.success.msg"
+        },
+        "failure": {
+            "msg": "activities.take-charge-vk.failure.msg"
+        },
+        "criticalFailure": {
+            "msg": "activities.take-charge-vk.criticalFailure.msg",
+            "modifiers": [
+                {
+                    "turns": 1,
+                    "isConsumedAfterRoll": true,
+                    "name": "activities.take-charge-vk.criticalFailure.modifiers.nextCheck.name",
+                    "buttonLabel": "activities.take-charge-vk.criticalFailure.modifiers.nextCheck.buttonLabel",
+                    "enabled": false,
+                    "value": -1,
+                    "type": "circumstance"
+                }
+            ]
+        },
+        "automationNotes": "activities.take-charge-vk.automationNotes"
+    },
+    {
+        "id": "tap-treasury",
+        "order": 3,
+        "oncePerRound": false,
+        "fortune": false,
+        "enabled": true,
+        "phase": "commerce",
+        "dc": "control",
+        "title": "activities.tap-treasury.title",
+        "description": "activities.tap-treasury.description",
+        "skills": {
+            "politics": 0
+        },
+        "criticalSuccess": {
+            "msg": "activities.tap-treasury.criticalSuccess.msg",
+            "modifiers": [
+                {
+                    "name": "activities.tap-treasury.criticalSuccess.modifiers.futureAttempts.name",
+                    "buttonLabel": "activities.tap-treasury.criticalSuccess.modifiers.futureAttempts.buttonLabel",
+                    "applyIf": [
+                        {
+                            "eq": [
+                                "@activity",
+                                "tap-treasury"
+                            ]
+                        }
+                    ],
+                    "downgradeResults": [
+                        {
+                            "downgrade": "criticalSuccess",
+                            "times": 2
+                        },
+                        {
+                            "downgrade": "success",
+                            "times": 2
+                        },
+                        {
+                            "downgrade": "failure"
+                        }
+                    ],
+                    "value": 0,
+                    "type": "untyped",
+                    "enabled": true
+                }
+            ]
+        },
+        "success": {
+            "msg": "activities.tap-treasury.success.msg",
+            "modifiers": [
+                {
+                    "value": -1,
+                    "buttonLabel": "activities.tap-treasury.success.modifiers.overdrawn.buttonLabel",
+                    "name": "activities.tap-treasury.success.modifiers.overdrawn.name",
+                    "applyIf": [
+                        {
+                            "eq": [
+                                "@ability",
+                                "economy"
+                            ]
+                        }
+                    ],
+                    "turns": 2,
+                    "enabled": true,
+                    "type": "circumstance"
+                },
+                {
+                    "name": "activities.tap-treasury.success.modifiers.futureAttempts.name",
+                    "buttonLabel": "activities.tap-treasury.success.modifiers.futureAttempts.buttonLabel",
+                    "applyIf": [
+                        {
+                            "eq": [
+                                "@activity",
+                                "tap-treasury"
+                            ]
+                        }
+                    ],
+                    "downgradeResults": [
+                        {
+                            "downgrade": "criticalSuccess",
+                            "times": 2
+                        },
+                        {
+                            "downgrade": "success",
+                            "times": 2
+                        },
+                        {
+                            "downgrade": "failure"
+                        }
+                    ],
+                    "value": 0,
+                    "type": "untyped",
+                    "enabled": true
+                }
+            ]
+        },
+        "failure": {
+            "msg": "activities.tap-treasury.failure.msg",
+            "modifiers": [
+                {
+                    "value": -1,
+                    "buttonLabel": "activities.tap-treasury.failure.modifiers.failedToSecure.buttonLabel",
+                    "name": "activities.tap-treasury.failure.modifiers.failedToSecure.name",
+                    "applyIf": [
+                        {
+                            "in": [
+                                "@ability",
+                                [
+                                    "loyalty",
+                                    "economy"
+                                ]
+                            ]
+                        }
+                    ],
+                    "turns": 2,
+                    "enabled": true,
+                    "type": "circumstance"
+                },
+                {
+                    "name": "activities.tap-treasury.failure.modifiers.futureAttempts.name",
+                    "buttonLabel": "activities.tap-treasury.failure.modifiers.futureAttempts.buttonLabel",
+                    "applyIf": [
+                        {
+                            "eq": [
+                                "@activity",
+                                "tap-treasury"
+                            ]
+                        }
+                    ],
+                    "downgradeResults": [
+                        {
+                            "downgrade": "criticalSuccess",
+                            "times": 2
+                        },
+                        {
+                            "downgrade": "success",
+                            "times": 2
+                        },
+                        {
+                            "downgrade": "failure"
+                        }
+                    ],
+                    "value": 0,
+                    "type": "untyped",
+                    "enabled": true
+                }
+            ]
+        },
+        "criticalFailure": {
+            "msg": "activities.tap-treasury.criticalFailure.msg",
+            "modifiers": [
+                {
+                    "value": -1,
+                    "buttonLabel": "activities.tap-treasury.criticalFailure.modifiers.rumors.buttonLabel",
+                    "name": "activities.tap-treasury.criticalFailure.modifiers.rumors.name",
+                    "applyIf": [
+                        {
+                            "in": [
+                                "@ability",
+                                [
+                                    "loyalty",
+                                    "economy"
+                                ]
+                            ]
+                        }
+                    ],
+                    "turns": 2,
+                    "enabled": true,
+                    "type": "circumstance"
+                },
+                {
+                    "name": "activities.tap-treasury.criticalFailure.modifiers.futureAttempts.name",
+                    "buttonLabel": "activities.tap-treasury.criticalFailure.modifiers.futureAttempts.buttonLabel",
+                    "applyIf": [
+                        {
+                            "eq": [
+                                "@activity",
+                                "tap-treasury"
+                            ]
+                        }
+                    ],
+                    "downgradeResults": [
+                        {
+                            "downgrade": "criticalSuccess",
+                            "times": 2
+                        },
+                        {
+                            "downgrade": "success",
+                            "times": 2
+                        },
+                        {
+                            "downgrade": "failure"
+                        }
+                    ],
+                    "value": 0,
+                    "type": "untyped",
+                    "enabled": true
+                }
+            ]
+        },
+        "automationNotes": "activities.tap-treasury.automationNotes"
+    },
+    {
+        "id": "trade-commodities",
+        "order": 4,
+        "oncePerRound": false,
+        "fortune": false,
+        "enabled": true,
+        "phase": "commerce",
+        "dc": "control",
+        "title": "activities.trade-commodities.title",
+        "description": "activities.trade-commodities.description",
+        "modifiers": [
+            {
+                "type": "circumstance",
+                "value": 1,
+                "enabled": false,
+                "name": "activities.trade-commodities.modifiers.establishedRelations.name",
+                "buttonLabel": "activities.trade-commodities.modifiers.establishedRelations.buttonLabel"
+            }
+        ],
+        "skills": {
+            "industry": 0
+        },
+        "criticalSuccess": {
+            "msg": "activities.trade-commodities.criticalSuccess.msg",
+            "modifiers": [
+                {
+                    "turns": 2,
+                    "enabled": true,
+                    "value": 0,
+                    "type": "untyped",
+                    "name": "activities.trade-commodities.modifiers.tradedThisTurn.name",
+                    "buttonLabel": "activities.trade-commodities.modifiers.tradedThisTurn.buttonLabel",
+                    "applyIf": [
+                        {
+                            "eq": [
+                                "@activity",
+                                "trade-commodities"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        "success": {
+            "msg": "activities.trade-commodities.success.msg",
+            "modifiers": [
+                {
+                    "turns": 2,
+                    "enabled": true,
+                    "value": 0,
+                    "type": "untyped",
+                    "name": "activities.trade-commodities.modifiers.tradedThisTurn.name",
+                    "buttonLabel": "activities.trade-commodities.modifiers.tradedThisTurn.buttonLabel",
+                    "applyIf": [
+                        {
+                            "eq": [
+                                "@activity",
+                                "trade-commodities"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        "failure": {
+            "msg": "activities.trade-commodities.failure.msg",
+            "modifiers": [
+                {
+                    "turns": 2,
+                    "enabled": true,
+                    "value": 0,
+                    "type": "untyped",
+                    "name": "activities.trade-commodities.modifiers.tradedThisTurn.name",
+                    "buttonLabel": "activities.trade-commodities.modifiers.tradedThisTurn.buttonLabel",
+                    "applyIf": [
+                        {
+                            "eq": [
+                                "@activity",
+                                "trade-commodities"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        "criticalFailure": {
+            "msg": "activities.trade-commodities.criticalFailure.msg",
+            "modifiers": [
+                {
+                    "turns": 2,
+                    "enabled": true,
+                    "value": 0,
+                    "type": "untyped",
+                    "name": "activities.trade-commodities.modifiers.tradedThisTurn.name",
+                    "buttonLabel": "activities.trade-commodities.modifiers.tradedThisTurn.buttonLabel",
+                    "applyIf": [
+                        {
+                            "eq": [
+                                "@activity",
+                                "trade-commodities"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        "automationNotes": "activities.trade-commodities.automationNotes"
+    },
+    {
+        "id": "train-army",
+        "oncePerRound": false,
+        "fortune": false,
+        "enabled": true,
+        "phase": "army",
+        "dc": "control",
+        "title": "activities.train-army.title",
+        "description": "activities.train-army.description",
+        "defaultToBestSkill": true,
+        "skills": {
+            "scholarship": 0,
+            "warfare": 0
+        },
+        "criticalSuccess": {
+            "msg": "activities.train-army.criticalSuccess.msg"
+        },
+        "success": {
+            "msg": "activities.train-army.success.msg"
+        },
+        "failure": {
+            "msg": "activities.train-army.failure.msg"
+        },
+        "criticalFailure": {
+            "msg": "activities.train-army.criticalFailure.msg"
+        }
+    },
+    {
+        "id": "wartime-oversight",
+        "oncePerRound": false,
+        "fortune": false,
+        "enabled": true,
+        "phase": "leadership",
+        "dc": "none",
+        "actions": 1,
+        "title": "activities.wartime-oversight.title",
+        "requirement": "activities.wartime-oversight.requirement",
+        "description": "activities.wartime-oversight.description",
+        "special": "activities.wartime-oversight.special",
+        "skills": {}
+    },
+    {
+        "id": "warfare-exercises",
+        "oncePerRound": false,
+        "fortune": false,
+        "enabled": false,
+        "phase": "leadership",
+        "dc": "control",
+        "title": "activities.warfare-exercises.title",
+        "description": "activities.warfare-exercises.description",
+        "skills": {
+            "warfare": 0
+        },
+        "criticalSuccess": {
+            "msg": "activities.warfare-exercises.criticalSuccess.msg",
+            "modifiers": [
+                {
+                    "turns": 1,
+                    "enabled": true,
+                    "buttonLabel": "activities.warfare-exercises.criticalSuccess.modifiers.exercised.buttonLabel",
+                    "name": "activities.warfare-exercises.criticalSuccess.modifiers.exercised.name",
+                    "applyIf": [
+                        {
+                            "eq": [
+                                "@phase",
+                                "army"
+                            ]
+                        }
+                    ],
+                    "value": 0,
+                    "valueExpression": {
+                        "when": {
+                            "cases": [
+                                {
+                                    "case": [
+                                        {
+                                            "all": [
+                                                {
+                                                    "gte": [
+                                                        "@kingdomLevel",
+                                                        9
+                                                    ]
+                                                },
+                                                {
+                                                    "lt": [
+                                                        "@kingdomLevel",
+                                                        15
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        2
+                                    ]
+                                },
+                                {
+                                    "case": [
+                                        {
+                                            "gte": [
+                                                "@kingdomLevel",
+                                                15
+                                            ]
+                                        },
+                                        3
+                                    ]
+                                }
+                            ],
+                            "default": 1
+                        }
+                    },
+                    "type": "circumstance"
+                },
+                {
+                    "turns": 1,
+                    "enabled": true,
+                    "buttonLabel": "activities.warfare-exercises.criticalSuccess.modifiers.armyFailure.buttonLabel",
+                    "name": "activities.warfare-exercises.criticalSuccess.modifiers.armyFailure.name",
+                    "isConsumedAfterRoll": true,
+                    "applyIf": [
+                        {
+                            "eq": [
+                                "@phase",
+                                "army"
+                            ]
+                        }
+                    ],
+                    "value": 0,
+                    "upgradeResults": [
+                        {
+                            "upgrade": "criticalFailure"
+                        }
+                    ],
+                    "type": "untyped"
+                }
+            ]
+        },
+        "success": {
+            "msg": "activities.warfare-exercises.success.msg",
+            "modifiers": [
+                {
+                    "turns": 1,
+                    "isConsumedAfterRoll": true,
+                    "enabled": true,
+                    "buttonLabel": "activities.warfare-exercises.success.modifiers.exercised.buttonLabel",
+                    "name": "activities.warfare-exercises.success.modifiers.exercised.name",
+                    "applyIf": [
+                        {
+                            "eq": [
+                                "@phase",
+                                "army"
+                            ]
+                        }
+                    ],
+                    "value": 0,
+                    "valueExpression": {
+                        "when": {
+                            "cases": [
+                                {
+                                    "case": [
+                                        {
+                                            "all": [
+                                                {
+                                                    "gte": [
+                                                        "@kingdomLevel",
+                                                        9
+                                                    ]
+                                                },
+                                                {
+                                                    "lt": [
+                                                        "@kingdomLevel",
+                                                        15
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        2
+                                    ]
+                                },
+                                {
+                                    "case": [
+                                        {
+                                            "gte": [
+                                                "@kingdomLevel",
+                                                15
+                                            ]
+                                        },
+                                        3
+                                    ]
+                                }
+                            ],
+                            "default": 1
+                        }
+                    },
+                    "type": "circumstance"
+                }
+            ]
+        },
+        "failure": {
+            "msg": "activities.warfare-exercises.failure.msg"
+        },
+        "criticalFailure": {
+            "msg": "activities.warfare-exercises.criticalFailure.msg"
+        }
+    }
+]

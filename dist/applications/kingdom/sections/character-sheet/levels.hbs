@@ -1,0 +1,80 @@
+{{#each featuresByLevel}}
+    <section {{#if hidden}}hidden{{/if}}>
+        {{#each features}}
+            {{> formElement id}}
+            <section class="km-kingdom-sheet-section">
+                <h2>{{name}} <span class="km-header-right-align">
+                        {{#if feat}}{{> formElement feat}}{{/if}}
+                    {{#if skillProficiency}}{{> formElement skillProficiency}}{{/if}}
+                    </span></h2>
+                {{#unless feat}}
+                    <p>{{description}}</p>
+                    {{#if automationNotes}}<p><b>{{localizeKM "kingdom.automationNotes"}}:</b> {{automationNotes}}</p>{{/if}}
+                {{/unless}}
+                {{#if abilityBoosts}}
+                    <div class="km-choose-boosts">
+                        <p>{{localizeKM "kingdom.pickBoosts" count=abilityBoosts.free}}:</p>
+                        <ul>
+                            <li>{{> formElement abilityBoosts.culture}}</li>
+                            <li>{{> formElement abilityBoosts.economy}}</li>
+                            <li>{{> formElement abilityBoosts.loyalty}}</li>
+                            <li>{{> formElement abilityBoosts.stability}}</li>
+                        </ul>
+                    </div>
+                {{/if}}
+                {{#if feat}}
+                    <p>{{featDescription}}</p>
+                    {{#if featRequirements}}<p {{#unless featSatisfiesRequirements}}class="km-unsatisfied-requirement"{{/unless}}><b>{{localizeKM "kingdom.prerequisites"}}:</b> {{featRequirements}}</p>{{/if}}
+                    {{#if featAutomationNotes}}<p><b>{{localizeKM "kingdom.automationNotes"}}:</b> {{featAutomationNotes}}</p>{{/if}}
+                    {{#each featRuinThresholdIncreases}}
+                        <div class="km-choose-boosts">
+                            <p>{{localizeKM "kingdom.pickRuinIncreases" count=amount value=value}}</p>
+                            <ul class="km-choose-ruins">
+                                <li>
+                                    {{> formElement crime.input}}
+                                    {{> formElement crime.valueInput}}
+                                </li>
+                                <li>
+                                    {{> formElement corruption.input}}
+                                    {{> formElement corruption.valueInput}}
+                                </li>
+                                <li>
+                                    {{> formElement strife.input}}
+                                    {{> formElement strife.valueInput}}
+                                </li>
+                                <li>
+                                    {{> formElement stability.input}}
+                                    {{> formElement stability.valueInput}}
+                                </li>
+                            </ul>
+                        </div>
+                    {{/each}}
+                    {{#if removeLeaderVacancyPenalty}}{{> formElement removeLeaderVacancyPenalty}}{{/if}}
+                {{/if}}
+                {{#if ruinThresholdIncreases}}
+                    <div class="km-choose-ruins">
+                        <p>{{localizeKM "kingdom.pickRuinIncreases" count=ruinThresholdIncreases.amount value=ruinThresholdIncreases.value}}:</p>
+                        <ul>
+                            <li>
+                                {{> formElement ruinThresholdIncreases.crime.input}}
+                                {{> formElement ruinThresholdIncreases.crime.valueInput}}
+                            </li>
+                            <li>
+                                {{> formElement ruinThresholdIncreases.corruption.input}}
+                                {{> formElement ruinThresholdIncreases.corruption.valueInput}}
+                            </li>
+                            <li>
+                                {{> formElement ruinThresholdIncreases.strife.input}}
+                                {{> formElement ruinThresholdIncreases.strife.valueInput}}
+                            </li>
+                            <li>
+                                {{> formElement ruinThresholdIncreases.stability.input}}
+                                {{> formElement ruinThresholdIncreases.stability.valueInput}}
+                            </li>
+                        </ul>
+                    </div>
+                {{/if}}
+            </section>
+        {{/each}}
+    </section>
+{{/each}}

@@ -1,0 +1,282 @@
+[
+    {
+        "id": "achieve-your-first-successful-pledge-of-fealty",
+        "name": "milestones.achieve-your-first-successful-pledge-of-fealty.name",
+        "xp": 60,
+        "enabledOnFirstRun": false,
+        "isCultMilestone": false
+    },
+    {
+        "id": "all-eight-leadership-roles-are-assigned",
+        "name": "milestones.all-eight-leadership-roles-are-assigned.name",
+        "xp": 60,
+        "enabledOnFirstRun": true,
+        "isCultMilestone": false
+    },
+    {
+        "id": "build-roads-for-the-first-time",
+        "name": "milestones.build-roads-for-the-first-time.name",
+        "xp": 20,
+        "enabledOnFirstRun": false,
+        "isCultMilestone": false
+    },
+    {
+        "id": "build-your-first-famousinfamous-structure",
+        "name": "milestones.build-your-first-famousinfamous-structure.name",
+        "xp": 20,
+        "enabledOnFirstRun": false,
+        "isCultMilestone": false
+    },
+    {
+        "id": "build-your-first-structure-requiring-expert-in-a-kingdom-skill",
+        "name": "milestones.build-your-first-structure-requiring-expert-in-a-kingdom-skill.name",
+        "xp": 20,
+        "enabledOnFirstRun": false,
+        "isCultMilestone": false
+    },
+    {
+        "id": "build-your-first-structure-requiring-master-in-a-kingdom-skill",
+        "name": "milestones.build-your-first-structure-requiring-master-in-a-kingdom-skill.name",
+        "xp": 60,
+        "enabledOnFirstRun": false,
+        "isCultMilestone": false
+    },
+    {
+        "id": "build-your-first-seat-of-government-town-hall-castle-or-palace",
+        "name": "milestones.build-your-first-seat-of-government-town-hall-castle-or-palace.name",
+        "xp": 20,
+        "enabledOnFirstRun": false,
+        "isCultMilestone": false
+    },
+    {
+        "id": "celebrate-your-first-successful-holiday",
+        "name": "milestones.celebrate-your-first-successful-holiday.name",
+        "xp": 20,
+        "enabledOnFirstRun": false,
+        "isCultMilestone": false
+    },
+    {
+        "id": "claim-your-first-landmark",
+        "name": "milestones.claim-your-first-landmark.name",
+        "xp": 40,
+        "enabledOnFirstRun": true,
+        "isCultMilestone": false
+    },
+    {
+        "id": "claim-your-first-refuge",
+        "name": "milestones.claim-your-first-refuge.name",
+        "xp": 40,
+        "enabledOnFirstRun": true,
+        "isCultMilestone": false
+    },
+    {
+        "id": "claim-your-first-new-hex-2nd-hex-overall",
+        "name": "milestones.claim-your-first-new-hex-2nd-hex-overall.name",
+        "xp": 20,
+        "enabledOnFirstRun": false,
+        "isCultMilestone": false
+    },
+    {
+        "id": "complete-your-first-successful-infiltration",
+        "name": "milestones.complete-your-first-successful-infiltration.name",
+        "xp": 20,
+        "enabledOnFirstRun": false,
+        "isCultMilestone": false
+    },
+    {
+        "id": "create-your-first-masterpiece",
+        "name": "milestones.create-your-first-masterpiece.name",
+        "xp": 20,
+        "enabledOnFirstRun": false,
+        "isCultMilestone": false
+    },
+    {
+        "id": "cult-event-chapter-5-cult-activity",
+        "name": "milestones.cult-event-chapter-5-cult-activity.name",
+        "xp": 80,
+        "enabledOnFirstRun": true,
+        "isCultMilestone": true
+    },
+    {
+        "id": "cult-event-chapter-5-public-outburst",
+        "name": "milestones.cult-event-chapter-5-public-outburst.name",
+        "xp": 80,
+        "enabledOnFirstRun": true,
+        "isCultMilestone": true
+    },
+    {
+        "id": "cult-event-chapter-5-too-close-to-home",
+        "name": "milestones.cult-event-chapter-5-too-close-to-home.name",
+        "xp": 80,
+        "enabledOnFirstRun": true,
+        "isCultMilestone": true
+    },
+    {
+        "id": "cult-event-chapter-5-urban-outburst",
+        "name": "milestones.cult-event-chapter-5-urban-outburst.name",
+        "xp": 80,
+        "enabledOnFirstRun": true,
+        "isCultMilestone": true
+    },
+    {
+        "id": "establish-diplomatic-relations-for-the-first-time",
+        "name": "milestones.establish-diplomatic-relations-for-the-first-time.name",
+        "xp": 60,
+        "enabledOnFirstRun": true,
+        "isCultMilestone": false
+    },
+    {
+        "id": "establish-your-first-farmland",
+        "name": "milestones.establish-your-first-farmland.name",
+        "xp": 20,
+        "enabledOnFirstRun": false,
+        "isCultMilestone": false
+    },
+    {
+        "id": "establish-your-first-lumber-camp",
+        "name": "milestones.establish-your-first-lumber-camp.name",
+        "xp": 20,
+        "enabledOnFirstRun": false,
+        "isCultMilestone": false
+    },
+    {
+        "id": "establish-your-first-mine",
+        "name": "milestones.establish-your-first-mine.name",
+        "xp": 20,
+        "enabledOnFirstRun": false,
+        "isCultMilestone": false
+    },
+    {
+        "id": "establish-your-first-quarry",
+        "name": "milestones.establish-your-first-quarry.name",
+        "xp": 20,
+        "enabledOnFirstRun": false,
+        "isCultMilestone": false
+    },
+    {
+        "id": "establish-your-first-trade-agreement",
+        "name": "milestones.establish-your-first-trade-agreement.name",
+        "xp": 80,
+        "enabledOnFirstRun": true,
+        "isCultMilestone": false
+    },
+    {
+        "id": "establish-your-first-village",
+        "name": "milestones.establish-your-first-village.name",
+        "xp": 40,
+        "enabledOnFirstRun": true,
+        "isCultMilestone": false
+    },
+    {
+        "id": "establish-your-second-village",
+        "name": "milestones.establish-your-second-village.name",
+        "xp": 40,
+        "enabledOnFirstRun": false,
+        "isCultMilestone": false
+    },
+    {
+        "id": "expand-a-city-into-your-first-metropolis",
+        "name": "milestones.expand-a-city-into-your-first-metropolis.name",
+        "xp": 120,
+        "enabledOnFirstRun": true,
+        "isCultMilestone": false
+    },
+    {
+        "id": "expand-a-town-into-your-first-city",
+        "name": "milestones.expand-a-town-into-your-first-city.name",
+        "xp": 80,
+        "enabledOnFirstRun": true,
+        "isCultMilestone": false
+    },
+    {
+        "id": "expand-a-village-into-your-first-town",
+        "name": "milestones.expand-a-village-into-your-first-town.name",
+        "xp": 60,
+        "enabledOnFirstRun": true,
+        "isCultMilestone": false
+    },
+    {
+        "id": "fortify-your-first-hex",
+        "name": "milestones.fortify-your-first-hex.name",
+        "xp": 20,
+        "enabledOnFirstRun": false,
+        "isCultMilestone": false
+    },
+    {
+        "id": "reach-kingdom-size-10",
+        "name": "milestones.reach-kingdom-size-10.name",
+        "xp": 40,
+        "enabledOnFirstRun": true,
+        "isCultMilestone": false
+    },
+    {
+        "id": "reach-kingdom-size-100",
+        "name": "milestones.reach-kingdom-size-100.name",
+        "xp": 120,
+        "enabledOnFirstRun": true,
+        "isCultMilestone": false
+    },
+    {
+        "id": "reach-kingdom-size-25",
+        "name": "milestones.reach-kingdom-size-25.name",
+        "xp": 60,
+        "enabledOnFirstRun": true,
+        "isCultMilestone": false
+    },
+    {
+        "id": "reach-kingdom-size-50",
+        "name": "milestones.reach-kingdom-size-50.name",
+        "xp": 80,
+        "enabledOnFirstRun": true,
+        "isCultMilestone": false
+    },
+    {
+        "id": "recruit-your-first-specialized-army",
+        "name": "milestones.recruit-your-first-specialized-army.name",
+        "xp": 60,
+        "enabledOnFirstRun": false,
+        "isCultMilestone": false
+    },
+    {
+        "id": "recruit-your-first-regular-army",
+        "name": "milestones.recruit-your-first-regular-army.name",
+        "xp": 40,
+        "enabledOnFirstRun": false,
+        "isCultMilestone": false
+    },
+    {
+        "id": "spend-100-rp-during-a-kingdom-turn",
+        "name": "milestones.spend-100-rp-during-a-kingdom-turn.name",
+        "xp": 80,
+        "enabledOnFirstRun": true,
+        "isCultMilestone": false
+    },
+    {
+        "id": "successfully-resolve-a-random-kingdom-event",
+        "name": "milestones.successfully-resolve-a-random-kingdom-event.name",
+        "xp": 40,
+        "enabledOnFirstRun": false,
+        "isCultMilestone": false
+    },
+    {
+        "id": "successfully-use-your-first-creative-solution",
+        "name": "milestones.successfully-use-your-first-creative-solution.name",
+        "xp": 20,
+        "enabledOnFirstRun": false,
+        "isCultMilestone": false
+    },
+    {
+        "id": "successfully-use-your-first-supernatural-solution",
+        "name": "milestones.successfully-use-your-first-supernatural-solution.name",
+        "xp": 20,
+        "enabledOnFirstRun": false,
+        "isCultMilestone": false
+    },
+    {
+        "id": "win-your-first-war-encounter",
+        "name": "milestones.win-your-first-war-encounter.name",
+        "xp": 60,
+        "enabledOnFirstRun": false,
+        "isCultMilestone": false
+    }
+]

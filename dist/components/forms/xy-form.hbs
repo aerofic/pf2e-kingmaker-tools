@@ -1,0 +1,25 @@
+<div>
+    <table class="km-xy-table {{#if compact}}compact{{/if}}">
+        {{#if headers}}
+        <tr>
+            <th class="km-th-spacer"></th>
+            {{#each headers}}
+                <th class="km-xy-column-header">{{this}}</th>
+            {{/each}}
+        </tr>
+        {{/if}}
+        {{#each formRows}}
+            <tr>
+                {{#if label}}<th>{{label}}</th>{{/if}}
+                {{#each cells}}
+                    <td {{#if hidden}}hidden{{/if}}>{{> formElement this }}</td>
+                {{/each}}
+            </tr>
+        {{/each}}
+    </table>
+    {{#if addEntry}}
+    <button type="button" class="full-width" data-action="add-entry">{{addEntry}}</button>
+    {{/if}}
+    <button type="submit" class="full-width" data-action="km-save" {{#unless isFormValid}}disabled{{/unless}}>{{#if
+            saveLabel}}{{saveLabel}}{{else}}{{localizeKM "applications.save"}}{{/if}}</button>
+</div>

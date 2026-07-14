@@ -1,0 +1,37 @@
+<div>
+    <h1>{{localizeKM "kingdom.totalConsumption"}}</h1>
+    <p><b>{{localizeKM "kingdom.resourceSurplus"}}</b>: {{resourcesSurplus}}</p>
+    <p><b>{{localizeKM "kingdom.settlementSurplus"}}</b>: {{settlementSurplus}}</p>
+    <table>
+        <tr>
+            <th>{{localizeKM "kingdom.now"}}</th>
+            <th></th>
+            <th>{{localizeKM "kingdom.armies"}}</th>
+            <th></th>
+            <th>{{localizeKM "kingdom.settlements"}}</th>
+            <th></th>
+            <th>{{localizeKM "kingdom.modifiers"}}</th>
+            <th></th>
+            <th>{{localizeKM "kingdom.farmlands"}}</th>
+            <th></th>
+            <th>{{localizeKM "kingdom.food"}}</th>
+            <th></th>
+            <th>{{localizeKM "applications.total"}}</th>
+        </tr>
+        <tr>
+            <td>{{now}}</td>
+            <td>+</td>
+            <td>{{armies}}</td>
+            <td>+</td>
+            <td>{{settlements}}</td>
+            <td>{{modifiersSign}}</td>
+            <td>{{modifiers}}</td>
+            <td>-</td>
+            <td>{{farmlands}}</td>
+            <td>-</td>
+            <td>{{food}}</td>
+            <td>=</td>
+            <td>{{total}}</td>
+        </tr>
+    </table>
+</div>

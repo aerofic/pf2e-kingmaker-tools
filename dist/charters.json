@@ -1,0 +1,40 @@
+[
+    {
+        "id": "conquest",
+        "name": "charters.conquest.name",
+        "description": "charters.conquest.description",
+        "boost": "loyalty",
+        "freeBoosts": 1,
+        "flaw": "culture"
+    },
+    {
+        "id": "expansion",
+        "name": "charters.expansion.name",
+        "description": "charters.expansion.description",
+        "boost": "culture",
+        "freeBoosts": 1,
+        "flaw": "stability"
+    },
+    {
+        "id": "exploration",
+        "name": "charters.exploration.name",
+        "description": "charters.exploration.description",
+        "boost": "stability",
+        "freeBoosts": 1,
+        "flaw": "economy"
+    },
+    {
+        "id": "grant",
+        "name": "charters.grant.name",
+        "description": "charters.grant.description",
+        "boost": "economy",
+        "freeBoosts": 1,
+        "flaw": "loyalty"
+    },
+    {
+        "id": "open",
+        "name": "charters.open.name",
+        "description": "charters.open.description",
+        "freeBoosts": 1
+    }
+]

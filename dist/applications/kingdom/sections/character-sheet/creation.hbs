@@ -1,0 +1,144 @@
+<section {{#if hideCreation}}hidden{{/if}}>
+    <section class="km-kingdom-sheet-section">
+        <h2>{{localizeKM "kingdom.selectCharter"}} <span class="km-header-right-align">{{> formElement charter.type}}</span></h2>
+        {{#if charter.description}}<p>{{charter.description}}</p>
+            <hr>{{/if}}
+        {{#if charter.boost}}<p><b>{{localizeKM "kingdom.abilityBoosts"}}</b>: {{charter.boost}}</p>{{/if}}
+        {{#if charter.flaw}}<p><b>{{localizeKM "kingdom.abilityFlaws"}}</b>: {{charter.flaw}}</p>{{/if}}
+        <div class="km-choose-boosts" {{#unless charter.description}}hidden{{/unless}}>
+            <p><b>{{localizeKM "kingdom.pickBoosts" count=charter.abilityBoosts.free}}:</b></p>
+            <ul>
+                <li {{#if charter.abilityBoosts.cultureHidden}}hidden{{/if}}>{{> formElement charter.abilityBoosts.culture}}</li>
+                <li {{#if charter.abilityBoosts.economyHidden}}hidden{{/if}}>{{> formElement charter.abilityBoosts.economy}}</li>
+                <li {{#if charter.abilityBoosts.loyaltyHidden}}hidden{{/if}}>{{> formElement charter.abilityBoosts.loyalty}}</li>
+                <li {{#if charter.abilityBoosts.stabilityHidden}}hidden{{/if}}>{{> formElement charter.abilityBoosts.stability}}</li>
+            </ul>
+        </div>
+    </section>
+    <section class="km-kingdom-sheet-section">
+        <h2>{{localizeKM "kingdom.chooseHeartland"}} <span class="km-header-right-align">{{> formElement heartland.type}}</span></h2>
+        {{#unless heartland.description}}<p>{{localizeKM "kingdom.heartlandRequirement"}}</p>{{/unless}}
+        {{#if heartland.description}}<p>{{heartland.description}}</p>
+            <hr>{{/if}}
+        {{#if heartland.description}}<p><b>{{localizeKM "kingdom.abilityBoosts"}}</b>: {{heartland.boost}}</p>{{/if}}
+    </section>
+    <section class="km-kingdom-sheet-section">
+        <h2>{{localizeKM "kingdom.chooseGovernment"}} <span class="km-header-right-align">{{> formElement government.type}}</span></h2>
+        {{#if government.description}}<p>{{government.description}}</p>
+            <hr>{{/if}}
+
+        <div class="km-choose-boosts" {{#unless government.description}}hidden{{/unless}}>
+            <p><b>{{localizeKM "kingdom.abilityBoosts"}}</b>: {{government.boosts}}</p>
+            <p class="km-government-pick-label"><b>{{localizeKM "kingdom.pickBoosts" count=government.abilityBoosts.free}}:</b></p>
+            <ul>
+                <li {{#if government.abilityBoosts.cultureHidden}}hidden{{/if}}>{{> formElement government.abilityBoosts.culture}}</li>
+                <li {{#if government.abilityBoosts.economyHidden}}hidden{{/if}}>{{> formElement government.abilityBoosts.economy}}</li>
+                <li {{#if government.abilityBoosts.loyaltyHidden}}hidden{{/if}}>{{> formElement government.abilityBoosts.loyalty}}</li>
+                <li {{#if government.abilityBoosts.stabilityHidden}}hidden{{/if}}>{{> formElement government.abilityBoosts.stability}}</li>
+            </ul>
+        </div>
+        {{#if government.skills}}
+            <p><b>{{localizeKM "kingdom.skillProficiencies"}}</b>: {{government.skills}}</p>
+        {{/if}}
+        {{#if government.description}}
+            {{#unless government.feat}}<p><b>{{localizeKM "kingdom.featDisabled"}}</b></p>{{/unless}}
+            <details {{# unless government.feat}}hidden{{/unless}} open>
+                <summary><b>{{localizeKM "kingdom.bonusFeat"}}</b>: {{government.feat}}</summary>
+                <p class="km-detail-description">{{government.featDescription}}</p>
+                {{#if government.featRequirements}}<p><b>{{localizeKM "kingdom.prerequisites"}}:</b> {{government.featRequirements}}</p>{{/if}}
+                {{#if government.featAutomationNotes}}<p><b>{{localizeKM "kingdom.automationNotes"}}:</b> {{government.featAutomationNotes}}</p>{{/if}}
+                {{#each government.featRuinThresholdIncreases}}
+                    <div class="km-choose-boosts">
+                        <p>{{localizeKM "kingdom.pickRuinIncreases" count=amount value=value}}</p>
+                        <ul class="km-choose-ruins">
+                            <li>
+                                {{> formElement crime.input}}
+                                {{> formElement crime.valueInput}}
+                            </li>
+                            <li>
+                                {{> formElement corruption.input}}
+                                {{> formElement corruption.valueInput}}
+                            </li>
+                            <li>
+                                {{> formElement strife.input}}
+                                {{> formElement strife.valueInput}}
+                            </li>
+                            <li>
+                                {{> formElement stability.input}}
+                                {{> formElement stability.valueInput}}
+                            </li>
+                        </ul>
+                    </div>
+                {{/each}}
+                {{#if government.removeLeaderVacancyPenalty}}{{> formElement government.removeLeaderVacancyPenalty}}{{/if}}
+            </details>
+        {{/if}}
+    </section>
+    <section class="km-kingdom-sheet-section">
+        <h2>{{localizeKM "kingdom.finalizeScores"}}</h2>
+        <div class="km-choose-boosts">
+            <p><b>{{localizeKM "kingdom.pickBoosts" count=abilityBoosts.free}}:</b></p>
+            <ul>
+                <li>{{> formElement abilityBoosts.culture}}</li>
+                <li>{{> formElement abilityBoosts.economy}}</li>
+                <li>{{> formElement abilityBoosts.loyalty}}</li>
+                <li>{{> formElement abilityBoosts.stability}}</li>
+            </ul>
+        </div>
+    </section>
+    <section class="km-kingdom-sheet-section">
+        <h2>{{localizeKM "kingdom.chooseLeaders"}}</h2>
+        <p>{{localizeKM "kingdom.chooseLeadersHelp"}}{{#unless enableLeadershipModifiers}} {{localizeKM "kingdom.chooseLeadersHelpVk"}}{{/unless}}</p>
+        <ul class="km-choose-leaders">
+            {{#each leadersContext}}
+                <li data-leader="{{leader}}">
+                    <header><span>{{label}}</span>{{#if actor}} <span class="km-leader-bonus"><i class="fa-solid fa-dice-d20"></i> {{actor.bonus}}</span>{{/if}}</header>
+                    {{#if actor }}
+                        {{> formElement actor.uuidInput }}
+                        <div class="km-leader-portrait">
+                            <button data-leader="{{leader}}" data-action="clear-leader" type="button"><i class="fa-regular fa-circle-xmark"></i>
+                            </button>
+                            <img src="{{actor.img}}" alt="{{actor.name}}" data-action="open-leader" data-leader="{{leader}}">
+                        </div>
+                    {{else}}
+                        <div class="km-choose-leader-placeholder">
+                            <span>{{localizeKM "kingdom.dropActorFromSidebar"}}</span>
+                            <i class="fa-solid fa-plus"></i>
+                        </div>
+                    {{/if}}
+                    <span {{#unless ../enableLeadershipModifiers}}hidden{{/unless}}>{{> formElement type }}</span>
+                    <span {{#if ../enableLeadershipModifiers}}hidden{{/if}}>{{> formElement invested }}</span>
+                </li>
+            {{/each}}
+        </ul>
+        <p>{{#if enableLeadershipModifiers}}{{localizeKM "kingdom.choose4SkillsVk"}}{{else}}{{localizeKM "kingdom.choose4Skills"}}{{/if}} {{localizeKM "kingdom.cannotBeReassigned"}}</p>
+        <div class="km-choose-skills">
+            <ul>
+                {{#each initialProficiencies}}
+                    <li>{{> formElement this}}</li>
+                {{/each}}
+            </ul>
+        </div>
+        <hr>
+        <p><b>{{localizeKM "kingdom.additionalTrainedSkills"}}</b>: {{localizeKM "kingdom.additionalTrainedSkillsDescription"}}</p>
+    </section>
+    <section class="km-kingdom-sheet-section">
+        <h2>{{localizeKM "kingdom.firstVillage"}}</h2>
+        <p>{{localizeKM "kingdom.firstImportStructures"}} <button class="km-inline-button" type="button" data-action="structures-import" {{#unless isGM}}disabled{{/unless}}>{{localizeKM "kingdom.importAllStructures"}}</button></p>
+        <p>{{localizeKM "kingdom.thenCreateCapitalScene"}} <button class="km-inline-button" type="button" data-action="create-capital">{{localizeKM "kingdom.createACapital"}}</button> {{localizeKM "kingdom.capitalRequirement"}}</p>
+        <img src="modules/pf2e-kingmaker-tools/img/kingdom/docs/settlement.webp" alt="structures on blocks">
+        <p>{{localizeKM "kingdom.gainVillageXp"}}</p>
+        <p>{{localizeKM "kingdom.placeStructures"}}</p>
+        <img src="modules/pf2e-kingmaker-tools/img/kingdom/docs/structures.webp" alt="structures entry in the sidebar">
+        <p>{{localizeKM "kingdom.villageFurther"}}</p>
+    </section>
+    <section class="km-kingdom-sheet-section">
+        <h2>{{localizeKM "kingdom.firstArmies"}}</h2>
+        <p>{{localizeKM "kingdom.firstImportArmies"}} <button class="km-inline-button" type="button" data-action="armies-import" {{#unless isGM}}disabled{{/unless}}>{{localizeKM "kingdom.importAllBasicArmies"}}</button></p>
+        <p>{{localizeKM "kingdom.firstImportArmiesHelp"}}</p>
+    </section>
+    <section class="km-kingdom-sheet-section">
+        <h2>{{localizeKM "kingdom.fameOrInfamy"}} <span class="km-header-right-align">{{> formElement fameContext.type}}</span></h2>
+        <p>{{localizeKM "kingdom.fameOrInfamyHelp"}}</p>
+    </section>
+</section>

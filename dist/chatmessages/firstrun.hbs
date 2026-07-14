@@ -1,0 +1,27 @@
+<h3>{{localizeKM "moduleName"}}</h3>
+
+<p>
+    {{localizeKM "chatMessages.firstRun.intro"}}
+    {{localizeKM "chatMessages.firstRun.license"}} {{{license}}}
+    {{localizeKM "chatMessages.firstRun.getStarted"}}
+</p>
+
+<img src="modules/pf2e-kingmaker-tools/img/kingdom/docs/party-controls.webp" alt="party controls">
+
+<p>
+    {{localizeKM "chatMessages.firstRun.manual"}} {{{manual}}}
+    {{localizeKM "chatMessages.firstRun.upgradingNotice"}} {{{upgrading}}}
+</p>
+
+<p>{{localizeKM "chatMessages.firstRun.macrosNotice"}}</p>
+
+<div class="form-group">
+    <button type="button" class="km-open-firstrun-sheet" data-sheet-type="camping">
+        <i class="fa-solid fa-tent"></i> {{localizeKM "camping.openSheet"}}
+    </button>
+    <button type="button" class="km-open-firstrun-sheet" data-sheet-type="kingdom">
+        <i class="fa-brands fa-fort-awesome"></i> {{localizeKM "kingdom.openSheet"}}
+    </button>
+</div>
+
+<button type="button" class="km-disable-firstrun-message">{{localizeKM "chatMessages.firstRun.dontShowAgain"}}</button>

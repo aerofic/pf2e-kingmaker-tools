@@ -1,0 +1,18 @@
+<p>{{localizeKM "camping.actorGathered" actorName=actorName}}</p>
+<ul>
+    {{#if basicIngredients}}
+        <li><b>{{localizeKM "camping.basicIngredients"}}</b>: {{basicIngredients}}</li>
+    {{/if}}
+    {{#if specialIngredients}}
+        <li><b>{{localizeKM "camping.specialIngredients"}}</b>: {{specialIngredients}}</li>
+    {{/if}}
+</ul>
+<button
+        type="button"
+        class="km-add-food"
+        data-camping-actor-uuid="{{campingActorUuid}}"
+        data-actor-uuid="{{actorUuid}}"
+        data-basic-ingredients="{{basicIngredients}}"
+        data-special-ingredients="{{specialIngredients}}"
+>{{localizeKM "applications.add"}}
+</button>

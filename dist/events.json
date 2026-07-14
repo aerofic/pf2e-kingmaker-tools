@@ -1,0 +1,2386 @@
+[
+    {
+        "id": "a-devil-comes-calling",
+        "name": "events.a-devil-comes-calling.name",
+        "location": "events.a-devil-comes-calling.location",
+        "description": "events.a-devil-comes-calling.description",
+        "modifier": 3,
+        "traits": [
+            "continuous",
+            "dangerous",
+            "settlement"
+        ],
+        "stages": [
+            {
+                "leader": "warden",
+                "skills": [
+                    "intrigue"
+                ],
+                "criticalSuccess": {
+                    "msg": "events.a-devil-comes-calling.stage-0.criticalSuccess.msg"
+                },
+                "success": {
+                    "msg": "events.a-devil-comes-calling.stage-0.success.msg"
+                },
+                "failure": {
+                    "msg": "events.a-devil-comes-calling.stage-0.failure.msg"
+                },
+                "criticalFailure": {
+                    "msg": "events.a-devil-comes-calling.stage-0.criticalFailure.msg"
+                }
+            }
+        ],
+        "resolvedOn": [
+            "criticalSuccess"
+        ],
+        "resolution": "events.a-devil-comes-calling.resolution"
+    },
+    {
+        "id": "archeological-find",
+        "name": "events.archeological-find.name",
+        "traits": [
+            "beneficial",
+            "hex"
+        ],
+        "location": "events.archeological-find.location",
+        "description": "events.archeological-find.description",
+        "stages": [
+            {
+                "leader": "viceroy",
+                "skills": [
+                    "exploration"
+                ],
+                "criticalSuccess": {
+                    "msg": "events.archeological-find.stage-0.criticalSuccess.msg",
+                    "modifiers": [
+                        {
+                            "name": "events.archeological-find.stage-0.criticalSuccess.modifiers.discoveryBonus.name",
+                            "buttonLabel": "events.archeological-find.stage-0.criticalSuccess.modifiers.discoveryBonus.buttonLabel",
+                            "turns": 2,
+                            "enabled": true,
+                            "type": "circumstance",
+                            "value": 2,
+                            "applyIf": [
+                                {
+                                    "some": [
+                                        {
+                                            "eq": [
+                                                "@ability",
+                                                "culture"
+                                            ]
+                                        },
+                                        {
+                                            "eq": [
+                                                "@ability",
+                                                "economy"
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "success": {
+                    "msg": "events.archeological-find.stage-0.success.msg"
+                },
+                "failure": {
+                    "msg": "events.archeological-find.stage-0.failure.msg"
+                },
+                "criticalFailure": {
+                    "msg": "events.archeological-find.stage-0.criticalFailure.msg",
+                    "modifiers": [
+                        {
+                            "name": "events.archeological-find.stage-0.criticalFailure.modifiers.reattemptPenalty.name",
+                            "buttonLabel": "events.archeological-find.stage-0.criticalFailure.modifiers.reattemptPenalty.buttonLabel",
+                            "enabled": true,
+                            "type": "untyped",
+                            "value": -2
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "id": "assassination-attempt",
+        "name": "events.assassination-attempt.name",
+        "traits": [
+            "dangerous"
+        ],
+        "modifier": 1,
+        "description": "events.assassination-attempt.description",
+        "special": "events.assassination-attempt.special",
+        "modifiers": [
+            {
+                "type": "untyped",
+                "value": -3,
+                "name": "events.assassination-attempt.modifiers.assassinationDuringWar.name",
+                "buttonLabel": "events.assassination-attempt.modifiers.assassinationDuringWar.buttonLabel",
+                "applyIf": [
+                    {
+                        "eq": [
+                            "@atWar",
+                            true
+                        ]
+                    }
+                ],
+                "enabled": true
+            }
+        ],
+        "stages": [
+            {
+                "leader": "warden",
+                "skills": [
+                    "intrigue"
+                ],
+                "criticalSuccess": {
+                    "msg": "events.assassination-attempt.stage-0.criticalSuccess.msg"
+                },
+                "success": {
+                    "msg": "events.assassination-attempt.stage-0.success.msg"
+                },
+                "failure": {
+                    "msg": "events.assassination-attempt.stage-0.failure.msg"
+                },
+                "criticalFailure": {
+                    "msg": "events.assassination-attempt.stage-0.criticalFailure.msg"
+                }
+            }
+        ]
+    },
+    {
+        "id": "bandit-activity",
+        "name": "events.bandit-activity.name",
+        "traits": [
+            "continuous",
+            "dangerous"
+        ],
+        "modifier": 1,
+        "description": "events.bandit-activity.description",
+        "resolution": "events.bandit-activity.resolution",
+        "resolvedOn": [
+            "criticalSuccess"
+        ],
+        "stages": [
+            {
+                "leader": "warden",
+                "skills": [
+                    "defense"
+                ],
+                "criticalSuccess": {
+                    "msg": "events.bandit-activity.stage-0.criticalSuccess.msg",
+                    "modifiers": [
+                        {
+                            "name": "events.bandit-activity.stage-0.criticalSuccess.modifiers.defeatedBonus.name",
+                            "buttonLabel": "events.bandit-activity.stage-0.criticalSuccess.modifiers.defeatedBonus.buttonLabel",
+                            "turns": 2,
+                            "enabled": true,
+                            "value": 1,
+                            "type": "circumstance",
+                            "applyIf": [
+                                {
+                                    "eq": [
+                                        "@ability",
+                                        "economy"
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "success": {
+                    "msg": "events.bandit-activity.stage-0.success.msg"
+                },
+                "failure": {
+                    "msg": "events.bandit-activity.stage-0.failure.msg"
+                },
+                "criticalFailure": {
+                    "msg": "events.bandit-activity.stage-0.criticalFailure.msg"
+                }
+            }
+        ]
+    },
+    {
+        "id": "barbarian-immigrants",
+        "name": "events.barbarian-immigrants.name",
+        "description": "events.barbarian-immigrants.description",
+        "modifier": 2,
+        "traits": [
+            "beneficial"
+        ],
+        "stages": [
+            {
+                "leader": "warden",
+                "skills": [
+                    "statecraft"
+                ],
+                "criticalSuccess": {
+                    "msg": "events.barbarian-immigrants.stage-0.criticalSuccess.msg",
+                    "modifiers": [
+                        {
+                            "name": "events.barbarian-immigrants.stage-0.criticalSuccess.modifiers.barbarianSupport.name",
+                            "buttonLabel": "events.barbarian-immigrants.stage-0.criticalSuccess.modifiers.barbarianSupport.buttonLabel",
+                            "type": "circumstance",
+                            "value": 2,
+                            "enabled": true,
+                            "applyIf": [
+                                {
+                                    "in": [
+                                        "@event",
+                                        [
+                                            "bandit-activity",
+                                            "monster-activity",
+                                            "undead-uprising"
+                                        ]
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "success": {
+                    "msg": "events.barbarian-immigrants.stage-0.success.msg",
+                    "modifiers": [
+                        {
+                            "name": "events.barbarian-immigrants.stage-0.criticalSuccess.modifiers.barbarianSupport.name",
+                            "buttonLabel": "events.barbarian-immigrants.stage-0.criticalSuccess.modifiers.barbarianSupport.buttonLabel",
+                            "type": "circumstance",
+                            "value": 1,
+                            "enabled": true,
+                            "applyIf": [
+                                {
+                                    "in": [
+                                        "@event",
+                                        [
+                                            "bandit-activity",
+                                            "monster-activity",
+                                            "undead-uprising"
+                                        ]
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "failure": {
+                    "msg": "events.barbarian-immigrants.stage-0.failure.msg"
+                },
+                "criticalFailure": {
+                    "msg": "events.barbarian-immigrants.stage-0.criticalFailure.msg"
+                }
+            }
+        ]
+    },
+    {
+        "id": "boomtown",
+        "name": "events.boomtown.name",
+        "traits": [
+            "beneficial",
+            "settlement"
+        ],
+        "location": "events.boomtown.location",
+        "description": "events.boomtown.description",
+        "stages": [
+            {
+                "leader": "treasurer",
+                "skills": [
+                    "trade"
+                ],
+                "criticalSuccess": {
+                    "msg": "events.boomtown.stage-0.criticalSuccess.msg"
+                },
+                "success": {
+                    "msg": "events.boomtown.stage-0.success.msg"
+                },
+                "failure": {
+                    "msg": "events.boomtown.stage-0.failure.msg"
+                },
+                "criticalFailure": {
+                    "msg": "events.boomtown.stage-0.criticalFailure.msg"
+                }
+            }
+        ]
+    },
+    {
+        "id": "building-demand",
+        "name": "events.building-demand.name",
+        "modifier": -1,
+        "traits": [
+            "continuous",
+            "dangerous",
+            "settlement"
+        ],
+        "location": "events.building-demand.location",
+        "description": "events.building-demand.description",
+        "stages": [
+            {
+                "leader": "viceroy",
+                "skills": [
+                    "politics"
+                ],
+                "criticalSuccess": {
+                    "msg": "events.building-demand.stage-0.criticalSuccess.msg"
+                },
+                "success": {
+                    "msg": "events.building-demand.stage-0.success.msg"
+                },
+                "failure": {
+                    "msg": "events.building-demand.stage-0.failure.msg"
+                },
+                "criticalFailure": {
+                    "msg": "events.building-demand.stage-0.criticalFailure.msg"
+                }
+            }
+        ],
+        "resolvedOn": [
+            "criticalSuccess",
+            "success"
+        ],
+        "resolution": "events.building-demand.resolution"
+    },
+    {
+        "id": "crop-failure",
+        "name": "events.crop-failure.name",
+        "traits": [
+            "dangerous",
+            "hex"
+        ],
+        "location": "events.crop-failure.location",
+        "description": "events.crop-failure.description",
+        "stages": [
+            {
+                "leader": "treasurer",
+                "skills": [
+                    "agriculture"
+                ],
+                "criticalSuccess": {
+                    "msg": "events.crop-failure.stage-0.criticalSuccess.msg"
+                },
+                "success": {
+                    "msg": "events.crop-failure.stage-0.success.msg"
+                },
+                "failure": {
+                    "msg": "events.crop-failure.stage-0.failure.msg"
+                },
+                "criticalFailure": {
+                    "msg": "events.crop-failure.stage-0.criticalFailure.msg"
+                }
+            }
+        ]
+    },
+    {
+        "id": "cult-activity",
+        "name": "events.cult-activity.name",
+        "modifier": 1,
+        "traits": [
+            "continuous",
+            "dangerous",
+            "settlement"
+        ],
+        "location": "events.cult-activity.location",
+        "description": "events.cult-activity.description",
+        "stages": [
+            {
+                "leader": "magister",
+                "skills": [
+                    "intrigue"
+                ],
+                "criticalSuccess": {
+                    "msg": "events.cult-activity.stage-0.criticalSuccess.msg",
+                    "modifiers": [
+                        {
+                            "value": 5,
+                            "type": "untyped",
+                            "name": "events.cult-activity.stage-0.criticalSuccess.modifiers.folkloreBonus.name",
+                            "buttonLabel": "events.cult-activity.stage-0.criticalSuccess.modifiers.folkloreBonus.buttonLabel",
+                            "enabled": true,
+                            "applyIf": [
+                                {
+                                    "eq": [
+                                        "@skill",
+                                        "folklore"
+                                    ]
+                                },
+                                {
+                                    "eq": [
+                                        "@event",
+                                        "cult-activity"
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "success": {
+                    "msg": "events.cult-activity.stage-0.success.msg"
+                },
+                "failure": {
+                    "msg": "events.cult-activity.stage-0.failure.msg"
+                },
+                "criticalFailure": {
+                    "msg": "events.cult-activity.stage-0.criticalFailure.msg"
+                }
+            },
+            {
+                "leader": "magister",
+                "skills": [
+                    "folklore"
+                ],
+                "criticalSuccess": {
+                    "msg": "events.cult-activity.stage-1.criticalSuccess.msg"
+                },
+                "success": {
+                    "msg": "events.cult-activity.stage-1.success.msg"
+                },
+                "failure": {
+                    "msg": "events.cult-activity.stage-1.failure.msg"
+                },
+                "criticalFailure": {
+                    "msg": "events.cult-activity.stage-1.criticalFailure.msg"
+                }
+            }
+        ],
+        "resolution": "events.cult-activity.resolution",
+        "resolvedOn": [
+            "criticalSuccess"
+        ],
+        "special": "events.cult-activity.special",
+        "modifiers": [
+            {
+                "type": "item",
+                "value": -2,
+                "buttonLabel": "events.cult-activity.modifiers.sewerSystem.buttonLabel",
+                "name": "events.cult-activity.modifiers.sewerSystem.name",
+                "enabled": true,
+                "applyIf": [
+                    {
+                        "in": [
+                            "sewer-system",
+                            "@structures"
+                        ]
+                    },
+                    {
+                        "eq": [
+                            "@skill",
+                            "intrigue"
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "untyped",
+                "value": -1,
+                "buttonLabel": "events.cult-activity.modifiers.dangerousCult.buttonLabel",
+                "name": "events.cult-activity.modifiers.dangerousCult.name",
+                "enabled": false
+            },
+            {
+                "type": "untyped",
+                "value": -2,
+                "buttonLabel": "events.cult-activity.modifiers.evenMoreDangerousCult.buttonLabel",
+                "name": "events.cult-activity.modifiers.evenMoreDangerousCult.name",
+                "enabled": false
+            }
+        ]
+    },
+    {
+        "id": "diplomatic-overture",
+        "name": "events.diplomatic-overture.name",
+        "traits": [
+            "beneficial"
+        ],
+        "description": "events.diplomatic-overture.description",
+        "stages": [
+            {
+                "leader": "emissary",
+                "skills": [
+                    "statecraft"
+                ],
+                "criticalSuccess": {
+                    "msg": "events.diplomatic-overture.stage-0.criticalSuccess.msg"
+                },
+                "success": {
+                    "msg": "events.diplomatic-overture.stage-0.success.msg"
+                },
+                "failure": {
+                    "msg": "events.diplomatic-overture.stage-0.failure.msg"
+                },
+                "criticalFailure": {
+                    "msg": "events.diplomatic-overture.stage-0.criticalFailure.msg",
+                    "modifiers": [
+                        {
+                            "name": "events.diplomatic-overture.stage-0.criticalFailure.modifiers.diplomaticEnvoyPenalty.name",
+                            "buttonLabel": "events.diplomatic-overture.stage-0.criticalFailure.modifiers.diplomaticEnvoyPenalty.buttonLabel",
+                            "enabled": false,
+                            "value": -2,
+                            "isConsumedAfterRoll": true,
+                            "type": "circumstance",
+                            "applyIf": [
+                                {
+                                    "eq": [
+                                        "@activity",
+                                        "send-diplomatic-envoy"
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "id": "discover-desperate-spies",
+        "name": "events.discover-desperate-spies.name",
+        "modifier": 3,
+        "location": "events.discover-desperate-spies.location",
+        "traits": [
+            "continuous",
+            "dangerous",
+            "settlement"
+        ],
+        "description": "events.discover-desperate-spies.description",
+        "stages": [
+            {
+                "skills": [
+                    "intrigue",
+                    "defense"
+                ],
+                "leader": "warden",
+                "criticalSuccess": {
+                    "msg": "events.discover-desperate-spies.stage-0.criticalSuccess.msg"
+                },
+                "success": {
+                    "msg": "events.discover-desperate-spies.stage-0.success.msg"
+                },
+                "failure": {
+                    "msg": "events.discover-desperate-spies.stage-0.failure.msg"
+                },
+                "criticalFailure": {
+                    "msg": "events.discover-desperate-spies.stage-0.criticalFailure.msg"
+                }
+            }
+        ],
+        "resolvedOn": [
+            "criticalSuccess"
+        ],
+        "resolution": "events.discover-desperate-spies.resolution"
+    },
+    {
+        "id": "discovery",
+        "name": "events.discovery.name",
+        "traits": [
+            "beneficial"
+        ],
+        "description": "events.discovery.description",
+        "stages": [
+            {
+                "leader": "counselor",
+                "skills": [
+                    "scholarship"
+                ],
+                "criticalSuccess": {
+                    "msg": "events.discovery.stage-0.criticalSuccess.msg"
+                },
+                "success": {
+                    "msg": "events.discovery.stage-0.success.msg"
+                },
+                "failure": {
+                    "msg": "events.discovery.stage-0.failure.msg"
+                },
+                "criticalFailure": {
+                    "msg": "events.discovery.stage-0.criticalFailure.msg"
+                }
+            }
+        ]
+    },
+    {
+        "id": "drug-den",
+        "name": "events.drug-den.name",
+        "traits": [
+            "continuous",
+            "dangerous",
+            "settlement"
+        ],
+        "modifier": 1,
+        "location": "events.drug-den.location",
+        "description": "events.drug-den.description",
+        "stages": [
+            {
+                "leader": "counselor",
+                "skills": [
+                    "intrigue"
+                ],
+                "criticalSuccess": {
+                    "msg": "events.drug-den.stage-0.criticalSuccess.msg"
+                },
+                "success": {
+                    "msg": "events.drug-den.stage-0.success.msg"
+                },
+                "failure": {
+                    "msg": "events.drug-den.stage-0.failure.msg"
+                },
+                "criticalFailure": {
+                    "msg": "events.drug-den.stage-0.criticalFailure.msg"
+                }
+            }
+        ],
+        "resolvedOn": [
+            "criticalSuccess"
+        ],
+        "resolution": "events.drug-den.resolution"
+    },
+    {
+        "id": "economic-surge",
+        "name": "events.economic-surge.name",
+        "modifier": 2,
+        "traits": [
+            "beneficial",
+            "continuous"
+        ],
+        "description": "events.economic-surge.description",
+        "stages": [
+            {
+                "leader": "treasurer",
+                "skills": [
+                    "trade"
+                ],
+                "criticalSuccess": {
+                    "msg": "events.economic-surge.stage-0.criticalSuccess.msg"
+                },
+                "success": {
+                    "msg": "events.economic-surge.stage-0.success.msg"
+                },
+                "failure": {
+                    "msg": "events.economic-surge.stage-0.failure.msg"
+                },
+                "criticalFailure": {
+                    "msg": "events.economic-surge.stage-0.criticalFailure.msg"
+                }
+            }
+        ],
+        "resolvedOn": [
+            "criticalFailure"
+        ],
+        "resolution": "events.economic-surge.resolution"
+    },
+    {
+        "id": "expansion-demand",
+        "name": "events.expansion-demand.name",
+        "traits": [
+            "continuous",
+            "dangerous"
+        ],
+        "description": "events.expansion-demand.description",
+        "modifiers": [
+            {
+                "name": "events.expansion-demand.modifiers.claimedHexThisTurn.name",
+                "buttonLabel": "events.expansion-demand.modifiers.claimedHexThisTurn.buttonLabel",
+                "value": 0,
+                "type": "untyped",
+                "enabled": false,
+                "upgradeResults": [
+                    {
+                        "upgrade": "criticalFailure"
+                    },
+                    {
+                        "upgrade": "failure"
+                    },
+                    {
+                        "upgrade": "success"
+                    }
+                ]
+            }
+        ],
+        "stages": [
+            {
+                "leader": "warden",
+                "skills": [
+                    "exploration"
+                ],
+                "criticalSuccess": {
+                    "msg": "events.expansion-demand.stage-0.criticalSuccess.msg"
+                },
+                "success": {
+                    "msg": "events.expansion-demand.stage-0.success.msg"
+                },
+                "failure": {
+                    "msg": "events.expansion-demand.stage-0.failure.msg"
+                },
+                "criticalFailure": {
+                    "msg": "events.expansion-demand.stage-0.criticalFailure.msg"
+                }
+            }
+        ],
+        "resolvedOn": [
+            "criticalSuccess",
+            "success"
+        ],
+        "resolution": "events.expansion-demand.resolution"
+    },
+    {
+        "id": "festive-invitation",
+        "name": "events.festive-invitation.name",
+        "traits": [
+            "beneficial"
+        ],
+        "description": "events.festive-invitation.description",
+        "stages": [
+            {
+                "leader": "ruler",
+                "skills": [
+                    "arts"
+                ],
+                "criticalSuccess": {
+                    "msg": "events.festive-invitation.stage-0.criticalSuccess.msg"
+                },
+                "success": {
+                    "msg": "events.festive-invitation.stage-0.success.msg"
+                },
+                "failure": {
+                    "msg": "events.festive-invitation.stage-0.failure.msg"
+                },
+                "criticalFailure": {
+                    "msg": "events.festive-invitation.stage-0.criticalFailure.msg"
+                }
+            }
+        ]
+    },
+    {
+        "id": "feud",
+        "name": "events.feud.name",
+        "traits": [
+            "continuous",
+            "dangerous",
+            "settlement"
+        ],
+        "description": "events.feud.description",
+        "location": "events.feud.location",
+        "stages": [
+            {
+                "leader": "counselor",
+                "skills": [
+                    "politics"
+                ],
+                "criticalSuccess": {
+                    "msg": "events.feud.stage-0.criticalSuccess.msg"
+                },
+                "success": {
+                    "msg": "events.feud.stage-0.success.msg"
+                },
+                "failure": {
+                    "msg": "events.feud.stage-0.failure.msg"
+                },
+                "criticalFailure": {
+                    "msg": "events.feud.stage-0.criticalFailure.msg"
+                }
+            }
+        ],
+        "resolvedOn": [
+            "criticalSuccess"
+        ],
+        "resolution": "events.feud.resolution"
+    },
+    {
+        "id": "food-shortage",
+        "name": "events.food-shortage.name",
+        "modifier": 1,
+        "traits": [
+            "dangerous"
+        ],
+        "description": "events.food-shortage.description",
+        "stages": [
+            {
+                "leader": "treasurer",
+                "skills": [
+                    "agriculture"
+                ],
+                "criticalSuccess": {
+                    "msg": "events.food-shortage.stage-0.criticalSuccess.msg"
+                },
+                "success": {
+                    "msg": "events.food-shortage.stage-0.success.msg"
+                },
+                "failure": {
+                    "msg": "events.food-shortage.stage-0.failure.msg"
+                },
+                "criticalFailure": {
+                    "msg": "events.food-shortage.stage-0.criticalFailure.msg"
+                }
+            }
+        ]
+    },
+    {
+        "id": "food-surplus",
+        "name": "events.food-surplus.name",
+        "traits": [
+            "beneficial"
+        ],
+        "description": "events.food-surplus.description",
+        "stages": [
+            {
+                "leader": "treasurer",
+                "skills": [
+                    "agriculture"
+                ],
+                "criticalSuccess": {
+                    "msg": "events.food-surplus.stage-0.criticalSuccess.msg"
+                },
+                "success": {
+                    "msg": "events.food-surplus.stage-0.success.msg"
+                },
+                "failure": {
+                    "msg": "events.food-surplus.stage-0.failure.msg"
+                },
+                "criticalFailure": {
+                    "msg": "events.food-surplus.stage-0.criticalFailure.msg"
+                }
+            }
+        ]
+    },
+    {
+        "id": "goblin-backlash",
+        "name": "events.goblin-backlash.name",
+        "modifier": -2,
+        "traits": [
+            "continuous",
+            "dangerous"
+        ],
+        "description": "events.goblin-backlash.description",
+        "modifiers": [
+            {
+                "name": "events.goblin-backlash.modifiers.chaoticEvil.name",
+                "buttonLabel": "events.goblin-backlash.modifiers.chaoticEvil.buttonLabel",
+                "value": -2,
+                "type": "circumstance",
+                "enabled": false
+            },
+            {
+                "name": "events.goblin-backlash.modifiers.notFirstTimeHappening.name",
+                "buttonLabel": "events.goblin-backlash.modifiers.notFirstTimeHappening.buttonLabel",
+                "value": -1,
+                "type": "untyped",
+                "enabled": false
+            }
+        ],
+        "resolvedOn": [
+            "criticalSuccess"
+        ],
+        "resolution": "events.goblin-backlash.resolution",
+        "stages": [
+            {
+                "leader": "ruler",
+                "skills": [
+                    "politics"
+                ],
+                "criticalSuccess": {
+                    "msg": "events.goblin-backlash.stage-0.criticalSuccess.msg",
+                    "modifiers": [
+                        {
+                            "name": "events.goblin-backlash.stage-0.criticalSuccess.modifiers.acceptanceBonus.name",
+                            "buttonLabel": "events.goblin-backlash.stage-0.criticalSuccess.modifiers.acceptanceBonus.buttonLabel",
+                            "value": 1,
+                            "type": "circumstance",
+                            "enabled": true,
+                            "applyIf": [
+                                {
+                                    "in": [
+                                        "@activity",
+                                        [
+                                            "new-leadership",
+                                            "new-leadership-vk",
+                                            "quell-unrest",
+                                            "pledge-of-fealty"
+                                        ]
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "success": {
+                    "msg": "events.goblin-backlash.stage-0.success.msg"
+                },
+                "failure": {
+                    "msg": "events.goblin-backlash.stage-0.failure.msg"
+                },
+                "criticalFailure": {
+                    "msg": "events.goblin-backlash.stage-0.criticalFailure.msg"
+                }
+            }
+        ]
+    },
+    {
+        "id": "good-weather",
+        "name": "events.good-weather.name",
+        "traits": [
+            "beneficial",
+            "fortune"
+        ],
+        "modifier": 1,
+        "description": "events.good-weather.description",
+        "stages": [
+            {
+                "leader": "magister",
+                "skills": [
+                    "wilderness"
+                ],
+                "criticalSuccess": {
+                    "msg": "events.good-weather.stage-0.criticalSuccess.msg",
+                    "modifiers": [
+                        {
+                            "name": "events.good-weather.stage-0.criticalSuccess.modifiers.gloriousClimate.name",
+                            "buttonLabel": "events.good-weather.stage-0.criticalSuccess.modifiers.gloriousClimate.buttonLabel",
+                            "value": 0,
+                            "enabled": false,
+                            "type": "untyped",
+                            "turns": 2,
+                            "isConsumedAfterRoll": true,
+                            "rollTwiceKeepHighest": true,
+                            "applyIf": [
+                                {
+                                    "in": [
+                                        "@skill",
+                                        [
+                                            "agriculture",
+                                            "boating",
+                                            "exploration",
+                                            "wilderness"
+                                        ]
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "success": {
+                    "msg": "events.good-weather.stage-0.success.msg"
+                },
+                "failure": {
+                    "msg": "events.good-weather.stage-0.failure.msg"
+                },
+                "criticalFailure": {
+                    "msg": "events.good-weather.stage-0.criticalFailure.msg"
+                }
+            }
+        ]
+    },
+    {
+        "id": "inquisition",
+        "name": "events.inquisition.name",
+        "traits": [
+            "continuous",
+            "dangerous"
+        ],
+        "modifier": 1,
+        "description": "events.inquisition.description",
+        "modifiers": [
+            {
+                "value": -2,
+                "type": "untyped",
+                "name": "events.inquisition.modifiers.pacify.name",
+                "buttonLabel": "events.inquisition.modifiers.pacify.buttonLabel",
+                "enabled": false
+            }
+        ],
+        "stages": [
+            {
+                "leader": "magister",
+                "skills": [
+                    "folklore"
+                ],
+                "criticalSuccess": {
+                    "msg": "events.inquisition.stage-0.criticalSuccess.msg"
+                },
+                "success": {
+                    "msg": "events.inquisition.stage-0.success.msg"
+                },
+                "failure": {
+                    "msg": "events.inquisition.stage-0.failure.msg"
+                },
+                "criticalFailure": {
+                    "msg": "events.inquisition.stage-0.criticalFailure.msg"
+                }
+            }
+        ],
+        "resolvedOn": [
+            "criticalSuccess"
+        ],
+        "resolution": "events.inquisition.resolution"
+    },
+    {
+        "id": "justice-prevails",
+        "name": "events.justice-prevails.name",
+        "traits": [
+            "beneficial"
+        ],
+        "description": "events.justice-prevails.description",
+        "stages": [
+            {
+                "leader": "warden",
+                "skills": [
+                    "statecraft"
+                ],
+                "criticalSuccess": {
+                    "msg": "events.justice-prevails.stage-0.criticalSuccess.msg"
+                },
+                "success": {
+                    "msg": "events.justice-prevails.stage-0.success.msg"
+                },
+                "failure": {
+                    "msg": "events.justice-prevails.stage-0.failure.msg"
+                },
+                "criticalFailure": {
+                    "msg": "events.justice-prevails.stage-0.criticalFailure.msg"
+                }
+            }
+        ]
+    },
+    {
+        "id": "land-rush",
+        "name": "events.land-rush.name",
+        "modifier": 1,
+        "location": "events.land-rush.location",
+        "description": "events.land-rush.description",
+        "traits": [
+            "dangerous",
+            "hex"
+        ],
+        "stages": [
+            {
+                "leader": "viceroy",
+                "skills": [
+                    "politics"
+                ],
+                "criticalSuccess": {
+                    "msg": "events.land-rush.stage-0.criticalSuccess.msg"
+                },
+                "success": {
+                    "msg": "events.land-rush.stage-0.success.msg"
+                },
+                "failure": {
+                    "msg": "events.land-rush.stage-0.failure.msg"
+                },
+                "criticalFailure": {
+                    "msg": "events.land-rush.stage-0.criticalFailure.msg"
+                }
+            }
+        ]
+    },
+    {
+        "id": "local-disaster",
+        "name": "events.local-disaster.name",
+        "traits": [
+            "dangerous",
+            "settlement"
+        ],
+        "location": "events.local-disaster.location",
+        "description": "events.local-disaster.description",
+        "stages": [
+            {
+                "leader": "magister",
+                "skills": [
+                    "industry"
+                ],
+                "criticalSuccess": {
+                    "msg": "events.local-disaster.stage-0.criticalSuccess.msg"
+                },
+                "success": {
+                    "msg": "events.local-disaster.stage-0.success.msg"
+                },
+                "failure": {
+                    "msg": "events.local-disaster.stage-0.failure.msg"
+                },
+                "criticalFailure": {
+                    "msg": "events.local-disaster.stage-0.criticalFailure.msg"
+                }
+            }
+        ],
+        "special": "events.local-disaster.special"
+    },
+    {
+        "id": "monster-activity",
+        "name": "events.monster-activity.name",
+        "traits": [
+            "dangerous",
+            "continuous",
+            "hex"
+        ],
+        "location": "events.monster-activity.location",
+        "description": "events.monster-activity.description",
+        "stages": [
+            {
+                "leader": "ruler",
+                "skills": [
+                    "defense"
+                ],
+                "criticalSuccess": {
+                    "msg": "events.monster-activity.stage-0.criticalSuccess.msg"
+                },
+                "success": {
+                    "msg": "events.monster-activity.stage-0.success.msg"
+                },
+                "failure": {
+                    "msg": "events.monster-activity.stage-0.failure.msg"
+                },
+                "criticalFailure": {
+                    "msg": "events.monster-activity.stage-0.criticalFailure.msg"
+                }
+            }
+        ],
+        "resolvedOn": [
+            "criticalSuccess"
+        ],
+        "resolution": "events.monster-activity.resolution"
+    },
+    {
+        "id": "monster-hunt",
+        "name": "events.monster-hunt.name",
+        "description": "events.monster-hunt.description",
+        "traits": [
+            "beneficial"
+        ],
+        "stages": [
+            {
+                "leader": "warden",
+                "skills": [
+                    "wilderness"
+                ],
+                "criticalSuccess": {
+                    "msg": "events.monster-hunt.stage-0.criticalSuccess.msg"
+                },
+                "success": {
+                    "msg": "events.monster-hunt.stage-0.success.msg"
+                },
+                "failure": {
+                    "msg": "events.monster-hunt.stage-0.failure.msg"
+                },
+                "criticalFailure": {
+                    "msg": "events.monster-hunt.stage-0.criticalFailure.msg"
+                }
+            }
+        ]
+    },
+    {
+        "id": "natural-disaster",
+        "name": "events.natural-disaster.name",
+        "modifier": 2,
+        "traits": [
+            "dangerous"
+        ],
+        "description": "events.natural-disaster.description",
+        "stages": [
+            {
+                "leader": "magister",
+                "skills": [
+                    "wilderness"
+                ],
+                "criticalSuccess": {
+                    "msg": "events.natural-disaster.stage-0.criticalSuccess.msg"
+                },
+                "success": {
+                    "msg": "events.natural-disaster.stage-0.success.msg"
+                },
+                "failure": {
+                    "msg": "events.natural-disaster.stage-0.failure.msg"
+                },
+                "criticalFailure": {
+                    "msg": "events.natural-disaster.stage-0.criticalFailure.msg"
+                }
+            }
+        ]
+    },
+    {
+        "id": "natures-blessing",
+        "name": "events.natures-blessing.name",
+        "traits": [
+            "beneficial"
+        ],
+        "description": "events.natures-blessing.description",
+        "stages": [
+            {
+                "leader": "magister",
+                "skills": [
+                    "arts"
+                ],
+                "criticalSuccess": {
+                    "msg": "events.natures-blessing.stage-0.criticalSuccess.msg",
+                    "modifiers": [
+                        {
+                            "type": "untyped",
+                            "name": "events.natures-blessing.stage-0.criticalSuccess.modifiers.glow.name",
+                            "buttonLabel": "events.natures-blessing.stage-0.criticalSuccess.modifiers.glow.buttonLabel",
+                            "value": 0,
+                            "turns": 2,
+                            "enabled": true,
+                            "applyIf": [
+                                {
+                                    "in": [
+                                        "@activity",
+                                        [
+                                            "create-a-masterpiece",
+                                            "craft-luxuries"
+                                        ]
+                                    ]
+                                }
+                            ],
+                            "upgradeResults": [
+                                {
+                                    "upgrade": "success"
+                                },
+                                {
+                                    "upgrade": "failure"
+                                },
+                                {
+                                    "upgrade": "criticalFailure"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "success": {
+                    "msg": "events.natures-blessing.stage-0.success.msg",
+                    "modifiers": [
+                        {
+                            "name": "events.natures-blessing.stage-0.success.modifiers.glow.name",
+                            "buttonLabel": "events.natures-blessing.stage-0.success.modifiers.glow.buttonLabel",
+                            "enabled": true,
+                            "value": 1,
+                            "turns": 2,
+                            "type": "status",
+                            "applyIf": [
+                                {
+                                    "in": [
+                                        "@ability",
+                                        [
+                                            "culture",
+                                            "stability"
+                                        ]
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "failure": {
+                    "msg": "events.natures-blessing.stage-0.failure.msg"
+                },
+                "criticalFailure": {
+                    "msg": "events.natures-blessing.stage-0.criticalFailure.msg"
+                }
+            }
+        ]
+    },
+    {
+        "id": "new-subjects",
+        "name": "events.new-subjects.name",
+        "traits": [
+            "beneficial"
+        ],
+        "description": "events.new-subjects.description",
+        "stages": [
+            {
+                "leader": "emissary",
+                "skills": [
+                    "statecraft"
+                ],
+                "criticalSuccess": {
+                    "msg": "events.new-subjects.stage-0.criticalSuccess.msg"
+                },
+                "success": {
+                    "msg": "events.new-subjects.stage-0.success.msg"
+                },
+                "failure": {
+                    "msg": "events.new-subjects.stage-0.failure.msg"
+                },
+                "criticalFailure": {
+                    "msg": "events.new-subjects.stage-0.criticalFailure.msg"
+                }
+            }
+        ]
+    },
+    {
+        "id": "noblesse-oblige",
+        "name": "events.noblesse-oblige.name",
+        "traits": [
+            "beneficial",
+            "settlement"
+        ],
+        "location": "events.noblesse-oblige.location",
+        "description": "events.noblesse-oblige.description",
+        "stages": [
+            {
+                "leader": "viceroy",
+                "skills": [
+                    "arts"
+                ],
+                "criticalSuccess": {
+                    "msg": "events.noblesse-oblige.stage-0.criticalSuccess.msg"
+                },
+                "success": {
+                    "msg": "events.noblesse-oblige.stage-0.success.msg"
+                },
+                "failure": {
+                    "msg": "events.noblesse-oblige.stage-0.failure.msg"
+                },
+                "criticalFailure": {
+                    "msg": "events.noblesse-oblige.stage-0.criticalFailure.msg"
+                }
+            }
+        ]
+    },
+    {
+        "id": "outstanding-success",
+        "name": "events.outstanding-success.name",
+        "traits": [
+            "beneficial"
+        ],
+        "description": "events.outstanding-success.description",
+        "stages": [
+            {
+                "leader": "counselor",
+                "skills": [
+                    "arts"
+                ],
+                "criticalSuccess": {
+                    "msg": "events.outstanding-success.stage-0.criticalSuccess.msg"
+                },
+                "success": {
+                    "msg": "events.outstanding-success.stage-0.success.msg"
+                },
+                "failure": {
+                    "msg": "events.outstanding-success.stage-0.failure.msg"
+                },
+                "criticalFailure": {
+                    "msg": "events.outstanding-success.stage-0.criticalFailure.msg"
+                }
+            }
+        ]
+    },
+    {
+        "id": "pilgrimage",
+        "name": "events.pilgrimage.name",
+        "modifier": 1,
+        "traits": [
+            "beneficial"
+        ],
+        "description": "events.pilgrimage.description",
+        "stages": [
+            {
+                "leader": "magister",
+                "skills": [
+                    "folklore"
+                ],
+                "criticalSuccess": {
+                    "msg": "events.pilgrimage.stage-0.criticalSuccess.msg"
+                },
+                "success": {
+                    "msg": "events.pilgrimage.stage-0.success.msg"
+                },
+                "failure": {
+                    "msg": "events.pilgrimage.stage-0.failure.msg"
+                },
+                "criticalFailure": {
+                    "msg": "events.pilgrimage.stage-0.criticalFailure.msg"
+                }
+            }
+        ]
+    },
+    {
+        "id": "plague",
+        "name": "events.plague.name",
+        "modifier": 1,
+        "traits": [
+            "continuous",
+            "dangerous",
+            "settlement"
+        ],
+        "globalModifiers": [
+            {
+                "type": "status",
+                "name": "events.plague.modifiers.affectedByPlague.name",
+                "buttonLabel": "events.plague.modifiers.affectedByPlague.buttonLabel",
+                "value": -2,
+                "enabled": true,
+                "applyIf": [
+                    {
+                        "eq": [
+                            "@phase",
+                            "civic"
+                        ]
+                    },
+                    {
+                        "in": [
+                            "plague",
+                            "@settlementEvents"
+                        ]
+                    },
+                    {
+                        "not": {
+                            "in": [
+                                "sewer-system",
+                                "@structures"
+                            ]
+                        }
+                    }
+                ]
+            }
+        ],
+        "location": "events.plague.location",
+        "description": "events.plague.description",
+        "modifiers": [
+            {
+                "type": "item",
+                "name": "events.plague.modifiers.noDump.name",
+                "buttonLabel": "events.plague.modifiers.noDump.buttonLabel",
+                "value": -4,
+                "enabled": true,
+                "applyIf": [
+                    {
+                        "not": {
+                            "in": [
+                                "dump",
+                                "@structures"
+                            ]
+                        }
+                    }
+                ]
+            },
+            {
+                "type": "item",
+                "name": "events.plague.modifiers.hasSewerSystem.name",
+                "buttonLabel": "events.plague.modifiers.hasSewerSystem.buttonLabel",
+                "value": 2,
+                "enabled": true,
+                "applyIf": [
+                    {
+                        "in": [
+                            "sewer-system",
+                            "@structures"
+                        ]
+                    }
+                ]
+            }
+        ],
+        "stages": [
+            {
+                "leader": "ruler",
+                "skills": [
+                    "defense"
+                ],
+                "criticalSuccess": {
+                    "msg": "events.plague.stage-0.criticalSuccess.msg"
+                },
+                "success": {
+                    "msg": "events.plague.stage-0.success.msg"
+                },
+                "failure": {
+                    "msg": "events.plague.stage-0.failure.msg"
+                },
+                "criticalFailure": {
+                    "msg": "events.plague.stage-0.criticalFailure.msg"
+                }
+            }
+        ],
+        "resolvedOn": [
+            "criticalSuccess"
+        ],
+        "resolution": "events.plague.resolution",
+        "special": "events.plague.special"
+    },
+    {
+        "id": "political-calm",
+        "name": "events.political-calm.name",
+        "modifier": -1,
+        "traits": [
+            "beneficial"
+        ],
+        "description": "events.political-calm.description",
+        "stages": [
+            {
+                "leader": "ruler",
+                "skills": [
+                    "politics"
+                ],
+                "criticalSuccess": {
+                    "msg": "events.political-calm.stage-0.criticalSuccess.msg",
+                    "modifiers": [
+                        {
+                            "value": 2,
+                            "type": "status",
+                            "name": "events.political-calm.stage-0.criticalSuccess.modifiers.publicApproval.name",
+                            "buttonLabel": "events.political-calm.stage-0.criticalSuccess.modifiers.publicApproval.buttonLabel",
+                            "turns": 2,
+                            "enabled": true,
+                            "applyIf": [
+                                {
+                                    "eq": [
+                                        "@phase",
+                                        "event"
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "success": {
+                    "msg": "events.political-calm.stage-0.success.msg"
+                },
+                "failure": {
+                    "msg": "events.political-calm.stage-0.failure.msg"
+                },
+                "criticalFailure": {
+                    "msg": "events.political-calm.stage-0.criticalFailure.msg"
+                }
+            }
+        ]
+    },
+    {
+        "id": "public-outburst",
+        "name": "events.public-outburst.name",
+        "traits": [
+            "dangerous"
+        ],
+        "description": "events.public-outburst.description",
+        "modifiers": [
+            {
+                "type": "untyped",
+                "value": -1,
+                "name": "events.public-outburst.modifiers.occurredOnce.name",
+                "buttonLabel": "events.public-outburst.modifiers.occurredOnce.buttonLabel",
+                "enabled": false
+            },
+            {
+                "type": "untyped",
+                "value": -2,
+                "name": "events.public-outburst.modifiers.occurredMoreThanOnce.name",
+                "buttonLabel": "events.public-outburst.modifiers.occurredMoreThanOnce.buttonLabel",
+                "enabled": false
+            }
+        ],
+        "stages": [
+            {
+                "leader": "ruler",
+                "skills": [
+                    "politics"
+                ],
+                "criticalSuccess": {
+                    "msg": "events.public-outburst.stage-0.criticalSuccess.msg"
+                },
+                "success": {
+                    "msg": "events.public-outburst.stage-0.success.msg"
+                },
+                "failure": {
+                    "msg": "events.public-outburst.stage-0.failure.msg"
+                },
+                "criticalFailure": {
+                    "msg": "events.public-outburst.stage-0.criticalFailure.msg"
+                }
+            }
+        ]
+    },
+    {
+        "id": "public-scandal",
+        "name": "events.public-scandal.name",
+        "traits": [
+            "dangerous"
+        ],
+        "description": "events.public-scandal.description",
+        "stages": [
+            {
+                "leader": "counselor",
+                "skills": [
+                    "intrigue"
+                ],
+                "criticalSuccess": {
+                    "msg": "events.public-scandal.stage-0.criticalSuccess.msg"
+                },
+                "success": {
+                    "msg": "events.public-scandal.stage-0.success.msg"
+                },
+                "failure": {
+                    "msg": "events.public-scandal.stage-0.failure.msg"
+                },
+                "criticalFailure": {
+                    "msg": "events.public-scandal.stage-0.criticalFailure.msg"
+                }
+            }
+        ]
+    },
+    {
+        "id": "remarkable-treasure",
+        "name": "events.remarkable-treasure.name",
+        "traits": [
+            "beneficial",
+            "fortune"
+        ],
+        "modifier": 2,
+        "description": "events.remarkable-treasure.description",
+        "stages": [
+            {
+                "leader": "emissary",
+                "skills": [
+                    "exploration"
+                ],
+                "criticalSuccess": {
+                    "msg": "events.remarkable-treasure.stage-0.criticalSuccess.msg",
+                    "modifiers": [
+                        {
+                            "name": "events.remarkable-treasure.stage-0.criticalSuccess.modifiers.eagerAdventurers.name",
+                            "buttonLabel": "events.remarkable-treasure.stage-0.criticalSuccess.modifiers.eagerAdventurers.buttonLabel",
+                            "turns": 2,
+                            "rollTwiceKeepHighest": true,
+                            "type": "untyped",
+                            "enabled": true,
+                            "value": 0,
+                            "applyIf": [
+                                {
+                                    "eq": [
+                                        "@activity",
+                                        "hire-adventurers"
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "success": {
+                    "msg": "events.remarkable-treasure.stage-0.success.msg"
+                },
+                "failure": {
+                    "msg": "events.remarkable-treasure.stage-0.failure.msg"
+                },
+                "criticalFailure": {
+                    "msg": "events.remarkable-treasure.stage-0.criticalFailure.msg"
+                }
+            }
+        ]
+    },
+    {
+        "id": "return-of-the-mercenaries",
+        "name": "events.return-of-the-mercenaries.name",
+        "traits": [
+            "dangerous"
+        ],
+        "description": "events.return-of-the-mercenaries.description",
+        "stages": [
+            {
+                "skills": [
+                    "intrigue"
+                ],
+                "leader": "emissary",
+                "criticalSuccess": {
+                    "msg": "events.return-of-the-mercenaries.stage-0.criticalSuccess.msg",
+                    "modifiers": [
+                        {
+                            "name": "events.return-of-the-mercenaries.stage-0.criticalSuccess.modifiers.inInfluence.name",
+                            "buttonLabel": "events.return-of-the-mercenaries.stage-0.criticalSuccess.modifiers.inInfluence.buttonLabel",
+                            "value": 0,
+                            "type": "untyped",
+                            "enabled": false,
+                            "upgradeResults": [
+                                {
+                                    "upgrade": "success"
+                                },
+                                {
+                                    "upgrade": "failure"
+                                },
+                                {
+                                    "upgrade": "criticalFailure"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "success": {
+                    "msg": "events.return-of-the-mercenaries.stage-0.success.msg"
+                },
+                "failure": {
+                    "msg": "events.return-of-the-mercenaries.stage-0.failure.msg"
+                },
+                "criticalFailure": {
+                    "msg": "events.return-of-the-mercenaries.stage-0.criticalFailure.msg",
+                    "modifiers": [
+                        {
+                            "name": "events.return-of-the-mercenaries.stage-0.criticalFailure.modifiers.establishedFoothold.name",
+                            "buttonLabel": "events.return-of-the-mercenaries.stage-0.criticalFailure.modifiers.establishedFoothold.buttonLabel",
+                            "value": 0,
+                            "type": "untyped",
+                            "enabled": false,
+                            "downgradeResults": [
+                                {
+                                    "downgrade": "success"
+                                },
+                                {
+                                    "downgrade": "failure"
+                                },
+                                {
+                                    "downgrade": "criticalSuccess"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "id": "sacrifices",
+        "name": "events.sacrifices.name",
+        "traits": [
+            "dangerous",
+            "continuous",
+            "hex"
+        ],
+        "modifier": 2,
+        "location": "events.sacrifices.location",
+        "description": "events.sacrifices.description",
+        "resolution": "events.sacrifices.resolution",
+        "resolvedOn": [
+            "criticalSuccess"
+        ],
+        "stages": [
+            {
+                "leader": "emissary",
+                "skills": [
+                    "exploration"
+                ],
+                "criticalSuccess": {
+                    "msg": "events.sacrifices.stage-0.criticalSuccess.msg"
+                },
+                "success": {
+                    "msg": "events.sacrifices.stage-0.success.msg",
+                    "modifiers": [
+                        {
+                            "name": "events.sacrifices.stage-0.success.modifiers.determinedHex.name",
+                            "buttonLabel": "events.sacrifices.stage-0.success.modifiers.determinedHex.buttonLabel",
+                            "value": 4,
+                            "type": "untyped",
+                            "enabled": true,
+                            "applyIf": [
+                                {
+                                    "eq": [
+                                        "@event",
+                                        "sacrifices"
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "failure": {
+                    "msg": "events.sacrifices.stage-0.failure.msg"
+                },
+                "criticalFailure": {
+                    "msg": "events.sacrifices.stage-0.criticalFailure.msg"
+                }
+            }
+        ]
+    },
+    {
+        "id": "sensational-crime",
+        "name": "events.sensational-crime.name",
+        "modifier": 1,
+        "traits": [
+            "continuous",
+            "dangerous",
+            "settlement"
+        ],
+        "location": "events.sensational-crime.location",
+        "description": "events.sensational-crime.description",
+        "stages": [
+            {
+                "leader": "warden",
+                "skills": [
+                    "intrigue"
+                ],
+                "criticalSuccess": {
+                    "msg": "events.sensational-crime.stage-0.criticalSuccess.msg"
+                },
+                "success": {
+                    "msg": "events.sensational-crime.stage-0.success.msg"
+                },
+                "failure": {
+                    "msg": "events.sensational-crime.stage-0.failure.msg"
+                },
+                "criticalFailure": {
+                    "msg": "events.sensational-crime.stage-0.criticalFailure.msg"
+                }
+            }
+        ],
+        "resolvedOn": [
+            "criticalSuccess"
+        ],
+        "resolution": "events.sensational-crime.resolution"
+    },
+    {
+        "id": "special-edition",
+        "name": "events.special-edition.name",
+        "traits": [
+            "beneficial"
+        ],
+        "description": "events.special-edition.description",
+        "stages": [
+            {
+                "leader": "counselor",
+                "skills": [
+                    "arts"
+                ],
+                "criticalSuccess": {
+                    "msg": "events.special-edition.stage-0.criticalSuccess.msg"
+                },
+                "success": {
+                    "msg": "events.special-edition.stage-0.success.msg"
+                },
+                "failure": {
+                    "msg": "events.special-edition.stage-0.failure.msg"
+                },
+                "criticalFailure": {
+                    "msg": "events.special-edition.stage-0.criticalFailure.msg"
+                }
+            }
+        ]
+    },
+    {
+        "id": "squatters",
+        "name": "events.squatters.name",
+        "modifier": -1,
+        "traits": [
+            "continuous",
+            "dangerous",
+            "settlement"
+        ],
+        "location": "events.squatters.location",
+        "description": "events.squatters.description",
+        "stages": [
+            {
+                "leader": "viceroy",
+                "skills": [
+                    "politics"
+                ],
+                "criticalSuccess": {
+                    "msg": "events.squatters.stage-0.criticalSuccess.msg"
+                },
+                "success": {
+                    "msg": "events.squatters.stage-0.success.msg"
+                },
+                "failure": {
+                    "msg": "events.squatters.stage-0.failure.msg"
+                },
+                "criticalFailure": {
+                    "msg": "events.squatters.stage-0.criticalFailure.msg",
+                    "modifiers": [
+                        {
+                            "name": "events.squatters.stage-0.criticalFailure.modifiers.increasedConsumption.name",
+                            "buttonLabel": "events.squatters.stage-0.criticalFailure.modifiers.increasedConsumption.buttonLabel",
+                            "selector": "consumption",
+                            "type": "untyped",
+                            "value": 1,
+                            "enabled": true
+                        }
+                    ]
+                }
+            }
+        ],
+        "modifiers": [
+            {
+                "name": "events.squatters.modifiers.hasSewerSystem.name",
+                "buttonLabel": "events.squatters.modifiers.hasSewerSystem.buttonLabel",
+                "value": 2,
+                "type": "item",
+                "enabled": true,
+                "applyIf": [
+                    {
+                        "in": [
+                            "sewer-system",
+                            "@structures"
+                        ]
+                    }
+                ]
+            }
+        ],
+        "special": "events.squatters.special",
+        "resolution": "events.squatters.resolution",
+        "resolvedOn": [
+            "criticalSuccess"
+        ]
+    },
+    {
+        "id": "the-founding-of-a-village",
+        "name": "events.the-founding-of-a-village.name",
+        "traits": [
+            "beneficial",
+            "hex"
+        ],
+        "location": "events.the-founding-of-a-village.location",
+        "description": "events.the-founding-of-a-village.description",
+        "stages": [
+            {
+                "skills": [
+                    "exploration"
+                ],
+                "leader": "warden",
+                "criticalSuccess": {
+                    "msg": "events.the-founding-of-a-village.stage-0.criticalSuccess.msg"
+                },
+                "success": {
+                    "msg": "events.the-founding-of-a-village.stage-0.success.msg"
+                },
+                "failure": {
+                    "msg": "events.the-founding-of-a-village.stage-0.failure.msg"
+                },
+                "criticalFailure": {
+                    "msg": "events.the-founding-of-a-village.stage-0.criticalFailure.msg"
+                }
+            }
+        ]
+    },
+    {
+        "id": "the-local-paper",
+        "name": "events.the-local-paper.name",
+        "traits": [
+            "beneficial"
+        ],
+        "description": "events.the-local-paper.description",
+        "stages": [
+            {
+                "leader": "counselor",
+                "skills": [
+                    "industry"
+                ],
+                "criticalSuccess": {
+                    "msg": "events.the-local-paper.stage-0.criticalSuccess.msg"
+                },
+                "success": {
+                    "msg": "events.the-local-paper.stage-0.success.msg"
+                },
+                "failure": {
+                    "msg": "events.the-local-paper.stage-0.failure.msg"
+                },
+                "criticalFailure": {
+                    "msg": "events.the-local-paper.stage-0.criticalFailure.msg"
+                }
+            }
+        ]
+    },
+    {
+        "id": "the-rampage-of-the-owlbear",
+        "name": "events.the-rampage-of-the-owlbear.name",
+        "modifier": 4,
+        "traits": [
+            "dangerous",
+            "settlement"
+        ],
+        "location": "events.the-rampage-of-the-owlbear.location",
+        "description": "events.the-rampage-of-the-owlbear.description",
+        "modifiers": [
+            {
+                "name": "events.the-rampage-of-the-owlbear.modifiers.onlyWaterBorders.name",
+                "buttonLabel": "events.the-rampage-of-the-owlbear.modifiers.onlyWaterBorders.buttonLabel",
+                "value": 0,
+                "enabled": true,
+                "applyIf": [
+                    {
+                        "eq": [
+                            "@waterBorders",
+                            4
+                        ]
+                    }
+                ],
+                "type": "untyped",
+                "upgradeResults": [
+                    {
+                        "upgrade": "criticalFailure"
+                    },
+                    {
+                        "upgrade": "failure"
+                    },
+                    {
+                        "upgrade": "success"
+                    }
+                ]
+            }
+        ],
+        "stages": [
+            {
+                "leader": "warden",
+                "skills": [
+                    "defense"
+                ],
+                "criticalSuccess": {
+                    "msg": "events.the-rampage-of-the-owlbear.stage-0.criticalSuccess.msg"
+                },
+                "success": {
+                    "msg": "events.the-rampage-of-the-owlbear.stage-0.success.msg"
+                },
+                "failure": {
+                    "msg": "events.the-rampage-of-the-owlbear.stage-0.failure.msg"
+                },
+                "criticalFailure": {
+                    "msg": "events.the-rampage-of-the-owlbear.stage-0.criticalFailure.msg"
+                }
+            }
+        ],
+        "resolution": "events.the-rampage-of-the-owlbear.resolution"
+    },
+    {
+        "id": "the-trial",
+        "name": "events.the-trial.name",
+        "traits": [
+            "continuous",
+            "downtime",
+            "leadership"
+        ],
+        "description": "events.the-trial.description",
+        "stages": [
+            {
+                "skills": [
+                    "intrigue",
+                    "politics",
+                    "statecraft"
+                ],
+                "leader": "emissary",
+                "criticalSuccess": {
+                    "msg": "events.the-trial.stage-0.criticalSuccess.msg"
+                },
+                "success": {
+                    "msg": "events.the-trial.stage-0.success.msg"
+                },
+                "failure": {
+                    "msg": "events.the-trial.stage-0.failure.msg"
+                },
+                "criticalFailure": {
+                    "msg": "events.the-trial.stage-0.criticalFailure.msg"
+                }
+            }
+        ],
+        "resolvedOn": [
+            "success",
+            "criticalSuccess",
+            "criticalFailure"
+        ],
+        "resolution": "events.the-trial.resolution"
+    },
+    {
+        "id": "too-close-to-home",
+        "name": "events.too-close-to-home.name",
+        "traits": [
+            "dangerous",
+            "hex"
+        ],
+        "description": "events.too-close-to-home.description",
+        "location": "events.too-close-to-home.location",
+        "stages": [
+            {
+                "leader": "warden",
+                "skills": [
+                    "defense"
+                ],
+                "criticalSuccess": {
+                    "msg": "events.too-close-to-home.stage-0.criticalSuccess.msg"
+                },
+                "success": {
+                    "msg": "events.too-close-to-home.stage-0.success.msg"
+                },
+                "failure": {
+                    "msg": "events.too-close-to-home.stage-0.failure.msg"
+                },
+                "criticalFailure": {
+                    "msg": "events.too-close-to-home.stage-0.criticalFailure.msg"
+                }
+            }
+        ]
+    },
+    {
+        "id": "troll-sightings",
+        "name": "events.troll-sightings.name",
+        "traits": [
+            "continuous",
+            "dangerous"
+        ],
+        "description": "events.troll-sightings.description",
+        "stages": [
+            {
+                "leader": "warden",
+                "skills": [
+                    "defense"
+                ],
+                "criticalSuccess": {
+                    "msg": "events.troll-sightings.stage-0.criticalSuccess.msg"
+                },
+                "success": {
+                    "msg": "events.troll-sightings.stage-0.success.msg"
+                },
+                "failure": {
+                    "msg": "events.troll-sightings.stage-0.failure.msg"
+                },
+                "criticalFailure": {
+                    "msg": "events.troll-sightings.stage-0.criticalFailure.msg"
+                }
+            }
+        ],
+        "resolution": "events.troll-sightings.resolution"
+    },
+    {
+        "id": "trouble-with-a-weird-gnome",
+        "name": "events.trouble-with-a-weird-gnome.name",
+        "traits": [
+            "dangerous"
+        ],
+        "description": "events.trouble-with-a-weird-gnome.description",
+        "stages": [
+            {
+                "leader": "magister",
+                "skills": [
+                    "intrigue"
+                ],
+                "criticalSuccess": {
+                    "msg": "events.trouble-with-a-weird-gnome.stage-0.criticalSuccess.msg"
+                },
+                "success": {
+                    "msg": "events.trouble-with-a-weird-gnome.stage-0.success.msg"
+                },
+                "failure": {
+                    "msg": "events.trouble-with-a-weird-gnome.stage-0.failure.msg"
+                },
+                "criticalFailure": {
+                    "msg": "events.trouble-with-a-weird-gnome.stage-0.criticalFailure.msg"
+                }
+            }
+        ]
+    },
+    {
+        "id": "undead-uprising",
+        "name": "events.undead-uprising.name",
+        "traits": [
+            "continuous",
+            "dangerous",
+            "settlement"
+        ],
+        "location": "events.undead-uprising.location",
+        "description": "events.undead-uprising.description",
+        "stages": [
+            {
+                "leader": "magister",
+                "skills": [
+                    "folklore"
+                ],
+                "criticalSuccess": {
+                    "msg": "events.undead-uprising.stage-0.criticalSuccess.msg"
+                },
+                "success": {
+                    "msg": "events.undead-uprising.stage-0.success.msg"
+                },
+                "failure": {
+                    "msg": "events.undead-uprising.stage-0.failure.msg"
+                },
+                "criticalFailure": {
+                    "msg": "events.undead-uprising.stage-0.criticalFailure.msg"
+                }
+            }
+        ]
+    },
+    {
+        "id": "unexpected-find",
+        "name": "events.unexpected-find.name",
+        "traits": [
+            "beneficial",
+            "settlement"
+        ],
+        "location": "events.unexpected-find.location",
+        "description": "events.unexpected-find.description",
+        "stages": [
+            {
+                "leader": "ruler",
+                "skills": [
+                    "trade"
+                ],
+                "criticalSuccess": {
+                    "msg": "events.unexpected-find.stage-0.criticalSuccess.msg"
+                },
+                "success": {
+                    "msg": "events.unexpected-find.stage-0.success.msg"
+                },
+                "failure": {
+                    "msg": "events.unexpected-find.stage-0.failure.msg"
+                },
+                "criticalFailure": {
+                    "msg": "events.unexpected-find.stage-0.criticalFailure.msg"
+                }
+            }
+        ]
+    },
+    {
+        "id": "urban-outburst",
+        "name": "events.urban-outburst.name",
+        "traits": [
+            "dangerous",
+            "settlement"
+        ],
+        "modifier": 2,
+        "location": "events.urban-outburst.location",
+        "description": "events.urban-outburst.description",
+        "stages": [
+            {
+                "leader": "warden",
+                "skills": [
+                    "defense"
+                ],
+                "criticalSuccess": {
+                    "msg": "events.urban-outburst.stage-0.criticalSuccess.msg"
+                },
+                "success": {
+                    "msg": "events.urban-outburst.stage-0.success.msg"
+                },
+                "failure": {
+                    "msg": "events.urban-outburst.stage-0.failure.msg"
+                },
+                "criticalFailure": {
+                    "msg": "events.urban-outburst.stage-0.criticalFailure.msg"
+                }
+            }
+        ]
+    },
+    {
+        "id": "vandals",
+        "name": "events.vandals.name",
+        "modifier": 1,
+        "traits": [
+            "continuous",
+            "dangerous",
+            "settlement"
+        ],
+        "resolvedOn": [
+            "criticalSuccess",
+            "success"
+        ],
+        "resolution": "events.vandals.resolution",
+        "location": "events.vandals.location",
+        "description": "events.vandals.description",
+        "stages": [
+            {
+                "leader": "warden",
+                "skills": [
+                    "industry"
+                ],
+                "criticalSuccess": {
+                    "msg": "events.vandals.stage-0.criticalSuccess.msg"
+                },
+                "success": {
+                    "msg": "events.vandals.stage-0.success.msg"
+                },
+                "failure": {
+                    "msg": "events.vandals.stage-0.failure.msg"
+                },
+                "criticalFailure": {
+                    "msg": "events.vandals.stage-0.criticalFailure.msg"
+                }
+            }
+        ]
+    },
+    {
+        "id": "visiting-celebrity",
+        "name": "events.visiting-celebrity.name",
+        "traits": [
+            "beneficial",
+            "settlement"
+        ],
+        "modifier": 1,
+        "location": "events.visiting-celebrity.location",
+        "description": "events.visiting-celebrity.description",
+        "stages": [
+            {
+                "leader": "emissary",
+                "skills": [
+                    "arts"
+                ],
+                "criticalSuccess": {
+                    "msg": "events.visiting-celebrity.stage-0.criticalSuccess.msg"
+                },
+                "success": {
+                    "msg": "events.visiting-celebrity.stage-0.success.msg"
+                },
+                "failure": {
+                    "msg": "events.visiting-celebrity.stage-0.failure.msg"
+                },
+                "criticalFailure": {
+                    "msg": "events.visiting-celebrity.stage-0.criticalFailure.msg",
+                    "modifiers": [
+                        {
+                            "name": "events.visiting-celebrity.stage-0.criticalFailure.modifiers.unpleasantVisit.name",
+                            "buttonLabel": "events.visiting-celebrity.stage-0.criticalFailure.modifiers.unpleasantVisit.buttonLabel",
+                            "isConsumedAfterRoll": true,
+                            "enabled": true,
+                            "value": -2,
+                            "type": "untyped",
+                            "applyIf": [
+                                {
+                                    "eq": [
+                                        "@event",
+                                        "visiting-celebrity"
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "id": "wealthy-immigrant",
+        "location": "events.wealthy-immigrant.location",
+        "name": "events.wealthy-immigrant.name",
+        "traits": [
+            "beneficial",
+            "continuous",
+            "settlement"
+        ],
+        "modifier": 2,
+        "description": "events.wealthy-immigrant.description",
+        "modifiers": [
+            {
+                "name": "events.wealthy-immigrant.modifiers.deniedPermission.name",
+                "buttonLabel": "events.wealthy-immigrant.modifiers.deniedPermission.buttonLabel",
+                "value": -1,
+                "type": "untyped",
+                "enabled": true,
+                "applyIf": [
+                    {
+                        "eq": [
+                            "@event",
+                            "wealthy-immigrant"
+                        ]
+                    }
+                ]
+            }
+        ],
+        "stages": [
+            {
+                "leader": "emissary",
+                "skills": [
+                    "industry"
+                ],
+                "criticalSuccess": {
+                    "msg": "events.wealthy-immigrant.stage-0.criticalSuccess.msg"
+                },
+                "success": {
+                    "msg": "events.wealthy-immigrant.stage-0.success.msg"
+                },
+                "failure": {
+                    "msg": "events.wealthy-immigrant.stage-0.failure.msg"
+                },
+                "criticalFailure": {
+                    "msg": "events.wealthy-immigrant.stage-0.criticalFailure.msg"
+                }
+            }
+        ],
+        "resolvedOn": [
+            "criticalSuccess",
+            "success",
+            "criticalFailure"
+        ],
+        "resolution": "events.wealthy-immigrant.resolution"
+    }
+]

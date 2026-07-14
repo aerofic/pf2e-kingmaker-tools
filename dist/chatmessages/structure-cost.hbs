@@ -1,0 +1,31 @@
+<h3>{{localizeKM "kingdom.constructing" structureName=name}}</h3>
+{{#unless free}}
+    <button type="button"
+            data-rp="{{cost.rp}}"
+            data-lumber="{{cost.lumber}}"
+            data-luxuries="{{cost.luxuries}}"
+            data-stone="{{cost.stone}}"
+            data-ore="{{cost.ore}}"
+            data-kingdom-actor-uuid="{{actorUuid}}"
+            class="km-pay-structure">
+        {{localizeKM "kingdom.payStructure"}}: {{cost.label}}
+    </button>
+<p>{{#if slowedLink}}{{localizeKM "kingdom.dragToBuildFailure"}}{{else}}{{localizeKM "kingdom.dragToBuild"}}{{/if}}{{{slowedLink}}}</p>
+<p>{{{link}}}</p>
+    {{#if initialRp}}<p>{{localizeKM 'kingdom.setStructureHpHelp'}} <button
+            class="km-set-structure-hp"
+            data-kingdom-actor-uuid="{{actorUuid}}"
+            data-action="set-structure-hp"
+            data-hp="{{initialRp}}">{{localizeKM 'kingdom.setStructureHp' hp=initialRp}}</button></p>{{/if}}
+{{else}}
+    {{#if slowedLink}}{{localizeKM "kingdom.failedToCompleteStructure"}}{{/if}}
+{{/unless}}
+{{#if messages}}
+    <hr>
+    {{#each messages}}
+        <div>{{{this}}}</div>
+    {{/each}}
+{{/if}}
+{{#if addFamePoint}}
+<button type="button" data-kingdom-actor-uuid="{{actorUuid}}" class="km-gain-fame-button">{{localizeKM "kingdom.gain1Fame"}}</button>
+{{/if}}

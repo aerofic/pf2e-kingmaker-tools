@@ -1,0 +1,52 @@
+.km-modifier-pill {
+    border: 1px solid #aaa;
+    padding: 0 2px;
+    border-radius: 5px;
+    margin-right: 3px;
+    display: inline-block;
+    margin-bottom: 3px;
+    font-size: 11px;
+    line-height: 16px;
+}
+
+.km-chat-buttons {
+    border-top: 1px solid grey;
+    padding: 10px 5px 5px 5px;
+    margin-top: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+
+.km-gain-lose,
+.km-set-structure-hp {
+    width: auto;
+    display: inline;
+    height: auto;
+}
+
+.strike-through {
+    text-decoration: line-through;
+}
+
+.km-chat-hidden {
+    display: none;
+}
+
+.km-chat-event-traits {
+    list-style-type: none;
+    display: flex;
+    gap: .2em;
+    margin:0;
+    padding: 0;
+    li {
+        border-radius: 5px;
+        border: 1px solid;
+        padding: .2em;
+    }
+}
+
+.km-apply-modifier-effect {
+    height: auto;
+}
