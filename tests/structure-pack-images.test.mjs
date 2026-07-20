@@ -4,7 +4,7 @@ import test from "node:test";
 import { fileURLToPath } from "node:url";
 
 const moduleRoot = new URL("../", import.meta.url);
-const classicLevelUrl = new URL("../../foundryvtt-node-14.363/node_modules/classic-level/index.js", import.meta.url);
+const classicLevelUrl = new URL("../../foundryvtt-node-14.365/node_modules/classic-level/index.js", import.meta.url);
 const defaultTokenImage = "systems/pf2e/icons/default-icons/mystery-man.svg";
 const customStructureImages = [
   "Bridge, Stone.webp",

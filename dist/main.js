@@ -162134,6 +162134,8 @@ function isDarkvisionArmyTactic(tactic) {
 function isFlexibleArmyTactic(tactic) {
   return get_isArmyTactic(tactic) && getArmyTacticSlug(tactic) === 'flexible-tactics';
 }
+var flexibleArmyTacticId = 'mHWF5XwUi8RK2lET';
+var counterattackArmyActionId = '8wjiF3ctXUjP9oyX';
 function isCounterattackArmyAction(item) {
   return item != null && item.system != null && item.system.campaign === 'kingmaker' && item.system.category === 'army-war-action' && getArmyTacticSlug(item) === 'counterattack';
 }
@@ -162152,7 +162154,7 @@ function flexibleArmyTacticDescriptionText() {
   var tmp0_safe_receiver = globalThis.game == null ? null : globalThis.game.i18n;
   var lang = tmp0_safe_receiver == null ? '' : tmp0_safe_receiver.lang;
   return (lang === 'cn' || lang === 'zh-CN' || lang === 'zh-Hans')
-    ? '<p>该军队采用非常规战术。你可以让军队使用 @UUID[Compendium.pf2e.kingmaker-features.Item.G2eBcOnUHb3yT7JL]{卑鄙战斗}和 @UUID[Compendium.pf2e.kingmaker-features.Item.Hi4LKGOKe6yMDOH5]{佯攻}战术战争动作，以及 @UUID[Compendium.pf2e.kingmaker-features.Item.AOFU8pOTMjVdiyNd]{假装撤退}战术反应。</p>'
+    ? '<p>该军队采用非常规战术。你可以让该军队使用 @UUID[Compendium.pf2e.kingmaker-features.Item.G2eBcOnUHb3yT7JL]{卑鄙战斗}与 @UUID[Compendium.pf2e.kingmaker-features.Item.Hi4LKGOKe6yMDOH5]{佯攻}战术战争动作，以及 @UUID[Compendium.pf2e.kingmaker-features.Item.AOFU8pOTMjVdiyNd]{假装撤退}战术反应。</p>'
     : '<p>The army uses unconventional tactics. You can use the @UUID[Compendium.pf2e.kingmaker-features.Item.G2eBcOnUHb3yT7JL]{Dirty Fighting} and @UUID[Compendium.pf2e.kingmaker-features.Item.Hi4LKGOKe6yMDOH5]{Feint} tactical war actions and the @UUID[Compendium.pf2e.kingmaker-features.Item.AOFU8pOTMjVdiyNd]{False Retreat} tactical reaction with the army.</p>';
 }
 function applyFlexibleArmyTacticOverride(tactic) {
@@ -162180,8 +162182,8 @@ function applyCounterattackArmyActionOverride(item) {
   }
   var currentDescription = getProperty(item, 'system.description.value');
   var requirement = counterattackArmyActionRequirementText();
-  var description = typeof currentDescription === 'string' && /^\s*<p>[\s\S]*?<\/p>/.test(currentDescription)
-    ? currentDescription.replace(/^\s*<p>[\s\S]*?<\/p>/, requirement)
+  var description = typeof currentDescription === 'string' && /^\s*<p(?:\s[^>]*)?>[\s\S]*?<\/p>/.test(currentDescription)
+    ? currentDescription.replace(/^\s*<p(?:\s[^>]*)?>[\s\S]*?<\/p>/, requirement)
     : requirement + (currentDescription || '');
   item.updateSource({'system.description.value': description});
   return item;
@@ -162200,10 +162202,64 @@ function applyVkArmyTacticOverrides(tactic) {
   }
   return applyFlexibleArmyTacticOverride(tactic);
 }
+function applyArmyTacticOverridesToActors(actors) {
+  var seen = new Set();
+  Array.from(actors || []).forEach((actor) => {
+    if (actor == null || seen.has(actor) || !(actor.isOfType == null ? actor.type === 'army' : actor.isOfType('army'))) {
+      return;
+    }
+    seen.add(actor);
+    Array.from(actor.items || []).forEach((item) => {
+      applyFlexibleArmyTacticOverride(item);
+      applyCounterattackArmyActionOverride(item);
+    });
+  });
+}
+function renderArmyTacticDescriptionOverrides(app, html) {
+  var item = (app == null ? null : app.item) || (app == null ? null : app.document) || (app == null ? null : app.object) || null;
+  var isFlexible = item != null && isFlexibleArmyTactic(item);
+  var isCounterattack = item != null && isCounterattackArmyAction(item);
+  if (!isFlexible && !isCounterattack) {
+    return;
+  }
+  if (isFlexible) {
+    applyFlexibleArmyTacticOverride(item);
+  } else {
+    applyCounterattackArmyActionOverride(item);
+  }
+  var root = html instanceof HTMLElement ? html : html == null ? null : html[0];
+  var content = root == null ? null : root.querySelector('section.tab.description section.main .editor-content');
+  if (content == null) {
+    return;
+  }
+  var description = getProperty(item, 'system.description.value') || '';
+  Promise.resolve(implementation.enrichHTML(description, {relativeTo: item})).then((enriched) => {
+    if (content.isConnected) {
+      content.innerHTML = enriched;
+    }
+  }).catch((error) => console.warn('pf2e-kingmaker-tools | Failed to render an army tactic description override.', error));
+}
 function registerArmyTacticOverrides() {
   Hooks.on('preCreateItem', (item) => {
     applyFlexibleArmyTacticOverride(item);
     applyCounterattackArmyActionOverride(item);
+  });
+  Hooks.on('renderItemSheet', renderArmyTacticDescriptionOverrides);
+  Hooks.on('canvasReady', () => {
+    var tokenActors = canvas.scene == null ? [] : Array.from(canvas.scene.tokens || []).map((token) => token.actor);
+    applyArmyTacticOverridesToActors(tokenActors);
+  });
+  Hooks.once('ready', () => {
+    var pack = game.packs.get('pf2e.kingmaker-features');
+    if (pack != null) {
+      pack.getDocument(flexibleArmyTacticId).then(applyFlexibleArmyTacticOverride).catch((error) => console.warn('pf2e-kingmaker-tools | Failed to apply the Flexible Tactics override.', error));
+      pack.getDocument(counterattackArmyActionId).then(applyCounterattackArmyActionOverride).catch((error) => console.warn('pf2e-kingmaker-tools | Failed to apply the Counterattack override.', error));
+    }
+    Array.from(game.items || []).forEach((item) => {
+      applyFlexibleArmyTacticOverride(item);
+      applyCounterattackArmyActionOverride(item);
+    });
+    applyArmyTacticOverridesToActors(game.actors);
   });
 }
 function isHiddenFromArmyTraining(tactic) {

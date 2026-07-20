@@ -4,7 +4,7 @@ import test from "node:test";
 import { fileURLToPath } from "node:url";
 
 const moduleRoot = new URL("../", import.meta.url);
-const classicLevelUrl = new URL("../../foundryvtt-node-14.363/node_modules/classic-level/index.js", import.meta.url);
+const classicLevelUrl = new URL("../../foundryvtt-node-14.365/node_modules/classic-level/index.js", import.meta.url);
 const removedIds = new Set(["reconnoiter-hex-vk"]);
 const kingdomSkills = new Set([
   "agriculture",

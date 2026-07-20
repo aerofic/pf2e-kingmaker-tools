@@ -4,7 +4,7 @@ import test from "node:test";
 import { fileURLToPath } from "node:url";
 
 const moduleRoot = new URL("../", import.meta.url);
-const classicLevelUrl = new URL("../../foundryvtt-node-14.363/node_modules/classic-level/index.js", import.meta.url);
+const classicLevelUrl = new URL("../../foundryvtt-node-14.365/node_modules/classic-level/index.js", import.meta.url);
 const packPath = "packs/kingmaker-tools-army-tactics";
 
 async function readPack() {
@@ -64,4 +64,32 @@ test("Flexible Tactics is sanitized without changing the PF2e system pack", () =
   assert.match(main, /Hooks\.on\('preCreateItem'/);
   assert.match(main, /function applyCounterattackArmyActionOverride\(item\)/);
   assert.match(main, /applyCounterattackArmyActionOverride\(item\)/);
+});
+
+test("Flexible Tactics labels False Retreat as a reaction everywhere it is displayed", () => {
+  const main = readFileSync(new URL("dist/main.js", moduleRoot), "utf8");
+  const descriptionFunction = main.match(/function flexibleArmyTacticDescriptionText\(\) \{([\s\S]*?)\n\}/)?.[1];
+
+  assert.ok(descriptionFunction);
+  assert.match(main, /G2eBcOnUHb3yT7JL\]\{卑鄙战斗\}与 [^\n]+Hi4LKGOKe6yMDOH5\]\{佯攻\}战术战争动作/);
+  assert.match(main, /AOFU8pOTMjVdiyNd\]\{假装撤退\}战术反应/);
+  assert.doesNotMatch(descriptionFunction, /8wjiF3ctXUjP9oyX|Counterattack|反击/);
+  assert.match(main, /var flexibleArmyTacticId = 'mHWF5XwUi8RK2lET'/);
+  assert.match(main, /pack\.getDocument\(flexibleArmyTacticId\)/);
+  assert.match(main, /applyArmyTacticOverridesToActors\(game\.actors\)/);
+  assert.match(main, /Hooks\.on\('canvasReady'/);
+  assert.match(main, /Hooks\.on\('renderItemSheet', renderArmyTacticDescriptionOverrides\)/);
+});
+
+test("Counterattack requires the module Counterattack Tactics on every display path", () => {
+  const main = readFileSync(new URL("dist/main.js", moduleRoot), "utf8");
+  const requirementFunction = main.match(/function counterattackArmyActionRequirementText\(\) \{([\s\S]*?)\n\}/)?.[1];
+
+  assert.ok(requirementFunction);
+  assert.match(requirementFunction, /KmCounterTactic1\]\{反击战术\}/);
+  assert.doesNotMatch(requirementFunction, /Flexible Tactics|灵活战术/);
+  assert.match(main, /var counterattackArmyActionId = '8wjiF3ctXUjP9oyX'/);
+  assert.match(main, /pack\.getDocument\(counterattackArmyActionId\)\.then\(applyCounterattackArmyActionOverride\)/);
+  assert.match(main, /applyCounterattackArmyActionOverride\(item\)/);
+  assert.match(main, /Hooks\.on\('renderItemSheet', renderArmyTacticDescriptionOverrides\)/);
 });
