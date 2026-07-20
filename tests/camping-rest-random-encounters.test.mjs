@@ -9,46 +9,74 @@ const nightAmbushWatchTemplatePath = new URL("../dist/chatmessages/night-ambush-
 test("rest random encounter checks cover every started four-hour watch block", () => {
   assert.match(
     mainJs,
-    /var size = Math\.ceil\(watchDurationSeconds \/ 14400\);/,
+    /var remainingWatchDurationSeconds = watchDurationSeconds - encounterStartOffsetSeconds \| 0;[\s\S]*?var size = Math\.ceil\(remainingWatchDurationSeconds \/ 14400\);/,
     "one-every-four-hours mode must include the final partial four-hour block",
   );
   assert.match(
     mainJs,
-    /var end = Math\.min\(imul\(index_0, 14400\) \+ 14400 \| 0, watchDurationSeconds\);/,
+    /var begin = encounterStartOffsetSeconds \+ imul\(index_0, 14400\) \| 0;[\s\S]*?var end = Math\.min\(encounterStartOffsetSeconds \+ imul\(index_0, 14400\) \+ 14400 \| 0, watchDurationSeconds\);/,
     "the final partial block must not schedule an encounter after the remaining watch duration",
   );
 });
 
-test("continuing rest after an encounter checks the remaining watch duration", () => {
+test("continuing rest checks only unvisited four-hour blocks", () => {
   assert.match(
     mainJs,
-    /var watchDurationSeconds = camping\.watchSecondsRemaining > 0 \? camping\.watchSecondsRemaining : camping\.restSettings\.skipWatch \? 28800 : \(yield\* \/\*#__NOINLINE__\*\/getFullRestSeconds/,
+    /var continuingWatch = camping\.watchSecondsRemaining > 0;[\s\S]*?var watchDurationSeconds = continuingWatch \? camping\.watchSecondsRemaining : camping\.restSettings\.skipWatch \? 28800 : \(yield\* \/\*#__NOINLINE__\*\/getFullRestSeconds/,
     "beginRest_0 must use remaining watch seconds after an encounter interrupts rest",
   );
   assert.match(
     mainJs,
-    /else \{\r?\n    yield\* \/\*#__NOINLINE__\*\/beginRest_0\(game, dispatcher, campingActor, camping, party, \$completion\);\r?\n  \}/,
-    "rest should resume encounter checks instead of immediately completing daily preparations",
+    /var encounterStartOffsetSeconds = continuingWatch \? typeof camping\.watchEncounterNextCheckOffsetSeconds === 'number'/,
+    "continuing rest must preserve the next unvisited block instead of starting at block zero",
+  );
+  assert.match(
+    mainJs,
+    /camping\.watchEncounterNextCheckOffsetSeconds = encounterStartOffsetSeconds \+ imul\(blocksToAdvance, 14400\) - randomEncounterAt\.seconds \| 0;/,
+    "an interrupted block must advance to the next original four-hour block",
+  );
+  assert.match(
+    mainJs,
+    /camping\.watchEncounterSecondsRemaining = randomEncounterDurationSeconds - randomEncounterAt\.seconds \| 0;/,
+    "the random encounter window must be reduced independently from total rest time",
+  );
+  assert.match(
+    mainJs,
+    /camping\.watchEncounterSecondsRemaining = 0;\r?\n    camping\.watchEncounterNextCheckOffsetSeconds = 0;\r?\n    camping\.watchSecondsRemaining = watchDurationSeconds;/,
+    "completing rest must clear encounter progress",
   );
 });
 
 test("disabled watch still checks random encounters across an eight-hour rest window", () => {
   assert.match(
     mainJs,
-    /var randomEncounterDurationSeconds = camping\.restSettings\.skipWatch \? Math\.min\(watchDurationSeconds, 28800\) : watchDurationSeconds;/,
+    /var fallbackRandomEncounterDurationSeconds = camping\.restSettings\.skipWatch \? Math\.min\(watchDurationSeconds, 28800\) : watchDurationSeconds;[\s\S]*?var randomEncounterDurationSeconds = hasSavedEncounterProgress \? camping\.watchEncounterSecondsRemaining : continuingWatch \? Math\.min\(fallbackRandomEncounterDurationSeconds, encounterStartOffsetSeconds \+ 28800\) : fallbackRandomEncounterDurationSeconds;/,
     "disabled watch should use up to eight hours for random encounter checks",
   );
   assert.match(
     mainJs,
-    /findRandomEncounterAt\(game, campingActor, camping, randomEncounterDurationSeconds, \$completion\)/,
+    /findRandomEncounterAt\(game, campingActor, camping, randomEncounterDurationSeconds, encounterStartOffsetSeconds, \$completion\)/,
     "random encounter checks must use the dedicated encounter duration instead of total rest duration",
   );
+});
+
+test("a 10:40 rest has at most three cumulative encounter blocks", () => {
+  const fourHours = 14_400;
+  const total = 38_400;
+  const firstEncounter = 3_600;
+  const nextBlockAfterFirstEncounter = fourHours - firstEncounter;
+  const remainingAfterFirstEncounter = total - firstEncounter;
+  const remainingBlocks = Math.ceil((remainingAfterFirstEncounter - nextBlockAfterFirstEncounter) / fourHours);
+
+  assert.equal(Math.ceil(total / fourHours), 3);
+  assert.equal(remainingBlocks, 2);
+  assert.ok(1 + remainingBlocks <= 3, "the first encounter plus remaining original blocks must stay within three checks");
 });
 
 test("disabling random encounters skips encounter lookup entirely", () => {
   assert.match(
     mainJs,
-    /var randomEncounterAt = camping\.restSettings\.disableRandomEncounter \? null : \(yield\* \/\*#__NOINLINE__\*\/findRandomEncounterAt\(game, campingActor, camping, randomEncounterDurationSeconds, \$completion\)\);/,
+    /var randomEncounterAt = camping\.restSettings\.disableRandomEncounter \? null : \(yield\* \/\*#__NOINLINE__\*\/findRandomEncounterAt\(game, campingActor, camping, randomEncounterDurationSeconds, encounterStartOffsetSeconds, \$completion\)\);/,
     "disabled random encounters must not resolve regional encounter tables or roll encounter timing",
   );
 });

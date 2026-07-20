@@ -139340,6 +139340,8 @@ class completeDailyPreparations$slambda {
     var recipes = (0,_kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.toList383f556t1dixk)(getAllRecipes(this.b63_1));
     yield* (0,_kotlinx_coroutines_core_mjs__WEBPACK_IMPORTED_MODULE_3__.awaitd1m8y0em728c)(this.c63_1.time.advance(this.b63_1.watchSecondsRemaining), $completion);
     this.b63_1.watchSecondsRemaining = 0;
+    this.b63_1.watchEncounterSecondsRemaining = 0;
+    this.b63_1.watchEncounterNextCheckOffsetSeconds = 0;
     this.b63_1.encounterModifier = 0;
     this.b63_1.dailyPrepsAtTime = get_worldTimeSeconds(this.c63_1.time);
     this.b63_1.secondsSpentTraveling = 0;
@@ -150393,7 +150395,7 @@ function getDefaultCamping(game) {
   // Inline function 'at.posselt.pfrpg2e.camping.dialogs.at_posselt_pfrpg2e_camping_dialogs_RegionSettings_Companion_yfowq0_invoke_jkqnwo' call
   // Inline function 'at.posselt.pfrpg2e.camping.CampingData.Companion.invoke' call
   // Inline function 'at.posselt.pfrpg2e.camping.at_posselt_pfrpg2e_camping_CampingData_Companion_ahpx8n_invoke_jkqnwo' call
-  return {currentRegion: tmp83_currentRegion, actorUuids: tmp84_actorUuids, campingActivities: tmp85_campingActivities, homebrewCampingActivities: tmp86_homebrewCampingActivities, lockedActivities: tmp87_lockedActivities, cooking: tmp88_cooking, watchSecondsRemaining: 0, gunsToClean: 0, dailyPrepsAtTime: tmp89_dailyPrepsAtTime, encounterModifier: 0, restRollMode: 'one', increaseWatchActorNumber: 0, actorUuidsNotKeepingWatch: tmp90_actorUuidsNotKeepingWatch, alwaysPerformActivityIds: tmp91_alwaysPerformActivityIds, randomEncounterRollMode: 'gmroll', ignoreSkillRequirements: false, regionSettings: {regions: [tmp, tmp_0, tmp_1, tmp_2, tmp_3, tmp_4, tmp_5, tmp_6, tmp_7, tmp_8, tmp_9, tmp_10, tmp_11, tmp_12, tmp_13, tmp_14, tmp_15, tmp_16, tmp_17, {name: tmp79_name, zoneDc: 41, encounterDc: 16, level: 19, terrain: toCamelCase(Terrain_MOUNTAIN_getInstance()), rollTableUuid: get_rolltableUuids()[18], combatTrack: tmp80_combatTrack}]}, section: 'prepareCampsite', restingTrack: null, autoApplyFatigued: false, restSettings: tmp92_restSettings, secondsSpentTraveling: 0, secondsSpentHexploring: 0, resetTimeTrackingAfterOneDay: true, travelModeActive: false, forcedMarchActive: false, secondsSpentForcedMarching: 0, hexSizeInMiles: 12};
+  return {currentRegion: tmp83_currentRegion, actorUuids: tmp84_actorUuids, campingActivities: tmp85_campingActivities, homebrewCampingActivities: tmp86_homebrewCampingActivities, lockedActivities: tmp87_lockedActivities, cooking: tmp88_cooking, watchSecondsRemaining: 0, watchEncounterSecondsRemaining: 0, watchEncounterNextCheckOffsetSeconds: 0, gunsToClean: 0, dailyPrepsAtTime: tmp89_dailyPrepsAtTime, encounterModifier: 0, restRollMode: 'one', increaseWatchActorNumber: 0, actorUuidsNotKeepingWatch: tmp90_actorUuidsNotKeepingWatch, alwaysPerformActivityIds: tmp91_alwaysPerformActivityIds, randomEncounterRollMode: 'gmroll', ignoreSkillRequirements: false, regionSettings: {regions: [tmp, tmp_0, tmp_1, tmp_2, tmp_3, tmp_4, tmp_5, tmp_6, tmp_7, tmp_8, tmp_9, tmp_10, tmp_11, tmp_12, tmp_13, tmp_14, tmp_15, tmp_16, tmp_17, {name: tmp79_name, zoneDc: 41, encounterDc: 16, level: 19, terrain: toCamelCase(Terrain_MOUNTAIN_getInstance()), rollTableUuid: get_rolltableUuids()[18], combatTrack: tmp80_combatTrack}]}, section: 'prepareCampsite', restingTrack: null, autoApplyFatigued: false, restSettings: tmp92_restSettings, secondsSpentTraveling: 0, secondsSpentHexploring: 0, resetTimeTrackingAfterOneDay: true, travelModeActive: false, forcedMarchActive: false, secondsSpentForcedMarching: 0, hexSizeInMiles: 12};
 }
 function getCamping(_this__u8e3s4) {
   _init_properties_CampingData_kt__wqcap3();
@@ -174691,7 +174693,9 @@ function *additionalHealingPerActorAfterRest(recipes, camping, actors, $completi
 function *applyAdditionalHealing(healingAfterRest, $completion) {
   return yield* (0,_kotlinx_coroutines_core_mjs__WEBPACK_IMPORTED_MODULE_3__.coroutineScope5mg03ltqqkp0)(applyAdditionalHealing$slambda_0(healingAfterRest), $completion);
 }
-function *findRandomEncounterAt(game, campingActor, camping, watchDurationSeconds, $completion) {
+function *findRandomEncounterAt(game, campingActor, camping, watchDurationSeconds, encounterStartOffsetSeconds, $completion) {
+  encounterStartOffsetSeconds = encounterStartOffsetSeconds == null ? 0 : Math.max(0, encounterStartOffsetSeconds | 0);
+  encounterStartOffsetSeconds = Math.min(encounterStartOffsetSeconds, watchDurationSeconds);
   // Inline function 'at.posselt.pfrpg2e.fromCamelCase' call
   var value = camping.restRollMode;
   // Inline function 'kotlin.enums.enumEntries' call
@@ -174737,7 +174741,8 @@ function *findRandomEncounterAt(game, campingActor, camping, watchDurationSecond
 
       // Inline function 'kotlin.collections.MutableList' call
 
-      var size = Math.ceil(watchDurationSeconds / 14400);
+      var remainingWatchDurationSeconds = watchDurationSeconds - encounterStartOffsetSeconds | 0;
+      var size = Math.ceil(remainingWatchDurationSeconds / 14400);
       var list_0 = _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.ArrayList3it5z8td81qkl.x1(size);
       // Inline function 'kotlin.repeat' call
 
@@ -174746,8 +174751,8 @@ function *findRandomEncounterAt(game, campingActor, camping, watchDurationSecond
         do {
           var index_0 = inductionVariable_0;
           inductionVariable_0 = inductionVariable_0 + 1 | 0;
-          var begin = imul(index_0, 14400);
-          var end = Math.min(imul(index_0, 14400) + 14400 | 0, watchDurationSeconds);
+          var begin = encounterStartOffsetSeconds + imul(index_0, 14400) | 0;
+          var end = Math.min(encounterStartOffsetSeconds + imul(index_0, 14400) + 14400 | 0, watchDurationSeconds);
           var tmp$ret$14 = (0,_kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.Default_getInstance2tudkf86ziur0)().vn(begin + 1 | 0, end - 1 | 0);
           list_0.n1(tmp$ret$14);
         }
@@ -174796,9 +174801,13 @@ function *beginRest_0(game, dispatcher, campingActor, camping, party, $completio
     }
   }
   var watchers = destination_0;
-  var watchDurationSeconds = camping.watchSecondsRemaining > 0 ? camping.watchSecondsRemaining : camping.restSettings.skipWatch ? 28800 : (yield* /*#__NOINLINE__*/getFullRestSeconds(watchers, (0,_kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.toList383f556t1dixk)(getAllRecipes(camping)), camping.gunsToClean, camping.increaseWatchActorNumber, camping.restSettings.skipWatch, camping.restSettings.skipDailyPreparations, $completion));
-  var randomEncounterDurationSeconds = camping.restSettings.skipWatch ? Math.min(watchDurationSeconds, 28800) : watchDurationSeconds;
-  var randomEncounterAt = camping.restSettings.disableRandomEncounter ? null : (yield* /*#__NOINLINE__*/findRandomEncounterAt(game, campingActor, camping, randomEncounterDurationSeconds, $completion));
+  var continuingWatch = camping.watchSecondsRemaining > 0;
+  var watchDurationSeconds = continuingWatch ? camping.watchSecondsRemaining : camping.restSettings.skipWatch ? 28800 : (yield* /*#__NOINLINE__*/getFullRestSeconds(watchers, (0,_kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.toList383f556t1dixk)(getAllRecipes(camping)), camping.gunsToClean, camping.increaseWatchActorNumber, camping.restSettings.skipWatch, camping.restSettings.skipDailyPreparations, $completion));
+  var hasSavedEncounterProgress = continuingWatch && typeof camping.watchEncounterSecondsRemaining === 'number' && Number.isFinite(camping.watchEncounterSecondsRemaining) && camping.watchEncounterSecondsRemaining >= 0;
+  var encounterStartOffsetSeconds = continuingWatch ? typeof camping.watchEncounterNextCheckOffsetSeconds === 'number' && Number.isFinite(camping.watchEncounterNextCheckOffsetSeconds) && camping.watchEncounterNextCheckOffsetSeconds >= 0 ? camping.watchEncounterNextCheckOffsetSeconds : 14400 : 0;
+  var fallbackRandomEncounterDurationSeconds = camping.restSettings.skipWatch ? Math.min(watchDurationSeconds, 28800) : watchDurationSeconds;
+  var randomEncounterDurationSeconds = hasSavedEncounterProgress ? camping.watchEncounterSecondsRemaining : continuingWatch ? Math.min(fallbackRandomEncounterDurationSeconds, encounterStartOffsetSeconds + 28800) : fallbackRandomEncounterDurationSeconds;
+  var randomEncounterAt = camping.restSettings.disableRandomEncounter ? null : (yield* /*#__NOINLINE__*/findRandomEncounterAt(game, campingActor, camping, randomEncounterDurationSeconds, encounterStartOffsetSeconds, $completion));
   if (!(randomEncounterAt == null)) {
     var stealthDc = randomEncounterAt.stealthDc == null ? (yield* askDc(t_0('camping.enemyStealth'), $completion)) : randomEncounterAt.stealthDc;
     if (stealthDc == null)
@@ -174809,9 +174818,15 @@ function *beginRest_0(game, dispatcher, campingActor, camping, party, $completio
     }
     yield* postNightAmbushWatchInfo(watchers, randomEncounterAt.seconds, watchDurationSeconds, camping.increaseWatchActorNumber, $completion);
     yield* (0,_kotlinx_coroutines_core_mjs__WEBPACK_IMPORTED_MODULE_3__.awaitd1m8y0em728c)(game.time.advance(randomEncounterAt.seconds), $completion);
+    var secondsIntoPendingBlock = Math.max(0, randomEncounterAt.seconds - encounterStartOffsetSeconds);
+    var blocksToAdvance = Math.floor(secondsIntoPendingBlock / 14400) + 1;
+    camping.watchEncounterNextCheckOffsetSeconds = encounterStartOffsetSeconds + imul(blocksToAdvance, 14400) - randomEncounterAt.seconds | 0;
+    camping.watchEncounterSecondsRemaining = randomEncounterDurationSeconds - randomEncounterAt.seconds | 0;
     camping.watchSecondsRemaining = watchDurationSeconds - randomEncounterAt.seconds | 0;
     yield* setCamping(campingActor, camping, $completion);
   } else {
+    camping.watchEncounterSecondsRemaining = 0;
+    camping.watchEncounterNextCheckOffsetSeconds = 0;
     camping.watchSecondsRemaining = watchDurationSeconds;
     yield* completeDailyPreparations(game, dispatcher, campingActor, camping, party, $completion);
   }
