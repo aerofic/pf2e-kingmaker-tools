@@ -12,17 +12,22 @@ test("camping token movement falls back from Zone NN to the configured region in
   );
   assert.match(
     mainJs,
-    /var zName = "Zone " \+ \(i < 10 \? "0" \+ i : "" \+ i\);/,
+    /var zName = "Zone " \+ zoneId;/,
     "missing Zone NN name reconstruction",
   );
   assert.match(
     mainJs,
-    /if \(zoneNames\.e2\(zName\)\) \{/,
-    "missing v14 set-membership check against generated Zone NN names",
+    /zoneNames\.e2\(zName\) \|\| zoneNames\.e2\(localizedZoneName\)/,
+    "missing localized Zone NN fallback for Chinese region labels",
   );
   assert.match(
     mainJs,
     /tmp\$ret\$7 = tmp0\[i\];/,
     "missing assignment of the configured region at the matching Zone index",
+  );
+  assert.match(
+    mainJs,
+    /var hexScene = \$game\.scenes\.get\('AJ1k5II28u72JOmz'\);[\s\S]*?tmp_0 = true;/,
+    "hex map scene must remain fixed without requiring it to be the currently viewed scene",
   );
 });

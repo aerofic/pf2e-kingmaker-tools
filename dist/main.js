@@ -111283,6 +111283,30 @@ class ActionDispatcher$listen$lambda$slambda {
     return this.k3s((!(p1 == null) ? (0,_kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.isInterface3d6p8outrmvmk)(p1, _kotlinx_coroutines_core_mjs__WEBPACK_IMPORTED_MODULE_3__.CoroutineScopefcb5f5dwqcas) : false) ? p1 : (0,_kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.THROW_CCE2g6jy02ryeudk)(), $completion);
   }
 }
+function kmActionRequester(game, action) {
+  var senderId = action == null ? null : action.__kmSenderUserId;
+  if (senderId == null) {
+    return game == null ? null : game.user;
+  }
+  var user = game == null || game.users == null ? null : game.users.get(senderId);
+  return user == null || user.active !== true ? null : user;
+}
+function kmCanActionUpdate(document, user) {
+  return document != null && user != null && typeof document.canUserModify === 'function' && document.canUserModify(user, 'update');
+}
+function kmCanActionUpdateAll(documents, user, mapper) {
+  mapper = mapper === undefined ? (value) => value : mapper;
+  if (documents == null || typeof documents.r1 !== 'function') {
+    return false;
+  }
+  var iterator = documents.r1();
+  while (iterator.s1()) {
+    if (!kmCanActionUpdate(mapper(iterator.t1()), user)) {
+      return false;
+    }
+  }
+  return true;
+}
 class ActionDispatcher {
   constructor(game, handlers, debug) {
     debug = debug === _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.VOID3gxj6tk5isa35 ? true : debug;
@@ -111296,6 +111320,9 @@ class ActionDispatcher {
   }
   *y3s(action, receivedViaSocket, $completion) {
     if (this.h3s_1) {
+    }
+    if (receivedViaSocket && kmActionRequester(this.f3s_1, action) == null) {
+      return _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.Unit_instancev9v8hjid95df;
     }
     // Inline function 'kotlin.collections.find' call
     var tmp0 = this.g3s_1;
@@ -111380,6 +111407,10 @@ class AddHuntAndGatherResultHandler extends ActionHandler {
       tmp = tmp0_safe_receiver instanceof CONFIG.PF2E.Actor.documentClasses.party ? tmp0_safe_receiver : null;
     }
     var campingActor = tmp;
+    var requester = kmActionRequester(dispatcher.f3s_1, action);
+    if (!kmCanActionUpdate(campingActor, requester)) {
+      return _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.Unit_instancev9v8hjid95df;
+    }
     var tmp1_safe_receiver = campingActor == null ? null : getCamping(campingActor);
     if (tmp1_safe_receiver == null)
       null;
@@ -111391,6 +111422,9 @@ class AddHuntAndGatherResultHandler extends ActionHandler {
         tmp_0 = null;
       } else {
         // Inline function 'kotlin.let' call
+        if (!kmCanActionUpdate(tmp0_safe_receiver_0, requester)) {
+          return _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.Unit_instancev9v8hjid95df;
+        }
         yield* addFoodToInventory(tmp0_safe_receiver_0, new FoodAmount(result.basicIngredients, result.specialIngredients), $completion);
         yield* postChatTemplate('chatmessages/add-hunt-and-gather.hbs', (0,_kotlin_js_mjs__WEBPACK_IMPORTED_MODULE_4__.recordOf3qfqe45m25p44)([(0,_kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.to2cs3ny02qtbcb)('actorName', tmp0_safe_receiver_0.name), (0,_kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.to2cs3ny02qtbcb)('basicIngredients', result.basicIngredients), (0,_kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.to2cs3ny02qtbcb)('specialIngredients', result.specialIngredients)]), _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.VOID3gxj6tk5isa35, _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.VOID3gxj6tk5isa35, $completion);
         tmp_0 = _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.Unit_instancev9v8hjid95df;
@@ -111427,6 +111461,10 @@ class ApplyMealEffectsHandler extends ActionHandler {
       tmp_0 = tmp1_elvis_lhs;
     }
     var camping = tmp_0;
+    var requester = kmActionRequester(dispatcher.f3s_1, action);
+    if (!kmCanActionUpdate(campingActor, requester)) {
+      return _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.Unit_instancev9v8hjid95df;
+    }
     // Inline function 'kotlin.collections.associateBy' call
     var this_0 = getAllRecipes(camping);
     var capacity = (0,_kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.coerceAtLeast2bkz8m9ik7hep)((0,_kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.mapCapacity1h45rc3eh9p2l)(this_0.length), 16);
@@ -111522,6 +111560,9 @@ class ApplyMealEffectsHandler extends ActionHandler {
       }
     }
     var chosenMeals = destination_3;
+    if (!kmCanActionUpdateAll(chosenMeals, requester, (meal) => meal.n3t_1)) {
+      return _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.Unit_instancev9v8hjid95df;
+    }
     // Inline function 'kotlin.collections.map' call
     // Inline function 'kotlin.collections.mapTo' call
     var destination_4 = _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.ArrayList3it5z8td81qkl.x1((0,_kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.collectionSizeOrDefault36dulx8yinfqm)(chosenMeals, 10));
@@ -111650,12 +111691,20 @@ class ClearMealEffectsHandler extends ActionHandler {
       tmp = tmp0_safe_receiver instanceof CONFIG.PF2E.Actor.documentClasses.party ? tmp0_safe_receiver : null;
     }
     var campingActor = tmp;
+    var requester = kmActionRequester(dispatcher.f3s_1, action);
+    if (!kmCanActionUpdate(campingActor, requester)) {
+      return _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.Unit_instancev9v8hjid95df;
+    }
     var tmp1_safe_receiver = campingActor == null ? null : getCamping(campingActor);
     if (tmp1_safe_receiver == null)
       null;
     else {
       // Inline function 'kotlin.let' call
-      yield* removeMealEffects((0,_kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.toList383f556t1dixk)(getAllRecipes(tmp1_safe_receiver)), yield* getActorsInCamp(tmp1_safe_receiver, _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.VOID3gxj6tk5isa35, $completion), false, true, $completion);
+      var campActors = yield* getActorsInCamp(tmp1_safe_receiver, _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.VOID3gxj6tk5isa35, $completion);
+      if (!kmCanActionUpdateAll(campActors, requester)) {
+        return _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.Unit_instancev9v8hjid95df;
+      }
+      yield* removeMealEffects((0,_kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.toList383f556t1dixk)(getAllRecipes(tmp1_safe_receiver)), campActors, false, true, $completion);
     }
     return _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.Unit_instancev9v8hjid95df;
   }
@@ -111672,7 +111721,8 @@ class GainProvisionsHandler extends ActionHandler {
     // Inline function 'kotlin.js.unsafeCast' call
     // Inline function 'kotlin.js.asDynamic' call
     var actor = yield* (0,_kotlinx_coroutines_core_mjs__WEBPACK_IMPORTED_MODULE_3__.awaitd1m8y0em728c)(fromUuid(data.actorUuid), $completion);
-    if (quantity > 0 && !(actor == null)) {
+    var requester = kmActionRequester(dispatcher.f3s_1, action);
+    if (quantity > 0 && !(actor == null) && kmCanActionUpdate(actor, requester)) {
       yield* addConsumableToInventory(actor, 'Compendium.pf2e-kingmaker-tools.kingmaker-tools-camping-effects.Item.UsafuPUY2soIZhC3', quantity, $completion);
       yield* postChatMessage(t('macros.createFood.adding', (0,_kotlin_js_mjs__WEBPACK_IMPORTED_MODULE_4__.recordOf3qfqe45m25p44)([(0,_kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.to2cs3ny02qtbcb)('count', quantity)])), _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.VOID3gxj6tk5isa35, actor, _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.VOID3gxj6tk5isa35, $completion);
     }
@@ -111705,6 +111755,10 @@ class LearnSpecialRecipeHandler extends ActionHandler {
       tmp_0 = tmp0_elvis_lhs;
     }
     var campingActor = tmp_0;
+    var requester = kmActionRequester(dispatcher.f3s_1, action);
+    if (!kmCanActionUpdate(campingActor, requester)) {
+      return _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.Unit_instancev9v8hjid95df;
+    }
     var tmp1_elvis_lhs = getCamping(campingActor);
     var tmp_1;
     if (tmp1_elvis_lhs == null) {
@@ -111741,6 +111795,9 @@ class LearnSpecialRecipeHandler extends ActionHandler {
     var degreeOfSuccess = tmp_2;
     var recipeId = data.id;
     var actor = yield* getCampingActorByUuid(data.actorUuid, $completion);
+    if (!kmCanActionUpdate(actor, requester)) {
+      return _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.Unit_instancev9v8hjid95df;
+    }
     // Inline function 'kotlin.collections.find' call
     var tmp0_0 = getAllRecipes(camping);
     var tmp$ret$10;
@@ -111875,6 +111932,10 @@ class SyncActivitiesHandler extends ActionHandler {
       tmp = tmp0_safe_receiver instanceof CONFIG.PF2E.Actor.documentClasses.party ? tmp0_safe_receiver : null;
     }
     var campingActor = tmp;
+    var requester = kmActionRequester(this.h3u_1, action);
+    if (!kmCanActionUpdate(campingActor, requester)) {
+      return _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.Unit_instancev9hjid95df;
+    }
     var camping = campingActor == null ? null : getCamping(campingActor);
     if (!(camping == null)) {
       var tmp1_safe_receiver = data.prepareCampsiteResult;
@@ -134871,6 +134932,11 @@ class KingdomSheet$_onClickAction$slambda_43 {
       if (this.g5u_1.q5q_1.user != null && this.g5u_1.q5q_1.user.isGM) {
         var currentKingdomTurn = kmNormalizeKingdomTurn(this.g5u_1.r5q_1.getFlag('pf2e-kingmaker-tools', 'kingdomTurn'));
         yield* (0,_kotlinx_coroutines_core_mjs__WEBPACK_IMPORTED_MODULE_3__.awaitd1m8y0em728c)(this.g5u_1.r5q_1.setFlag('pf2e-kingmaker-tools', 'kingdomTurn', currentKingdomTurn + 1), $completion);
+      } else if (this.g5u_1.q5q_1.user != null) {
+        emitPfrpg2eKingdomCampingWeather(this.g5u_1.q5q_1.socket, {
+          action: kmKingdomTurnSocketAction,
+          data: {actorUuid: this.g5u_1.r5q_1.uuid, requestingUserId: this.g5u_1.q5q_1.user.id}
+        });
       }
     }
     yield* postChatTemplate('chatmessages/end-turn.hbs', _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.VOID3gxj6tk5isa35, _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.VOID3gxj6tk5isa35, _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.VOID3gxj6tk5isa35, $completion);
@@ -145637,24 +145703,26 @@ function kmOffensiveGambitEnemyArmies(game) {
   var allTokens = kmArmySceneTokens();
   var controlled = kmArmyControlledTokens();
   var targeted = kmArmyTargetedTokens();
-  var anchorTokens = controlled.filter((token) => kmArmySide(kmArmyActorFromToken(token), token) === 'party');
+  // Offensive Gambit uses the highest Scouting DC in one contested hex. Do not
+  // combine enemies from several simultaneous engagements when the UI has not
+  // identified a single hex.
+  var anchorTokens = targeted.filter((token) => kmArmySide(kmArmyActorFromToken(token), token) === 'opposition');
+  if (anchorTokens.length === 0) {
+    anchorTokens = controlled.filter((token) => kmArmySide(kmArmyActorFromToken(token), token) === 'party');
+  }
   if (anchorTokens.length === 0) {
     anchorTokens = controlled.filter((token) => kmArmySide(kmArmyActorFromToken(token), token) === 'opposition');
   }
-  if (anchorTokens.length === 0) {
-    anchorTokens = targeted.filter((token) => kmArmySide(kmArmyActorFromToken(token), token) === 'opposition');
-  }
-  if (anchorTokens.length > 0) {
-    var anchorHexes = new Set(anchorTokens.map(kmArmyTokenHexKey).filter((key) => key != null));
-    var matching = allTokens.filter((token) => kmArmySide(kmArmyActorFromToken(token), token) === 'opposition' && anchorHexes.has(kmArmyTokenHexKey(token)));
+  var anchorHexes = new Set(anchorTokens.map(kmArmyTokenHexKey).filter((key) => key != null));
+  if (anchorHexes.size === 1) {
+    var anchorHex = anchorHexes.values().next().value;
+    var matching = allTokens.filter((token) => kmArmySide(kmArmyActorFromToken(token), token) === 'opposition' && kmArmyTokenHexKey(token) === anchorHex);
     if (matching.length > 0) {
       return kmUniqueArmyActors(matching);
     }
   }
-  var partyHexes = new Set(allTokens.filter((token) => kmArmySide(kmArmyActorFromToken(token), token) === 'party').map(kmArmyTokenHexKey).filter((key) => key != null));
-  var contestedEnemies = allTokens.filter((token) => kmArmySide(kmArmyActorFromToken(token), token) === 'opposition' && partyHexes.has(kmArmyTokenHexKey(token)));
-  if (contestedEnemies.length > 0) {
-    return kmUniqueArmyActors(contestedEnemies);
+  if (anchorHexes.size > 1) {
+    return [];
   }
   return getSelectedArmies(game);
 }
@@ -146068,6 +146136,7 @@ function registerKingdomTurnCounter() {
       renderCounter(app, html, context);
     }
   });
+  registerKingdomTurnSocket();
 }
 function kmNormalizeKingdomTurn(value) {
   var parsed = Number(value);
@@ -146178,6 +146247,29 @@ async function updateKingdomTurnCounter(actor, input) {
   } finally {
     input.disabled = false;
   }
+}
+var kmKingdomTurnSocketAction = 'incrementKingdomTurn';
+function registerKingdomTurnSocket() {
+  game.socket.on('module.pf2e-kingmaker-tools', (message, senderUserId) => {
+    if (message == null || message.action !== kmKingdomTurnSocketAction || game.user == null || game.user.isGM !== true || !isFirstGM(game)) {
+      return;
+    }
+    var data = message.data;
+    if (data == null || typeof senderUserId !== 'string' || senderUserId !== data.requestingUserId) {
+      return;
+    }
+    var requester = game.users.get(senderUserId);
+    if (requester == null || requester.active !== true || typeof data.actorUuid !== 'string') {
+      return;
+    }
+    fromUuid(data.actorUuid).then((actor) => {
+      if (!(actor instanceof CONFIG.PF2E.Actor.documentClasses.party) || getKingdom(actor) == null || !kmCanActionUpdate(actor, requester)) {
+        return;
+      }
+      var currentKingdomTurn = kmNormalizeKingdomTurn(actor.getFlag('pf2e-kingmaker-tools', kmKingdomTurnFlag));
+      return actor.setFlag('pf2e-kingmaker-tools', kmKingdomTurnFlag, currentKingdomTurn + 1);
+    }).catch((error) => console.error('pf2e-kingmaker-tools | Failed to increment the Kingdom turn from socket.', error));
+  });
 }
 var kmSettlementMayorSocketAction = 'setSettlementMayor';
 function kmGetSettlementMayors(kingdom) {
@@ -146639,7 +146731,7 @@ function ActionDispatcher$listen$lambda$slambda_0(this$0, $message) {
   return l;
 }
 function ActionDispatcher$listen$lambda(this$0) {
-  return (message) => {
+  return (message, senderUserId) => {
     var tmp;
     if (this$0.h3s_1) {
       tmp = _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.Unit_instancev9v8hjid95df;
@@ -146682,7 +146774,11 @@ function ActionDispatcher$listen$lambda(this$0) {
         tmp_4 = false;
       }
       if (tmp_4) {
-        buildPromise(ActionDispatcher$listen$lambda$slambda_0(this$0, message));
+        if (typeof senderUserId !== 'string' || senderUserId.length === 0) {
+          return _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.Unit_instancev9v8hjid95df;
+        }
+        var socketAction = Object.assign({}, message, {__kmSenderUserId: senderUserId});
+        buildPromise(ActionDispatcher$listen$lambda$slambda_0(this$0, socketAction));
         tmp_3 = _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.Unit_instancev9v8hjid95df;
       }
       tmp_0 = tmp_3;
@@ -150311,8 +150407,25 @@ function getCamping(_this__u8e3s4) {
   }
   return tmp;
 }
+var kmCampingWriteQueues = new WeakMap();
+function kmQueueCampingWrite(actor, write) {
+  var previous = kmCampingWriteQueues.get(actor) || Promise.resolve();
+  var next = previous.catch(() => undefined).then(write);
+  var queued = next.finally(() => {
+    if (kmCampingWriteQueues.get(actor) === queued) {
+      kmCampingWriteQueues.delete(actor);
+    }
+  });
+  kmCampingWriteQueues.set(actor, queued);
+  return queued;
+}
 function *setCamping(_this__u8e3s4, data, $completion) {
-  yield* setAppFlag(_this__u8e3s4, 'camping-sheet', data, $completion);
+  var write = kmQueueCampingWrite(_this__u8e3s4, () => {
+    var current = getAppFlag(_this__u8e3s4, 'camping-sheet') || {};
+    var diff = foundry.utils.diffObject(current, data);
+    return _this__u8e3s4.setFlag('pf2e-kingmaker-tools', 'camping-sheet', diff);
+  });
+  yield* (0,_kotlinx_coroutines_core_mjs__WEBPACK_IMPORTED_MODULE_3__.awaitd1m8y0em728c)(write, $completion);
   return _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.Unit_instancev9v8hjid95df;
 }
 function isCampingActor(_this__u8e3s4) {
@@ -150326,7 +150439,8 @@ function isCampingActor(_this__u8e3s4) {
   return tmp;
 }
 function *updateCamping(_this__u8e3s4, data, $completion) {
-  yield* setAppFlag(_this__u8e3s4, 'camping-sheet', data, $completion);
+  var write = kmQueueCampingWrite(_this__u8e3s4, () => _this__u8e3s4.setFlag('pf2e-kingmaker-tools', 'camping-sheet', data));
+  yield* (0,_kotlinx_coroutines_core_mjs__WEBPACK_IMPORTED_MODULE_3__.awaitd1m8y0em728c)(write, $completion);
   return _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.Unit_instancev9v8hjid95df;
 }
 function *clearCamping(_this__u8e3s4, $completion) {
@@ -152145,8 +152259,9 @@ function registerCampingTokenMove$lambda($game) {
       tmp_1 = false;
     }
     if (tmp_1) {
-      var tmp1_safe_receiver = $game.scenes.current;
-      tmp_0 = (tmp1_safe_receiver == null ? null : tmp1_safe_receiver.id) === 'AJ1k5II28u72JOmz';
+      // The Kingmaker hex map is intentionally fixed to this scene. Token movement
+      // updates can still arrive while another scene is currently viewed.
+      tmp_0 = true;
     } else {
       tmp_0 = false;
     }
@@ -152190,8 +152305,10 @@ function registerCampingTokenMove$lambda($game) {
         // Patch: Try to find zone by index if name match fails
         if (tmp0_safe_receiver_0 == null) {
             for (var i = 0; i < 50; i++) {
-                var zName = "Zone " + (i < 10 ? "0" + i : "" + i);
-                if (zoneNames.e2(zName)) {
+                var zoneId = i < 10 ? "0" + i : "" + i;
+                var zName = "Zone " + zoneId;
+                var localizedZoneName = t('camping.zone', {id: zoneId});
+                if (zoneNames.e2(zName) || zoneNames.e2(localizedZoneName)) {
                     if (i < tmp0.length) {
                         tmp$ret$7 = tmp0[i];
                     }
@@ -161830,6 +161947,9 @@ function calculateTotalArmyConsumption(game, folderId) {
   return sum;
 }
 function *updateArmyConsumption(game, $completion) {
+  if (game == null || game.user == null || game.user.isGM !== true || !isFirstGM(game)) {
+    return _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.Unit_instancev9v8hjid95df;
+  }
   // Inline function 'kotlin.collections.forEach' call
   var _iterator__ex2g4s = getKingdomActors(game).r1();
   while (_iterator__ex2g4s.s1()) {
@@ -175170,6 +175290,16 @@ function bindChatClick(targetSelector, parentSelector, callback) {
   var _iterator__ex2g4s_0 = destination.r1();
   while (_iterator__ex2g4s_0.s1()) {
     var element_0 = _iterator__ex2g4s_0.t1();
+    var handlerKey = targetSelector + '|' + parentSelector;
+    var boundHandlers = element_0.__kmChatHandlers;
+    if (!(boundHandlers instanceof Set)) {
+      boundHandlers = new Set();
+      element_0.__kmChatHandlers = boundHandlers;
+    }
+    if (boundHandlers.has(handlerKey)) {
+      continue;
+    }
+    boundHandlers.add(handlerKey);
     element_0.addEventListener('click', bindChatClick$lambda(targetSelector, parentSelector, callback));
   }
 }
@@ -175183,8 +175313,16 @@ function bindChatClick$lambda($targetSelector, $parentSelector, $callback) {
     } else {
       tmp_0 = false;
     }
-    if (tmp_0) {
-      var tmp0_safe_receiver = target.closest($parentSelector);
+      if (tmp_0) {
+        if (target.dataset.kmOnce === 'true') {
+          if (target.dataset.kmProcessed === 'true') {
+            return _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.Unit_instancev9v8hjid95df;
+          }
+          target.dataset.kmProcessed = 'true';
+          target.disabled = true;
+          target.setAttribute('aria-disabled', 'true');
+        }
+        var tmp0_safe_receiver = target.closest($parentSelector);
       var tmp_1;
       if (tmp0_safe_receiver == null) {
         tmp_1 = null;
