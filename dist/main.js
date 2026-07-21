@@ -145801,6 +145801,8 @@ var kmArmyStatusHudConditionFolderId = 'nNaDTkXGZyawxKA6';
 var kmArmyStatusHudPaletteId = 'kingmaker-army-effects';
 var kmEfficientArmyConditionId = 'DURRMyANFnFccM24';
 var kmEfficientArmyConditionUuid = 'Compendium.pf2e.kingmaker-features.Item.' + kmEfficientArmyConditionId;
+var kmDistantArmyConditionId = '8upne4E6Q7Da5T5w';
+var kmDistantArmyConditionUuid = 'Compendium.pf2e.kingmaker-features.Item.' + kmDistantArmyConditionId;
 var kmArmyStatusHudValuedSlugs = new Set(['merit', 'mired', 'shaken', 'weary']);
 var kmArmyStatusHudSlugOrder = new Map(['engaged', 'shaken', 'merit', 'distant', 'efficient', 'lost', 'destroyed', 'routed', 'fortified', 'pinned', 'weary', 'defeated', 'outflanked', 'mired', 'concealed'].map((slug, index) => [slug, index]));
 function kmEfficientArmyConditionDescription() {
@@ -145825,6 +145827,33 @@ function kmApplyEfficientArmyConditionOverride(item) {
   }
   return item;
 }
+function kmDistantArmyConditionDescription() {
+  var lang = globalThis.game == null || game.i18n == null ? '' : game.i18n.lang;
+  return lang === 'cn' || lang === 'zh-CN' || lang === 'zh-Hans'
+    ? '<p>拥有远距状态的军队已经和敌人拉开相当远的距离，可能正在逃离战场。远距军队可以和敌军相互尝试远程打击，但该次打击承受 -5 减值。</p>'
+    : '<p>An army with the distant condition has opened a considerable distance from the enemy and may be fleeing the battlefield. Distant armies can attempt ranged Strikes against each other, but the Strike takes a -5 penalty.</p>';
+}
+function kmIsDistantArmyCondition(item) {
+  if (item == null || item.type !== 'effect' || kmArmyStatusHudSlug(item) !== 'distant') {
+    return false;
+  }
+  var source = item._stats == null ? null : item._stats.compendiumSource;
+  var coreSource = item.getFlag == null ? null : item.getFlag('core', 'sourceId');
+  var parent = item.parent;
+  var isArmy = parent != null && (parent.isOfType == null ? parent.type === 'army' : parent.isOfType('army'));
+  return item.id === kmDistantArmyConditionId || source === kmDistantArmyConditionUuid || coreSource === kmDistantArmyConditionUuid || isArmy;
+}
+function kmApplyDistantArmyConditionOverride(item) {
+  if (kmIsDistantArmyCondition(item) && typeof item.updateSource === 'function') {
+    item.updateSource({'system.description.value': kmDistantArmyConditionDescription()});
+  }
+  return item;
+}
+function kmApplyArmyConditionDescriptionOverrides(item) {
+  kmApplyEfficientArmyConditionOverride(item);
+  kmApplyDistantArmyConditionOverride(item);
+  return item;
+}
 function kmApplyEfficientArmyConditionToActors(actors) {
   var seen = new Set();
   Array.from(actors || []).forEach((actor) => {
@@ -145832,12 +145861,12 @@ function kmApplyEfficientArmyConditionToActors(actors) {
       return;
     }
     seen.add(actor);
-    kmArmyStatusHudActorEffects(actor).forEach(kmApplyEfficientArmyConditionOverride);
+    kmArmyStatusHudActorEffects(actor).forEach(kmApplyArmyConditionDescriptionOverrides);
   });
 }
 function registerEfficientArmyConditionOverride() {
   Hooks.on('preCreateItem', (item) => {
-    kmApplyEfficientArmyConditionOverride(item);
+    kmApplyArmyConditionDescriptionOverrides(item);
   });
   Hooks.on('canvasReady', () => {
     var tokenActors = canvas.scene == null ? [] : Array.from(canvas.scene.tokens || []).map((token) => token.actor);
@@ -145846,7 +145875,8 @@ function registerEfficientArmyConditionOverride() {
   Hooks.once('ready', () => {
     var pack = game.packs.get('pf2e.kingmaker-features');
     if (pack != null) {
-      pack.getDocument(kmEfficientArmyConditionId).then(kmApplyEfficientArmyConditionOverride).catch((error) => console.warn('pf2e-kingmaker-tools | Failed to apply Efficient army condition description override.', error));
+      pack.getDocument(kmEfficientArmyConditionId).then(kmApplyArmyConditionDescriptionOverrides).catch((error) => console.warn('pf2e-kingmaker-tools | Failed to apply Efficient army condition description override.', error));
+      pack.getDocument(kmDistantArmyConditionId).then(kmApplyArmyConditionDescriptionOverrides).catch((error) => console.warn('pf2e-kingmaker-tools | Failed to apply Distant army condition description override.', error));
     }
     kmApplyEfficientArmyConditionToActors(game.actors);
   });
@@ -145974,7 +146004,7 @@ function kmGetArmyStatusHudItems() {
         return [];
       }
       var documents = await pack.getDocuments();
-      var conditions = documents.filter((item) => item.type === 'effect' && kmArmyStatusHudSlug(item) !== '' && (item.folder == null ? (item._source == null ? null : item._source.folder) === kmArmyStatusHudConditionFolderId : item.folder.id === kmArmyStatusHudConditionFolderId)).map(kmApplyEfficientArmyConditionOverride);
+      var conditions = documents.filter((item) => item.type === 'effect' && kmArmyStatusHudSlug(item) !== '' && (item.folder == null ? (item._source == null ? null : item._source.folder) === kmArmyStatusHudConditionFolderId : item.folder.id === kmArmyStatusHudConditionFolderId)).map(kmApplyArmyConditionDescriptionOverrides);
       var merit = kmCreateArmyMeritStatusSource(conditions);
       if (merit != null) {
         conditions.push(merit);
@@ -162258,8 +162288,28 @@ function isFlexibleArmyTactic(tactic) {
 }
 var flexibleArmyTacticId = 'mHWF5XwUi8RK2lET';
 var counterattackArmyActionId = '8wjiF3ctXUjP9oyX';
+var coveringFireArmyActionId = 'GIbm9qo8VuFgPywJ';
+var retreatArmyActionId = 'IhjlbJinff1wUSjL';
+var openingSalvoArmyTacticId = 'G6MAyRjG91I8iNLR';
+var mercilessArmyTacticId = 'QRwIcmCEHpDQm9DO';
+var allOutAssaultArmyActionId = 'Z6jMZgAxI1zRO7Sl';
 function isCounterattackArmyAction(item) {
   return item != null && item.system != null && item.system.campaign === 'kingmaker' && item.system.category === 'army-war-action' && getArmyTacticSlug(item) === 'counterattack';
+}
+function isCoveringFireArmyAction(item) {
+  return item != null && item.system != null && item.system.campaign === 'kingmaker' && item.system.category === 'army-war-action' && getArmyTacticSlug(item) === 'covering-fire';
+}
+function isRetreatArmyAction(item) {
+  return item != null && item.system != null && item.system.campaign === 'kingmaker' && item.system.category === 'army-war-action' && getArmyTacticSlug(item) === 'retreat';
+}
+function isOpeningSalvoArmyTactic(item) {
+  return item != null && get_isArmyTactic(item) && getArmyTacticSlug(item) === 'opening-salvo';
+}
+function isMercilessArmyTactic(item) {
+  return item != null && get_isArmyTactic(item) && getArmyTacticSlug(item) === 'merciless';
+}
+function isAllOutAssaultArmyAction(item) {
+  return item != null && item.system != null && item.system.campaign === 'kingmaker' && item.system.category === 'army-war-action' && getArmyTacticSlug(item) === 'all-out-assault';
 }
 function effectiveArmyTacticLevel(tactic) {
   return isDarkvisionArmyTactic(tactic) ? 5 : tactic.level;
@@ -162310,6 +162360,79 @@ function applyCounterattackArmyActionOverride(item) {
   item.updateSource({'system.description.value': description});
   return item;
 }
+function coveringFireArmyActionFailureText() {
+  var tmp0_safe_receiver = globalThis.game == null ? null : globalThis.game.i18n;
+  var lang = tmp0_safe_receiver == null ? '' : tmp0_safe_receiver.lang;
+  return (lang === 'cn' || lang === 'zh-CN' || lang === 'zh-Hans')
+    ? '<p><strong>失败</strong> 未对目标敌军造成伤害，但敌军无法使用由任意军队的机动战争动作触发的反应动作，直到你的下个回合开始。</p>'
+    : '<p><strong>Failure</strong> You deal no damage to the target enemy army, but it cannot take reactions triggered by maneuver war actions from any army until the start of your next turn.</p>';
+}
+function applyCoveringFireArmyActionOverride(item) {
+  if (!isCoveringFireArmyAction(item) || typeof item.updateSource !== 'function') {
+    return item;
+  }
+  var currentDescription = getProperty(item, 'system.description.value');
+  if (typeof currentDescription !== 'string') {
+    return item;
+  }
+  var failurePattern = /<p(?:\s[^>]*)?>\s*<strong>\s*(?:Failure|失败)\s*(?:[:：])?\s*<\/strong>[\s\S]*?<\/p>/i;
+  if (failurePattern.test(currentDescription)) {
+    item.updateSource({'system.description.value': currentDescription.replace(failurePattern, coveringFireArmyActionFailureText())});
+  }
+  return item;
+}
+function applyRetreatArmyActionOverride(item) {
+  if (!isRetreatArmyAction(item) || typeof item.updateSource !== 'function') {
+    return item;
+  }
+  var traits = getProperty(item, 'system.traits.value');
+  if (Array.isArray(traits) && !traits.includes('maneuver')) {
+    item.updateSource({'system.traits.value': [...traits, 'maneuver']});
+  }
+  return item;
+}
+function openingSalvoArmyTacticDescriptionText() {
+  var tmp0_safe_receiver = globalThis.game == null ? null : globalThis.game.i18n;
+  var lang = tmp0_safe_receiver == null ? '' : tmp0_safe_receiver.lang;
+  return (lang === 'cn' || lang === 'zh-CN' || lang === 'zh-Hans')
+    ? '<p>军队训练有素，可以率先向远处敌军开火。在战争遭遇第一轮，若你的回合先于所有敌军，你可以让这支军队在遭遇开始时直接和所有敌军部队保持 @UUID[Compendium.pf2e.kingmaker-features.Item.8upne4E6Q7Da5T5w]{远距} 状态。并且在第一轮的战斗中忽视远距的-5惩罚。</p>'
+    : '<p>Your army has trained to take the first shot at distant foes. On the first round of a war encounter, if your turn occurs before any enemy army turns, you can have this army start the encounter @UUID[Compendium.pf2e.kingmaker-features.Item.8upne4E6Q7Da5T5w]{Distant} from all enemy armies. During the first round, this army ignores the -5 penalty from being Distant.</p>';
+}
+function applyOpeningSalvoArmyTacticOverride(item) {
+  if (!isOpeningSalvoArmyTactic(item) || typeof item.updateSource !== 'function') {
+    return item;
+  }
+  item.updateSource({'system.description.value': openingSalvoArmyTacticDescriptionText()});
+  return item;
+}
+function applyMercilessArmyTacticOverride(item) {
+  if (isMercilessArmyTactic(item) && typeof item.updateSource === 'function') {
+    item.updateSource({'system.traits.value': ['cavalry']});
+  }
+  return item;
+}
+function allOutAssaultArmyActionFailureText() {
+  var tmp0_safe_receiver = globalThis.game == null ? null : globalThis.game.i18n;
+  var lang = tmp0_safe_receiver == null ? '' : tmp0_safe_receiver.lang;
+  return (lang === 'cn' || lang === 'zh-CN' || lang === 'zh-Hans')
+    ? '<p><strong>失败</strong> 仍然对敌军造成 @Damage[1|domains:melee-damage,strike-damage] 点伤害，且军队陷入 @UUID[Compendium.pf2e.kingmaker-features.Item.ibcMcEGRbPRtk9Pu]{被包抄} 状态，直到下个回合开始。</p>'
+    : '<p><strong>Failure</strong> Your army still deals @Damage[1|domains:melee-damage,strike-damage] point of damage to the enemy army and becomes @UUID[Compendium.pf2e.kingmaker-features.Item.ibcMcEGRbPRtk9Pu]{Outflanked} until the start of its next turn.</p>';
+}
+function applyAllOutAssaultArmyActionOverride(item) {
+  if (!isAllOutAssaultArmyAction(item) || typeof item.updateSource !== 'function') {
+    return item;
+  }
+  var updates = {'system.traits.value': ['attack', 'cavalry']};
+  var currentDescription = getProperty(item, 'system.description.value');
+  if (typeof currentDescription === 'string') {
+    var failurePattern = /<p(?:\s[^>]*)?>\s*<strong>\s*(?:Failure|失败)\s*(?:[:：])?\s*<\/strong>[\s\S]*?<\/p>/i;
+    if (failurePattern.test(currentDescription)) {
+      updates['system.description.value'] = currentDescription.replace(failurePattern, allOutAssaultArmyActionFailureText());
+    }
+  }
+  item.updateSource(updates);
+  return item;
+}
 function applyVkArmyTacticOverrides(tactic) {
   if (isDarkvisionArmyTactic(tactic)) {
     var currentDescription = getProperty(tactic, 'system.description.value');
@@ -162322,7 +162445,9 @@ function applyVkArmyTacticOverrides(tactic) {
       tactic.updateSource({'system.level.value': 5});
     }
   }
-  return applyFlexibleArmyTacticOverride(tactic);
+  applyFlexibleArmyTacticOverride(tactic);
+  applyOpeningSalvoArmyTacticOverride(tactic);
+  return applyMercilessArmyTacticOverride(tactic);
 }
 function applyArmyTacticOverridesToActors(actors) {
   var seen = new Set();
@@ -162334,6 +162459,11 @@ function applyArmyTacticOverridesToActors(actors) {
     Array.from(actor.items || []).forEach((item) => {
       applyFlexibleArmyTacticOverride(item);
       applyCounterattackArmyActionOverride(item);
+      applyCoveringFireArmyActionOverride(item);
+      applyRetreatArmyActionOverride(item);
+      applyOpeningSalvoArmyTacticOverride(item);
+      applyMercilessArmyTacticOverride(item);
+      applyAllOutAssaultArmyActionOverride(item);
     });
   });
 }
@@ -162341,13 +162471,22 @@ function renderArmyTacticDescriptionOverrides(app, html) {
   var item = (app == null ? null : app.item) || (app == null ? null : app.document) || (app == null ? null : app.object) || null;
   var isFlexible = item != null && isFlexibleArmyTactic(item);
   var isCounterattack = item != null && isCounterattackArmyAction(item);
-  if (!isFlexible && !isCounterattack) {
+  var isCoveringFire = item != null && isCoveringFireArmyAction(item);
+  var isOpeningSalvo = item != null && isOpeningSalvoArmyTactic(item);
+  var isAllOutAssault = item != null && isAllOutAssaultArmyAction(item);
+  if (!isFlexible && !isCounterattack && !isCoveringFire && !isOpeningSalvo && !isAllOutAssault) {
     return;
   }
   if (isFlexible) {
     applyFlexibleArmyTacticOverride(item);
-  } else {
+  } else if (isCounterattack) {
     applyCounterattackArmyActionOverride(item);
+  } else if (isCoveringFire) {
+    applyCoveringFireArmyActionOverride(item);
+  } else if (isOpeningSalvo) {
+    applyOpeningSalvoArmyTacticOverride(item);
+  } else {
+    applyAllOutAssaultArmyActionOverride(item);
   }
   var root = html instanceof HTMLElement ? html : html == null ? null : html[0];
   var content = root == null ? null : root.querySelector('section.tab.description section.main .editor-content');
@@ -162365,6 +162504,11 @@ function registerArmyTacticOverrides() {
   Hooks.on('preCreateItem', (item) => {
     applyFlexibleArmyTacticOverride(item);
     applyCounterattackArmyActionOverride(item);
+    applyCoveringFireArmyActionOverride(item);
+    applyRetreatArmyActionOverride(item);
+    applyOpeningSalvoArmyTacticOverride(item);
+    applyMercilessArmyTacticOverride(item);
+    applyAllOutAssaultArmyActionOverride(item);
   });
   Hooks.on('renderItemSheet', renderArmyTacticDescriptionOverrides);
   Hooks.on('canvasReady', () => {
@@ -162376,10 +162520,20 @@ function registerArmyTacticOverrides() {
     if (pack != null) {
       pack.getDocument(flexibleArmyTacticId).then(applyFlexibleArmyTacticOverride).catch((error) => console.warn('pf2e-kingmaker-tools | Failed to apply the Flexible Tactics override.', error));
       pack.getDocument(counterattackArmyActionId).then(applyCounterattackArmyActionOverride).catch((error) => console.warn('pf2e-kingmaker-tools | Failed to apply the Counterattack override.', error));
+      pack.getDocument(coveringFireArmyActionId).then(applyCoveringFireArmyActionOverride).catch((error) => console.warn('pf2e-kingmaker-tools | Failed to apply the Covering Fire override.', error));
+      pack.getDocument(retreatArmyActionId).then(applyRetreatArmyActionOverride).catch((error) => console.warn('pf2e-kingmaker-tools | Failed to apply the Retreat override.', error));
+      pack.getDocument(openingSalvoArmyTacticId).then(applyOpeningSalvoArmyTacticOverride).catch((error) => console.warn('pf2e-kingmaker-tools | Failed to apply the Opening Salvo override.', error));
+      pack.getDocument(mercilessArmyTacticId).then(applyMercilessArmyTacticOverride).catch((error) => console.warn('pf2e-kingmaker-tools | Failed to apply the Merciless override.', error));
+      pack.getDocument(allOutAssaultArmyActionId).then(applyAllOutAssaultArmyActionOverride).catch((error) => console.warn('pf2e-kingmaker-tools | Failed to apply the All-Out Assault override.', error));
     }
     Array.from(game.items || []).forEach((item) => {
       applyFlexibleArmyTacticOverride(item);
       applyCounterattackArmyActionOverride(item);
+      applyCoveringFireArmyActionOverride(item);
+      applyRetreatArmyActionOverride(item);
+      applyOpeningSalvoArmyTacticOverride(item);
+      applyMercilessArmyTacticOverride(item);
+      applyAllOutAssaultArmyActionOverride(item);
     });
     applyArmyTacticOverridesToActors(game.actors);
   });

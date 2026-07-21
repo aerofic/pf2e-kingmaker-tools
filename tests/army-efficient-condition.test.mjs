@@ -16,5 +16,5 @@ test("Efficient override covers the compendium, existing armies, and newly creat
   assert.match(mainJs, /kmApplyEfficientArmyConditionToActors\(game\.actors\)/);
   assert.match(mainJs, /Hooks\.on\('canvasReady'/);
   assert.match(mainJs, /Hooks\.on\('preCreateItem'/);
-  assert.match(mainJs, /\.map\(kmApplyEfficientArmyConditionOverride\)/);
+  assert.match(mainJs, /\.map\(kmApplyArmyConditionDescriptionOverrides\)/);
 });
