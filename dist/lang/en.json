@@ -4806,25 +4806,19 @@
         "title": "Moonlit Secret Detention",
         "requirement": "The designated settlement has a Jail; designate one kingdom leader as the target; the target is in that settlement and either cooperates willingly, or has been brought under PC control through adventuring.",
         "description": "<p><b>Timing</b> Use this on the night of the full moon during this Kingdom turn, just before the target would be confined.</p>\n<p>You arrange for the target to enter the jail on the night of the full moon under the pretense of sick leave, security isolation, a secret meeting, religious confession, medical observation, or another excuse. Trusted guards and jailers prepare locks, silver restraints, sedatives, and measures to keep the matter quiet. Attempt a basic Intrigue check.</p>",
-        "special": "<p>The leader performing this activity cannot be the detained target.</p>",
-        "automationNotes": "Settlement, target, Jail requirement, the performing leader not being the detained target, same-target tracking, and the extra Monster Activity event are not automated. On a Success, click only one of the two resource buttons. On a Critical Success, enable the +2 circumstance modifier only when the next Moonlit Secret Detention targets the same leader.",
+        "special": "The leader performing this activity cannot be the detained target.",
+        "automationNotes": "Settlement, target, Jail requirement, the performing leader not being the detained target, whether the target transforms, and the extra Monster Activity event are not automated. On a Critical Success, the -1 Unrest button can be applied. On a Success, apply the -1 Resource Die next turn button only if the target transforms. The +1 Unrest button on a Failure and the +1d4 Strife button on a Critical Failure can be applied normally.",
         "criticalSuccess": {
-          "msg": "<p>The target is brought into the jail without a sound. Only a few trusted people know anything happened, and none know the true reason. Even if the target loses control on the night of the full moon, there are no public casualties and no exposure of the target's identity. The next time you perform this activity against the same target, you gain a +2 circumstance bonus.</p>",
-          "modifiers": {
-            "sameTarget": {
-              "name": "Moonlit Secret Detention: Same Target",
-              "buttonLabel": "Same target: +2 circumstance bonus"
-            }
-          }
+          "msg": "<p>The target is brought into the jail without a sound. Only a few trusted people know anything happened, and none know the true reason. If the target does not transform on the night of the full moon, the night passes without incident. If the target transforms, the guards and prepared measures safely contain them without public casualties or exposure. The guards publicly claim that the leader personally supervised an overnight escape-prevention drill and that the howls heard by residents came from wolfhounds trained to track fugitives. This flawless cover story quells suspicions that the leader is a werewolf, reducing kingdom Unrest by 1 @lose1Unrest.</p>"
         },
         "success": {
-          "msg": "<p>The target is successfully confined in the jail, and the night of the full moon causes no public casualties. The news does not clearly leak, but rumors spread that a certain leader was secretly taken to jail at night. Choose one: lose 1 Resource Die during the next Kingdom turn for hush money, compensation, or repairs @lose1ResourceDiceNextTurn; or increase kingdom Unrest by 1 @gain1Unrest.</p>"
+          "msg": "<p>The target is successfully confined without attracting public attention. If the target does not transform on the night of the full moon, the night passes without incident and has no additional consequences. If the target transforms, the guards and prepared measures successfully contain them without public casualties or exposure, but repairs, compensation, and hush money cost 1 Resource Die during the next Kingdom turn @lose1ResourceDiceNextTurn.</p>"
         },
         "failure": {
-          "msg": "<p>The target enters the jail, but the plan has a flaw: a guard shift is mishandled, restraints are insufficient, the excuse is suspicious, or someone approaches a cell block they should not have approached. If the leader loses control on the night of the full moon, immediately resolve one additional Monster Activity kingdom event; if that event's check result is a critical success, nothing happens.</p>"
+          "msg": "<p>The target enters the jail, but the plan has a flaw: a guard shift is mishandled, restraints are insufficient, the excuse is suspicious, or someone approaches a cell block they should not have approached. The resulting rumors increase Unrest by 1 @gain1Unrest. If the target does not transform on the night of the full moon, there are no further consequences. If the target transforms, immediately resolve one additional Monster Activity kingdom event, including its critical success result as normal.</p>"
         },
         "criticalFailure": {
-          "msg": "<p>The secret detention collapses. The transfer is witnessed, jailers panic, and the target's true nature becomes known to residents. Increase Strife by 1d4 @gain1d4Strife. If the leader loses control on the night of the full moon, immediately resolve one additional Monster Activity kingdom event; if that event's check result is a critical success, nothing happens.</p>"
+          "msg": "<p>The secret detention collapses. The transfer is witnessed, jailers panic, and residents learn that a leader was secretly confined. Increase Strife by 1d4 @gain1d4Strife. If the target does not transform on the night of the full moon, there are no further consequences. If the target transforms, residents learn the target's true nature and you immediately resolve one additional Monster Activity kingdom event, including its critical success result as normal.</p>"
         }
       }
     },

@@ -273,33 +273,37 @@ test("Moonlit Secret Detention keeps only low-risk automation", () => {
   assert.equal(activity.actions, 1);
   assert.deepEqual(activity.skills, { intrigue: 0 });
 
-  const sameTarget = getDegreeModifier(
-    activity,
-    "criticalSuccess",
-    "activities.moonlit-secret-detention.criticalSuccess.modifiers.sameTarget.name",
-  );
-  assert.equal(sameTarget.value, 2);
-  assert.equal(sameTarget.type, "circumstance");
-  assert.equal(sameTarget.enabled, false);
-  assert.equal(sameTarget.isConsumedAfterRoll, true);
-  assert.deepEqual(sameTarget.applyIf, [{ eq: ["@activity", "moonlit-secret-detention"] }]);
-
-  assert.match(getLocalization(cn, activity.success.msg), /@gain1Unrest/);
+  assert.equal(activity.criticalSuccess.modifiers, undefined);
+  assert.match(getLocalization(cn, activity.criticalSuccess.msg), /@lose1Unrest/);
+  assert.match(getLocalization(cn, activity.criticalSuccess.msg), /防越狱演练/);
+  assert.match(getLocalization(cn, activity.criticalSuccess.msg), /狼犬/);
   assert.match(getLocalization(cn, activity.success.msg), /@lose1ResourceDiceNextTurn/);
+  assert.doesNotMatch(getLocalization(cn, activity.success.msg), /@gain1ResourceDiceNextTurn/);
+  assert.match(getLocalization(cn, activity.success.msg), /没有变身/);
+  assert.match(getLocalization(cn, activity.success.msg), /若目标变身/);
+  assert.match(getLocalization(cn, activity.failure.msg), /@gain1Unrest/);
+  assert.match(getLocalization(cn, activity.failure.msg), /没有变身/);
+  assert.match(getLocalization(cn, activity.failure.msg), /怪物肆虐/);
   assert.doesNotMatch(getLocalization(cn, activity.success.msg), /@lose\d+RolledResourceDice/);
   assert.match(getLocalization(cn, activity.criticalFailure.msg), /@gain1d4Strife/);
+  assert.match(getLocalization(cn, activity.criticalFailure.msg), /没有变身/);
+  assert.match(getLocalization(cn, activity.criticalFailure.msg), /若目标变身/);
   assert.doesNotMatch(getLocalization(cn, activity.criticalFailure.msg), /失去所有领导加值/);
   assert.doesNotMatch(getLocalization(en, activity.criticalFailure.msg), /loses all leadership bonuses/);
   assert.match(getLocalization(cn, activity.special), /执行本行动的领袖不能为关押目标本人/);
   assert.match(getLocalization(en, activity.special), /cannot be the detained target/);
   assert.doesNotMatch(getLocalization(cn, activity.special), /王国行动数 -1/);
   assert.doesNotMatch(getLocalization(en, activity.special), /fewer Kingdom activit/);
-  assert.match(getLocalization(en, activity.automationNotes), /click only one of the two resource buttons/);
+  assert.match(getLocalization(en, activity.automationNotes), /On a Critical Success, the -1 Unrest button/);
+  assert.match(getLocalization(en, activity.automationNotes), /On a Success, apply the -1 Resource Die next turn button only if the target transforms/);
   assert.doesNotMatch(getLocalization(en, activity.automationNotes), /loss of leadership bonus/);
   assert.doesNotMatch(getLocalization(en, activity.automationNotes), /end-of-month leader activity reduction/);
   assert.doesNotMatch(getLocalization(cn, activity.automationNotes), /失去领导加值/);
   assert.doesNotMatch(getLocalization(cn, activity.automationNotes), /月底领袖行动数 -1/);
-  assert.match(getLocalization(cn, activity.automationNotes), /只点击一个按钮/);
+  assert.match(getLocalization(cn, activity.automationNotes), /大成功结果的动荡 -1/);
+  assert.match(getLocalization(cn, activity.automationNotes), /只有目标发生变身才点击下回合资源骰 -1/);
+  assert.doesNotMatch(getLocalization(cn, activity.special), /<\/?p>/);
+  assert.doesNotMatch(getLocalization(en, activity.special), /<\/?p>/);
 });
 
 test("Darkvision army tactic is overridden by the plugin without prerequisite gating", () => {

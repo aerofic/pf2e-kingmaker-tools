@@ -41,3 +41,22 @@ test("Distant uses the revised mutual ranged Strike penalty description", () => 
   assert.match(mainJs, /kmArmyStatusHudActorEffects\(actor\)\.forEach\(kmApplyArmyConditionDescriptionOverrides\)/);
   assert.match(mainJs, /Hooks\.on\('preCreateItem',[\s\S]*?kmApplyArmyConditionDescriptionOverrides\(item\)/);
 });
+
+test("Routed describes mandatory retreat, distant rally, and post-war shaken", () => {
+  assert.match(mainJs, /kmRoutedArmyConditionId = 'aZImSBBmTHff2POP'/);
+  assert.match(mainJs, /溃败军队在自己的回合中必须执行撤退战争动作/);
+  assert.match(mainJs, /处于远离状态的溃败军队可以在回合开始时以自由动作执行一次重整/);
+  assert.match(mainJs, /军队士气检定承受 -2 环境减值/);
+  assert.match(mainJs, /增加 1 点动摇状态值/);
+  assert.match(mainJs, /若一方所有军队同时处于溃败状态，战斗结束，另一方获胜/);
+  assert.match(mainJs, /pack\.getDocument\(kmRoutedArmyConditionId\)\.then\(kmApplyArmyConditionDescriptionOverrides\)/);
+  assert.match(mainJs, /kmApplyRoutedArmyConditionOverride\(item\)/);
+});
+
+test("Fortified keeps its defensive benefits when using healing potions or Defend", () => {
+  assert.match(mainJs, /kmFortifiedArmyConditionId = 'c8lNjzrY2WM60Zsv'/);
+  assert.match(mainJs, /除使用治疗药水和防卫以外，驻防军队执行机动战争动作时会立即失去驻防状态/);
+  assert.match(mainJs, /Except for Use Healing Potion and Defend, a fortified army that uses a maneuver war action immediately loses its fortified condition/);
+  assert.match(mainJs, /pack\.getDocument\(kmFortifiedArmyConditionId\)\.then\(kmApplyArmyConditionDescriptionOverrides\)/);
+  assert.match(mainJs, /kmApplyFortifiedArmyConditionOverride\(item\)/);
+});

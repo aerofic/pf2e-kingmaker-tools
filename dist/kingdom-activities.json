@@ -648,25 +648,7 @@
             "intrigue": 0
         },
         "criticalSuccess": {
-            "msg": "activities.moonlit-secret-detention.criticalSuccess.msg",
-            "modifiers": [
-                {
-                    "enabled": false,
-                    "isConsumedAfterRoll": true,
-                    "value": 2,
-                    "type": "circumstance",
-                    "name": "activities.moonlit-secret-detention.criticalSuccess.modifiers.sameTarget.name",
-                    "buttonLabel": "activities.moonlit-secret-detention.criticalSuccess.modifiers.sameTarget.buttonLabel",
-                    "applyIf": [
-                        {
-                            "eq": [
-                                "@activity",
-                                "moonlit-secret-detention"
-                            ]
-                        }
-                    ]
-                }
-            ]
+            "msg": "activities.moonlit-secret-detention.criticalSuccess.msg"
         },
         "success": {
             "msg": "activities.moonlit-secret-detention.success.msg"
