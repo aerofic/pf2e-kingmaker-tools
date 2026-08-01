@@ -138876,6 +138876,27 @@ class Migration {
     return _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.Unit_instancev9v8hjid95df;
   }
 }
+function kmMigrationIsRecord(value) {
+  return value != null && typeof value === 'object' && !Array.isArray(value);
+}
+function kmMigrationLegacyArrayOrNull(value, fieldName) {
+  if (Array.isArray(value)) {
+    return value;
+  }
+  if (kmMigrationIsRecord(value)) {
+    return null;
+  }
+  throw new Error('Migration field ' + fieldName + ' must be a legacy array or a migrated record.');
+}
+function kmMigrationLegacyCostOrNull(value, fieldName) {
+  if (typeof value === 'string') {
+    return value;
+  }
+  if (kmMigrationIsRecord(value) && typeof value.currency === 'string' && typeof value.value === 'number' && Number.isFinite(value.value)) {
+    return null;
+  }
+  throw new Error('Migration field ' + fieldName + ' must be a legacy string or a migrated cost record.');
+}
 class Migration17 extends Migration {
   constructor() {
     super(17);
@@ -138932,7 +138953,11 @@ class Migration17 extends Migration {
       // Inline function 'kotlin.js.unsafeCast' call
       // Inline function 'kotlin.js.asDynamic' call
       // Inline function 'kotlin.text.trim' call
-      var this_1 = item.cost;
+      var this_1 = kmMigrationLegacyCostOrNull(item.cost, 'camping.cooking.homebrewMeals.cost');
+      if (this_1 == null) {
+        destination.n1(item);
+        continue;
+      }
       var costString = (0,_kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.toString1pkumu07cwy4m)((0,_kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.trim11nh7r46at6sx)((0,_kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.isCharSequence1ju9jr1w86plq)(this_1) ? this_1 : (0,_kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.THROW_CCE2g6jy02ryeudk)()));
       var matches = get_costRegex().zf(costString);
       var tmp1_safe_receiver = matches == null ? null : (0,_kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.getc6436eumi25w)(matches.rg(), 'currency');
@@ -139042,7 +139067,8 @@ class Migration20 extends Migration {
     // Inline function 'kotlin.js.unsafeCast' call
     // Inline function 'kotlin.js.asDynamic' call
     // Inline function 'kotlin.collections.map' call
-    var this_0 = camping.campingActivities;
+    var this_0 = kmMigrationLegacyArrayOrNull(camping.campingActivities, 'camping.campingActivities');
+    if (this_0 != null) {
     // Inline function 'kotlin.collections.mapTo' call
     var destination = _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.ArrayList3it5z8td81qkl.x1(this_0.length);
     var inductionVariable = 0;
@@ -139057,12 +139083,14 @@ class Migration20 extends Migration {
       var tmp$ret$4 = (0,_kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.to2cs3ny02qtbcb)(tmp, tmp$ret$5);
       destination.n1(tmp$ret$4);
     }
-    camping.campingActivities = toMutableRecord(destination);
+      camping.campingActivities = toMutableRecord(destination);
+    }
     var tmp_0 = camping.cooking;
     // Inline function 'kotlin.js.unsafeCast' call
     // Inline function 'kotlin.js.asDynamic' call
     // Inline function 'kotlin.collections.map' call
-    var this_1 = camping.cooking.results;
+    var this_1 = kmMigrationLegacyArrayOrNull(camping.cooking.results, 'camping.cooking.results');
+    if (this_1 != null) {
     // Inline function 'kotlin.collections.mapTo' call
     var destination_0 = _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.ArrayList3it5z8td81qkl.x1(this_1.length);
     var inductionVariable_0 = 0;
@@ -139077,12 +139105,14 @@ class Migration20 extends Migration {
       var tmp$ret$11 = (0,_kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.to2cs3ny02qtbcb)(tmp_1, tmp$ret$12);
       destination_0.n1(tmp$ret$11);
     }
-    tmp_0.results = toMutableRecord(destination_0);
+      tmp_0.results = toMutableRecord(destination_0);
+    }
     var tmp_2 = camping.cooking;
     // Inline function 'kotlin.js.unsafeCast' call
     // Inline function 'kotlin.js.asDynamic' call
     // Inline function 'kotlin.collections.mapNotNull' call
-    var tmp0 = camping.cooking.actorMeals;
+    var tmp0 = kmMigrationLegacyArrayOrNull(camping.cooking.actorMeals, 'camping.cooking.actorMeals');
+    if (tmp0 != null) {
     // Inline function 'kotlin.collections.mapNotNullTo' call
     var destination_1 = _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.ArrayList3it5z8td81qkl.m1();
     // Inline function 'kotlin.collections.forEach' call
@@ -139116,10 +139146,17 @@ class Migration20 extends Migration {
         destination_1.n1(tmp0_safe_receiver_0);
       }
     }
-    tmp_2.actorMeals = toMutableRecord(destination_1);
-    camping.forcedMarchActive = false;
-    camping.secondsSpentForcedMarching = 0;
-    camping.hexSizeInMiles = 12;
+      tmp_2.actorMeals = toMutableRecord(destination_1);
+    }
+    if (camping.forcedMarchActive == null) {
+      camping.forcedMarchActive = false;
+    }
+    if (camping.secondsSpentForcedMarching == null) {
+      camping.secondsSpentForcedMarching = 0;
+    }
+    if (camping.hexSizeInMiles == null) {
+      camping.hexSizeInMiles = 12;
+    }
     return _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.Unit_instancev9v8hjid95df;
   }
   w61(game, camping, $completion) {
@@ -139885,7 +139922,7 @@ class Pfrpg2eKingdomCampingWeatherSettings {
     var tmp0_$receiver = game.settings;
     var tmp1_name = t_0('settings.schemaVersion');
     var tmp2_hint = t_0('settings.schemaVersionHelp');
-    registerInt(tmp0_$receiver, 'schemaVersion', tmp1_name, tmp2_hint, _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.VOID3gxj6tk5isa35, false);
+    registerInt(tmp0_$receiver, 'schemaVersion', tmp1_name, tmp2_hint, _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.VOID3gxj6tk5isa35, true);
     var tmp0_7 = game.settings;
     // Inline function 'at.posselt.pfrpg2e.settings.registerDataModel' call
     var name = t_0('settings.climateSettings');
@@ -146473,11 +146510,15 @@ async function kmRequestSettlementMayorUpdate(sheet, settlementSceneId, mayorAct
     ui.notifications.error(t_0('kingdom.settlementMayorUpdateFailed'));
   }
 }
-async function kmApplySettlementMayorUpdate(kingdomActorUuid, settlementSceneId, mayorActorUuid) {
+async function kmApplySettlementMayorUpdate(kingdomActorUuid, settlementSceneId, mayorActorUuid, requestingUser) {
   var kingdomActor = await fromUuid(kingdomActorUuid);
   var kingdom = kingdomActor == null ? null : getKingdom(kingdomActor);
   if (kingdomActor == null || kingdom == null) {
     throw new Error('Kingdom actor or kingdom data is unavailable.');
+  }
+  var requester = requestingUser == null ? game.user : requestingUser;
+  if (requester == null || !kmCanActionUpdate(kingdomActor, requester)) {
+    throw new Error('Requesting user cannot update this kingdom actor.');
   }
   if (!kingdom.settlements.some((settlement) => settlement.sceneId === settlementSceneId)) {
     throw new Error('Settlement is not part of this kingdom.');
@@ -146488,16 +146529,19 @@ async function kmApplySettlementMayorUpdate(kingdomActorUuid, settlementSceneId,
   await kmWriteSettlementMayorFlag(kingdomActor, settlementSceneId, mayorActorUuid);
 }
 function registerSettlementMayorSocket() {
-  game.socket.on('module.pf2e-kingmaker-tools', (message) => {
+  game.socket.on('module.pf2e-kingmaker-tools', (message, senderUserId) => {
     if (message == null || message.action !== kmSettlementMayorSocketAction || game.user == null || game.user.isGM !== true || !isFirstGM(game)) {
       return;
     }
     var data = message.data;
-    var requestingUser = data == null || data.requestingUserId == null ? null : game.users.get(data.requestingUserId);
-    if (data == null || requestingUser == null || requestingUser.active !== true) {
+    if (data == null || typeof senderUserId !== 'string' || senderUserId !== data.requestingUserId) {
       return;
     }
-    kmApplySettlementMayorUpdate(data.kingdomActorUuid, data.settlementSceneId, data.mayorActorUuid).catch((error) => {
+    var requestingUser = game.users.get(senderUserId);
+    if (requestingUser == null || requestingUser.active !== true || typeof data.kingdomActorUuid !== 'string' || typeof data.settlementSceneId !== 'string') {
+      return;
+    }
+    kmApplySettlementMayorUpdate(data.kingdomActorUuid, data.settlementSceneId, data.mayorActorUuid, requestingUser).catch((error) => {
       console.error('pf2e-kingmaker-tools | Failed to apply settlement mayor socket update.', error);
     });
   });
@@ -174703,6 +174747,7 @@ function *migrateFrom(_this__u8e3s4, currentVersion, $completion) {
       }
     }
     yield* element_0.y61(_this__u8e3s4, $completion);
+    yield* get_pfrpg2eKingdomCampingWeather(_this__u8e3s4.settings).t61(element_0.u61_1, $completion);
   }
   yield* get_pfrpg2eKingdomCampingWeather(_this__u8e3s4.settings).t61(get_latestMigrationVersion(), $completion);
   ui.notifications.info(t_0('moduleName') + ': ' + t_0('migrations.successful'));

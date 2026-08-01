@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [6.3.2] - 2026-08-01
+
+### Fixed
+
+* Bind settlement mayor socket requests to Foundry's authenticated sender and recheck actor update permission on the receiving GM.
+* Make legacy camping migrations safe to retry after a partial failure and checkpoint each completed migration version.
+* Hide the internal schema version setting to prevent accidental migration reruns.
+
+### Changed
+
+* Load the existing runtime entrypoints as V14 ES modules and run security regression tests before publishing a GitHub release.
+
 ## [6.3.1] - 2026-05-18
 
 ### Fixed

@@ -118,10 +118,81 @@ test("all-user writes are validated and routed through an active GM when needed"
   assert.match(mainJs, /kingdomActor\.canUserModify\(game\.user, 'update'\)/);
   assert.match(mainJs, /return game\.users != null && game\.users\.activeGM != null;/);
   assert.match(mainJs, /game\.socket\.emit\('module\.pf2e-kingmaker-tools'/);
+  assert.match(mainJs, /senderUserId !== data\.requestingUserId/);
   assert.match(mainJs, /requestingUser\.active !== true/);
   assert.match(mainJs, /game\.user\.isGM !== true \|\| !isFirstGM\(game\)/);
+  assert.match(mainJs, /!kmCanActionUpdate\(kingdomActor, requester\)/);
   assert.match(mainJs, /kmIsValidSettlementMayorActor\(actor\)/);
   assert.match(mainJs, /kingdom\.settlements\.some\(\(settlement\) => settlement\.sceneId === settlementSceneId\)/);
+});
+
+test("settlement mayor socket rejects a spoofed requesting user", async () => {
+  let socketHandler;
+  const calls = [];
+  const users = new Map([
+    ["attacker", { id: "attacker", active: true }],
+    ["victim-gm", { id: "victim-gm", active: true, isGM: true }],
+  ]);
+  const context = {
+    console,
+    game: {
+      socket: { on: (_channel, handler) => { socketHandler = handler; } },
+      user: { id: "receiving-gm", isGM: true },
+      users: {
+        activeGM: { id: "receiving-gm" },
+        get: (id) => users.get(id),
+      },
+    },
+    isFirstGM: () => true,
+    kmSettlementMayorSocketAction: "setSettlementMayor",
+    kmApplySettlementMayorUpdate: (...args) => {
+      calls.push(args);
+      return Promise.resolve();
+    },
+  };
+
+  runInNewContext(
+    `${extractFunction("registerSettlementMayorSocket")}; registerSettlementMayorSocket();`,
+    context,
+  );
+
+  const data = {
+    kingdomActorUuid: "Actor.kingdom",
+    settlementSceneId: "Scene.settlement",
+    mayorActorUuid: "Actor.mayor",
+  };
+  socketHandler({ action: "setSettlementMayor", data: { ...data, requestingUserId: "victim-gm" } }, "attacker");
+  await Promise.resolve();
+  assert.equal(calls.length, 0);
+
+  socketHandler({ action: "setSettlementMayor", data: { ...data, requestingUserId: "attacker" } }, "attacker");
+  await Promise.resolve();
+  assert.equal(calls.length, 1);
+  assert.equal(calls[0][3].id, "attacker");
+});
+
+test("settlement mayor apply path rechecks requester ownership", async () => {
+  let writes = 0;
+  const requester = { id: "player" };
+  const kingdomActor = { uuid: "Actor.kingdom" };
+  const context = {
+    game: { user: requester },
+    fromUuid: async () => kingdomActor,
+    getKingdom: () => ({ settlements: [{ sceneId: "Scene.settlement" }] }),
+    kmCanActionUpdate: () => false,
+    kmResolveSettlementMayor: () => ({ type: "character" }),
+    kmWriteSettlementMayorFlag: async () => { writes += 1; },
+  };
+  runInNewContext(
+    `async ${extractFunction("kmApplySettlementMayorUpdate")}; this.applyMayor = kmApplySettlementMayorUpdate;`,
+    context,
+  );
+
+  await assert.rejects(
+    context.applyMayor("Actor.kingdom", "Scene.settlement", "Actor.mayor", requester),
+    /cannot update this kingdom actor/,
+  );
+  assert.equal(writes, 0);
 });
 
 test("settlement table context resolves mayor data from the kingdom map", () => {

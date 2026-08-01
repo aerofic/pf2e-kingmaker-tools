@@ -1,0 +1,47 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "*"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    if: github.repository == 'aerofic/pf2e-kingmaker-tools'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out tagged source
+        uses: actions/checkout@v7
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24.13.1
+
+      - name: Run security and migration regression tests
+        run: |
+          node --check dist/api/patches.js
+          node --check dist/main.js
+          node --test tests/settlement-mayors.test.mjs tests/migration-safety.test.mjs
+
+      - name: Validate and package module
+        shell: pwsh
+        env:
+          RELEASE_VERSION: ${{ github.ref_name }}
+        run: ./scripts/package-release.ps1 -ExpectedVersion $env:RELEASE_VERSION -OutputDirectory release
+
+      - name: Create GitHub release
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "$GITHUB_REF_NAME" \
+            release/release.zip \
+            module.json \
+            --verify-tag \
+            --title "$GITHUB_REF_NAME" \
+            --generate-notes
