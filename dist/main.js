@@ -173422,9 +173422,59 @@ function parseStructure_0(_this__u8e3s4, inConstruction, uuid, actorUuid, img, c
   var tmp95_id = _this__u8e3s4.id;
   return new Structure(tmp95_id, uuid, actorUuid, tmp64_name, img, tmp65_stacksWith, tmp66_construction, tmp67_notes, tmp68_preventItemLevelPenalty, tmp69_enableCapitalInvestment, tmp70_bonuses, tmp71_availableItemsRules, tmp72_settlementEventBonus, tmp73_leadershipActivityBonus, tmp74_storage, tmp75_increaseLeadershipActivities, tmp76_isBridge, tmp77_consumptionReduction, tmp78_unlockActivities, tmp79_traits, tmp80_lots, tmp81_affectsEvents, tmp82_affectsDowntime, tmp83_reducesUnrest, tmp84_reducesRuin, tmp85_level, currentRp, constructedRp, tmp86_upgradeFrom, tmp87_reduceUnrestBy, tmp88_reduceRuinBy, tmp89_gainRuin, tmp90_increaseResourceDice, tmp91_consumptionReductionStacks, inConstruction, tmp92_ignoreConsumptionReductionOf, tmp93_maximumCivicRdLimit, tmp94_increaseMinimumSettlementActions);
 }
+function kmStructureImportIdentity(structureActor) {
+  var ref = getStructureImportRef(structureActor);
+  if (typeof ref !== 'string') {
+    return null;
+  }
+  var img = typeof structureActor.img === 'string' ? structureActor.img : '';
+  return ref + '\u0000' + img;
+}
+function kmStructureActorCreatedTime(structureActor) {
+  var tmp0_safe_receiver = structureActor == null ? null : structureActor._stats;
+  var tmp1_elvis_lhs = tmp0_safe_receiver == null ? null : tmp0_safe_receiver.createdTime;
+  var tmp2_safe_receiver = structureActor == null ? null : structureActor._source;
+  var tmp3_safe_receiver = tmp2_safe_receiver == null ? null : tmp2_safe_receiver._stats;
+  var tmp4_elvis_lhs = tmp3_safe_receiver == null ? null : tmp3_safe_receiver.createdTime;
+  var value = tmp1_elvis_lhs == null ? tmp4_elvis_lhs : tmp1_elvis_lhs;
+  return typeof value === 'number' && Number.isFinite(value) ? value : Number.MAX_SAFE_INTEGER;
+}
+function kmPreferStructureActor(candidate, current) {
+  var candidateCreatedTime = kmStructureActorCreatedTime(candidate);
+  var currentCreatedTime = kmStructureActorCreatedTime(current);
+  if (candidateCreatedTime !== currentCreatedTime) {
+    return candidateCreatedTime < currentCreatedTime;
+  }
+  var candidateId = String(candidate == null ? '' : candidate.id == null ? candidate.uuid == null ? '' : candidate.uuid : candidate.id);
+  var currentId = String(current == null ? '' : current.id == null ? current.uuid == null ? '' : current.uuid : current.id);
+  return candidateId < currentId;
+}
+function kmDedupeImportedStructureActors(actors) {
+  var preferredByIdentity = new Map();
+  for (var actor of actors) {
+    if (!(actor instanceof CONFIG.PF2E.Actor.documentClasses.npc)) {
+      continue;
+    }
+    var identity = kmStructureImportIdentity(actor);
+    if (identity == null) {
+      continue;
+    }
+    var current = preferredByIdentity.get(identity);
+    if (current == null || kmPreferStructureActor(actor, current)) {
+      preferredByIdentity.set(identity, actor);
+    }
+  }
+  return actors.filter((actor) => {
+    if (!(actor instanceof CONFIG.PF2E.Actor.documentClasses.npc)) {
+      return true;
+    }
+    var identity = kmStructureImportIdentity(actor);
+    return identity == null || preferredByIdentity.get(identity) === actor;
+  });
+}
 function getImportedStructures(_this__u8e3s4) {
   // Inline function 'kotlin.collections.filterIsInstance' call
-  var tmp0 = _this__u8e3s4.actors.contents;
+  var tmp0 = kmDedupeImportedStructureActors(_this__u8e3s4.actors.contents);
   // Inline function 'kotlin.collections.filterIsInstanceTo' call
   var destination = _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.ArrayList3it5z8td81qkl.m1();
   var inductionVariable = 0;
@@ -173494,9 +173544,21 @@ function getStructureImportRef(_this__u8e3s4) {
 }
 function filterVkPreferredStructureImports(_this__u8e3s4) {
   var refs = new Set(_this__u8e3s4.map(getStructureImportRef).filter((it) => typeof it === 'string'));
-  return _this__u8e3s4.filter((it) => {
+  var preferred = _this__u8e3s4.filter((it) => {
     var ref = getStructureImportRef(it);
     return !(typeof ref === 'string' && !ref.endsWith('-vk') && refs.has(ref + '-vk'));
+  });
+  var seen = new Set();
+  return preferred.filter((it) => {
+    var identity = kmStructureImportIdentity(it);
+    if (identity == null) {
+      return true;
+    }
+    if (seen.has(identity)) {
+      return false;
+    }
+    seen.add(identity);
+    return true;
   });
 }
 function getRawStructureData(_this__u8e3s4) {

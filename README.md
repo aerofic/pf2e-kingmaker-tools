@@ -219,14 +219,14 @@ source project. Releases are created by the GitHub Actions workflow in
 3. Create and push a tag whose name exactly matches the manifest version. For
    example, the current release uses:
 
-       git tag 6.3.2
-       git push origin 6.3.2
+       git tag 6.3.3
+       git push origin 6.3.3
 
 The workflow validates the version and URLs, packages the runtime files as
 `release.zip`, and publishes both `release.zip` and `module.json` as GitHub
 Release assets. To test the package locally before tagging, run:
 
-    pwsh ./scripts/package-release.ps1 -ExpectedVersion 6.3.2
+    pwsh ./scripts/package-release.ps1 -ExpectedVersion 6.3.3
 
 Finally, start your local FoundryVTT instance using the provided Dockerfile and a compose file looking roughly like this:
 

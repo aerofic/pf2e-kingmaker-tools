@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [6.3.3] - 2026-08-02
+
+### Fixed
+
+* Hide duplicate structure-browser cards when multiple world Actors reference the same structure rule and image, while preserving intentional image variants.
+
 ## [6.3.2] - 2026-08-01
 
 ### Fixed
