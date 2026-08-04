@@ -26,7 +26,7 @@ jobs:
         run: |
           node --check dist/api/patches.js
           node --check dist/main.js
-          node --test tests/settlement-mayors.test.mjs tests/migration-safety.test.mjs tests/structure-browser-deduplication.test.mjs
+          node --test tests/settlement-mayors.test.mjs tests/migration-safety.test.mjs tests/structure-browser-deduplication.test.mjs tests/camping-rest-random-encounters.test.mjs tests/camping-audit-fixes.test.mjs
 
       - name: Validate and package module
         shell: pwsh

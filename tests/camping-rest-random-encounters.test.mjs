@@ -47,6 +47,25 @@ test("continuing rest checks only unvisited four-hour blocks", () => {
   );
 });
 
+test("single encounter mode is consumed after an interrupted rest", () => {
+  const beginRestSource = mainJs.slice(
+    mainJs.indexOf("function *beginRest_0("),
+    mainJs.indexOf("function *completeDailyPreparations("),
+  );
+
+  assert.notEqual(beginRestSource, "", "beginRest_0 source must be present");
+  assert.match(
+    beginRestSource,
+    /var singleEncounterAlreadyChecked = continuingWatch && hasSavedEncounterProgress && camping\.restRollMode === 'one';/,
+    "an interrupted one-mode rest must remember that its single check was already used",
+  );
+  assert.match(
+    beginRestSource,
+    /var randomEncounterAt = camping\.restSettings\.disableRandomEncounter \|\| singleEncounterAlreadyChecked \? null : \(yield\* \/\*#__NOINLINE__\*\/findRandomEncounterAt\(/,
+    "continuing a one-mode rest must skip a second encounter lookup",
+  );
+});
+
 test("disabled watch still checks random encounters across an eight-hour rest window", () => {
   assert.match(
     mainJs,
@@ -76,8 +95,8 @@ test("a 10:40 rest has at most three cumulative encounter blocks", () => {
 test("disabling random encounters skips encounter lookup entirely", () => {
   assert.match(
     mainJs,
-    /var randomEncounterAt = camping\.restSettings\.disableRandomEncounter \? null : \(yield\* \/\*#__NOINLINE__\*\/findRandomEncounterAt\(game, campingActor, camping, randomEncounterDurationSeconds, encounterStartOffsetSeconds, \$completion\)\);/,
-    "disabled random encounters must not resolve regional encounter tables or roll encounter timing",
+    /var randomEncounterAt = camping\.restSettings\.disableRandomEncounter \|\| singleEncounterAlreadyChecked \? null : \(yield\* \/\*#__NOINLINE__\*\/findRandomEncounterAt\(game, campingActor, camping, randomEncounterDurationSeconds, encounterStartOffsetSeconds, \$completion\)\);/,
+    "disabled or already-consumed random encounters must not resolve regional encounter tables or roll encounter timing",
   );
 });
 

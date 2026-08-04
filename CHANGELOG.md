@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [6.3.4] - 2026-08-04
+
+### Fixed
+
+* Treat the single rest encounter setting as one check for the entire interrupted rest, not one check each time rest resumes.
+* Route camping rests through the first active GM and reject duplicate or stale requests before rolling encounters or advancing world time.
+
 ## [6.3.3] - 2026-08-02
 
 ### Fixed

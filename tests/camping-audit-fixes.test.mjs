@@ -20,6 +20,41 @@ test("camping writes are serialized and full snapshots are diffed against the la
   assert.match(main, /foundry\.utils\.diffObject\(current, data\)/);
 });
 
+test("camping rest is first-GM-authoritative and rejects duplicate stale requests", () => {
+  assert.match(main, /var kmCampingRestSocketAction = 'startCampingRest';/);
+  assert.match(main, /function registerCampingRestSocket\(dispatcher\)/);
+  assert.match(main, /registerCampingRestSocket\(actionDispatcher\);/);
+  assert.match(main, /senderUserId !== data\.requestingUserId/);
+  assert.match(main, /requester == null \|\| requester\.active !== true/);
+  assert.match(main, /kmCanActionUpdate\(campingActor, requester\)/);
+  assert.match(main, /var expectedRestOperationVersion = kmCampingRestOperationVersion\(camping\);/);
+  assert.match(main, /data\.continuing !== \(camping\.watchSecondsRemaining > 0\)/);
+
+  const requestSource = main.slice(
+    main.indexOf("function kmRequestCampingRest("),
+    main.indexOf("async function kmApplyCampingRestRequest("),
+  );
+  const applySource = main.slice(
+    main.indexOf("async function kmApplyCampingRestRequest("),
+    main.indexOf("function registerCampingRestSocket("),
+  );
+
+  assert.doesNotMatch(requestSource, /game\.user\.isGM/, "party owners must be able to request rest from the first GM");
+  assert.doesNotMatch(applySource, /requester\.isGM/, "the receiving GM must authorize party owners by document permission");
+
+  const restSource = main.slice(
+    main.indexOf("function *rest(game, dispatcher, campingActor"),
+    main.indexOf("function getRestSecondsPerPlayer", main.indexOf("function *rest(game, dispatcher, campingActor")),
+  );
+
+  assert.notEqual(restSource, "", "rest source must be present");
+  assert.match(restSource, /var kmCampingRestInFlight = new WeakSet\(\);|kmCampingRestInFlight\.has\(campingActor\)/);
+  assert.match(restSource, /kmCampingRestInFlight\.add\(campingActor\);/);
+  assert.match(restSource, /kmCampingRestOperationVersion\(latestCamping\) !== expectedRestOperationVersion/);
+  assert.match(restSource, /latestCamping\.restOperationVersion = expectedRestOperationVersion \+ 1;/);
+  assert.match(restSource, /finally \{\s*kmCampingRestInFlight\.delete\(campingActor\);\s*\}/);
+});
+
 test("camping chat result buttons are one-shot and render listeners are deduplicated", () => {
   for (const template of [
     "apply-meal-result.hbs",

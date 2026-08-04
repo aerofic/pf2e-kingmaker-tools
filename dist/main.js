@@ -117590,13 +117590,14 @@ class sam$kotlin_Comparator$0_3 {
   }
 }
 class beginRest$slambda {
-  constructor($dispatcher, $actor, $camping) {
+  constructor($dispatcher, $actor, $camping, $expectedRestOperationVersion) {
     this.c4i_1 = $dispatcher;
     this.d4i_1 = $actor;
     this.e4i_1 = $camping;
+    this.f4i_1 = $expectedRestOperationVersion;
   }
   *k3s($this$buildPromise, $completion) {
-    yield* rest(game, this.c4i_1, this.d4i_1, this.e4i_1, false, false, false, this.e4i_1.restSettings.skipWeather, this.d4i_1, $completion);
+    yield* rest(game, this.c4i_1, this.d4i_1, this.e4i_1, false, false, false, this.e4i_1.restSettings.skipWeather, this.d4i_1, this.f4i_1, $completion);
     return _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.Unit_instancev9v8hjid95df;
   }
   lc(p1, $completion) {
@@ -117604,17 +117605,18 @@ class beginRest$slambda {
   }
 }
 class beginRest$lambda$slambda {
-  constructor($dispatcher, $actor, $camping, $enableWatch, $enableDailyPreparations, $checkRandomEncounter, $checkWeather) {
-    this.f4i_1 = $dispatcher;
-    this.g4i_1 = $actor;
-    this.h4i_1 = $camping;
-    this.i4i_1 = $enableWatch;
-    this.j4i_1 = $enableDailyPreparations;
-    this.k4i_1 = $checkRandomEncounter;
-    this.l4i_1 = $checkWeather;
+  constructor($dispatcher, $actor, $camping, $expectedRestOperationVersion, $enableWatch, $enableDailyPreparations, $checkRandomEncounter, $checkWeather) {
+    this.g4i_1 = $dispatcher;
+    this.h4i_1 = $actor;
+    this.i4i_1 = $camping;
+    this.j4i_1 = $expectedRestOperationVersion;
+    this.k4i_1 = $enableWatch;
+    this.l4i_1 = $enableDailyPreparations;
+    this.m4i_1 = $checkRandomEncounter;
+    this.n4i_1 = $checkWeather;
   }
   *k3s($this$buildPromise, $completion) {
-    yield* rest(game, this.f4i_1, this.g4i_1, this.h4i_1, !this.i4i_1, !this.j4i_1, !this.k4i_1, !this.l4i_1, this.g4i_1, $completion);
+    yield* rest(game, this.g4i_1, this.h4i_1, this.i4i_1, !this.k4i_1, !this.l4i_1, !this.m4i_1, !this.n4i_1, this.h4i_1, this.j4i_1, $completion);
     return _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.Unit_instancev9v8hjid95df;
   }
   lc(p1, $completion) {
@@ -146479,6 +146481,68 @@ function kmSettlementMayorDropHandler(sheet) {
 function kmHasActiveGm() {
   return game.users != null && game.users.activeGM != null;
 }
+var kmCampingRestSocketAction = 'startCampingRest';
+function kmIsCampingRestRequest(data) {
+  return data != null
+    && typeof data.campingActorUuid === 'string'
+    && typeof data.continuing === 'boolean'
+    && typeof data.skipWatch === 'boolean'
+    && typeof data.skipDailyPreparations === 'boolean'
+    && typeof data.disableRandomEncounter === 'boolean'
+    && typeof data.skipWeather === 'boolean'
+    && Number.isSafeInteger(data.expectedRestOperationVersion)
+    && data.expectedRestOperationVersion >= 0
+    && data.expectedRestOperationVersion < Number.MAX_SAFE_INTEGER
+    && typeof data.requestingUserId === 'string';
+}
+function kmRequestCampingRest(actor, dispatcher, data) {
+  if (actor == null || game.user == null || !kmIsCampingRestRequest(data)) {
+    return;
+  }
+  if (isFirstGM(game)) {
+    kmApplyCampingRestRequest(data, game.user, dispatcher).catch((error) => {
+      console.error('pf2e-kingmaker-tools | Failed to start camping rest.', error);
+    });
+  } else if (kmHasActiveGm()) {
+    game.socket.emit('module.pf2e-kingmaker-tools', {
+      action: kmCampingRestSocketAction,
+      data: data
+    });
+  }
+}
+async function kmApplyCampingRestRequest(data, requester, dispatcher) {
+  if (!kmIsCampingRestRequest(data) || requester == null || requester.active !== true) {
+    return;
+  }
+  var campingActor = await fromUuid(data.campingActorUuid);
+  if (!(campingActor instanceof CONFIG.PF2E.Actor.documentClasses.party) || !kmCanActionUpdate(campingActor, requester)) {
+    return;
+  }
+  var camping = getCamping(campingActor);
+  if (camping == null || data.continuing !== (camping.watchSecondsRemaining > 0) || kmCampingRestOperationVersion(camping) !== data.expectedRestOperationVersion) {
+    return;
+  }
+  if (data.continuing) {
+    await buildPromise(beginRest$slambda_0(dispatcher, campingActor, camping, data.expectedRestOperationVersion));
+  } else {
+    await buildPromise(beginRest$lambda$slambda_0(dispatcher, campingActor, camping, data.expectedRestOperationVersion, !data.skipWatch, !data.skipDailyPreparations, !data.disableRandomEncounter, !data.skipWeather));
+  }
+}
+function registerCampingRestSocket(dispatcher) {
+  game.socket.on('module.pf2e-kingmaker-tools', (message, senderUserId) => {
+    if (message == null || message.action !== kmCampingRestSocketAction || game.user == null || game.user.isGM !== true || !isFirstGM(game)) {
+      return;
+    }
+    var data = message.data;
+    if (!kmIsCampingRestRequest(data) || typeof senderUserId !== 'string' || senderUserId !== data.requestingUserId) {
+      return;
+    }
+    var requester = game.users.get(senderUserId);
+    kmApplyCampingRestRequest(data, requester, dispatcher).catch((error) => {
+      console.error('pf2e-kingmaker-tools | Failed to process camping rest socket request.', error);
+    });
+  });
+}
 async function kmRequestSettlementMayorUpdate(sheet, settlementSceneId, mayorActorUuid) {
   try {
     var kingdomActor = sheet == null ? null : sheet.r5q_1;
@@ -146554,8 +146618,9 @@ function main$lambda() {
   // Inline function 'kotlin.apply' call
   var this_0 = new ActionDispatcher(game, (0,_kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.listOf1jh22dvmctj1r)([new AddHuntAndGatherResultHandler(), new OpenCampingSheetHandler(game), new SyncActivitiesHandler(game), new ClearMealEffectsHandler(), new LearnSpecialRecipeHandler(), new ApplyMealEffectsHandler(game), new GainProvisionsHandler(), new OpenKingdomSheetHandler(game)]));
   this_0.i3s();
-  registerSettlementMayorSocket();
   var actionDispatcher = this_0;
+  registerSettlementMayorSocket();
+  registerCampingRestSocket(actionDispatcher);
   var tmp = TypedHooks_instance;
   onI18NInit(tmp, main$lambda$lambda(actionDispatcher));
   bindChatButtons(game);
@@ -150536,6 +150601,11 @@ function getCamping(_this__u8e3s4) {
   return tmp;
 }
 var kmCampingWriteQueues = new WeakMap();
+var kmCampingRestInFlight = new WeakSet();
+function kmCampingRestOperationVersion(camping) {
+  var value = Number(camping == null ? null : camping.restOperationVersion);
+  return Number.isSafeInteger(value) && value >= 0 && value < Number.MAX_SAFE_INTEGER ? value : 0;
+}
 function kmQueueCampingWrite(actor, write) {
   var previous = kmCampingWriteQueues.get(actor) || Promise.resolve();
   var next = previous.catch(() => undefined).then(write);
@@ -152201,19 +152271,27 @@ function CampingSheet$_attachPartListeners$lambda(this$0) {
   };
 }
 function beginRest(actor, dispatcher) {
-  var tmp0_safe_receiver = getCamping(actor);
-  if (tmp0_safe_receiver == null)
-    null;
-  else {
-    // Inline function 'kotlin.let' call
-    var tmp;
-    if (tmp0_safe_receiver.watchSecondsRemaining > 0) {
-      tmp = buildPromise(beginRest$slambda_0(dispatcher, actor, tmp0_safe_receiver));
-    } else {
-      var tmp0_game = game;
-      launch(new ConfirmWatchApplication(tmp0_game, tmp0_safe_receiver, beginRest$lambda(dispatcher, actor, tmp0_safe_receiver)));
-      tmp = _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.Unit_instancev9v8hjid95df;
-    }
+  if (actor == null || game.user == null) {
+    return;
+  }
+  var camping = getCamping(actor);
+  if (camping == null) {
+    return;
+  }
+  var expectedRestOperationVersion = kmCampingRestOperationVersion(camping);
+  if (camping.watchSecondsRemaining > 0) {
+    kmRequestCampingRest(actor, dispatcher, {
+      campingActorUuid: actor.uuid,
+      continuing: true,
+      skipWatch: false,
+      skipDailyPreparations: false,
+      disableRandomEncounter: false,
+      skipWeather: camping.restSettings.skipWeather,
+      expectedRestOperationVersion: expectedRestOperationVersion,
+      requestingUserId: game.user.id
+    });
+  } else {
+    launch(new ConfirmWatchApplication(game, camping, beginRest$lambda(dispatcher, actor, camping, expectedRestOperationVersion)));
   }
 }
 function getActivitySkills(actor, groupedActivity, ignoreSkillRequirements) {
@@ -152274,21 +152352,30 @@ function *openOrCreateCampingSheet(game, dispatcher, actor, $completion) {
   launch(new CampingSheet(game, actor, dispatcher));
   return _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.Unit_instancev9v8hjid95df;
 }
-function beginRest$slambda_0($dispatcher, $actor, $camping) {
-  var i = new beginRest$slambda($dispatcher, $actor, $camping);
+function beginRest$slambda_0($dispatcher, $actor, $camping, $expectedRestOperationVersion) {
+  var i = new beginRest$slambda($dispatcher, $actor, $camping, $expectedRestOperationVersion);
   var l = ($this$buildPromise, $completion) => i.k3s($this$buildPromise, $completion);
   l.$arity = 1;
   return l;
 }
-function beginRest$lambda$slambda_0($dispatcher, $actor, $camping, $enableWatch, $enableDailyPreparations, $checkRandomEncounter, $checkWeather) {
-  var i = new beginRest$lambda$slambda($dispatcher, $actor, $camping, $enableWatch, $enableDailyPreparations, $checkRandomEncounter, $checkWeather);
+function beginRest$lambda$slambda_0($dispatcher, $actor, $camping, $expectedRestOperationVersion, $enableWatch, $enableDailyPreparations, $checkRandomEncounter, $checkWeather) {
+  var i = new beginRest$lambda$slambda($dispatcher, $actor, $camping, $expectedRestOperationVersion, $enableWatch, $enableDailyPreparations, $checkRandomEncounter, $checkWeather);
   var l = ($this$buildPromise, $completion) => i.k3s($this$buildPromise, $completion);
   l.$arity = 1;
   return l;
 }
-function beginRest$lambda($dispatcher, $actor, $camping) {
+function beginRest$lambda($dispatcher, $actor, $camping, $expectedRestOperationVersion) {
   return (enableWatch, enableDailyPreparations, checkRandomEncounter, checkWeather) => {
-    buildPromise(beginRest$lambda$slambda_0($dispatcher, $actor, $camping, enableWatch, enableDailyPreparations, checkRandomEncounter, checkWeather));
+    kmRequestCampingRest($actor, $dispatcher, {
+      campingActorUuid: $actor.uuid,
+      continuing: false,
+      skipWatch: !enableWatch,
+      skipDailyPreparations: !enableDailyPreparations,
+      disableRandomEncounter: !checkRandomEncounter,
+      skipWeather: !checkWeather,
+      expectedRestOperationVersion: $expectedRestOperationVersion,
+      requestingUserId: game.user.id
+    });
     return _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.Unit_instancev9v8hjid95df;
   };
 }
@@ -175117,10 +175204,11 @@ function *beginRest_0(game, dispatcher, campingActor, camping, party, $completio
   var continuingWatch = camping.watchSecondsRemaining > 0;
   var watchDurationSeconds = continuingWatch ? camping.watchSecondsRemaining : camping.restSettings.skipWatch ? 28800 : (yield* /*#__NOINLINE__*/getFullRestSeconds(watchers, (0,_kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.toList383f556t1dixk)(getAllRecipes(camping)), camping.gunsToClean, camping.increaseWatchActorNumber, camping.restSettings.skipWatch, camping.restSettings.skipDailyPreparations, $completion));
   var hasSavedEncounterProgress = continuingWatch && typeof camping.watchEncounterSecondsRemaining === 'number' && Number.isFinite(camping.watchEncounterSecondsRemaining) && camping.watchEncounterSecondsRemaining >= 0;
+  var singleEncounterAlreadyChecked = continuingWatch && hasSavedEncounterProgress && camping.restRollMode === 'one';
   var encounterStartOffsetSeconds = continuingWatch ? typeof camping.watchEncounterNextCheckOffsetSeconds === 'number' && Number.isFinite(camping.watchEncounterNextCheckOffsetSeconds) && camping.watchEncounterNextCheckOffsetSeconds >= 0 ? camping.watchEncounterNextCheckOffsetSeconds : 14400 : 0;
   var fallbackRandomEncounterDurationSeconds = camping.restSettings.skipWatch ? Math.min(watchDurationSeconds, 28800) : watchDurationSeconds;
   var randomEncounterDurationSeconds = hasSavedEncounterProgress ? camping.watchEncounterSecondsRemaining : continuingWatch ? Math.min(fallbackRandomEncounterDurationSeconds, encounterStartOffsetSeconds + 28800) : fallbackRandomEncounterDurationSeconds;
-  var randomEncounterAt = camping.restSettings.disableRandomEncounter ? null : (yield* /*#__NOINLINE__*/findRandomEncounterAt(game, campingActor, camping, randomEncounterDurationSeconds, encounterStartOffsetSeconds, $completion));
+  var randomEncounterAt = camping.restSettings.disableRandomEncounter || singleEncounterAlreadyChecked ? null : (yield* /*#__NOINLINE__*/findRandomEncounterAt(game, campingActor, camping, randomEncounterDurationSeconds, encounterStartOffsetSeconds, $completion));
   if (!(randomEncounterAt == null)) {
     var stealthDc = randomEncounterAt.stealthDc == null ? (yield* askDc(t_0('camping.enemyStealth'), $completion)) : randomEncounterAt.stealthDc;
     if (stealthDc == null)
@@ -175161,22 +175249,36 @@ function *gainMinimumSubsistence(dispatcher, quantity, party, $completion) {
   }
   return _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.Unit_instancev9v8hjid95df;
 }
-function *rest(game, dispatcher, campingActor, camping, skipWatch, skipDailyPreparations, disableRandomEncounter, skipWeather, party, $completion) {
-  // Inline function 'at.posselt.pfrpg2e.camping.RestSettings.Companion.invoke' call
-  // Inline function 'at.posselt.pfrpg2e.camping.at_posselt_pfrpg2e_camping_RestSettings_Companion_io6lnp_invoke_jkqnwo' call
-  camping.restSettings = {skipWatch: skipWatch, skipDailyPreparations: skipDailyPreparations, disableRandomEncounter: disableRandomEncounter, skipWeather: skipWeather};
-  yield* setCamping(campingActor, camping, $completion);
-  if (camping.watchSecondsRemaining === 0) {
-    var tmp0_safe_receiver = camping.restingTrack;
-    if (tmp0_safe_receiver == null)
-      null;
-    else
-      yield* play(tmp0_safe_receiver, $completion);
-    yield* /*#__NOINLINE__*/beginRest_0(game, dispatcher, campingActor, camping, party, $completion);
-  } else {
-    yield* /*#__NOINLINE__*/beginRest_0(game, dispatcher, campingActor, camping, party, $completion);
+function *rest(game, dispatcher, campingActor, camping, skipWatch, skipDailyPreparations, disableRandomEncounter, skipWeather, party, expectedRestOperationVersion, $completion) {
+  if (kmCampingRestInFlight.has(campingActor)) {
+    return _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.Unit_instancev9v8hjid95df;
   }
-  return _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.Unit_instancev9v8hjid95df;
+  kmCampingRestInFlight.add(campingActor);
+  try {
+    var latestCamping = getCamping(campingActor);
+    if (latestCamping == null || kmCampingRestOperationVersion(latestCamping) !== expectedRestOperationVersion) {
+      return _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.Unit_instancev9v8hjid95df;
+    }
+    latestCamping.restOperationVersion = expectedRestOperationVersion + 1;
+    camping = latestCamping;
+    // Inline function 'at.posselt.pfrpg2e.camping.RestSettings.Companion.invoke' call
+    // Inline function 'at.posselt.pfrpg2e.camping.at_posselt_pfrpg2e_camping_RestSettings_Companion_io6lnp_invoke_jkqnwo' call
+    camping.restSettings = {skipWatch: skipWatch, skipDailyPreparations: skipDailyPreparations, disableRandomEncounter: disableRandomEncounter, skipWeather: skipWeather};
+    yield* setCamping(campingActor, camping, $completion);
+    if (camping.watchSecondsRemaining === 0) {
+      var tmp0_safe_receiver = camping.restingTrack;
+      if (tmp0_safe_receiver == null)
+        null;
+      else
+        yield* play(tmp0_safe_receiver, $completion);
+      yield* /*#__NOINLINE__*/beginRest_0(game, dispatcher, campingActor, camping, party, $completion);
+    } else {
+      yield* /*#__NOINLINE__*/beginRest_0(game, dispatcher, campingActor, camping, party, $completion);
+    }
+    return _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.Unit_instancev9v8hjid95df;
+  } finally {
+    kmCampingRestInFlight.delete(campingActor);
+  }
 }
 function getRestSecondsPerPlayer$lambda$slambda_0($it, $mealEffects) {
   var i = new getRestSecondsPerPlayer$lambda$slambda($it, $mealEffects);
