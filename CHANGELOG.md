@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [6.3.6] - 2026-08-28
+
+### Fixed
+
+* Fix purchasable item levels resolving to 0 by reading the kingdom level from the outer settlement application instead of the generated coroutine receiver.
+
 ## [6.3.5] - 2026-08-27
 
 ### Fixed

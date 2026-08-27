@@ -370,13 +370,26 @@ test("Academy and University inherit Library tome shopping unlocks", () => {
   );
 });
 
-test("special shopping item level rows use settlement level calculations", () => {
+test("shopping item levels use the live settlement application's kingdom level", () => {
   const main = readFileSync(new URL("dist/main.js", moduleRoot), "utf8");
 
   assert.match(
     main,
-    /var availableItemsSettlementLevel = Math\.min\(parsed\.h3h_1, this\.u5b_1\);/,
+    /var availableItemsSettlementLevel = Math\.min\(parsed\.h3h_1, this\.z5b_1\.u5b_1\);/,
     "purchasable item levels should use the lower of settlement and kingdom level before adjustments",
+  );
+  assert.doesNotMatch(
+    main,
+    /availableItemsSettlementLevel = Math\.min\(parsed\.h3h_1, this\.u5b_1\)/,
+    "the coroutine receiver must not be mistaken for the settlement application",
+  );
+  const expression = main.match(/var availableItemsSettlementLevel = ([^;]+);/)?.[1];
+  assert.ok(expression, "missing purchasable item base-level expression");
+  const calculateLevel = runInNewContext(`(parsed, application) => (function () { return ${expression}; }).call(application)`);
+  assert.equal(
+    calculateLevel({ h3h_1: 3 }, { z5b_1: { u5b_1: 2 } }),
+    2,
+    "three occupied blocks in a level-two kingdom should have base item level two",
   );
   assert.doesNotMatch(
     main,

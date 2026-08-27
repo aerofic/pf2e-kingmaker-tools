@@ -127246,7 +127246,7 @@ class InspectSettlement$_preparePartContext$slambda {
     // Inline function 'kotlin.collections.toTypedArray' call
     var storage = (0,_kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.copyToArray2j022khrow2yi)(destination_8);
     // Inline function 'kotlin.collections.map' call
-    var availableItemsSettlementLevel = Math.min(parsed.h3h_1, this.u5b_1);
+    var availableItemsSettlementLevel = Math.min(parsed.h3h_1, this.z5b_1.u5b_1);
     var calculatedAvailableItems = calculateAvailableItems(availableItemsSettlementLevel, parsed.i3h_1, this.z5b_1.w5b_1, parsed.c3h_1);
     var this_7 = calculatedAvailableItems.t3j();
     // Inline function 'kotlin.collections.mapTo' call
