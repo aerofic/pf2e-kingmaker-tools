@@ -10,7 +10,14 @@ test("Merciless and All-Out Assault are cavalry-exclusive", () => {
   assert.match(mainJs, /getArmyTacticSlug\(item\) === 'merciless'/);
   assert.match(mainJs, /getArmyTacticSlug\(item\) === 'all-out-assault'/);
   assert.match(mainJs, /applyMercilessArmyTacticOverride[\s\S]*?'system\.traits\.value': \['cavalry'\]/);
+  assert.match(mainJs, /armyTacticSupportsArmyType[\s\S]*?isMercilessArmyTactic\(tactic\)[\s\S]*?armyType === 'cavalry'/);
   assert.match(mainJs, /applyAllOutAssaultArmyActionOverride[\s\S]*?\{'system\.traits\.value': \['attack', 'cavalry'\]\}/);
+});
+
+test("army tactic training revalidates the selected army type", () => {
+  assert.match(mainJs, /ArmyTacticsBrowser\$_preparePartContext\$slambda\$lambda[\s\S]*?armyTacticSupportsArmyType\(it, this\$0\.h55_1\.system\.traits\.type\)/);
+  assert.match(mainJs, /function \*trainTactic[\s\S]*?applyMercilessArmyTacticOverride\(item\)[\s\S]*?!armyTacticSupportsArmyType\(item, \$this\.h55_1\.system\.traits\.type\)[\s\S]*?ui\.notifications\.error/);
+  assert.match(mainJs, /“毫无怜悯”仅限骑兵军队学习/);
 });
 
 test("All-Out Assault failure deals one damage and outflanks the acting army", () => {

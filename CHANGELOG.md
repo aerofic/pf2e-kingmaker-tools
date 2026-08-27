@@ -7,6 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [6.3.5] - 2026-08-27
+
+### Fixed
+
+* Base purchasable item levels now use the lower of the settlement level and kingdom level before applying shop penalties, structure bonuses, and other adjustments.
+* Consume Supernatural Solution before revealing either check, automatically roll the same-DC Magic check, and resolve only the higher degree of success (keeping the original check on a tie).
+* Prevent Creative Solution re-rolls from stacking with checks already marked as fortune effects, including Supernatural Solution.
+* Persist the Supernatural Solution critical-failure cooldown reminder in kingdom notes and treat non-positive stored counts as unavailable.
+* Restrict the Merciless army tactic to cavalry in both the tactic browser and the final training path.
+* Translate Feint as `佯攻` and clarify that it neither applies nor increases the multiple attack penalty.
+* Label Recruit Monsters as the Nok-Nok activity and correct its effect wording from wealth to fortune.
+* Restore the V14 `Item` document segment in bundled meal-effect compendium UUIDs.
+
 ## [6.3.4] - 2026-08-04
 
 ### Fixed

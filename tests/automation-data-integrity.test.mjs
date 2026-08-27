@@ -373,6 +373,16 @@ test("Academy and University inherit Library tome shopping unlocks", () => {
 test("special shopping item level rows use settlement level calculations", () => {
   const main = readFileSync(new URL("dist/main.js", moduleRoot), "utf8");
 
+  assert.match(
+    main,
+    /var availableItemsSettlementLevel = Math\.min\(parsed\.h3h_1, this\.u5b_1\);/,
+    "purchasable item levels should use the lower of settlement and kingdom level before adjustments",
+  );
+  assert.doesNotMatch(
+    main,
+    /availableItemsSettlementLevel = this\.t5b_1 \?/,
+    "the settlement/kingdom level minimum must not depend on the structure-bonus cap setting",
+  );
   assert.match(main, /function addAdditionalAvailableItemLevelRows\(result, structures, settlementLevel\)/);
   assert.match(main, /addAdditionalAvailableItemLevelRows\(destination_9, parsed\.k3h_1, availableItemsSettlementLevel\)/);
   assert.match(main, /id === 'herbalist'[\s\S]*addDisplayedAvailableItemLevelRule\(result, '\\u6cbb\\u7597\\u836f\\u6c34', settlementLevel, 2\)/);

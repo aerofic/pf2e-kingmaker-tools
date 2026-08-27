@@ -7,7 +7,7 @@
         "specialIngredients": 1,
         "survivalDC": 22,
         "cookingLoreDC": 20,
-        "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.OXKHrajfyBjEBLTM",
+        "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.OXKHrajfyBjEBLTM",
         "level": 5,
         "cost": {
             "currency": "gp",
@@ -55,7 +55,7 @@
         "specialIngredients": 0,
         "cookingLoreDC": 18,
         "survivalDC": 22,
-        "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.J5nci1DS7i1wDph4",
+        "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.J5nci1DS7i1wDph4",
         "level": 0,
         "cost": {
             "currency": "gp",
@@ -96,7 +96,7 @@
         "specialIngredients": 2,
         "cookingLoreDC": 27,
         "survivalDC": 29,
-        "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.zX4S7wsOxB8CcVWw",
+        "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.zX4S7wsOxB8CcVWw",
         "level": 10,
         "cost": {
             "currency": "gp",
@@ -148,7 +148,7 @@
         "specialIngredients": 3,
         "cookingLoreDC": 43,
         "survivalDC": 45,
-        "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.V6uIWe6BVFV9Ewo3",
+        "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.V6uIWe6BVFV9Ewo3",
         "level": 18,
         "cost": {
             "currency": "gp",
@@ -193,7 +193,7 @@
         "specialIngredients": 1,
         "cookingLoreDC": 20,
         "survivalDC": 22,
-        "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.aXmbLuQMQOMAlls3",
+        "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.aXmbLuQMQOMAlls3",
         "level": 3,
         "cost": {
             "currency": "gp",
@@ -240,7 +240,7 @@
         "specialIngredients": 1,
         "cookingLoreDC": 19,
         "survivalDC": 21,
-        "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.xfIwKyG1pNFp8JbN",
+        "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.xfIwKyG1pNFp8JbN",
         "level": 4,
         "cost": {
             "currency": "gp",
@@ -287,7 +287,7 @@
         "specialIngredients": 2,
         "cookingLoreDC": 33,
         "survivalDC": 35,
-        "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.IiV8wHXKZS1HbLLW",
+        "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.IiV8wHXKZS1HbLLW",
         "level": 13,
         "cost": {
             "currency": "gp",
@@ -334,7 +334,7 @@
         "specialIngredients": 1,
         "cookingLoreDC": 24,
         "survivalDC": 26,
-        "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.UMgvKT6nNTPvp28R",
+        "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.UMgvKT6nNTPvp28R",
         "level": 6,
         "cost": {
             "currency": "gp",
@@ -382,7 +382,7 @@
         "specialIngredients": 0,
         "cookingLoreDC": 15,
         "survivalDC": 17,
-        "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.tKcKHaxGW48w5UMj",
+        "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.tKcKHaxGW48w5UMj",
         "level": 1,
         "cost": {
             "currency": "gp",
@@ -430,7 +430,7 @@
         "specialIngredients": 0,
         "cookingLoreDC": 14,
         "survivalDC": 16,
-        "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.K5l6QZci2mCofOBg",
+        "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.K5l6QZci2mCofOBg",
         "level": 0,
         "cost": {
             "currency": "gp",
@@ -478,7 +478,7 @@
         "specialIngredients": 3,
         "cookingLoreDC": 40,
         "survivalDC": 42,
-        "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.yAB0s5JgzCZpf0dT",
+        "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.yAB0s5JgzCZpf0dT",
         "level": 16,
         "cost": {
             "currency": "gp",
@@ -531,7 +531,7 @@
         "specialIngredients": 0,
         "cookingLoreDC": 22,
         "survivalDC": 24,
-        "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.5QyW0eFSJRgmyRzU",
+        "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.5QyW0eFSJRgmyRzU",
         "level": 6,
         "cost": {
             "currency": "gp",
@@ -580,7 +580,7 @@
         "specialIngredients": 0,
         "cookingLoreDC": 14,
         "survivalDC": 16,
-        "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.N3k7OGUKHn4kTu59",
+        "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.N3k7OGUKHn4kTu59",
         "level": 0,
         "cost": {
             "currency": "sp",
@@ -628,7 +628,7 @@
         "specialIngredients": 3,
         "cookingLoreDC": 34,
         "survivalDC": 36,
-        "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.SfNeVcYxBD4uCfrT",
+        "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.SfNeVcYxBD4uCfrT",
         "level": 14,
         "cost": {
             "currency": "gp",
@@ -693,7 +693,7 @@
         "specialIngredients": 2,
         "cookingLoreDC": 28,
         "survivalDC": 30,
-        "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.gqT2VQGYgDQIMYsW",
+        "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.gqT2VQGYgDQIMYsW",
         "level": 11,
         "cost": {
             "currency": "gp",
@@ -741,7 +741,7 @@
         "specialIngredients": 1,
         "cookingLoreDC": 25,
         "survivalDC": 27,
-        "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.3ak0XG0Xf66q2ApV",
+        "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.3ak0XG0Xf66q2ApV",
         "level": 7,
         "cost": {
             "currency": "gp",
@@ -788,7 +788,7 @@
         "specialIngredients": 1,
         "cookingLoreDC": 24,
         "survivalDC": 26,
-        "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.laM0IfTV8eviU1vm",
+        "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.laM0IfTV8eviU1vm",
         "level": 8,
         "cost": {
             "currency": "gp",
@@ -835,7 +835,7 @@
         "specialIngredients": 2,
         "cookingLoreDC": 26,
         "survivalDC": 28,
-        "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.p08orFcjqQzA7KdE",
+        "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.p08orFcjqQzA7KdE",
         "level": 9,
         "cost": {
             "currency": "gp",
@@ -886,7 +886,7 @@
         "specialIngredients": 1,
         "cookingLoreDC": 16,
         "survivalDC": 18,
-        "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.IrrRh2yttdTDU1A5",
+        "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.IrrRh2yttdTDU1A5",
         "level": 2,
         "cost": {
             "currency": "gp",
@@ -934,7 +934,7 @@
         "specialIngredients": 2,
         "cookingLoreDC": 30,
         "survivalDC": 32,
-        "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.BTKN1IgANoof0tfB",
+        "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.BTKN1IgANoof0tfB",
         "level": 12,
         "cost": {
             "currency": "gp",
@@ -985,7 +985,7 @@
         "specialIngredients": 0,
         "cookingLoreDC": 18,
         "survivalDC": 20,
-        "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.GsPVSA1GNm4tvmcR",
+        "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.GsPVSA1GNm4tvmcR",
         "level": 2,
         "cost": {
             "currency": "gp",
@@ -1038,7 +1038,7 @@
         "specialIngredients": 2,
         "cookingLoreDC": 26,
         "survivalDC": 28,
-        "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.t5pXd39gRgNkPoiu",
+        "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.t5pXd39gRgNkPoiu",
         "level": 8,
         "cost": {
             "currency": "gp",
@@ -1087,7 +1087,7 @@
         "specialIngredients": 1,
         "cookingLoreDC": 18,
         "survivalDC": 20,
-        "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.IZoPx6QH5NRY1HBi",
+        "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.IZoPx6QH5NRY1HBi",
         "level": 3,
         "cost": {
             "currency": "gp",
@@ -1135,7 +1135,7 @@
         "specialIngredients": 4,
         "cookingLoreDC": 45,
         "survivalDC": 47,
-        "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.RmMZWrzgd8Wh8z5H",
+        "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.RmMZWrzgd8Wh8z5H",
         "level": 20,
         "cost": {
             "currency": "gp",
@@ -1224,7 +1224,7 @@
         "specialIngredients": 2,
         "cookingLoreDC": 23,
         "survivalDC": 25,
-        "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.WrDLx0FVkaglg1hh",
+        "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.WrDLx0FVkaglg1hh",
         "level": 7,
         "cost": {
             "currency": "gp",
@@ -1272,7 +1272,7 @@
         "specialIngredients": 0,
         "cookingLoreDC": 22,
         "survivalDC": 24,
-        "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.GAf8W01ppdseIGbq",
+        "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.GAf8W01ppdseIGbq",
         "level": 5,
         "cost": {
             "currency": "gp",
@@ -1324,7 +1324,7 @@
         "specialIngredients": 0,
         "cookingLoreDC": 17,
         "survivalDC": 19,
-        "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.b59ro2GHvRvBOko8",
+        "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.b59ro2GHvRvBOko8",
         "level": 1,
         "cost": {
             "currency": "gp",
@@ -1375,7 +1375,7 @@
         "specialIngredients": 0,
         "cookingLoreDC": 20,
         "survivalDC": 22,
-        "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.agI35cH4peI3aIX5",
+        "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-meal-effects.Item.agI35cH4peI3aIX5",
         "level": 4,
         "cost": {
             "currency": "gp",

@@ -4499,7 +4499,7 @@
         "title": "Supernatural Solution",
         "description": "<p>Your spellcasters try to resolve issues when mundane solutions just aren’t enough. Attempt a basic check.</p>",
         "special": "You cannot influence a check with Supernatural Solution and Creative Solution simultaneously.",
-        "automationNotes": "A critical failure adds a reminder for the next 2 Kingdom turns but does not prevent manual rolls. The same-DC Magic check and result choice when using Supernatural Solution are still handled manually.",
+        "automationNotes": "When selected before a Kingdom skill check, the stored solution is consumed before either result is revealed. The plugin then rolls the original check and an additional same-DC Magic check automatically, compares their degrees of success, and resolves only the higher result; ties keep the original check. A critical failure on this activity adds a reminder for the next 2 Kingdom turns but does not prevent manual rolls.",
         "criticalSuccess": {
           "msg": "<p>You can call upon your spellcasters’ supernatural solution to aid in resolving any Kingdom skill check made during the remainder of this Kingdom turn @gain1SupernaturalSolution. Do so just before a Kingdom skill check is rolled (by yourself or any other PC). Attempt a Magic check against the same DC in addition to the Kingdom skill check, and take whichever of the two results you prefer. If you don’t use your Supernatural Solution by the end of this Kingdom turn, this benefit ends and you gain 10XP instead.</p>"
         },

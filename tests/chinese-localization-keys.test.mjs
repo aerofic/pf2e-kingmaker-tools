@@ -253,6 +253,9 @@ test("Chinese V&K 1.2 text corrections stay aligned with source rules", () => {
   assert.equal(root.ruin?.decay, "衰败");
 
   assert.equal(activities["establish-work-site-lumber"]?.title, "建立工地：伐木场");
+  assert.equal(activities["recruit-monsters"]?.title, "招募怪物（诺克诺克）");
+  assert.match(activities["recruit-monsters"]?.criticalSuccess?.msg ?? "", /这是一种幸运效果/);
+  assert.doesNotMatch(activities["recruit-monsters"]?.criticalSuccess?.msg ?? "", /财富效应/);
   assert.equal(structuresCn.lumberyard?.name, "木材厂");
   assert.match(structuresCn["sacred-grove"]?.notes ?? "", /原初魔法物品/);
   assert.doesNotMatch(structuresCn["sacred-grove"]?.notes ?? "", /等级 5|1 地块|36 RP/);

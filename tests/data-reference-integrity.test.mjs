@@ -192,6 +192,46 @@ test("structure reference schema accepts every bundled structure rule", () => {
   assert.deepEqual(bundledSchemaRefs, structureIds);
 });
 
+test("recipe and camping combat-effect UUIDs use the modern Item document type", () => {
+  const recipes = readJson("dist/recipes.json");
+  const mainJs = readFileSync(new URL("dist/main.js", moduleRoot), "utf8");
+  const legacyUuid =
+    /Compendium\.pf2e-kingmaker-tools\.kingmaker-tools-(?:meal|camping)-effects\.(?!Item\.)[A-Za-z0-9]+/g;
+
+  const recipeLegacy = [];
+  for (const recipe of recipes) {
+    for (const uuid of collectUuidValues(recipe)) {
+      if (legacyUuid.test(uuid)) recipeLegacy.push(`${recipe.id}: ${uuid}`);
+      legacyUuid.lastIndex = 0;
+      assert.match(
+        uuid,
+        /^Compendium\.pf2e-kingmaker-tools\.kingmaker-tools-meal-effects\.Item\.[A-Za-z0-9]+$/,
+        `${recipe.id} meal UUID must include .Item.`,
+      );
+    }
+  }
+  assert.deepEqual(recipeLegacy, []);
+
+  const mainLegacy = mainJs.match(legacyUuid) ?? [];
+  assert.deepEqual(mainLegacy, [], "bundled main.js must not keep legacy meal/camping effect UUIDs");
+
+  for (const id of [
+    "ZKJlIqyFgbKDACnG", // enhance-weapons
+    "PSBOS7ZEl9RGWBqD", // set-traps
+    "KysTaC245mOnSnmE", // undead-guardians
+    "LN6mH7Muj4hgvStt", // water-hazards
+    "wojV4NiAOYsnfFby", // maintain-armor
+  ]) {
+    assert.match(
+      mainJs,
+      new RegExp(
+        String.raw`Compendium\.pf2e-kingmaker-tools\.kingmaker-tools-camping-effects\.Item\.${id}`,
+      ),
+      `combat effect ${id} must use .Item.`,
+    );
+  }
+});
+
 test("recipe compendium UUIDs point at bundled meal-effect documents", { skip: !existsSync(classicLevelUrl) }, async () => {
   const recipes = readJson("dist/recipes.json");
   const bundledRecipes = readBundledJsonModule("./kotlin/recipes.json");
@@ -202,8 +242,12 @@ test("recipe compendium UUIDs point at bundled meal-effect documents", { skip: !
 
   for (const recipe of recipes) {
     for (const uuid of collectUuidValues(recipe)) {
-      const match = uuid.match(/^Compendium\.pf2e-kingmaker-tools\.kingmaker-tools-meal-effects(?:\.Item)?\.([A-Za-z0-9]+)$/);
-      if (match && !mealEffectIds.has(match[1])) missing.push(`${recipe.id}: ${uuid}`);
+      const match = uuid.match(/^Compendium\.pf2e-kingmaker-tools\.kingmaker-tools-meal-effects\.Item\.([A-Za-z0-9]+)$/);
+      if (!match) {
+        missing.push(`${recipe.id}: malformed meal UUID ${uuid}`);
+        continue;
+      }
+      if (!mealEffectIds.has(match[1])) missing.push(`${recipe.id}: ${uuid}`);
     }
   }
 
