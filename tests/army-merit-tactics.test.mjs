@@ -4,7 +4,7 @@ import test from "node:test";
 import { fileURLToPath } from "node:url";
 
 const moduleRoot = new URL("../", import.meta.url);
-const classicLevelUrl = new URL("../../foundryvtt-node-14.365/node_modules/classic-level/index.js", import.meta.url);
+import { readPackEntries } from "./helpers/pack-reader.mjs";
 const packPath = "packs/kingmaker-tools-army-merit-tactics";
 const meritNames = new Set(["老兵勋章", "精锐勋章", "王牌勋章"]);
 const aceTactics = new Map([
@@ -31,23 +31,11 @@ const aceTacticText = new Map([
 ]);
 
 async function readPack() {
-  const { ClassicLevel } = await import(classicLevelUrl.href);
-  const db = new ClassicLevel(fileURLToPath(new URL(packPath, moduleRoot)), {
-    keyEncoding: "utf8",
-    valueEncoding: "json",
-  });
-  await db.open();
-  try {
-    const documents = [];
-    const folders = [];
-    for await (const [key, value] of db.iterator()) {
-      if (key.startsWith("!items!")) documents.push(value);
-      if (key.startsWith("!folders!")) folders.push(value);
-    }
-    return { documents, folders };
-  } finally {
-    await db.close();
-  }
+  const entries = await readPackEntries(packPath);
+  return {
+    documents: entries.filter(([key]) => key.startsWith("!items!")).map(([, value]) => value),
+    folders: entries.filter(([key]) => key.startsWith("!folders!")).map(([, value]) => value),
+  };
 }
 
 test("army merit tactics pack is private and bundled", () => {

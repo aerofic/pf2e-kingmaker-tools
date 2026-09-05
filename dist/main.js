@@ -105986,7 +105986,8 @@ var flattenObject = foundry.utils.flattenObject;
 var DialogV2 = foundry.applications.api.DialogV2;
 var FormDataExtended = foundry.applications.ux.FormDataExtended;
 var JournalEntry = foundry.documents.JournalEntry;
-var deepClone = foundry.utils.deepClone;
+var kmConcurrent = globalThis.foundryvttKotlinPatches.concurrency;
+var deepClone = value => kmConcurrent.clone(value);
 var expandObject = foundry.utils.expandObject;
 var equals_0 = foundry.utils.equals;
 var getProperty = foundry.utils.getProperty;
@@ -111561,6 +111562,7 @@ class ApplyMealEffectsHandler extends ActionHandler {
     }
     var chosenMeals = destination_3;
     if (!kmCanActionUpdateAll(chosenMeals, requester, (meal) => meal.n3t_1)) {
+      if (action.__kmOnce) throw new Error('Cannot update the chosen meal actors.');
       return _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.Unit_instancev9v8hjid95df;
     }
     // Inline function 'kotlin.collections.map' call
@@ -123457,7 +123459,7 @@ class ActorActions$_onClickAction$slambda {
   }
   *u40($this$buildPromise, $completion) {
     var json = yield* jsonFilePicker(t_0('kingdom.uploadKingdomJson'), t_0('applications.kingdom'), _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.VOID3gxj6tk5isa35, _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.VOID3gxj6tk5isa35, $completion);
-    yield* setKingdom(this.s51_1.w51_1, JSON.parse(json), $completion);
+    yield* setKingdom(this.s51_1.w51_1, kmConcurrent.capture(this.s51_1.w51_1, 'kingdom-sheet', JSON.parse(json), getKingdom(this.s51_1.w51_1)), $completion);
     return this.s51_1.close();
   }
   lc(p1, $completion) {
@@ -123470,7 +123472,7 @@ class ActorActions$_onClickAction$slambda_0 {
   }
   *u40($this$buildPromise, $completion) {
     var json = yield* jsonFilePicker(t_0('kingdom.uploadCampingJson'), t_0('applications.camping'), _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.VOID3gxj6tk5isa35, _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.VOID3gxj6tk5isa35, $completion);
-    yield* setCamping(this.x51_1.w51_1, JSON.parse(json), $completion);
+    yield* setCamping(this.x51_1.w51_1, kmConcurrent.capture(this.x51_1.w51_1, 'camping-sheet', JSON.parse(json), getCamping(this.x51_1.w51_1)), $completion);
     return this.x51_1.close();
   }
   lc(p1, $completion) {
@@ -127759,7 +127761,7 @@ class KingdomCheckDialog$roll$slambda {
       var b = tmp0_safe_receiver.supernaturalSolutions - 1 | 0;
       tmp0_safe_receiver.supernaturalSolutions = Math.max(0, b);
       yield* setKingdom(this.b5e_1.d5d_1, tmp0_safe_receiver, $completion);
-      yield* postChatMessage(t_0('kingdom.reducingSupernaturalSolutions'), _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.VOID3gxj6tk5isa35, _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.VOID3gxj6tk5isa35, _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.VOID3gxj6tk5isa35, $completion);
+      yield* postChatMessage(t_0('kingdom.reducingSupernaturalSolutions'), Companion_instance_5.m36(this.b5e_1.u5d_1.rollMode), _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.VOID3gxj6tk5isa35, _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.VOID3gxj6tk5isa35, $completion);
     }
     return _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.Unit_instancev9v8hjid95df;
   }
@@ -134874,74 +134876,7 @@ class KingdomSheet$_onClickAction$slambda_43 {
     this.g5u_1 = this$0;
   }
   *k3s($this$buildPromise, $completion) {
-    var tmp0_safe_receiver = getKingdom(this.g5u_1.r5q_1);
-    if (tmp0_safe_receiver == null)
-      null;
-    else {
-      // Inline function 'kotlin.let' call
-      var realm = getRealmData(this.g5u_1.q5q_1, this.g5u_1.r5q_1, tmp0_safe_receiver);
-      var settlements = getAllSettlements(tmp0_safe_receiver, this.g5u_1.q5q_1);
-      var storage = calculateStorage(realm, settlements.e4y_1);
-      tmp0_safe_receiver.supernaturalSolutions = 0;
-      tmp0_safe_receiver.creativeSolutions = 0;
-      tmp0_safe_receiver.blessedSolutions = 0;
-      tmp0_safe_receiver.fame.now = tmp0_safe_receiver.fame.next;
-      tmp0_safe_receiver.fame.next = 0;
-      tmp0_safe_receiver.resourcePoints = endTurn_1(tmp0_safe_receiver.resourcePoints);
-      tmp0_safe_receiver.resourceDice = endTurn_1(tmp0_safe_receiver.resourceDice);
-      tmp0_safe_receiver.consumption = endTurn_0(tmp0_safe_receiver.consumption);
-      tmp0_safe_receiver.commodities = endTurn(tmp0_safe_receiver.commodities, storage);
-      // Inline function 'kotlin.collections.mapNotNull' call
-      var tmp0 = tmp0_safe_receiver.modifiers;
-      // Inline function 'kotlin.collections.mapNotNullTo' call
-      var destination = _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.ArrayList3it5z8td81qkl.m1();
-      // Inline function 'kotlin.collections.forEach' call
-      var inductionVariable = 0;
-      var last = tmp0.length;
-      while (inductionVariable < last) {
-        var element = tmp0[inductionVariable];
-        inductionVariable = inductionVariable + 1 | 0;
-        var turns = element.turns;
-        var tmp;
-        switch (turns) {
-          case 0:
-          case null:
-            tmp = element;
-            break;
-          case 1:
-            tmp = null;
-            break;
-          default:
-            // Inline function 'at.posselt.pfrpg2e.kingdom.RawModifier.Companion.copy' call
-
-            // Inline function 'at.posselt.pfrpg2e.kingdom.at_posselt_pfrpg2e_kingdom_RawModifier_Companion_wzicmh_copy_1tks5' call
-
-            var turns_0 = turns - 1 | 0;
-            tmp = Object.assign({}, element, {turns: turns_0});
-            break;
-        }
-        var tmp0_safe_receiver_0 = tmp;
-        if (tmp0_safe_receiver_0 == null)
-          null;
-        else {
-          // Inline function 'kotlin.let' call
-          destination.n1(tmp0_safe_receiver_0);
-        }
-      }
-      // Inline function 'kotlin.collections.toTypedArray' call
-      tmp0_safe_receiver.modifiers = (0,_kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.copyToArray2j022khrow2yi)(destination);
-      yield* setKingdom(this.g5u_1.r5q_1, tmp0_safe_receiver, $completion);
-      if (this.g5u_1.q5q_1.user != null && this.g5u_1.q5q_1.user.isGM) {
-        var currentKingdomTurn = kmNormalizeKingdomTurn(this.g5u_1.r5q_1.getFlag('pf2e-kingmaker-tools', 'kingdomTurn'));
-        yield* (0,_kotlinx_coroutines_core_mjs__WEBPACK_IMPORTED_MODULE_3__.awaitd1m8y0em728c)(this.g5u_1.r5q_1.setFlag('pf2e-kingmaker-tools', 'kingdomTurn', currentKingdomTurn + 1), $completion);
-      } else if (this.g5u_1.q5q_1.user != null) {
-        emitPfrpg2eKingdomCampingWeather(this.g5u_1.q5q_1.socket, {
-          action: kmKingdomTurnSocketAction,
-          data: {actorUuid: this.g5u_1.r5q_1.uuid, requestingUserId: this.g5u_1.q5q_1.user.id}
-        });
-      }
-    }
-    yield* postChatTemplate('chatmessages/end-turn.hbs', _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.VOID3gxj6tk5isa35, _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.VOID3gxj6tk5isa35, _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.VOID3gxj6tk5isa35, $completion);
+    yield* (0,_kotlinx_coroutines_core_mjs__WEBPACK_IMPORTED_MODULE_3__.awaitd1m8y0em728c)(kmEndKingdomTurn(this.g5u_1), $completion);
     return _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.Unit_instancev9v8hjid95df;
   }
   lc(p1, $completion) {
@@ -145017,7 +144952,7 @@ function evaluateSettlement(data, structures, allStructuresStack, allowCapitalIn
   if (tmp$ret$15) {
     tmp_0 = true;
   } else {
-    tmp_0 = data.s3o_1.equals(SettlementType_CAPITAL_getInstance());
+    tmp_0 = allowCapitalInvestmentInCapitalWithoutBank && data.s3o_1.equals(SettlementType_CAPITAL_getInstance());
   }
   var allowCapitalInvestment = tmp_0;
   // Inline function 'kotlin.collections.mapNotNull' call
@@ -146373,26 +146308,7 @@ async function updateKingdomTurnCounter(actor, input) {
 }
 var kmKingdomTurnSocketAction = 'incrementKingdomTurn';
 function registerKingdomTurnSocket() {
-  game.socket.on('module.pf2e-kingmaker-tools', (message, senderUserId) => {
-    if (message == null || message.action !== kmKingdomTurnSocketAction || game.user == null || game.user.isGM !== true || !isFirstGM(game)) {
-      return;
-    }
-    var data = message.data;
-    if (data == null || typeof senderUserId !== 'string' || senderUserId !== data.requestingUserId) {
-      return;
-    }
-    var requester = game.users.get(senderUserId);
-    if (requester == null || requester.active !== true || typeof data.actorUuid !== 'string') {
-      return;
-    }
-    fromUuid(data.actorUuid).then((actor) => {
-      if (!(actor instanceof CONFIG.PF2E.Actor.documentClasses.party) || getKingdom(actor) == null || !kmCanActionUpdate(actor, requester)) {
-        return;
-      }
-      var currentKingdomTurn = kmNormalizeKingdomTurn(actor.getFlag('pf2e-kingmaker-tools', kmKingdomTurnFlag));
-      return actor.setFlag('pf2e-kingmaker-tools', kmKingdomTurnFlag, currentKingdomTurn + 1);
-    }).catch((error) => console.error('pf2e-kingmaker-tools | Failed to increment the Kingdom turn from socket.', error));
-  });
+  // Old clients must reload: split counter-only requests cannot commit safely.
 }
 var kmSettlementMayorSocketAction = 'setSettlementMayor';
 function kmGetSettlementMayors(kingdom) {
@@ -146614,6 +146530,98 @@ function main() {
   var tmp = TypedHooks_instance;
   onInit(tmp, main$lambda);
 }
+// Adapter for the separately testable V14 concurrency coordinator. Reuses the
+// existing game calculations and permission predicates without changing rules.
+function kmEndTurnData(actor, data) {
+  var realm = getRealmData(game, actor, data);
+  var storage = calculateStorage(realm, getAllSettlements(data, game).e4y_1);
+  data.supernaturalSolutions = 0;
+  data.creativeSolutions = 0;
+  data.blessedSolutions = 0;
+  data.fame.now = data.fame.next;
+  data.fame.next = 0;
+  data.resourcePoints = endTurn_1(data.resourcePoints);
+  data.resourceDice = endTurn_1(data.resourceDice);
+  data.consumption = endTurn_0(data.consumption);
+  data.commodities = endTurn(data.commodities, storage);
+  data.modifiers = data.modifiers.filter(element => element.turns !== 1).map(element =>
+    element.turns == null || element.turns === 0 ? element : {...element, turns: element.turns - 1});
+  return data;
+}
+function kmEndKingdomTurn(sheet) {
+  if (sheet.__kmEndTurnPromise) return sheet.__kmEndTurnPromise;
+  var actor = sheet.r5q_1;
+  var operation = sheet.__kmEndTurnOperation || {id: foundry.utils.randomID(24), expectedTurn: kmNormalizeKingdomTurn(actor.getFlag('pf2e-kingmaker-tools', 'kingdomTurn'))};
+  sheet.__kmEndTurnOperation = operation;
+  var work = kmConcurrent.request('endTurn', {actorUuid: actor.uuid, expectedTurn: operation.expectedTurn}, operation.id);
+  sheet.__kmEndTurnPromise = work.then(result => {
+    sheet.__kmEndTurnOperation = null;
+    return result;
+  }).catch(error => { kmConcurrent.notify(error); throw error; }).finally(() => {sheet.__kmEndTurnPromise = null;});
+  return sheet.__kmEndTurnPromise;
+}
+function kmInstallConcurrency(dispatcher) {
+  kmConcurrent.install({
+    fromUuid: uuid => fromUuid(uuid),
+    canUpdate: kmCanActionUpdate,
+    isParty: actor => actor instanceof CONFIG.PF2E.Actor.documentClasses.party,
+    turn: actor => kmNormalizeKingdomTurn(actor.getFlag('pf2e-kingmaker-tools', 'kingdomTurn')),
+    endTurn: kmEndTurnData,
+    postEndTurn: () => buildPromise((scope, completion) => postChatTemplate('chatmessages/end-turn.hbs', _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.VOID3gxj6tk5isa35, _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.VOID3gxj6tk5isa35, _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.VOID3gxj6tk5isa35, completion)),
+    validateChat: async (message, button, user) => {
+      var data = button.dataset;
+      if (button.matches('.km-pass-time')) {
+        if (!user.isGM || !Number.isFinite(Number(data.seconds)) || Number(data.seconds) < 0) throw new Error('Invalid time advance.');
+        return;
+      }
+      var actor = await fromUuid(data.campingActorUuid || data.actorUuid);
+      // Random encounter cards previously allowed any reader to roll; retain that.
+      if (button.matches('.km-random-encounter')) {
+        if (!(actor instanceof CONFIG.PF2E.Actor.documentClasses.party) || getCamping(actor) == null) throw new Error('Camping data is unavailable.');
+        return;
+      }
+      if (!kmCanActionUpdate(actor, user)) throw new Error('Cannot update this party or actor.');
+      if (data.campingActorUuid && getCamping(actor) == null) throw new Error('Camping data is unavailable.');
+      if (button.matches('.km-add-recipe, .km-apply-meal-effect')) {
+        if (!['criticalFailure','failure','success','criticalSuccess'].includes(data.degree) || !getAllRecipes(getCamping(actor)).some(recipe => recipe.id === (data.id || data.recipe))) throw new Error('Recipe or result is unavailable.');
+      }
+      if (button.matches('.km-add-food')) {
+        var target = await buildPromise((scope, completion) => findHuntAndGatherTargetActor(data.actorUuid, getCamping(actor), actor, completion));
+        if (!kmCanActionUpdate(target, user)) throw new Error('Cannot update the food inventory.');
+      } else if (button.matches('.km-add-recipe')) {
+        if (!kmCanActionUpdate(await fromUuid(data.actorUuid), user)) throw new Error('Cannot update the recipe actor.');
+      }
+    },
+    executeChat: async (message, button, user) => {
+      var d = button.dataset;
+      if (button.matches('.km-pass-time')) return game.time.advance(Number(d.seconds));
+      if (button.matches('.km-random-encounter')) {
+        var actor = await fromUuid(d.campingActorUuid);
+        return buildPromise((scope, completion) => rollRandomEncounter(game, actor, true, completion));
+      }
+      var handler, data;
+      if (button.matches('.km-add-recipe')) {
+        handler = new LearnSpecialRecipeHandler();
+        data = {campingActorUuid:d.campingActorUuid,actorUuid:d.actorUuid,id:d.id,degree:d.degree};
+      } else if (button.matches('.km-add-food')) {
+        handler = new AddHuntAndGatherResultHandler();
+        data = {campingActorUuid:d.campingActorUuid,actorUuid:d.actorUuid,basicIngredients:Number(d.basicIngredients)||0,specialIngredients:Number(d.specialIngredients)||0};
+      } else if (button.matches('.km-apply-meal-effect')) {
+        handler = new ApplyMealEffectsHandler(game);
+        data = {campingActorUuid:d.campingActorUuid,recipeId:d.recipe,degree:d.degree};
+      } else if (button.matches('.gain-provisions')) {
+        handler = new GainProvisionsHandler();
+        data = {actorUuid:d.actorUuid,quantity:Number(d.quantity)};
+      } else throw new Error('Unknown chat action.');
+      var action = {action:handler.z3s_1,data,__kmSenderUserId:user.id,__kmOnce:true};
+      return buildPromise((scope, completion) => handler.c3t(action, dispatcher, completion));
+    }
+  });
+}
+function kmHandleOnceChat(event, target) {
+  event.preventDefault();
+  kmConcurrent.clickChat(target).catch(kmConcurrent.notify);
+}
 function main$lambda() {
   // Inline function 'kotlin.apply' call
   var this_0 = new ActionDispatcher(game, (0,_kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.listOf1jh22dvmctj1r)([new AddHuntAndGatherResultHandler(), new OpenCampingSheetHandler(game), new SyncActivitiesHandler(game), new ClearMealEffectsHandler(), new LearnSpecialRecipeHandler(), new ApplyMealEffectsHandler(game), new GainProvisionsHandler(), new OpenKingdomSheetHandler(game)]));
@@ -146621,6 +146629,7 @@ function main$lambda() {
   var actionDispatcher = this_0;
   registerSettlementMayorSocket();
   registerCampingRestSocket(actionDispatcher);
+  kmInstallConcurrency(actionDispatcher);
   var tmp = TypedHooks_instance;
   onI18NInit(tmp, main$lambda$lambda(actionDispatcher));
   bindChatButtons(game);
@@ -150598,31 +150607,15 @@ function getCamping(_this__u8e3s4) {
     // Inline function 'kotlin.let' call
     tmp = deepClone(tmp0_safe_receiver);
   }
-  return tmp;
+  return kmConcurrent.capture(_this__u8e3s4, 'camping-sheet', tmp);
 }
-var kmCampingWriteQueues = new WeakMap();
 var kmCampingRestInFlight = new WeakSet();
 function kmCampingRestOperationVersion(camping) {
   var value = Number(camping == null ? null : camping.restOperationVersion);
   return Number.isSafeInteger(value) && value >= 0 && value < Number.MAX_SAFE_INTEGER ? value : 0;
 }
-function kmQueueCampingWrite(actor, write) {
-  var previous = kmCampingWriteQueues.get(actor) || Promise.resolve();
-  var next = previous.catch(() => undefined).then(write);
-  var queued = next.finally(() => {
-    if (kmCampingWriteQueues.get(actor) === queued) {
-      kmCampingWriteQueues.delete(actor);
-    }
-  });
-  kmCampingWriteQueues.set(actor, queued);
-  return queued;
-}
 function *setCamping(_this__u8e3s4, data, $completion) {
-  var write = kmQueueCampingWrite(_this__u8e3s4, () => {
-    var current = getAppFlag(_this__u8e3s4, 'camping-sheet') || {};
-    var diff = foundry.utils.diffObject(current, data);
-    return _this__u8e3s4.setFlag('pf2e-kingmaker-tools', 'camping-sheet', diff);
-  });
+  var write = kmConcurrent.write(_this__u8e3s4, 'camping-sheet', data);
   yield* (0,_kotlinx_coroutines_core_mjs__WEBPACK_IMPORTED_MODULE_3__.awaitd1m8y0em728c)(write, $completion);
   return _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.Unit_instancev9v8hjid95df;
 }
@@ -150637,7 +150630,7 @@ function isCampingActor(_this__u8e3s4) {
   return tmp;
 }
 function *updateCamping(_this__u8e3s4, data, $completion) {
-  var write = kmQueueCampingWrite(_this__u8e3s4, () => _this__u8e3s4.setFlag('pf2e-kingmaker-tools', 'camping-sheet', data));
+  var write = kmConcurrent.write(_this__u8e3s4, 'camping-sheet', data, true);
   yield* (0,_kotlinx_coroutines_core_mjs__WEBPACK_IMPORTED_MODULE_3__.awaitd1m8y0em728c)(write, $completion);
   return _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.Unit_instancev9v8hjid95df;
 }
@@ -152575,6 +152568,7 @@ function *typedCampingUpdate(_this__u8e3s4, block, $completion) {
   else {
     // Inline function 'kotlin.let' call
     var data = buildCampingUpdate(_kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.VOID3gxj6tk5isa35, typedCampingUpdate$lambda(block, tmp0_safe_receiver));
+    kmConcurrent.capture(_this__u8e3s4, 'camping-sheet', data, tmp0_safe_receiver);
     yield* updateCamping(_this__u8e3s4, data, $completion);
   }
   return _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.Unit_instancev9v8hjid95df;
@@ -157439,10 +157433,10 @@ function getKingdom(_this__u8e3s4) {
     // Inline function 'kotlin.let' call
     tmp = deepClone(tmp0_safe_receiver);
   }
-  return tmp;
+  return kmConcurrent.capture(_this__u8e3s4, 'kingdom-sheet', tmp);
 }
 function *setKingdom(_this__u8e3s4, data, $completion) {
-  yield* setAppFlag(_this__u8e3s4, 'kingdom-sheet', data, $completion);
+  yield* (0,_kotlinx_coroutines_core_mjs__WEBPACK_IMPORTED_MODULE_3__.awaitd1m8y0em728c)(kmConcurrent.write(_this__u8e3s4, 'kingdom-sheet', data), $completion);
   return _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.Unit_instancev9v8hjid95df;
 }
 function *clearKingdom(_this__u8e3s4, $completion) {
@@ -164792,7 +164786,38 @@ function KingdomCheckDialog$_preparePartContext$slambda$lambda_0($this) {
     return tmp;
   };
 }
-function *roll($this, modifier, creativeSolutionModifier, creativeSolutionPills, freeAndFairPills, pills, upgrades, fortune, downgrades, consumedModifiers, rollTwiceKeepHighest, rollTwiceKeepLowest, assurance, notes, modifierWithoutFreeAndFair, $completion) {
+async function kmRunKingdomCheck(dialog, run) {
+  if (dialog.__kmCheckDone) return;
+  if (dialog.__kmCheckPromise) return dialog.__kmCheckPromise;
+  if (dialog.__kmCheckFailed) throw new Error(kmConcurrent.text('此检定已中断，请核对后重新打开检定窗口。','This check was interrupted. Review it and reopen the dialog.'));
+  dialog.__kmCheckPromise = (async () => {
+    var started = false;
+    try {
+      var operation = await kmConcurrent.request('beginCheck', {actorUuid:dialog.d5d_1.uuid,modifiers:dialog.e5d_1.modifiers || []});
+      dialog.__kmCheckId = operation.id;
+      started = true;
+      kmConcurrent.activeChecks.add(dialog.d5d_1.uuid);
+      var result = await run();
+      dialog.__kmCheckDone = true;
+      return result;
+    } catch(error) {
+      dialog.__kmCheckFailed = true;
+      if (started) try { await kmConcurrent.request('failCheck',{actorUuid:dialog.d5d_1.uuid,checkId:dialog.__kmCheckId}); } catch (_) { /* persistent pending state still blocks replay */ }
+      kmConcurrent.notify(error);
+      throw error;
+    } finally {
+      kmConcurrent.activeChecks.delete(dialog.d5d_1.uuid);
+      dialog.__kmCheckPromise = null;
+    }
+  })();
+  return dialog.__kmCheckPromise;
+}
+function *roll(...args) {
+  var completion = args.pop();
+  yield* (0,_kotlinx_coroutines_core_mjs__WEBPACK_IMPORTED_MODULE_3__.awaitd1m8y0em728c)(kmRunKingdomCheck(args[0], () => buildPromise((scope, next) => kmRollCheckImpl(...args, next))), completion);
+  return _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.Unit_instancev9v8hjid95df;
+}
+function *kmRollCheckImpl($this, modifier, creativeSolutionModifier, creativeSolutionPills, freeAndFairPills, pills, upgrades, fortune, downgrades, consumedModifiers, rollTwiceKeepHighest, rollTwiceKeepLowest, assurance, notes, modifierWithoutFreeAndFair, $completion) {
   var wantsSupernaturalSolution = $this.u5d_1.supernaturalSolution && !$this.u5d_1.assurance;
   var tmp0_supernaturalKingdom = wantsSupernaturalSolution ? getKingdom($this.d5d_1) : null;
   var useSupernaturalSolution = wantsSupernaturalSolution && !(tmp0_supernaturalKingdom == null) && tmp0_supernaturalKingdom.supernaturalSolutions > 0;
@@ -164818,42 +164843,18 @@ function *roll($this, modifier, creativeSolutionModifier, creativeSolutionPills,
   if (useSupernaturalSolution) {
     automaticSupernaturalOutcome = yield* rollAutomaticSupernaturalMagicCheck($this, tmp2_rollMode, tmp3_activity, tmp5_dc, tmp6_kingdomActor, tmp7_degreeMessages, tmp8_eventStageIndex, tmp9_event, tmp10_eventIndex, $completion);
     var chosenOutcome = automaticSupernaturalOutcome.changed.a4_1 > primaryOutcome.changed.a4_1 ? automaticSupernaturalOutcome : primaryOutcome;
-    yield* postChatMessage(t_0('kingdom.supernaturalSolution') + ': ' + t_1(chosenOutcome.skill) + ' — ' + t_1(chosenOutcome.changed), _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.VOID3gxj6tk5isa35, _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.VOID3gxj6tk5isa35, _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.VOID3gxj6tk5isa35, $completion);
+    yield* postChatMessage(t_0('kingdom.supernaturalSolution') + ': ' + t_1(chosenOutcome.skill) + ' — ' + t_1(chosenOutcome.changed), tmp2_rollMode, _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.VOID3gxj6tk5isa35, _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.VOID3gxj6tk5isa35, $completion);
     yield* postKingdomCheckOutcome(tmp1_afterRoll, tmp2_rollMode, tmp3_activity, tmp9_event, chosenOutcome, tmp7_degreeMessages, tmp6_kingdomActor, tmp8_eventStageIndex, tmp10_eventIndex, $completion);
   }
-  var tmp14_safe_receiver = getKingdom($this.d5d_1);
-  if (tmp14_safe_receiver == null)
-    null;
-    else {
-      // Inline function 'kotlin.let' call
-      // Inline function 'kotlin.collections.filter' call
-      var tmp0 = $this.e5d_1.modifiers;
-      // Inline function 'kotlin.collections.filterTo' call
-      var destination = _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.ArrayList3it5z8td81qkl.m1();
-      var consumedBlessedSolutions = 0;
-      var inductionVariable = 0;
-      var last = tmp0.length;
-      while (inductionVariable < last) {
-        var element = tmp0[inductionVariable];
-        inductionVariable = inductionVariable + 1 | 0;
-        var shouldConsumeModifier = (0,_kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.contains2gm06f5aa19ov)(consumedModifiers, element.id) || (!(automaticSupernaturalOutcome == null) && automaticSupernaturalOutcome.consumedModifierIds.indexOf(element.id) >= 0);
-        if (shouldConsumeModifier && (element.name === 'activities.blessed-solution.criticalSuccess.modifiers.blessedAttempt.name' || element.name === 'activities.blessed-solution.success.modifiers.blessedAttempt.name')) {
-          consumedBlessedSolutions = consumedBlessedSolutions + 1 | 0;
-        }
-        if (!shouldConsumeModifier) {
-          destination.n1(element);
-        }
-      }
-      // Inline function 'kotlin.collections.toTypedArray' call
-      tmp14_safe_receiver.modifiers = (0,_kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.copyToArray2j022khrow2yi)(destination);
-      if (consumedBlessedSolutions > 0) {
-        yield* postChatMessage(t('kingdom.reducingBlessedSolutions', (0,_kotlin_js_mjs__WEBPACK_IMPORTED_MODULE_4__.recordOf3qfqe45m25p44)([(0,_kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.to2cs3ny02qtbcb)('count', consumedBlessedSolutions)])), _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.VOID3gxj6tk5isa35, _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.VOID3gxj6tk5isa35, _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.VOID3gxj6tk5isa35, $completion);
-        var tmp1_elvis_lhs = tmp14_safe_receiver.blessedSolutions;
-        var currentBlessedSolutions = tmp1_elvis_lhs == null ? 0 : tmp1_elvis_lhs;
-        tmp14_safe_receiver.blessedSolutions = Math.max(0, currentBlessedSolutions - consumedBlessedSolutions | 0);
-      }
-      yield* setKingdom($this.d5d_1, tmp14_safe_receiver, $completion);
-    }
+  var consumedIds = Array.from($this.e5d_1.modifiers || []).filter(element =>
+    (0,_kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.contains2gm06f5aa19ov)(consumedModifiers, element.id) ||
+    (automaticSupernaturalOutcome != null && automaticSupernaturalOutcome.consumedModifierIds.includes(element.id))
+  ).map(element => element.id);
+  if (automaticSupernaturalOutcome != null) consumedIds.push(...automaticSupernaturalOutcome.consumedModifierIds);
+  var cleanup = yield* (0,_kotlinx_coroutines_core_mjs__WEBPACK_IMPORTED_MODULE_3__.awaitd1m8y0em728c)(kmConcurrent.request('consumeModifiers', {actorUuid: $this.d5d_1.uuid, ids: [...new Set(consumedIds)],checkId:$this.__kmCheckId}), $completion);
+  if (cleanup.blessed > 0) {
+    yield* postChatMessage(t('kingdom.reducingBlessedSolutions', {count: cleanup.blessed}), tmp2_rollMode, _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.VOID3gxj6tk5isa35, _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.VOID3gxj6tk5isa35, $completion);
+  }
   $this.close();
   return _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.Unit_instancev9v8hjid95df;
 }
@@ -165411,7 +165412,7 @@ function *postKingdomCheckOutcome(afterRoll, rollMode, activity, event, outcome,
   var notes = outcome.notes;
   if (activity == null && event == null) {
     var criticalFailureRuinReminder = buildKingdomSkillCriticalFailureRuinReminder(changed, skill, []);
-    yield* postDegreeOfSuccess(changed, originalDegree, _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.VOID3gxj6tk5isa35, _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.VOID3gxj6tk5isa35, _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.VOID3gxj6tk5isa35, _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.VOID3gxj6tk5isa35, criticalFailureRuinReminder, _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.VOID3gxj6tk5isa35, $completion);
+    yield* postDegreeOfSuccess(changed, originalDegree, _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.VOID3gxj6tk5isa35, rollMode, _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.VOID3gxj6tk5isa35, _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.VOID3gxj6tk5isa35, criticalFailureRuinReminder, _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.VOID3gxj6tk5isa35, $completion);
   } else {
     yield* afterRoll(changed, $completion);
     var tmp0_elvis_lhs = rollMode == null ? null : rollMode.p3();
@@ -165446,7 +165447,7 @@ function *rollCheck_1(afterRoll, rollMode, activity, skill, modifier, modifierWi
       null;
     else {
       // Inline function 'kotlin.let' call
-      yield* postChatMessage(t_0('kingdom.reducingCreativeSolutions'), _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.VOID3gxj6tk5isa35, _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.VOID3gxj6tk5isa35, _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.VOID3gxj6tk5isa35, $completion);
+      yield* postChatMessage(t_0('kingdom.reducingCreativeSolutions'), rollMode, _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.VOID3gxj6tk5isa35, _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.VOID3gxj6tk5isa35, $completion);
       // Inline function 'kotlin.math.max' call
       var b = tmp1_safe_receiver.creativeSolutions - 1 | 0;
       tmp1_safe_receiver.creativeSolutions = Math.max(0, b);
@@ -165459,7 +165460,7 @@ function *rollCheck_1(afterRoll, rollMode, activity, skill, modifier, modifierWi
       null;
     else {
       // Inline function 'kotlin.let' call
-      yield* postChatMessage(t_0('kingdom.losing2Rp'), _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.VOID3gxj6tk5isa35, _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.VOID3gxj6tk5isa35, _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.VOID3gxj6tk5isa35, $completion);
+      yield* postChatMessage(t_0('kingdom.losing2Rp'), rollMode, _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.VOID3gxj6tk5isa35, _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.VOID3gxj6tk5isa35, $completion);
       var tmp_0 = tmp2_safe_receiver.resourcePoints;
       // Inline function 'kotlin.math.max' call
       var b_0 = tmp2_safe_receiver.resourcePoints.now - 2 | 0;
@@ -165474,7 +165475,7 @@ function *rollCheck_1(afterRoll, rollMode, activity, skill, modifier, modifierWi
     else {
       // Inline function 'kotlin.let' call
       var fameType = tmp3_safe_receiver.fame.type === 'famous' ? t_1(FameType_FAMOUS_getInstance()) : t_1(FameType_INFAMOUS_getInstance());
-      yield* postChatMessage(t('kingdom.reducingFame', (0,_kotlin_js_mjs__WEBPACK_IMPORTED_MODULE_4__.recordOf3qfqe45m25p44)([(0,_kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.to2cs3ny02qtbcb)('type', fameType)])), _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.VOID3gxj6tk5isa35, _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.VOID3gxj6tk5isa35, _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.VOID3gxj6tk5isa35, $completion);
+      yield* postChatMessage(t('kingdom.reducingFame', (0,_kotlin_js_mjs__WEBPACK_IMPORTED_MODULE_4__.recordOf3qfqe45m25p44)([(0,_kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.to2cs3ny02qtbcb)('type', fameType)])), rollMode, _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.VOID3gxj6tk5isa35, _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.VOID3gxj6tk5isa35, $completion);
       var tmp_1 = tmp3_safe_receiver.fame;
       // Inline function 'kotlin.math.max' call
       var b_1 = tmp3_safe_receiver.fame.now - 1 | 0;
@@ -175734,6 +175735,7 @@ function *postChatMessage(message, rollMode, speaker, isHtml, $completion) {
   }
   var fixedMessage = tmp;
   var data = (0,_kotlin_js_mjs__WEBPACK_IMPORTED_MODULE_4__.recordOf3qfqe45m25p44)([(0,_kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.to2cs3ny02qtbcb)('content', fixedMessage)]);
+  if (isHtml && /data-km-once=["']true["']/.test(fixedMessage)) data.flags = {'pf2e-kingmaker-tools': {onceVersion: 1}};
   if (!(speaker == null)) {
     var tmp_0 = ChatMessage;
     // Inline function 'com.foundryvtt.core.documents.GetSpeakerOptions.Companion.invoke' call
@@ -175779,7 +175781,13 @@ function postNightAmbushOutcome(message, _options, userId) {
   } else {
     return;
   }
-  ChatMessage.create({content: '<h3>夜袭察觉结果</h3><p><b>' + label + '：</b>' + result + '<\/p>'});
+  // V14 ChatMessage stores resolved recipients and blind state on the message.
+  // Copy those fields exactly; re-applying the current mode could widen a whisper.
+  ChatMessage.create({
+    content: '<h3>夜袭察觉结果</h3><p><b>' + label + '：</b>' + result + '<\/p>',
+    whisper: Array.from(message.whisper),
+    blind: message.blind
+  });
 }
 function *postNightAmbushWatchInfo(watchers, encounterAtSeconds, watchDurationSeconds, additionalWatchers, $completion) {
   additionalWatchers = additionalWatchers == null ? 0 : additionalWatchers;
@@ -175881,12 +175889,8 @@ function bindChatClick$lambda($targetSelector, $parentSelector, $callback) {
     }
       if (tmp_0) {
         if (target.dataset.kmOnce === 'true') {
-          if (target.dataset.kmProcessed === 'true') {
-            return _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.Unit_instancev9v8hjid95df;
-          }
-          target.dataset.kmProcessed = 'true';
-          target.disabled = true;
-          target.setAttribute('aria-disabled', 'true');
+          kmHandleOnceChat(event, target);
+          return _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.Unit_instancev9v8hjid95df;
         }
         var tmp0_safe_receiver = target.closest($parentSelector);
       var tmp_1;

@@ -124,6 +124,5 @@ test("Capital Investment activity list has one base use or bank settlement uses,
   assert.match(mainJs, /Math\.max\(1, capitalInvestmentBankSettlements\)/);
   assert.match(mainJs, /capitalInvestmentAttemptsThisTurn\(kingdom\) >= capitalInvestmentAllowedAttempts/);
   assert.match(mainJs, /structure\.h3f_1 === true/);
-  assert.match(mainJs, /tmp_0 = data\.s3o_1\.equals\(SettlementType_CAPITAL_getInstance\(\)\);/);
-  assert.doesNotMatch(mainJs, /data\.s3o_1\.equals\(SettlementType_CAPITAL_getInstance\(\)\) && allowCapitalInvestmentInCapitalWithoutBank/);
+  assert.match(mainJs, /tmp_0 = allowCapitalInvestmentInCapitalWithoutBank && data\.s3o_1\.equals\(SettlementType_CAPITAL_getInstance\(\)\);/);
 });

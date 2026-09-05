@@ -17,7 +17,7 @@ function sourceBetween(startMarker, endMarker) {
 }
 
 test("Supernatural Solution is spent before both checks and automatically keeps the higher degree", () => {
-  const roll = sourceBetween("function *roll($this, modifier, creativeSolutionModifier", "function createCheckContext($this");
+  const roll = sourceBetween("function *kmRollCheckImpl($this, modifier, creativeSolutionModifier", "function createCheckContext($this");
   const spend = roll.indexOf("yield* KingdomCheckDialog$roll$slambda_0($this)");
   const originalCheck = roll.indexOf("var primaryOutcome = yield* rollCheck_1(");
   const magicCheck = roll.indexOf("yield* rollAutomaticSupernaturalMagicCheck(");

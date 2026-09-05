@@ -1,0 +1,12 @@
+{
+  "name": "pf2e-kingmaker-tools-tests",
+  "private": true,
+  "description": "Development-only regression tests for the assembled Foundry V14 module",
+  "engines": { "node": ">=24.13.1 <25" },
+  "scripts": {
+    "build": "node scripts/build-concurrency.mjs",
+    "test": "node scripts/test.mjs",
+    "check": "node scripts/build-concurrency.mjs --check && node --check dist/api/patches.js && node --check dist/api/concurrency.js && node --check dist/main.js"
+  },
+  "devDependencies": { "classic-level": "3.0.0" }
+}

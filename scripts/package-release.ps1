@@ -165,6 +165,12 @@ try {
     Write-Output "SHA256 $archiveHash"
 } finally {
     if (Test-Path -LiteralPath $stagingRoot) {
-        Remove-Item -LiteralPath $stagingRoot -Recurse -Force
+        $resolvedStaging = [IO.Path]::GetFullPath($stagingRoot)
+        $temporaryPrefix = [IO.Path]::GetFullPath([IO.Path]::GetTempPath()).TrimEnd([IO.Path]::DirectorySeparatorChar) + [IO.Path]::DirectorySeparatorChar
+        $expectedLeaf = '^' + [regex]::Escape($moduleId) + '-release-[a-f0-9]{32}$'
+        if (-not $resolvedStaging.StartsWith($temporaryPrefix, [StringComparison]::OrdinalIgnoreCase) -or [IO.Path]::GetFileName($resolvedStaging) -notmatch $expectedLeaf) {
+            throw "Refusing to remove an unexpected staging path: $resolvedStaging"
+        }
+        Remove-Item -LiteralPath $resolvedStaging -Recurse -Force
     }
 }

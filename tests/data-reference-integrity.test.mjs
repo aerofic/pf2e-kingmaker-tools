@@ -1,10 +1,9 @@
 import assert from "node:assert/strict";
 import { existsSync, readFileSync } from "node:fs";
 import test from "node:test";
-import { fileURLToPath } from "node:url";
 
 const moduleRoot = new URL("../", import.meta.url);
-const classicLevelUrl = new URL("../../foundryvtt-node-14.365/node_modules/classic-level/index.js", import.meta.url);
+import { readPackEntries } from "./helpers/pack-reader.mjs";
 const removedIds = new Set(["reconnoiter-hex-vk"]);
 const kingdomSkills = new Set([
   "agriculture",
@@ -44,21 +43,7 @@ function readBundledJsonModule(moduleId) {
 }
 
 async function readPackDocumentIds(relativePath) {
-  const { ClassicLevel } = await import(classicLevelUrl.href);
-  const db = new ClassicLevel(fileURLToPath(new URL(relativePath, moduleRoot)), {
-    keyEncoding: "utf8",
-    valueEncoding: "json",
-  });
-  await db.open();
-  try {
-    const ids = new Set();
-    for await (const [, doc] of db.iterator()) {
-      if (doc._id) ids.add(doc._id);
-    }
-    return ids;
-  } finally {
-    await db.close();
-  }
+  return new Set((await readPackEntries(relativePath)).map(([, doc]) => doc._id).filter(Boolean));
 }
 
 function collectUuidValues(node, uuids = []) {
@@ -232,7 +217,7 @@ test("recipe and camping combat-effect UUIDs use the modern Item document type",
   }
 });
 
-test("recipe compendium UUIDs point at bundled meal-effect documents", { skip: !existsSync(classicLevelUrl) }, async () => {
+test("recipe compendium UUIDs point at bundled meal-effect documents", async () => {
   const recipes = readJson("dist/recipes.json");
   const bundledRecipes = readBundledJsonModule("./kotlin/recipes.json");
   const mealEffectIds = await readPackDocumentIds("packs/kingmaker-tools-meal-effects");
@@ -343,6 +328,7 @@ test("module manifest references only bundled files and declared packs", () => {
   const manifest = readJson("module.json");
   const referencedFiles = [
     ...(manifest.scripts ?? []),
+    ...(manifest.esmodules ?? []),
     ...(manifest.styles ?? []),
     ...(manifest.languages ?? []).map((language) => language.path),
     ...(manifest.packs ?? []).map((pack) => pack.path),

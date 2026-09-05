@@ -39,11 +39,11 @@ test("Chinese Blessed Solution terminology uses prayer-style solution", () => {
 });
 
 test("Consumed Blessed Solution modifiers reduce the stored counter", () => {
-  assert.match(main, /consumedBlessedSolutions/);
-  assert.match(main, /activities\.blessed-solution\.criticalSuccess\.modifiers\.blessedAttempt\.name/);
-  assert.match(main, /activities\.blessed-solution\.success\.modifiers\.blessedAttempt\.name/);
+  const concurrency = readFileSync(new URL('dist/api/concurrency.js', moduleRoot), 'utf8');
+  assert.match(concurrency, /activities\.blessed-solution\.criticalSuccess\.modifiers\.blessedAttempt\.name/);
+  assert.match(concurrency, /activities\.blessed-solution\.success\.modifiers\.blessedAttempt\.name/);
   assert.match(main, /kingdom\.reducingBlessedSolutions/);
-  assert.match(main, /blessedSolutions = Math\.max\(0, currentBlessedSolutions - consumedBlessedSolutions \| 0\)/);
+  assert.match(concurrency, /next\.blessedSolutions = Math\.max\(0, \(current\.blessedSolutions \|\| 0\) - blessed\)/);
 });
 
 test("Solution XP button settles all unused solution resources", () => {

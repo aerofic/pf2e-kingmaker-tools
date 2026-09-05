@@ -4,7 +4,7 @@ import test from "node:test";
 import { fileURLToPath } from "node:url";
 
 const moduleRoot = new URL("../", import.meta.url);
-const classicLevelUrl = new URL("../../foundryvtt-node-14.365/node_modules/classic-level/index.js", import.meta.url);
+import { readPackEntries } from "./helpers/pack-reader.mjs";
 const defaultTokenImage = "systems/pf2e/icons/default-icons/mystery-man.svg";
 const customStructureImages = [
   "Bridge, Stone.webp",
@@ -45,19 +45,7 @@ const shoppingUnlockExpectations = [
 ];
 
 async function readStructureActors() {
-  const { ClassicLevel } = await import(classicLevelUrl.href);
-  const db = new ClassicLevel(fileURLToPath(new URL("packs/kingmaker-tools-structures", moduleRoot)), {
-    keyEncoding: "utf8",
-    valueEncoding: "json",
-  });
-  await db.open();
-  try {
-    const actors = [];
-    for await (const [key, actor] of db.iterator()) actors.push({ key, actor });
-    return actors;
-  } finally {
-    await db.close();
-  }
+  return (await readPackEntries("packs/kingmaker-tools-structures")).map(([key, actor]) => ({ key, actor }));
 }
 
 function localModulePath(src) {
@@ -115,7 +103,7 @@ function pngHasAlpha(bytes) {
   return false;
 }
 
-test("bundled structure image paths resolve after URL decoding", { skip: !existsSync(classicLevelUrl) }, async () => {
+test("bundled structure image paths resolve after URL decoding", async () => {
   const actors = await readStructureActors();
   const missing = [];
 
@@ -130,7 +118,7 @@ test("bundled structure image paths resolve after URL decoding", { skip: !exists
   assert.deepEqual(missing, []);
 });
 
-test("structure actor token images match portrait images", { skip: !existsSync(classicLevelUrl) }, async () => {
+test("structure actor token images match portrait images", async () => {
   const mismatches = (await readStructureActors())
     .map(({ actor }) => ({
       name: actor.name,
@@ -169,7 +157,7 @@ test("custom structure images are bundled artwork rather than text placeholders"
   assert.deepEqual(invalid, []);
 });
 
-test("V&K structure actors do not use the default mystery token image", { skip: !existsSync(classicLevelUrl) }, async () => {
+test("V&K structure actors do not use the default mystery token image", async () => {
   const actors = await readStructureActors();
   const defaultTokenActors = actors
     .map(({ actor }) => actor)
@@ -181,13 +169,13 @@ test("V&K structure actors do not use the default mystery token image", { skip: 
   assert.deepEqual(defaultTokenActors, []);
 });
 
-test("structure pack actor refs point at existing structure rules", { skip: !existsSync(classicLevelUrl) }, async () => {
+test("structure pack actor refs point at existing structure rules", async () => {
   const structureIds = new Set(
     JSON.parse(readFileSync(new URL("dist/structures.json", moduleRoot), "utf8")).map((structure) => structure.id),
   );
   const actors = await readStructureActors();
   const missing = actors
-    .map((actor) => ({
+    .map(({ actor }) => ({
       name: actor.name,
       ref: actor.flags?.["pf2e-kingmaker-tools"]?.structureData?.ref,
     }))
@@ -198,7 +186,7 @@ test("structure pack actor refs point at existing structure rules", { skip: !exi
   assert.deepEqual(missing, []);
 });
 
-test("shopping unlock structure actors document their unlocked item categories", { skip: !existsSync(classicLevelUrl) }, async () => {
+test("shopping unlock structure actors document their unlocked item categories", async () => {
   const actorByRef = new Map(
     (await readStructureActors()).map(({ actor }) => [actor.flags?.["pf2e-kingmaker-tools"]?.structureData?.ref, actor]),
   );
@@ -219,7 +207,7 @@ test("shopping unlock structure actors document their unlocked item categories",
   }
 });
 
-test("selected structure actor levels match the V&K 1.2 structure rules", { skip: !existsSync(classicLevelUrl) }, async () => {
+test("selected structure actor levels match the V&K 1.2 structure rules", async () => {
   const structureRules = new Map(
     JSON.parse(readFileSync(new URL("dist/structures.json", moduleRoot), "utf8")).map((structure) => [
       structure.id,
@@ -240,7 +228,7 @@ test("selected structure actor levels match the V&K 1.2 structure rules", { skip
   }
 });
 
-test("Occult Shop actor notes use the V&K 1.2 construction cost", { skip: !existsSync(classicLevelUrl) }, async () => {
+test("Occult Shop actor notes use the V&K 1.2 construction cost", async () => {
   const actorByRef = new Map(
     (await readStructureActors()).map(({ actor }) => [actor.flags?.["pf2e-kingmaker-tools"]?.structureData?.ref, actor]),
   );
@@ -252,7 +240,7 @@ test("Occult Shop actor notes use the V&K 1.2 construction cost", { skip: !exist
   }
 });
 
-test("V&K 1.2 added structure actors use Chinese display names", { skip: !existsSync(classicLevelUrl) }, async () => {
+test("V&K 1.2 added structure actors use Chinese display names", async () => {
   const expectedNames = new Map([
     ["town-watch", "城镇守望"],
     ["town-square", "城镇广场"],
@@ -276,7 +264,7 @@ test("V&K 1.2 added structure actors use Chinese display names", { skip: !exists
   }
 });
 
-test("V&K 1.2 added structure actors use Chinese descriptions", { skip: !existsSync(classicLevelUrl) }, async () => {
+test("V&K 1.2 added structure actors use Chinese descriptions", async () => {
   const expectedRefs = [
     "town-watch",
     "town-square",
@@ -312,7 +300,7 @@ test("V&K 1.2 added structure actors use Chinese descriptions", { skip: !existsS
   assert.deepEqual(remainingEnglish, []);
 });
 
-test("V&K civic government structure actors do not retain old rule text", { skip: !existsSync(classicLevelUrl) }, async () => {
+test("V&K civic government structure actors do not retain old rule text", async () => {
   const byRef = new Map(
     (await readStructureActors()).map(({ actor }) => [actor.flags?.["pf2e-kingmaker-tools"]?.structureData?.ref, actor]),
   );
@@ -330,7 +318,7 @@ test("V&K civic government structure actors do not retain old rule text", { skip
   assert.match(byRef.get("palace-vk").system.details.publicNotes, /这些定居点行动若用于区域活动/);
 });
 
-test("structure import button keeps V&K replacements and skips superseded originals", { skip: !existsSync(classicLevelUrl) }, async () => {
+test("structure import button keeps V&K replacements and skips superseded originals", async () => {
   const actors = (await readStructureActors()).map(({ actor }) => actor);
   const refs = new Set(actors.map((actor) => actor.flags?.["pf2e-kingmaker-tools"]?.structureData?.ref).filter(Boolean));
   const importedRefs = actors

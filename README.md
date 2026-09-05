@@ -4,7 +4,27 @@ This module ships all OGL licensed rules to run the Kingdom, Camping and Weather
 
 **Documentation is included in a journal inside FoundryVTT!**
 
+## Testing this assembled V14 fork
+
+This checkout ships the compiled runtime in `dist/`. Its regression tests do not require a local Foundry installation. With Node.js 24.13.1 or later in the 24.x line, run:
+
+```sh
+npm ci
+npm run check
+npm test
+```
+
+`npm test` discovers all `tests/**/*.test.mjs` files and runs them serially. The release workflow uses the same entrypoint. ClassicLevel is a locked development-only dependency; pack tests open disposable copies and never open the original pack databases. Missing dependencies fail the tests instead of silently skipping pack checks.
+
+The behavior harness runs the shipped Kotlin/JS code with isolated Foundry I/O fixtures. Passing these tests does not replace GM/player integration checks in an initialized V14 world. Test dependencies and scripts are excluded from the GitHub release archive.
+
 ## Support
+
+### Safe concurrent operations
+
+Camping and kingdom saves are coordinated by the first active GM without adding new camping ownership restrictions. Keep a GM connected, and reload **all** clients after updating this build. If an older editing window conflicts with newer data, reopen it and repeat the intended edit; the newer data will not be overwritten.
+
+One-shot chat actions keep their completion state across reloads. Old cards and interrupted actions show a GM review control. Reconcile any partially applied inventory, effects, time or resources before enabling a retry. An interrupted kingdom check has a corresponding review control on the kingdom sheet. See [concurrency safety and verification](docs/concurrency-safety.md).
 
 If you are having issues, you can either file an issue on GitHub or drop into our [Discord Server](https://discord.com/invite/pf2e) ([Channel](https://discord.com/channels/880968862240239708/1079113556823396352))
 

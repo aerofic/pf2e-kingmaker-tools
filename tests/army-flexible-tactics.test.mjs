@@ -4,25 +4,11 @@ import test from "node:test";
 import { fileURLToPath } from "node:url";
 
 const moduleRoot = new URL("../", import.meta.url);
-const classicLevelUrl = new URL("../../foundryvtt-node-14.365/node_modules/classic-level/index.js", import.meta.url);
+import { readPackEntries } from "./helpers/pack-reader.mjs";
 const packPath = "packs/kingmaker-tools-army-tactics";
 
 async function readPack() {
-  const { ClassicLevel } = await import(classicLevelUrl.href);
-  const db = new ClassicLevel(fileURLToPath(new URL(packPath, moduleRoot)), {
-    keyEncoding: "utf8",
-    valueEncoding: "json",
-  });
-  await db.open();
-  try {
-    const documents = [];
-    for await (const [key, value] of db.iterator()) {
-      if (key.startsWith("!items!")) documents.push(value);
-    }
-    return documents;
-  } finally {
-    await db.close();
-  }
+  return (await readPackEntries(packPath)).filter(([key]) => key.startsWith("!items!")).map(([, value]) => value);
 }
 
 test("counterattack tactic pack is public and included in the training browser", () => {

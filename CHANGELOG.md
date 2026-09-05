@@ -7,6 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+* Preserve roll visibility on ordinary kingdom check outcomes, Supernatural Solution summaries, and check-related resource messages. Night ambush outcome messages inherit the original message's exact whisper recipients and blind state.
+* Respect the existing setting for Capital Investment in a capital without a bank. Completed, operating banks remain eligible regardless of the setting.
+* Run every regression test in the release workflow, use a locked development-only ClassicLevel dependency, and inspect temporary pack copies so tests do not rewrite source LevelDB files. Correct previously ineffective structure-reference and manifest-entrypoint checks.
+
+* Coordinate camping and kingdom saves on the first active GM, preserve edit baselines, and reject conflicting stale edits instead of overwriting newer progress.
+* Persist per-button chat settlement state across rerenders and reloads. Legacy cards and interrupted multi-document actions require explicit GM review before retrying.
+* Commit end-turn resources, durations, turn number and replay receipt in one Actor update. Preserve legitimate consecutive turns while preventing duplicate settlement and response-loss retries.
+* Reserve kingdom checks before rolling, reject stale one-use modifiers, and remove only actually consumed modifier IDs from the latest state. Interrupted checks have an explicit GM recovery control.
+
+Existing camping ownership checks and migration behavior are unchanged. An active GM is required for coordinated saves. All connected clients must reload after deployment; old clients cannot participate in the new protocol. GM review must reconcile any partial inventory, effect, time or resource changes before enabling a retry.
+
 ## [6.3.6] - 2026-08-28
 
 ### Fixed

@@ -13,11 +13,10 @@ test("camping GM socket actions authenticate the server-provided sender and targ
   assert.match(main, /kmCanActionUpdate\(actor, requester\)/);
 });
 
-test("camping writes are serialized and full snapshots are diffed against the latest actor flag", () => {
-  assert.match(main, /var kmCampingWriteQueues = new WeakMap\(\);/);
-  assert.match(main, /previous\.catch\(\(\) => undefined\)\.then\(write\)/);
-  assert.match(main, /var current = getAppFlag\(_this__u8e3s4, 'camping-sheet'\) \|\| \{\};/);
-  assert.match(main, /foundry\.utils\.diffObject\(current, data\)/);
+test("camping writes retain edit baselines and use the shared coordinator", () => {
+  assert.match(main, /kmConcurrent\.capture\(_this__u8e3s4, 'camping-sheet', tmp\)/);
+  assert.match(main, /kmConcurrent\.write\(_this__u8e3s4, 'camping-sheet', data\)/);
+  assert.doesNotMatch(main, /foundry\.utils\.diffObject\(current, data\)/);
 });
 
 test("camping rest is first-GM-authoritative and rejects duplicate stale requests", () => {
@@ -68,7 +67,7 @@ test("camping chat result buttons are one-shot and render listeners are deduplic
     assert.match(source, /data-km-once="true"/, template);
   }
   assert.match(main, /element_0\.__kmChatHandlers/);
-  assert.match(main, /target\.dataset\.kmProcessed === 'true'/);
+  assert.match(main, /kmHandleOnceChat\(event, target\)/);
 });
 
 test("army consumption recomputation is first-GM authoritative", () => {
@@ -80,9 +79,7 @@ test("Offensive Gambit never merges enemy armies from multiple hexes", () => {
   assert.match(main, /if \(anchorHexes\.size > 1\) \{\s*return \[\];/);
 });
 
-test("non-GM Kingdom turn completion delegates the counter increment to the first GM", () => {
-  assert.match(main, /var kmKingdomTurnSocketAction = 'incrementKingdomTurn';/);
-  assert.match(main, /registerKingdomTurnSocket\(\);/);
-  assert.match(main, /action: kmKingdomTurnSocketAction/);
-  assert.match(main, /senderUserId !== data\.requestingUserId/);
+test("all Kingdom turn completion delegates the entire settlement to the first GM", () => {
+  assert.match(main, /kmConcurrent\.request\('endTurn', \{actorUuid: actor\.uuid, expectedTurn: operation\.expectedTurn\}, operation\.id\)/);
+  assert.doesNotMatch(main, /action: kmKingdomTurnSocketAction/);
 });

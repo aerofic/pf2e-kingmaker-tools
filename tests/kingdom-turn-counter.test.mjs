@@ -40,10 +40,8 @@ test("kingdom sheet exposes a persistent GM-only faith counter before the turn c
   assert.equal(cn["pf2e-kingmaker-tools"].kingdom.faith, "信仰");
 });
 
-test("ending a turn increments the counter only after kingdom data is saved", () => {
-  assert.match(
-    main,
-    /setKingdom\(this\.g5u_1\.r5q_1, tmp0_safe_receiver[\s\S]*?user\.isGM[\s\S]*?setFlag\('pf2e-kingmaker-tools', 'kingdomTurn', currentKingdomTurn \+ 1\)/,
-  );
+test("ending a turn delegates to atomic settlement instead of two writes", () => {
+  assert.match(main, /kmEndKingdomTurn\(this\.g5u_1\)/);
+  assert.doesNotMatch(main, /setFlag\('pf2e-kingmaker-tools', 'kingdomTurn', currentKingdomTurn \+ 1\)/);
   assert.match(main, /return Number\.isFinite\(parsed\) \? Math\.max\(1, Math\.trunc\(parsed\)\) : 1/);
 });

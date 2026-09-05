@@ -61,6 +61,6 @@ test("garrison reminder explicitly remains scoped by human judgment", () => {
 });
 
 test("turn counters keep current-turn-inclusive N plus one semantics", () => {
-  assert.match(mainJs, /case 1:\r?\n\s+tmp = null;/);
-  assert.match(mainJs, /var turns_0 = turns - 1 \| 0;/);
+  assert.match(mainJs, /data\.modifiers\.filter\(element => element\.turns !== 1\)/);
+  assert.match(mainJs, /element\.turns == null \|\| element\.turns === 0 \? element : \{\.\.\.element, turns: element\.turns - 1\}/);
 });
