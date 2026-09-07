@@ -1,0 +1,17 @@
+{
+  "pf2e-kingmaker-tools": {
+    "encounterConditions": {
+      "roadLabel": "道路／河流（−2）",
+      "flyLabel": "飞行（+3）",
+      "roadHint": "按 Party 当前六角格的道路标记自动勾选；GM 可覆盖，离开本格后恢复自动。河流由 GM 判断。",
+      "flyHint": "由 GM 判断队伍是否正在飞行；开始休息时清除。请选用能影响飞行角色的危害或怪物。",
+      "autoLabel": "恢复道路自动识别",
+      "roadFound": "本格有道路",
+      "roadAbsent": "本格无道路标记",
+      "unknown": "无法自动识别道路",
+      "manual": "GM 手动",
+      "automatic": "自动",
+      "adjustment": "环境修正"
+    }
+  }
+}

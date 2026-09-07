@@ -1,0 +1,17 @@
+{
+  "pf2e-kingmaker-tools": {
+    "encounterConditions": {
+      "roadLabel": "Road / river (−2)",
+      "flyLabel": "Flying (+3)",
+      "roadHint": "Auto-detect the road marker in this party’s hex. GM overrides last until leaving the hex. Rivers require GM judgment.",
+      "flyHint": "GM judges whether the party is flying. Cleared when rest starts. Choose hazards or monsters relevant to flying PCs.",
+      "autoLabel": "Restore automatic road detection",
+      "roadFound": "Road in this hex",
+      "roadAbsent": "No road marker in this hex",
+      "unknown": "Road detection unavailable",
+      "manual": "GM override",
+      "automatic": "Automatic",
+      "adjustment": "Circumstances"
+    }
+  }
+}

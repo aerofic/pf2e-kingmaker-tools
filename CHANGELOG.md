@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [6.4.0] - 2026-09-07
+
+### Added
+
+* Add GM-only Road / river (-2) and Flying (+3) checkboxes beside the random encounter DC. Display and rolls use the same calculation, independently of existing activity and manual DC modifiers.
+* Detect roads from the current Party Token's actual Kingmaker hex. Allow per-hex GM overrides and a return-to-auto button; entering another hex resets the override. Rivers remain manual. Missing map/runtime data or ambiguous Party Tokens are reported instead of guessed.
+* Serialize encounter-condition edits through the authoritative GM with location, state and rest-version guards. Clear flight when rest begins, exclude flight from all rest encounter checks, and remind the GM to select encounters relevant to flying PCs.
+
 ### Fixed
 
 * Preserve roll visibility on ordinary kingdom check outcomes, Supernatural Solution summaries, and check-related resource messages. Night ambush outcome messages inherit the original message's exact whisper recipients and blind state.

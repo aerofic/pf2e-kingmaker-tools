@@ -98,7 +98,7 @@
             <div id="km-camping-encounter">
                 <button type="button" data-action="increase-encounter-dc" data-value="-1" title="{{localizeKM "camping.decreaseDc"}}">
                     <i class="fa-solid fa-minus"></i></button>
-                <div><b>{{localizeKM "camping.encounterDc"}}:</b> {{encounterDc}}</div>
+                <div title="{{encounterConditions.adjustment}}"><b>{{localizeKM "camping.encounterDc"}}:</b> {{encounterDc}}</div>
                 <button type="button" data-action="increase-encounter-dc" data-value="1" title="{{localizeKM "camping.increaseDc"}}">
                     <i class="fa-solid fa-plus"></i></button>
                 <button type="button" data-action="reset-encounter-dc" title="{{localizeKM "camping.resetDc"}}"><i
@@ -114,6 +114,22 @@
                         title="{{localizeKM "camping.randomEncounterCheck"}}"><i
                         class="fa-solid fa-dice-d20"></i><i
                         class="fa-solid fa-skull"></i></button>
+                <div class="km-encounter-conditions">
+                    <div class="km-encounter-condition-checks">
+                        <label title="{{encounterConditions.roadHint}}">
+                            <input type="checkbox" data-action="encounter-condition" data-encounter-condition="roadRiver" {{checked encounterConditions.roadRiver}}>
+                            {{encounterConditions.roadLabel}}
+                        </label>
+                        <label title="{{encounterConditions.flyHint}}">
+                            <input type="checkbox" data-action="encounter-condition" data-encounter-condition="flying" {{checked encounterConditions.flying}} {{#if encounterConditions.flyDisabled}}disabled{{/if}}>
+                            {{encounterConditions.flyLabel}}
+                        </label>
+                        {{#if encounterConditions.manual}}
+                            <button type="button" class="km-encounter-auto" data-action="encounter-condition" data-encounter-condition="autoRoad" title="{{encounterConditions.autoLabel}}" aria-label="{{encounterConditions.autoLabel}}"><i class="fa-solid fa-road"></i></button>
+                        {{/if}}
+                    </div>
+                    <small class="km-encounter-status">{{encounterConditions.status}}</small>
+                </div>
             </div>
         {{/if}}
     </div>

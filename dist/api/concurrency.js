@@ -139,7 +139,17 @@
           }
           writeAt(next, change);
         }
+        if (data.key === 'camping-sheet' && !user.isGM && !equal(current.encounterConditions, next.encounterConditions)) {
+          fail('Only a GM can change encounter conditions.');
+        }
         updates = serialize(data.key, current, next);
+      } else if (packet.kind === 'encounterCondition') {
+        if (!user.isGM || !adapter.isParty(actor)) fail('Only a GM can change encounter conditions.');
+        const current = copy(actor.getFlag(moduleId, 'camping-sheet'));
+        if (!current) fail('Camping data is unavailable.');
+        const next = globalThis.foundryvttKotlinPatches.encounterConditions.applyMutation(actor, current, data);
+        updates = serialize('camping-sheet', current, next);
+        if (!Object.keys(updates).length) return {unchanged: true};
       } else if (packet.kind === 'endTurn') {
         if (['pending','review'].includes(control.check?.status)) fail(text('请先完成或核对当前王国检定。', 'Complete or review the current kingdom check first.'));
         if (!adapter.isParty(actor) || !Number.isSafeInteger(data.expectedTurn) || data.expectedTurn < 1) fail('Invalid kingdom turn.');

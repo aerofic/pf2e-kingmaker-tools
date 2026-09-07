@@ -105987,6 +105987,7 @@ var DialogV2 = foundry.applications.api.DialogV2;
 var FormDataExtended = foundry.applications.ux.FormDataExtended;
 var JournalEntry = foundry.documents.JournalEntry;
 var kmConcurrent = globalThis.foundryvttKotlinPatches.concurrency;
+var kmEncounterConditions = globalThis.foundryvttKotlinPatches.encounterConditions;
 var deepClone = value => kmConcurrent.clone(value);
 var expandObject = foundry.utils.expandObject;
 var equals_0 = foundry.utils.equals;
@@ -117267,7 +117268,8 @@ class CampingSheet$_preparePartContext$slambda {
     var tmp34_restDuration = fullRestDuration.q4h_1.v36();
     var tmp16_safe_receiver = fullRestDuration.r4h_1;
     var tmp35_restDurationLeft = tmp16_safe_receiver == null ? null : tmp16_safe_receiver.v36();
-    var tmp36_encounterDc = findEncounterDcModifier(camping, isDay(getPF2EWorldTime(this.k4h_1.q4f_1).s2v_1));
+    var tmp36_encounterDc = findEncounterDcModifier(camping, isDay(getPF2EWorldTime(this.k4h_1.q4f_1).s2v_1), this.k4h_1.r4f_1);
+    var encounterConditionsContext = kmEncounterConditions.context(this.k4h_1, this.k4h_1.r4f_1, camping);
     var tmp37_section = t_1(section);
     var tmp38_isFormValid = this.k4h_1.g3x_1;
     var tmp17_value = camping.travelModeActive;
@@ -117279,7 +117281,7 @@ class CampingSheet$_preparePartContext$slambda {
     var tmp22_elementClasses = nightModes.forcedMarch ? (0,_kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.listOfvhqybd2zx248)('white-checkbox') : (0,_kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.listOfvhqybd2zx248)('black-checkbox');
     // Inline function 'at.posselt.pfrpg2e.camping.CampingSheetContext.Companion.invoke' call
     // Inline function 'at.posselt.pfrpg2e.camping.at_posselt_pfrpg2e_camping_CampingSheetContext_Companion_7vcbrz_invoke_jkqnwo' call
-    return {partId: tmp25_partId, isFormValid: tmp38_isFormValid, actors: tmp31_actors, prepareCamp: tmp29_prepareCamp, activities: tmp30_activities, isDay: tmp28_isDay, isGM: isGM, time: tmp27_time, terrain: currentTerrain, pxTimeOffset: pxTimeOffset, night: nightModes, hexplorationActivityDuration: hexplorationActivityDuration, hexplorationActivitiesAvailable: hexplorationActivitiesAvailable, hexplorationActivitiesMax: hexplorationActivitiesMax, adventuringFor: tmp32_adventuringFor, travelingFor: tmp33_travelingFor, restDuration: tmp34_restDuration, restDurationLeft: tmp35_restDurationLeft, encounterDc: tmp36_encounterDc, region: tmp26_region, section: tmp37_section, prepareCampSection: prepareCampSection, campingActivitiesSection: campingActivitiesSection, eatingSection: eatingSection, travelMode: tmp39_travelMode, forcedMarch: (new CheckboxInput(tmp21_label, 'forcedMarchActive', tmp20_value, _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.VOID3gxj6tk5isa35, _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.VOID3gxj6tk5isa35, _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.VOID3gxj6tk5isa35, tmp22_elementClasses)).y41(), forcedMarchDays: this.k4h_1.t4h(), forcedMarchMaxDays: this.k4h_1.u4h(), recipes: recipesContext, totalFoodCost: tmp24_totalFoodCost, availableFood: availableFood, canRollEncounter: tmp23_canRollEncounter, sheetBackground: background};
+    return {partId: tmp25_partId, isFormValid: tmp38_isFormValid, actors: tmp31_actors, prepareCamp: tmp29_prepareCamp, activities: tmp30_activities, isDay: tmp28_isDay, isGM: isGM, time: tmp27_time, terrain: currentTerrain, pxTimeOffset: pxTimeOffset, night: nightModes, hexplorationActivityDuration: hexplorationActivityDuration, hexplorationActivitiesAvailable: hexplorationActivitiesAvailable, hexplorationActivitiesMax: hexplorationActivitiesMax, adventuringFor: tmp32_adventuringFor, travelingFor: tmp33_travelingFor, restDuration: tmp34_restDuration, restDurationLeft: tmp35_restDurationLeft, encounterDc: tmp36_encounterDc, encounterConditions: encounterConditionsContext, region: tmp26_region, section: tmp37_section, prepareCampSection: prepareCampSection, campingActivitiesSection: campingActivitiesSection, eatingSection: eatingSection, travelMode: tmp39_travelMode, forcedMarch: (new CheckboxInput(tmp21_label, 'forcedMarchActive', tmp20_value, _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.VOID3gxj6tk5isa35, _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.VOID3gxj6tk5isa35, _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.VOID3gxj6tk5isa35, tmp22_elementClasses)).y41(), forcedMarchDays: this.k4h_1.t4h(), forcedMarchMaxDays: this.k4h_1.u4h(), recipes: recipesContext, totalFoodCost: tmp24_totalFoodCost, availableFood: availableFood, canRollEncounter: tmp23_canRollEncounter, sheetBackground: background};
   }
   lc(p1, $completion) {
     return this.o4h((!(p1 == null) ? (0,_kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.isInterface3d6p8outrmvmk)(p1, _kotlinx_coroutines_core_mjs__WEBPACK_IMPORTED_MODULE_3__.CoroutineScopefcb5f5dwqcas) : false) ? p1 : (0,_kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.THROW_CCE2g6jy02ryeudk)(), $completion);
@@ -117463,6 +117465,8 @@ class CampingSheet extends FormApp {
       case 'increase-encounter-dc':
         buildPromise(CampingSheet$_onClickAction$slambda_44(target, this));
         break;
+      case 'encounter-condition':
+        return kmEncounterConditions.click(this, event, target);
       case 'reset-encounter-dc':
         buildPromise(CampingSheet$_onClickAction$slambda_45(this));
         break;
@@ -146561,6 +146565,7 @@ function kmEndKingdomTurn(sheet) {
   return sheet.__kmEndTurnPromise;
 }
 function kmInstallConcurrency(dispatcher) {
+  kmEncounterConditions.install();
   kmConcurrent.install({
     fromUuid: uuid => fromUuid(uuid),
     canUpdate: kmCanActionUpdate,
@@ -154212,7 +154217,7 @@ function registerMealDiffingHooks$lambda$slambda_0($actor, $update) {
   l.$arity = 1;
   return l;
 }
-function *rollRandomEncounter(game, actor, includeFlatCheck, $completion) {
+function *rollRandomEncounter(game, actor, includeFlatCheck, $completion, resting = false) {
   var tmp0_safe_receiver = getCamping(actor);
   if (tmp0_safe_receiver == null)
     null;
@@ -154226,12 +154231,12 @@ function *rollRandomEncounter(game, actor, includeFlatCheck, $completion) {
     } else {
       // Inline function 'kotlin.let' call
       var partyLevel = getAveragePartyLevel(game);
-      return yield* rollRandomEncounter_0(tmp0_safe_receiver, includeFlatCheck, currentRegion, isDay(getPF2EWorldTime(game).s2v_1), partyLevel, $completion);
+      return yield* rollRandomEncounter_0(tmp0_safe_receiver, includeFlatCheck, currentRegion, isDay(getPF2EWorldTime(game).s2v_1), partyLevel, $completion, actor, resting);
     }
   }
   return false;
 }
-function *rollRandomEncounter_0(camping, includeFlatCheck, region, isDay, partyLevel, $completion) {
+function *rollRandomEncounter_0(camping, includeFlatCheck, region, isDay, partyLevel, $completion, actor = null, resting = false) {
   var tmp0_safe_receiver = region.rollTableUuid;
   var tmp;
   if (tmp0_safe_receiver == null) {
@@ -154294,7 +154299,7 @@ function *rollRandomEncounter_0(camping, includeFlatCheck, region, isDay, partyL
     tmp_1 = tmp_2;
   }
   var proxyTable = tmp_1;
-  var dc = findEncounterDcModifier(camping, isDay);
+  var dc = findEncounterDcModifier(camping, isDay, actor, resting);
   var tmp_3;
   if (includeFlatCheck) {
     tmp_3 = (yield* d20Check(dc, _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.VOID3gxj6tk5isa35, t('camping.rollingRandomEncounter', (0,_kotlin_js_mjs__WEBPACK_IMPORTED_MODULE_4__.recordOf3qfqe45m25p44)([(0,_kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.to2cs3ny02qtbcb)('regionName', region.name), (0,_kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.to2cs3ny02qtbcb)('dc', dc)])), rollMode, _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.VOID3gxj6tk5isa35, _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.VOID3gxj6tk5isa35, _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.VOID3gxj6tk5isa35, _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.VOID3gxj6tk5isa35, _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.VOID3gxj6tk5isa35, $completion)).d4o_1.k38();
@@ -154437,10 +154442,10 @@ function toFiniteNumberOrNull(value) {
   var number = Number(value);
   return Number.isFinite(number) ? number : null;
 }
-function findEncounterDcModifier(camping, isDay) {
+function findEncounterDcModifier(camping, isDay, actor = null, resting = false) {
   var tmp0_safe_receiver = findCurrentRegion(camping);
   var tmp1_elvis_lhs = tmp0_safe_receiver == null ? null : tmp0_safe_receiver.encounterDc;
-  return ((tmp1_elvis_lhs == null ? 0 : tmp1_elvis_lhs) + calculateModifierIncrease(camping, isDay) | 0) + camping.encounterModifier | 0;
+  return (((tmp1_elvis_lhs == null ? 0 : tmp1_elvis_lhs) + calculateModifierIncrease(camping, isDay) | 0) + camping.encounterModifier | 0) + kmEncounterConditions.evaluate(actor, camping, resting).modifier;
 }
 function calculateModifierIncrease(camping, isDay) {
   var tmp = (0,_kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.asSequence2phdjljfh9jhx)(groupActivities(camping));
@@ -175304,7 +175309,7 @@ function *findRandomEncounterAt(game, campingActor, camping, watchDurationSecond
   var _iterator__ex2g4s_0 = randomEncounterChecksAtSeconds.r1();
   while (_iterator__ex2g4s_0.s1()) {
     var checksAtSecond = _iterator__ex2g4s_0.t1();
-    var randomEncounterResult = yield* rollRandomEncounter(game, campingActor, true, $completion);
+    var randomEncounterResult = yield* rollRandomEncounter(game, campingActor, true, $completion, true);
     if (randomEncounterResult) {
       return {seconds: checksAtSecond, stealthDc: randomEncounterResult.stealthDc};
     }
@@ -175397,6 +175402,8 @@ function *rest(game, dispatcher, campingActor, camping, skipWatch, skipDailyPrep
       return _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.Unit_instancev9v8hjid95df;
     }
     latestCamping.restOperationVersion = expectedRestOperationVersion + 1;
+    // A daytime flight choice must not leak into the camp's rest encounters.
+    if (latestCamping.encounterConditions?.flying) latestCamping.encounterConditions.flying = false;
     camping = latestCamping;
     // Inline function 'at.posselt.pfrpg2e.camping.RestSettings.Companion.invoke' call
     // Inline function 'at.posselt.pfrpg2e.camping.at_posselt_pfrpg2e_camping_RestSettings_Companion_io6lnp_invoke_jkqnwo' call

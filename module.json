@@ -1,14 +1,14 @@
 {
     "title": "Kingdom Building, Camping & Weather",
     "description": "A collection of utilities to run the most popular adventure for PFRPG 2e",
-    "version": "6.3.6",
+    "version": "6.4.0",
     "esmodules": [
         "dist/api/patches.js",
         "dist/main.js"
     ],
     "url": "https://github.com/aerofic/pf2e-kingmaker-tools",
     "manifest": "https://github.com/aerofic/pf2e-kingmaker-tools/releases/latest/download/module.json",
-    "download": "https://github.com/aerofic/pf2e-kingmaker-tools/releases/download/6.3.6/release.zip",
+    "download": "https://github.com/aerofic/pf2e-kingmaker-tools/releases/download/6.4.0/release.zip",
     "license": "LICENSE",
     "styles": [
         "dist/style.css"
@@ -23,6 +23,16 @@
             "lang": "cn",
             "name": "Chinese (Simplified)",
             "path": "dist/lang/cn.json"
+        },
+        {
+            "lang": "en",
+            "name": "English",
+            "path": "dist/lang/encounter-conditions-en.json"
+        },
+        {
+            "lang": "cn",
+            "name": "Chinese (Simplified)",
+            "path": "dist/lang/encounter-conditions-cn.json"
         }
     ],
     "packs": [

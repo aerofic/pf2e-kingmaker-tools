@@ -153,6 +153,7 @@
 }
 
 #km-camping-hexploration {
+    flex-wrap: wrap;
     justify-content: space-between;
     line-height: 40px;
     padding: 5px;
@@ -175,6 +176,8 @@
     #km-camping-encounter {
         display: flex;
         gap: 5px;
+        align-items: center;
+        flex-wrap: wrap;
 
         i {
             margin-right: 0;
@@ -190,6 +193,38 @@
             }
         }
     }
+}
+
+.km-camping-sheet .km-encounter-conditions {
+    display: flex;
+    flex-direction: column;
+    margin-left: 8px;
+    line-height: 1.3;
+}
+.km-camping-sheet .km-encounter-condition-checks {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+.km-camping-sheet .km-encounter-condition-checks label {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    white-space: nowrap;
+    cursor: pointer;
+}
+.km-camping-sheet .km-encounter-condition-checks input[type="checkbox"] {
+    margin: 0;
+    flex: 0 0 auto;
+}
+.km-camping-sheet .km-encounter-status {
+    opacity: .8;
+}
+.km-camping-sheet #km-camping-encounter .km-encounter-auto {
+    height: 26px;
+    width: 28px;
+    padding: 0;
 }
 
 ul.km-camping-actors {
