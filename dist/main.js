@@ -162470,6 +162470,27 @@ function isFlexibleArmyTactic(tactic) {
 }
 var flexibleArmyTacticId = 'mHWF5XwUi8RK2lET';
 var counterattackArmyActionId = '8wjiF3ctXUjP9oyX';
+var dirtyFightingArmyActionId = 'G2eBcOnUHb3yT7JL';
+function isDirtyFightingArmyAction(item) {
+  return item != null && item.system != null && item.system.campaign === 'kingmaker' && item.system.category === 'army-war-action' && getArmyTacticSlug(item) === 'dirty-fighting';
+}
+function applyDirtyFightingArmyActionOverride(item) {
+  if (!isDirtyFightingArmyAction(item) || typeof item.updateSource !== 'function') return item;
+  var description = getProperty(item, 'system.description.value');
+  if (typeof description !== 'string') return item;
+  // These are the total Strike damages, not bonus damage on top of a Strike.
+  // Keep the original outcome text (including Weary duration and UUIDs).
+  var updated = description.replace(/(<p(?:\s[^>]*)?>\s*<strong>\s*(Critical Success|Success|大成功|成功)\s*[:：]?\s*<\/strong>)([\s\S]*?)(<\/p>)/gi, (paragraph, heading, outcome, body, end) => {
+    var damage = /^(Critical Success|大成功)$/i.test(outcome) ? 2 : 1;
+    var chinese = outcome === '大成功' || outcome === '成功';
+    var marker = /<span data-kingmaker-dirty-fighting-damage="true">[\s\S]*?<\/span>\s*/g;
+    var original = body.replace(marker, '').trimStart();
+    var text = chinese ? '对目标造成 @Damage[' + damage + '] 点伤害。' : 'Deal @Damage[' + damage + '] damage to the target army. ';
+    return heading + ' <span data-kingmaker-dirty-fighting-damage="true">' + text + '</span>' + original + end;
+  });
+  if (updated !== description) item.updateSource({'system.description.value': updated});
+  return item;
+}
 var coveringFireArmyActionId = 'GIbm9qo8VuFgPywJ';
 var retreatArmyActionId = 'IhjlbJinff1wUSjL';
 var feintArmyActionId = 'Hi4LKGOKe6yMDOH5';
@@ -162700,6 +162721,7 @@ function applyArmyTacticOverridesToActors(actors) {
     seen.add(actor);
     Array.from(actor.items || []).forEach((item) => {
       applyFlexibleArmyTacticOverride(item);
+      applyDirtyFightingArmyActionOverride(item);
       applyCounterattackArmyActionOverride(item);
       applyCoveringFireArmyActionOverride(item);
       applyRetreatArmyActionOverride(item);
@@ -162714,15 +162736,18 @@ function renderArmyTacticDescriptionOverrides(app, html) {
   var item = (app == null ? null : app.item) || (app == null ? null : app.document) || (app == null ? null : app.object) || null;
   var isFlexible = item != null && isFlexibleArmyTactic(item);
   var isCounterattack = item != null && isCounterattackArmyAction(item);
+  var isDirtyFighting = isDirtyFightingArmyAction(item);
   var isCoveringFire = item != null && isCoveringFireArmyAction(item);
   var isFeint = item != null && isFeintArmyAction(item);
   var isOpeningSalvo = item != null && isOpeningSalvoArmyTactic(item);
   var isAllOutAssault = item != null && isAllOutAssaultArmyAction(item);
-  if (!isFlexible && !isCounterattack && !isCoveringFire && !isFeint && !isOpeningSalvo && !isAllOutAssault) {
+  if (!isFlexible && !isCounterattack && !isDirtyFighting && !isCoveringFire && !isFeint && !isOpeningSalvo && !isAllOutAssault) {
     return;
   }
   if (isFlexible) {
     applyFlexibleArmyTacticOverride(item);
+  } else if (isDirtyFighting) {
+    applyDirtyFightingArmyActionOverride(item);
   } else if (isCounterattack) {
     applyCounterattackArmyActionOverride(item);
   } else if (isCoveringFire) {
@@ -162749,6 +162774,7 @@ function renderArmyTacticDescriptionOverrides(app, html) {
 function registerArmyTacticOverrides() {
   Hooks.on('preCreateItem', (item) => {
     applyFlexibleArmyTacticOverride(item);
+    applyDirtyFightingArmyActionOverride(item);
     applyCounterattackArmyActionOverride(item);
     applyCoveringFireArmyActionOverride(item);
     applyRetreatArmyActionOverride(item);
@@ -162765,6 +162791,7 @@ function registerArmyTacticOverrides() {
   Hooks.once('ready', () => {
     var pack = game.packs.get('pf2e.kingmaker-features');
     if (pack != null) {
+      pack.getDocument(dirtyFightingArmyActionId).then(applyDirtyFightingArmyActionOverride).catch((error) => console.warn('pf2e-kingmaker-tools | Failed to apply the Dirty Fighting override.', error));
       pack.getDocument(flexibleArmyTacticId).then(applyFlexibleArmyTacticOverride).catch((error) => console.warn('pf2e-kingmaker-tools | Failed to apply the Flexible Tactics override.', error));
       pack.getDocument(counterattackArmyActionId).then(applyCounterattackArmyActionOverride).catch((error) => console.warn('pf2e-kingmaker-tools | Failed to apply the Counterattack override.', error));
       pack.getDocument(coveringFireArmyActionId).then(applyCoveringFireArmyActionOverride).catch((error) => console.warn('pf2e-kingmaker-tools | Failed to apply the Covering Fire override.', error));
@@ -162776,6 +162803,7 @@ function registerArmyTacticOverrides() {
     }
     Array.from(game.items || []).forEach((item) => {
       applyFlexibleArmyTacticOverride(item);
+      applyDirtyFightingArmyActionOverride(item);
       applyCounterattackArmyActionOverride(item);
       applyCoveringFireArmyActionOverride(item);
       applyRetreatArmyActionOverride(item);

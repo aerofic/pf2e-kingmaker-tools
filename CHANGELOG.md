@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [6.4.1] - 2026-09-08
+
+### Fixed
+
+* Make Dirty Fighting's total damage explicit and clickable: 2 on critical success, 1 on success. Preserve the existing Weary effects, durations, requirements, and critical failure. These are total damages, not additional damage on top of a Strike.
+* Apply the description correction to compendium, world and army items, newly created items, and item sheets. Repeated application does not duplicate damage text. No persistent army migration or automatic HP changes are performed. Reload all clients after deployment; live GM/player damage application remains to be verified on Foundry V14.
+
 ## [6.4.0] - 2026-09-07
 
 ### Added
