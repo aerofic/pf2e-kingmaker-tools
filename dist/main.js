@@ -146219,6 +146219,7 @@ function kmKingdomTurnActor(app, context) {
 function renderKingdomTurnCounter(app, html, context) {
   var root = html instanceof HTMLElement ? html : html == null ? null : html[0];
   var actor = kmKingdomTurnActor(app, context);
+  renderKingdomNpcAttitudes(root, actor);
   renderKingdomFaithCounter(root, actor);
   var slot = root == null ? null : root.querySelector('.km-kingdom-turn-counter-slot');
   if (slot == null || actor == null || typeof actor.getFlag !== 'function' || slot.querySelector('.km-kingdom-turn-counter') != null) {
@@ -146244,6 +146245,171 @@ function renderKingdomTurnCounter(app, html, context) {
   }
   label.append(caption, input);
   slot.append(label);
+}
+// NPC attitudes are display-only GM annotations, separate from kingdom-sheet
+// rules and leader types. The encoded UUID key follows an NPC between offices
+// within this kingdom and cannot introduce dotted update paths.
+function kmNpcAttitudeKey(uuid) {
+  return typeof uuid === 'string' && uuid.length > 0 && uuid.length <= 256
+    ? 'u' + Array.from(uuid, (character) => character.codePointAt(0).toString(16).padStart(6, '0')).join('')
+    : null;
+}
+function kmNpcAttitudeLeader(actor, role) {
+  if (!['ruler', 'counselor', 'emissary', 'general', 'magister', 'treasurer', 'viceroy', 'warden'].includes(role)) return null;
+  var leader = actor?.getFlag('pf2e-kingmaker-tools', 'kingdom-sheet')?.leaders?.[role];
+  return leader && ['regularNpc', 'highlyMotivatedNpc', 'nonPathfinderNpc'].includes(leader.type) && kmNpcAttitudeKey(leader.uuid) ? leader : null;
+}
+function kmNpcAttitudeState(actor, uuid) {
+  var key = kmNpcAttitudeKey(uuid);
+  var record = key ? actor?.getFlag('pf2e-kingmaker-tools', 'npcAttitudes')?.[key] : null;
+  return {positive: record?.positive === true, discontent: Number.isInteger(record?.discontent) && record.discontent >= 0 && record.discontent <= 3 ? record.discontent : 0};
+}
+function kmValidNpcAttitudeState(state) {
+  return state != null && typeof state.positive === 'boolean' && Number.isInteger(state.discontent) && state.discontent >= 0 && state.discontent <= 3;
+}
+function kmNpcAttitudeText(key) {
+  return game.i18n.localize('pf2e-kingmaker-tools.npcAttitude.' + key);
+}
+function kmCanEditNpcAttitude(actor) {
+  return game.user?.isGM === true && actor?.canUserModify?.(game.user, 'update') === true;
+}
+async function kmSaveNpcAttitude(actor, role, uuid, state, previous) {
+  if (!kmCanEditNpcAttitude(actor) || !kmValidNpcAttitudeState(state) || !kmValidNpcAttitudeState(previous)) return false;
+  // Recheck after the dialog: reassignment/type changes must not edit a former leader.
+  if (kmNpcAttitudeLeader(actor, role)?.uuid !== uuid) return false;
+  // Only write dimensions actually changed in this dialog. Another GM's edit
+  // to the other dimension is preserved; same-dimension edits are last-write-wins.
+  var changes = {};
+  var path = 'flags.pf2e-kingmaker-tools.npcAttitudes.' + kmNpcAttitudeKey(uuid);
+  for (var dimension of ['positive', 'discontent']) {
+    if (state[dimension] !== previous[dimension]) changes[path + '.' + dimension] = state[dimension];
+  }
+  if (Object.keys(changes).length > 0) await actor.update(changes);
+  return true;
+}
+var kmNpcAttitudeEdits = new WeakMap();
+async function kmEditNpcAttitude(root, actor, role, uuid, control) {
+  if (!kmCanEditNpcAttitude(actor) || control.disabled || kmNpcAttitudeEdits.get(actor)?.has(uuid)) return;
+  var pending = kmNpcAttitudeEdits.get(actor) || new Set();
+  kmNpcAttitudeEdits.set(actor, pending);
+  pending.add(uuid);
+  control.disabled = true;
+  try {
+    var current = kmNpcAttitudeState(actor, uuid);
+    var content = document.createElement('div');
+    content.className = 'km-npc-attitude-fields';
+    var positiveLabel = document.createElement('label');
+    var positive = document.createElement('input');
+    positive.type = 'checkbox';
+    positive.checked = current.positive;
+    positiveLabel.append(positive, document.createTextNode(kmNpcAttitudeText('positive')));
+    var emotionLabel = document.createElement('label');
+    emotionLabel.append(document.createTextNode(kmNpcAttitudeText('emotion')));
+    var emotion = document.createElement('select');
+    emotion.setAttribute('aria-label', kmNpcAttitudeText('emotion'));
+    for (var level = 0; level <= 3; level++) {
+      var option = document.createElement('option');
+      option.value = String(level);
+      option.textContent = kmNpcAttitudeText('discontent' + level);
+      emotion.append(option);
+    }
+    emotion.value = String(current.discontent);
+    emotionLabel.append(emotion);
+    var hint = document.createElement('p');
+    hint.textContent = kmNpcAttitudeText('hint');
+    content.append(positiveLabel, emotionLabel, hint);
+    var choice = await foundry.applications.api.DialogV2.wait({
+      window: {title: kmNpcAttitudeText('title')},
+      position: {width: 360},
+      classes: ['km-npc-attitude-dialog'],
+      content,
+      buttons: [
+        {action: 'save', label: kmNpcAttitudeText('save'), default: true, callback: () => ({positive: positive.checked, discontent: Number(emotion.value)})},
+        {action: 'cancel', label: kmNpcAttitudeText('cancel'), callback: () => null}
+      ],
+      rejectClose: false
+    });
+    if (choice === null || choice === undefined) return;
+    if (!await kmSaveNpcAttitude(actor, role, uuid, choice, current)) {
+      ui.notifications.warn(kmNpcAttitudeText('stale'));
+    }
+  } catch (error) {
+    console.error('pf2e-kingmaker-tools | Failed to save NPC attitude.', error);
+    ui.notifications.error(kmNpcAttitudeText('error'));
+  } finally {
+    pending.delete(uuid);
+    control.disabled = false;
+    if (root.isConnected) renderKingdomNpcAttitudes(root, actor);
+  }
+}
+function renderKingdomNpcAttitudes(root, actor) {
+  if (!root || typeof actor?.getFlag !== 'function') return;
+  for (var card of root.querySelectorAll('.km-choose-leaders > li[data-leader]')) {
+    var previous = card.querySelector('.km-npc-attitude');
+    var focused = previous === document.activeElement;
+    previous?.remove();
+    var role = card.dataset.leader;
+    var leader = kmNpcAttitudeLeader(actor, role);
+    var portrait = card.querySelector('.km-leader-portrait');
+    if (!leader || !portrait) continue;
+    var state = kmNpcAttitudeState(actor, leader.uuid);
+    var canEdit = kmCanEditNpcAttitude(actor);
+    var empty = !state.positive && state.discontent === 0;
+    if (empty && !canEdit) continue;
+    var control = document.createElement(canEdit ? 'button' : 'span');
+    control.className = 'km-npc-attitude';
+    control.dataset.discontent = String(state.discontent);
+    control.dataset.empty = String(empty);
+    var labels = [];
+    if (state.positive) labels.push(kmNpcAttitudeText('positive'));
+    if (state.discontent > 0) labels.push(kmNpcAttitudeText('discontent' + state.discontent));
+    control.title = kmNpcAttitudeText('title') + ': ' + (labels.join(' / ') || kmNpcAttitudeText('none')) + '. ' + kmNpcAttitudeText(canEdit ? 'editHint' : 'readHint');
+    control.setAttribute('aria-label', control.title);
+    if (canEdit) {
+      control.type = 'button';
+      control.disabled = kmNpcAttitudeEdits.get(actor)?.has(leader.uuid) === true;
+      // Element-local listener only; destroyed with the rendered card. Stop the
+      // click here so neither portrait opening nor the enclosing form handles it.
+      const editRole = role, editUuid = leader.uuid, editControl = control;
+      control.addEventListener('click', (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        void kmEditNpcAttitude(root, actor, editRole, editUuid, editControl);
+      });
+    }
+    if (state.positive) {
+      var positive = document.createElement('span');
+      positive.className = 'km-npc-attitude-positive';
+      positive.textContent = kmNpcAttitudeText('positive');
+      control.append(positive);
+    }
+    if (state.discontent > 0) {
+      var emotion = document.createElement('span');
+      emotion.className = 'km-npc-attitude-emotion';
+      var caption = document.createElement('span');
+      caption.className = 'km-npc-attitude-caption';
+      caption.textContent = kmNpcAttitudeText('discontent' + state.discontent);
+      var meter = document.createElement('span');
+      meter.className = 'km-npc-attitude-meter';
+      meter.setAttribute('aria-hidden', 'true');
+      for (var index = 1; index <= 3; index++) {
+        var segment = document.createElement('span');
+        segment.className = 'km-npc-attitude-segment';
+        segment.dataset.filled = String(index <= state.discontent);
+        meter.append(segment);
+      }
+      emotion.append(caption, meter);
+      control.append(emotion);
+    }
+    if (empty) {
+      var icon = document.createElement('i');
+      icon.className = 'fa-solid fa-pen';
+      icon.setAttribute('aria-hidden', 'true');
+      control.append(icon);
+    }
+    portrait.append(control);
+    if (focused && canEdit) control.focus({preventScroll: true});
+  }
 }
 function renderKingdomFaithCounter(root, actor) {
   var slot = root == null ? null : root.querySelector('.km-kingdom-faith-counter-slot');

@@ -1,0 +1,21 @@
+{
+  "pf2e-kingmaker-tools": {
+    "npcAttitude": {
+      "title": "NPC Attitude and Emotion",
+      "positive": "Positive",
+      "emotion": "Discontent",
+      "discontent0": "None",
+      "discontent1": "Uneasy",
+      "discontent2": "Discontent",
+      "discontent3": "Angry",
+      "none": "Unmarked",
+      "save": "Save",
+      "cancel": "Cancel",
+      "hint": "Positive attitude and discontent are independent and can coexist. Unchecked Positive hides the green marker; None hides the emotion bar. Notes only: no changes to leader type, bonuses or rules.",
+      "editHint": "Click to set positive attitude and discontent separately (Uneasy 1 / Discontent 2 / Angry 3). GM only.",
+      "readHint": "Positive attitude and discontent are independent and can coexist. Uneasy 1 / Discontent 2 / Angry 3; GM editing only.",
+      "stale": "The office or permissions changed. Attitude was not saved; reopen the control.",
+      "error": "Failed to save NPC attitude. Check the console for details."
+    }
+  }
+}

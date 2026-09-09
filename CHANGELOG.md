@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [6.4.2] - 2026-09-09
+
+### Added
+
+* Add a compact NPC annotation overlay to kingdom office portraits: a green Positive marker and an independent three-segment discontent meter (Uneasy / Discontent / Angry). Both may coexist; absent dimensions are hidden. Unmarked NPCs show only a hover/focus edit affordance to GMs. Existing card dimensions and controls remain unchanged.
+* Store the two annotation dimensions separately per NPC and kingdom, without changing leader types or mechanical bonuses. Only authorized GMs can edit; players see read-only markers. Stale office assignments are rejected, and edits to one dimension preserve concurrent edits to the other.
+
 ## [6.4.1] - 2026-09-08
 
 ### Fixed
