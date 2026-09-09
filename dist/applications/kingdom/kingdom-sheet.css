@@ -35,8 +35,6 @@
 .application.km-kingdom-sheet .km-choose-leaders button.km-npc-attitude { cursor: pointer; }
 .application.km-kingdom-sheet .km-choose-leaders span.km-npc-attitude { cursor: default; }
 .application.km-kingdom-sheet .km-choose-leaders .km-npc-attitude:focus-visible { outline: 2px solid #fff; outline-offset: 1px; }
-.application.km-kingdom-sheet .km-choose-leaders .km-npc-attitude-positive { display: inline-flex; align-items: center; gap: 3px; flex: none; color: #64d59a; white-space: nowrap; }
-.application.km-kingdom-sheet .km-choose-leaders .km-npc-attitude-positive::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: #64d59a; }
 .application.km-kingdom-sheet .km-choose-leaders .km-npc-attitude-emotion { display: flex; align-items: center; gap: 4px; min-width: 0; }
 .application.km-kingdom-sheet .km-choose-leaders .km-npc-attitude-caption { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .application.km-kingdom-sheet .km-choose-leaders .km-npc-attitude-meter { display: flex; align-items: center; gap: 2px; flex: none; }

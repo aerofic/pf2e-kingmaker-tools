@@ -6,7 +6,7 @@ import test from 'node:test';
 const source = readFileSync(new URL('../dist/main.js', import.meta.url), 'utf8');
 const functions = source.slice(source.indexOf('function kmNpcAttitudeKey('), source.indexOf('function renderKingdomFaithCounter('));
 const namespace = 'pf2e-kingmaker-tools';
-const neutral = () => ({positive: false, discontent: 0});
+const neutral = () => ({discontent: 0});
 const plain = value => JSON.parse(JSON.stringify(value));
 function setup() {
   const leaders = {ruler: {type: 'regularNpc', uuid: 'Actor.NPC1'}, general: {type: 'regularNpc', uuid: 'Actor.NPC2'}};
@@ -35,16 +35,17 @@ function setup() {
   vm.runInContext(functions, context);
   return {context, actor, leaders, attitudes, writes, warnings, deny: () => {permission = false;}};
 }
-test('positive attitude and discontent are independent: all eight combinations survive', () => {
+test('emotion has four values; legacy positive markers are ignored', () => {
   const {context: c, actor, attitudes, writes} = setup();
   const key = c.kmNpcAttitudeKey('Actor.NPC1');
   assert.deepEqual(plain(c.kmNpcAttitudeState(actor, 'Actor.NPC1')), neutral());
   for (const positive of [false, true]) for (const discontent of [0, 1, 2, 3]) {
     attitudes[key] = {positive, discontent};
-    assert.deepEqual(plain(c.kmNpcAttitudeState(actor, 'Actor.NPC1')), {positive, discontent});
+    assert.deepEqual(plain(c.kmNpcAttitudeState(actor, 'Actor.NPC1')), {discontent});
   }
   assert.equal(writes.length, 0);
 });
+
 test('missing and malformed annotations are unmarked, never inferred from NPC type', () => {
   const {context: c, actor, leaders, attitudes} = setup();
   leaders.ruler.type = 'highlyMotivatedNpc';
@@ -55,7 +56,7 @@ test('missing and malformed annotations are unmarked, never inferred from NPC ty
     assert.deepEqual(plain(c.kmNpcAttitudeState(actor, 'Actor.NPC1')), neutral());
   }
   attitudes[key] = {positive: true, discontent: '3'};
-  assert.deepEqual(plain(c.kmNpcAttitudeState(actor, 'Actor.NPC1')), {positive: true, discontent: 0});
+  assert.deepEqual(plain(c.kmNpcAttitudeState(actor, 'Actor.NPC1')), {discontent: 0});
 });
 test('only occupied NPC-typed offices qualify, including NPC character sheets', () => {
   const {context: c, actor, leaders} = setup();
@@ -72,42 +73,37 @@ test('only occupied NPC-typed offices qualify, including NPC character sheets', 
   assert.equal(c.kmNpcAttitudeLeader(actor, 'ruler'), null);
   assert.equal(c.kmNpcAttitudeLeader(actor, '__proto__'), null);
 });
-test('dimension-only writes preserve another GM edit and leave kingdom rules untouched', async () => {
+test('only writes discontent; legacy positive, other NPCs and kingdom rules stay untouched', async () => {
   const {context: c, actor, leaders, attitudes, writes} = setup();
   const beforeLeaders = structuredClone(leaders);
   const key = c.kmNpcAttitudeKey('Actor.NPC1');
   const otherKey = c.kmNpcAttitudeKey('Actor.NPC2');
+  attitudes[key] = {positive: true, discontent: 0};
   attitudes[otherKey] = {positive: true, discontent: 3};
-  // Two dialogs opened on the same neutral state.
-  const previousA = c.kmNpcAttitudeState(actor, 'Actor.NPC1');
-  const previousB = c.kmNpcAttitudeState(actor, 'Actor.NPC1');
-  assert.equal(await c.kmSaveNpcAttitude(actor, 'ruler', 'Actor.NPC1', {positive: true, discontent: 0}, previousA), true);
-  assert.equal(await c.kmSaveNpcAttitude(actor, 'ruler', 'Actor.NPC1', {positive: false, discontent: 2}, previousB), true);
+  assert.equal(await c.kmSaveNpcAttitude(actor, 'ruler', 'Actor.NPC1', {discontent: 2}, neutral()), true);
   assert.deepEqual(attitudes[key], {positive: true, discontent: 2});
-  assert.deepEqual(Object.keys(writes[0]), ['flags.' + namespace + '.npcAttitudes.' + key + '.positive']);
-  assert.deepEqual(Object.keys(writes[1]), ['flags.' + namespace + '.npcAttitudes.' + key + '.discontent']);
+  assert.deepEqual(Object.keys(writes[0]), ['flags.' + namespace + '.npcAttitudes.' + key + '.discontent']);
   assert.deepEqual(attitudes[otherKey], {positive: true, discontent: 3});
   assert.deepEqual(leaders, beforeLeaders);
 });
-test('clearing one dimension does not clear the other; unchanged dialogs perform no write', async () => {
+
+test('clears emotion and performs no write when unchanged', async () => {
   const {context: c, actor, writes} = setup();
   const save = state => c.kmSaveNpcAttitude(actor, 'ruler', 'Actor.NPC1', state, c.kmNpcAttitudeState(actor, 'Actor.NPC1'));
-  await save({positive: true, discontent: 3});
-  await save({positive: false, discontent: 3});
-  assert.deepEqual(plain(c.kmNpcAttitudeState(actor, 'Actor.NPC1')), {positive: false, discontent: 3});
-  await save({positive: true, discontent: 3});
-  await save({positive: true, discontent: 0});
-  assert.deepEqual(plain(c.kmNpcAttitudeState(actor, 'Actor.NPC1')), {positive: true, discontent: 0});
+  await save({discontent: 3});
+  await save({discontent: 0});
+  assert.deepEqual(plain(c.kmNpcAttitudeState(actor, 'Actor.NPC1')), neutral());
   const count = writes.length;
-  await save({positive: true, discontent: 0});
+  await save({discontent: 0});
   assert.equal(writes.length, count);
 });
+
 test('annotation follows its NPC between offices but never transfers to a new appointee', async () => {
   const {context: c, actor, leaders} = setup();
   await c.kmSaveNpcAttitude(actor, 'ruler', 'Actor.NPC1', {positive: true, discontent: 2}, neutral());
   leaders.general.uuid = 'Actor.NPC1';
   leaders.ruler.uuid = 'Actor.NPC3';
-  assert.deepEqual(plain(c.kmNpcAttitudeState(actor, leaders.general.uuid)), {positive: true, discontent: 2});
+  assert.deepEqual(plain(c.kmNpcAttitudeState(actor, leaders.general.uuid)), {discontent: 2});
   assert.deepEqual(plain(c.kmNpcAttitudeState(actor, leaders.ruler.uuid)), neutral());
 });
 test('players and GMs lacking update permission cannot write', async () => {
@@ -121,7 +117,7 @@ test('players and GMs lacking update permission cannot write', async () => {
 });
 test('stale reassignment/type and invalid values are rejected', async () => {
   const {context: c, actor, leaders, writes} = setup();
-  for (const state of [1, null, {}, {positive: 'true', discontent: 0}, {positive: true, discontent: -1}, {positive: false, discontent: 4}]) {
+  for (const state of [1, null, {}, {discontent: '0'}, {positive: true, discontent: -1}, {positive: false, discontent: 4}]) {
     assert.equal(await c.kmSaveNpcAttitude(actor, 'ruler', 'Actor.NPC1', state, neutral()), false);
   }
   assert.equal(await c.kmSaveNpcAttitude(actor, 'ruler', 'Actor.Wrong', {positive: true, discontent: 1}, neutral()), false);
@@ -137,25 +133,30 @@ test('UUID key is deterministic, path-safe and collision-free for delimiter vari
   assert.equal(c.kmNpcAttitudeKey(''), null);
   assert.equal(c.kmNpcAttitudeKey(null), null);
 });
-test('dialog uses an independent checkbox and emotion selector; cancel never writes', async () => {
+test('dialog uses an attribute-free DIV with styling only on its child, no positive checkbox', async () => {
   const {context: c, actor, writes} = setup();
   let config;
   c.foundry.applications.api.DialogV2.wait = async options => {config = options; return null;};
   const control = {disabled: false};
   await c.kmEditNpcAttitude({isConnected: false}, actor, 'ruler', 'Actor.NPC1', control);
-  const checkbox = config.content.children[0].children[0];
-  const selector = config.content.children[1].children[1];
-  assert.equal(checkbox.type, 'checkbox');
-  assert.equal(checkbox.checked, false);
+  assert.equal(config.content.tagName, 'div');
+  assert.equal(config.content.className, undefined, 'V14 content root must have no attributes');
+  assert.deepEqual(Object.keys(config.content).sort(), ['append', 'children', 'setAttribute', 'tagName'], 'no class, id, style or other root attributes');
+  const fields = config.content.children[0];
+  assert.equal(fields.className, 'km-npc-attitude-fields');
+  assert.equal(fields.children.length, 2, 'only emotion field and hint');
+  const selector = fields.children[0].children[1];
   assert.equal(selector.tagName, 'select');
+  assert.equal(selector.name, 'discontent');
   assert.deepEqual(Array.from(selector.children, option => option.value), ['0', '1', '2', '3']);
-  checkbox.checked = true;
-  selector.value = '2';
-  assert.deepEqual(plain(config.buttons[0].callback()), {positive: true, discontent: 2});
+  const live = {discontent: {value: '2'}};
+  assert.deepEqual(plain(config.buttons[0].callback(null, {form: {elements: {namedItem: name => live[name]}}})), {discontent: 2});
+  assert.equal(selector.value, '0', 'detached construction node must not be read for saving');
   assert.equal(writes.length, 0);
   assert.equal(control.disabled, false);
   assert.equal(c.kmNpcAttitudeEdits.get(actor).size, 0);
 });
+
 test('an open dialog cannot save into a reassigned office', async () => {
   const {context: c, actor, leaders, writes, warnings} = setup();
   c.foundry.applications.api.DialogV2.wait = async () => {leaders.ruler.uuid = 'Actor.New'; return {positive: true, discontent: 3};};
@@ -163,6 +164,25 @@ test('an open dialog cannot save into a reassigned office', async () => {
   assert.equal(writes.length, 0);
   assert.equal(warnings.length, 1);
 });
+test('existing emotion default is serializable through option.defaultSelected', async () => {
+  const {context: c, actor, attitudes} = setup();
+  attitudes[c.kmNpcAttitudeKey('Actor.NPC1')] = {positive: true, discontent: 3};
+  let config;
+  c.foundry.applications.api.DialogV2.wait = async options => {config = options; return null;};
+  await c.kmEditNpcAttitude({isConnected: false}, actor, 'ruler', 'Actor.NPC1', {disabled: false});
+  const selector = config.content.children[0].children[0].children[1];
+  assert.deepEqual(Array.from(selector.children, option => option.defaultSelected), [false, false, false, true]);
+});
+test('V14 cancel action string and window close both cancel silently', async () => {
+  const {context: c, actor, writes, warnings} = setup();
+  for (const result of ['cancel', null, undefined]) {
+    c.foundry.applications.api.DialogV2.wait = async () => result;
+    await c.kmEditNpcAttitude({isConnected: false}, actor, 'ruler', 'Actor.NPC1', {disabled: false});
+  }
+  assert.equal(writes.length, 0);
+  assert.equal(warnings.length, 0);
+});
+
 test('rerendered controls do not open duplicate dialogs for the same NPC', async () => {
   const {context: c, actor} = setup();
   let resolve, dialogs = 0;
@@ -175,7 +195,7 @@ test('rerendered controls do not open duplicate dialogs for the same NPC', async
 });
 test('localized strings are complete in both manifest-declared languages', () => {
   const manifest = JSON.parse(readFileSync(new URL('../module.json', import.meta.url), 'utf8'));
-  const keys = ['title', 'positive', 'emotion', 'discontent0', 'discontent1', 'discontent2', 'discontent3', 'none', 'save', 'cancel', 'hint', 'editHint', 'readHint', 'stale', 'error'];
+  const keys = ['title', 'emotion', 'discontent0', 'discontent1', 'discontent2', 'discontent3', 'none', 'save', 'cancel', 'hint', 'editHint', 'readHint', 'stale', 'error'];
   for (const lang of ['cn', 'en']) {
     const path = 'dist/lang/npc-attitude-' + lang + '.json';
     assert.ok(manifest.languages.some(l => l.lang === lang && l.path === path));

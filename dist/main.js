@@ -146262,10 +146262,10 @@ function kmNpcAttitudeLeader(actor, role) {
 function kmNpcAttitudeState(actor, uuid) {
   var key = kmNpcAttitudeKey(uuid);
   var record = key ? actor?.getFlag('pf2e-kingmaker-tools', 'npcAttitudes')?.[key] : null;
-  return {positive: record?.positive === true, discontent: Number.isInteger(record?.discontent) && record.discontent >= 0 && record.discontent <= 3 ? record.discontent : 0};
+  return {discontent: Number.isInteger(record?.discontent) && record.discontent >= 0 && record.discontent <= 3 ? record.discontent : 0};
 }
 function kmValidNpcAttitudeState(state) {
-  return state != null && typeof state.positive === 'boolean' && Number.isInteger(state.discontent) && state.discontent >= 0 && state.discontent <= 3;
+  return state != null && Number.isInteger(state.discontent) && state.discontent >= 0 && state.discontent <= 3;
 }
 function kmNpcAttitudeText(key) {
   return game.i18n.localize('pf2e-kingmaker-tools.npcAttitude.' + key);
@@ -146277,14 +146277,10 @@ async function kmSaveNpcAttitude(actor, role, uuid, state, previous) {
   if (!kmCanEditNpcAttitude(actor) || !kmValidNpcAttitudeState(state) || !kmValidNpcAttitudeState(previous)) return false;
   // Recheck after the dialog: reassignment/type changes must not edit a former leader.
   if (kmNpcAttitudeLeader(actor, role)?.uuid !== uuid) return false;
-  // Only write dimensions actually changed in this dialog. Another GM's edit
-  // to the other dimension is preserved; same-dimension edits are last-write-wins.
-  var changes = {};
+  // Only write the emotion leaf. Legacy positive annotations are not displayed
+  // or modified, and concurrent absolute selections are last-write-wins.
   var path = 'flags.pf2e-kingmaker-tools.npcAttitudes.' + kmNpcAttitudeKey(uuid);
-  for (var dimension of ['positive', 'discontent']) {
-    if (state[dimension] !== previous[dimension]) changes[path + '.' + dimension] = state[dimension];
-  }
-  if (Object.keys(changes).length > 0) await actor.update(changes);
+  if (state.discontent !== previous.discontent) await actor.update({[path + '.discontent']: state.discontent});
   return true;
 }
 var kmNpcAttitudeEdits = new WeakMap();
@@ -146296,20 +146292,20 @@ async function kmEditNpcAttitude(root, actor, role, uuid, control) {
   control.disabled = true;
   try {
     var current = kmNpcAttitudeState(actor, uuid);
+    // V14 requires an attribute-free outer DIV and serializes its innerHTML.
+    // Keep styling on a child and serialize initial selected defaults.
     var content = document.createElement('div');
-    content.className = 'km-npc-attitude-fields';
-    var positiveLabel = document.createElement('label');
-    var positive = document.createElement('input');
-    positive.type = 'checkbox';
-    positive.checked = current.positive;
-    positiveLabel.append(positive, document.createTextNode(kmNpcAttitudeText('positive')));
+    var fields = document.createElement('div');
+    fields.className = 'km-npc-attitude-fields';
     var emotionLabel = document.createElement('label');
     emotionLabel.append(document.createTextNode(kmNpcAttitudeText('emotion')));
     var emotion = document.createElement('select');
+    emotion.name = 'discontent';
     emotion.setAttribute('aria-label', kmNpcAttitudeText('emotion'));
     for (var level = 0; level <= 3; level++) {
       var option = document.createElement('option');
       option.value = String(level);
+      option.defaultSelected = level === current.discontent;
       option.textContent = kmNpcAttitudeText('discontent' + level);
       emotion.append(option);
     }
@@ -146317,19 +146313,22 @@ async function kmEditNpcAttitude(root, actor, role, uuid, control) {
     emotionLabel.append(emotion);
     var hint = document.createElement('p');
     hint.textContent = kmNpcAttitudeText('hint');
-    content.append(positiveLabel, emotionLabel, hint);
+    fields.append(emotionLabel, hint);
+    content.append(fields);
     var choice = await foundry.applications.api.DialogV2.wait({
       window: {title: kmNpcAttitudeText('title')},
       position: {width: 360},
       classes: ['km-npc-attitude-dialog'],
       content,
       buttons: [
-        {action: 'save', label: kmNpcAttitudeText('save'), default: true, callback: () => ({positive: positive.checked, discontent: Number(emotion.value)})},
-        {action: 'cancel', label: kmNpcAttitudeText('cancel'), callback: () => null}
+        {action: 'save', label: kmNpcAttitudeText('save'), default: true, callback: (_event, button) => ({
+          discontent: Number(button.form.elements.namedItem('discontent').value)
+        })},
+        {action: 'cancel', label: kmNpcAttitudeText('cancel')}
       ],
       rejectClose: false
     });
-    if (choice === null || choice === undefined) return;
+    if (choice === null || choice === undefined || choice === 'cancel') return;
     if (!await kmSaveNpcAttitude(actor, role, uuid, choice, current)) {
       ui.notifications.warn(kmNpcAttitudeText('stale'));
     }
@@ -146354,14 +146353,13 @@ function renderKingdomNpcAttitudes(root, actor) {
     if (!leader || !portrait) continue;
     var state = kmNpcAttitudeState(actor, leader.uuid);
     var canEdit = kmCanEditNpcAttitude(actor);
-    var empty = !state.positive && state.discontent === 0;
+    var empty = state.discontent === 0;
     if (empty && !canEdit) continue;
     var control = document.createElement(canEdit ? 'button' : 'span');
     control.className = 'km-npc-attitude';
     control.dataset.discontent = String(state.discontent);
     control.dataset.empty = String(empty);
     var labels = [];
-    if (state.positive) labels.push(kmNpcAttitudeText('positive'));
     if (state.discontent > 0) labels.push(kmNpcAttitudeText('discontent' + state.discontent));
     control.title = kmNpcAttitudeText('title') + ': ' + (labels.join(' / ') || kmNpcAttitudeText('none')) + '. ' + kmNpcAttitudeText(canEdit ? 'editHint' : 'readHint');
     control.setAttribute('aria-label', control.title);
@@ -146376,12 +146374,6 @@ function renderKingdomNpcAttitudes(root, actor) {
         event.stopPropagation();
         void kmEditNpcAttitude(root, actor, editRole, editUuid, editControl);
       });
-    }
-    if (state.positive) {
-      var positive = document.createElement('span');
-      positive.className = 'km-npc-attitude-positive';
-      positive.textContent = kmNpcAttitudeText('positive');
-      control.append(positive);
     }
     if (state.discontent > 0) {
       var emotion = document.createElement('span');

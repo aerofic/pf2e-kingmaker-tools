@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [6.4.3] - 2026-09-09
+
+### Fixed
+
+* Fix the NPC emotion dialog failing to open on Foundry V14: supply an attribute-free content DIV, put the styling class on a child, and preserve the selected option through HTML serialization. Save reads the rendered form instead of detached construction elements. Cancel is handled without a spurious warning.
+
+### Changed
+
+* Remove the Positive checkbox and green marker. NPC offices now show only discontent: None / Uneasy / Discontent / Angry. Existing discontent values are retained; legacy Positive data is left untouched and ignored.
+
 ## [6.4.2] - 2026-09-09
 
 ### Added
