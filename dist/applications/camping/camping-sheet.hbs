@@ -93,7 +93,7 @@
         </div>
         <div title="{{localizeKM "camping.hexplorationActivities"}}"><b>{{localizeKM "camping.hexActivities"}}:</b> {{hexplorationActivitiesAvailable}}
             /{{hexplorationActivitiesMax}}</div>
-        <div>{{> formElement region}}</div>
+        <div class="km-camping-region">{{> formElement region}}</div>
         {{#if isGM}}
             <div id="km-camping-encounter">
                 <button type="button" data-action="increase-encounter-dc" data-value="-1" title="{{localizeKM "camping.decreaseDc"}}">

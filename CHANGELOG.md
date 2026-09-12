@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [6.4.5] - 2026-09-12
+
+### Fixed
+
+* Keep the entire camping information bar on one row at the default window width: adventuring time, hexploration activities, region, encounter DC, Road / river, and Flying. Version 6.4.4 compacted only the condition controls and still allowed the overall bar to wrap.
+* Use compact, scoped controls and a flexible region selector. Narrow windows can scroll the bar horizontally without hiding controls. This Foundry V14 UI-only correction does not change rules, permissions, or stored data and requires no migration. Reload clients after deployment; live-world interaction remains to be verified.
+
 ## [6.4.4] - 2026-09-12
 
 ### Changed
