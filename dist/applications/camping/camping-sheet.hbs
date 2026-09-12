@@ -116,8 +116,8 @@
                         class="fa-solid fa-skull"></i></button>
                 <div class="km-encounter-conditions">
                     <div class="km-encounter-condition-checks">
-                        <label title="{{encounterConditions.roadHint}}">
-                            <input type="checkbox" data-action="encounter-condition" data-encounter-condition="roadRiver" {{checked encounterConditions.roadRiver}}>
+                        <label title="{{encounterConditions.status}}&#10;{{encounterConditions.roadHint}}">
+                            <input type="checkbox" data-action="encounter-condition" data-encounter-condition="roadRiver" aria-description="{{encounterConditions.status}}" {{checked encounterConditions.roadRiver}}>
                             {{encounterConditions.roadLabel}}
                         </label>
                         <label title="{{encounterConditions.flyHint}}">
@@ -128,7 +128,6 @@
                             <button type="button" class="km-encounter-auto" data-action="encounter-condition" data-encounter-condition="autoRoad" title="{{encounterConditions.autoLabel}}" aria-label="{{encounterConditions.autoLabel}}"><i class="fa-solid fa-road"></i></button>
                         {{/if}}
                     </div>
-                    <small class="km-encounter-status">{{encounterConditions.status}}</small>
                 </div>
             </div>
         {{/if}}

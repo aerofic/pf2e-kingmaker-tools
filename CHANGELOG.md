@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [6.4.4] - 2026-09-12
+
+### Changed
+
+* Keep the camping Road / river and Flying controls in a compact single row alongside the encounter DC buttons. Move road detection status into the road checkbox tooltip and accessible description, retaining the manual return-to-auto button.
+* This Foundry V14 UI-only update does not change encounter calculations, automatic road detection, permissions, or stored data. No migration is required. Reload clients after deployment; live-world interaction remains to be verified.
+
 ## [6.4.3] - 2026-09-09
 
 ### Fixed
