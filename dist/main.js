@@ -111881,7 +111881,7 @@ class OpenCampingSheetHandler extends ActionHandler {
       null;
     else {
       // Inline function 'kotlin.let' call
-      launch(new CampingSheet(this.b3u_1, tmp0_safe_receiver_0, dispatcher));
+      yield* (0,_kotlinx_coroutines_core_mjs__WEBPACK_IMPORTED_MODULE_3__.awaitd1m8y0em728c)(globalThis.foundryvttKotlinPatches.openActorPanel('kmCamping-' + tmp0_safe_receiver_0.uuid, tmp0_safe_receiver_0, () => new CampingSheet(this.b3u_1, tmp0_safe_receiver_0, dispatcher)), $completion);
     }
     return _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.Unit_instancev9v8hjid95df;
   }
@@ -111910,7 +111910,7 @@ class OpenKingdomSheetHandler extends ActionHandler {
       null;
     else {
       // Inline function 'kotlin.let' call
-      launch(new KingdomSheet(this.e3u_1, tmp0_safe_receiver_0, dispatcher));
+      yield* (0,_kotlinx_coroutines_core_mjs__WEBPACK_IMPORTED_MODULE_3__.awaitd1m8y0em728c)(globalThis.foundryvttKotlinPatches.openActorPanel('kmKingdomSheet-' + tmp0_safe_receiver_0.uuid, tmp0_safe_receiver_0, () => new KingdomSheet(this.e3u_1, tmp0_safe_receiver_0, dispatcher)), $completion);
     }
     return _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.Unit_instancev9v8hjid95df;
   }
@@ -112086,11 +112086,7 @@ class App$_preClose$slambda {
   *k3s($this$buildPromise, $completion) {
     yield* (0,_kotlinx_coroutines_core_mjs__WEBPACK_IMPORTED_MODULE_3__.awaitd1m8y0em728c)((0,_kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.protoOf180f3jzyo7rfj)(SaneHandlebarsApplicationV2)._preClose.call(this.t3u_1, this.u3u_1), $completion);
     // Inline function 'kotlin.collections.forEach' call
-    var _iterator__ex2g4s = this.t3u_1.q3u_1.r1();
-    while (_iterator__ex2g4s.s1()) {
-      var element = _iterator__ex2g4s.t1();
-      TypedHooks_instance.v3u(element.j3u_1, element.k3u_1);
-    }
+    this.t3u_1.disposePanelHooks();
     return _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.Unit_instancev9v8hjid95df;
   }
   lc(p1, $completion) {
@@ -112098,6 +112094,15 @@ class App$_preClose$slambda {
   }
 }
 class App extends SaneHandlebarsApplicationV2 {
+  disposePanelHooks() {
+    if (this.panelHooksDisposed) return;
+    var iterator = this.q3u_1.r1();
+    while (iterator.s1()) {
+      var hook = iterator.t1();
+      TypedHooks_instance.v3u(hook.j3u_1, hook.k3u_1);
+    }
+    this.panelHooksDisposed = true;
+  }
   constructor(config) {
     super(config);
     var tmp = this;
@@ -133834,6 +133839,7 @@ class KingdomSheet$_onClickAction$slambda_9 {
   }
   *k3s($this$buildPromise, $completion) {
     var result = yield* newSettlementChoices(_kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.VOID3gxj6tk5isa35, $completion);
+    if (result == null) return _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.Unit_instancev9v8hjid95df;
     yield* this.l5s_1.m5s(result.j5n_1, result.l5n_1, result.k5n_1, SettlementType_SETTLEMENT_getInstance(), result.m5n_1, $completion);
     return _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.Unit_instancev9v8hjid95df;
   }
@@ -133866,6 +133872,7 @@ class KingdomSheet$_onClickAction$slambda_10 {
         break;
     }
     var result = yield* newSettlementChoices(terrain, $completion);
+    if (result == null) return _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.Unit_instancev9v8hjid95df;
     yield* this.n5s_1.m5s(result.j5n_1, result.l5n_1, result.k5n_1, SettlementType_CAPITAL_getInstance(), result.m5n_1, $completion);
     return _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.Unit_instancev9v8hjid95df;
   }

@@ -1,6 +1,54 @@
 globalThis.foundryvttKotlinPatches = {};
 
 ((exports) => {
+    // Reserve before rendering: ApplicationV2 otherwise replaces a same-ID DOM
+    // node without closing its owner (which still receives Actor/time hooks).
+    const actorPanels = new Map();
+    exports.openActorPanel = async function (id, actor, create) {
+        let entry = actorPanels.get(id);
+        if (entry?.closing) {
+            await entry.closing;
+            return exports.openActorPanel(id, actor, create);
+        }
+        if (!entry) {
+            const app = create();
+            entry = {app, closing: null, disposed: false};
+            actorPanels.set(id, entry);
+            const render = app.render.bind(app);
+            const close = app.close.bind(app);
+            app.render = (...args) => entry.closing || entry.disposed
+                ? Promise.resolve(app) : render(...args);
+            app.close = (...args) => {
+                if (entry.closing) return entry.closing;
+                if (entry.disposed) return Promise.resolve(app);
+                // Set the closing latch before entering the V14 semaphore.
+                entry.closing = Promise.resolve().then(() => close(...args)).then(result => {
+                    // V14 skips _preClose when there is no element, including
+                    // failed first renders. Dispose constructor hooks there too.
+                    app.disposePanelHooks();
+                    if (actor.apps[id] === app) delete actor.apps[id];
+                    if (actorPanels.get(id) === entry) actorPanels.delete(id);
+                    entry.disposed = true;
+                    return result;
+                }).catch(error => {
+                    entry.closing = null;
+                    throw error;
+                });
+                return entry.closing;
+            };
+        }
+        try {
+            await entry.app.render({force: true});
+            return entry.app;
+        } catch (error) {
+            // Release subscriptions even if the first render failed. Preserve
+            // the actual rendering failure rather than hiding it.
+            try { await entry.app.close({animate: false}); }
+            catch (cleanupError) { console.error('pf2e-kingmaker-tools | Panel cleanup failed', cleanupError); }
+            throw error;
+        }
+    };
+
     /**
      * There's some weird stuff going on in V2 APIs; this mixin seeks to solve 2 issues:
      * * Allow you to pass PARTS as constructor parameters instead of requiring statics

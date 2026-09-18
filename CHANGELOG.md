@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [6.4.6] - 2026-09-18
+
+### Fixed
+
+* Reuse one Kingdom or Camping panel per Actor instead of replacing a same-ID window's DOM while its previous instance still receives updates. Clean up Actor window references and hook subscriptions on close, including failed first renders, and serialize reopening against an in-progress close.
+* Treat cancellation of the new settlement and capital dialogs as a normal exit without reading a null result or creating data.
+* Add 14 regression tests covering duplicate windows, normal refresh, close/reopen races, failed renders, and both dialog cancellation and confirmation paths. All 291 tests pass locally. This Foundry V14 fix does not migrate world data or alter compendium content. Reload all clients after deployment; live-world GM/player interaction remains to be verified.
+
 ## [6.4.5] - 2026-09-12
 
 ### Fixed
