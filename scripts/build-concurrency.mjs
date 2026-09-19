@@ -9,9 +9,11 @@ const existing = readFileSync(target,'utf8').replaceAll('\r\n','\n');
 if (existing.split(marker).length > 2) throw new Error('Duplicate concurrency bundle markers');
 const coordinator = readFileSync(new URL('../dist/api/concurrency.js',import.meta.url),'utf8').replaceAll('\r\n','\n');
 const encounters = readFileSync(new URL('../dist/api/encounter-conditions.js',import.meta.url),'utf8').replaceAll('\r\n','\n');
+const rest = readFileSync(new URL('../dist/api/camping-rest.js',import.meta.url),'utf8').replaceAll('\r\n','\n');
 const prefix = existing.split(marker)[0].trimEnd();
 const output = prefix + (prefix.endsWith(';') ? '' : ';') + marker + coordinator.trimEnd()
-  + '\n// BEGIN GENERATED KINGMAKER ENCOUNTER CONDITIONS\n' + encounters.trimEnd() + '\n';
+  + '\n// BEGIN GENERATED KINGMAKER ENCOUNTER CONDITIONS\n' + encounters.trimEnd()
+  + '\n// BEGIN GENERATED KINGMAKER CAMPING REST\n' + rest.trimEnd() + '\n';
 if (process.argv.includes('--check')) {
   if (existing !== output) throw new Error('Coordinator bundle is stale; run npm run build');
 } else writeFileSync(target,output);

@@ -139323,7 +139323,7 @@ class completeDailyPreparations$slambda {
   *k3s($this$coroutineScope, $completion) {
     var actors = yield* getActorsInCamp(this.b63_1, _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.VOID3gxj6tk5isa35, $completion);
     var recipes = (0,_kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.toList383f556t1dixk)(getAllRecipes(this.b63_1));
-    yield* (0,_kotlinx_coroutines_core_mjs__WEBPACK_IMPORTED_MODULE_3__.awaitd1m8y0em728c)(this.c63_1.time.advance(this.b63_1.watchSecondsRemaining), $completion);
+    yield* (0,_kotlinx_coroutines_core_mjs__WEBPACK_IMPORTED_MODULE_3__.awaitd1m8y0em728c)(globalThis.foundryvttKotlinPatches.campingRest.advance(this.d63_1, this.b63_1, this.b63_1.watchSecondsRemaining), $completion);
     this.b63_1.watchSecondsRemaining = 0;
     this.b63_1.watchEncounterSecondsRemaining = 0;
     this.b63_1.watchEncounterNextCheckOffsetSeconds = 0;
@@ -153051,9 +153051,10 @@ function registerFatiguedHooks$lambda$slambda_0($game, $deltaInSeconds) {
   return l;
 }
 function registerFatiguedHooks$lambda($game) {
-  return (_unused_var__etf5q3, deltaInSeconds, _unused_var__etf5q3_0, _unused_var__etf5q3_1) => {
+  return (_unused_var__etf5q3, deltaInSeconds, options, userId) => {
     var tmp;
     if (isFirstGM($game)) {
+      if (globalThis.foundryvttKotlinPatches.campingRest.isRestTime(getActiveCampingActor($game), deltaInSeconds, options, userId)) return;
       buildPromise(registerFatiguedHooks$lambda$slambda_0($game, deltaInSeconds));
       tmp = _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.Unit_instancev9v8hjid95df;
     }
@@ -175553,7 +175554,7 @@ function *beginRest_0(game, dispatcher, campingActor, camping, party, $completio
       yield* postChatTemplate('chatmessages/night-ambush.hbs', (0,_kotlin_js_mjs__WEBPACK_IMPORTED_MODULE_4__.recordOf3qfqe45m25p44)([(0,_kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.to2cs3ny02qtbcb)('stealthDc', stealthDc), (0,_kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.to2cs3ny02qtbcb)('perceptionCheck', perceptionCheck)]), _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.VOID3gxj6tk5isa35, _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.VOID3gxj6tk5isa35, $completion);
     }
     yield* postNightAmbushWatchInfo(watchers, randomEncounterAt.seconds, watchDurationSeconds, camping.increaseWatchActorNumber, $completion);
-    yield* (0,_kotlinx_coroutines_core_mjs__WEBPACK_IMPORTED_MODULE_3__.awaitd1m8y0em728c)(game.time.advance(randomEncounterAt.seconds), $completion);
+    yield* (0,_kotlinx_coroutines_core_mjs__WEBPACK_IMPORTED_MODULE_3__.awaitd1m8y0em728c)(globalThis.foundryvttKotlinPatches.campingRest.advance(campingActor, camping, randomEncounterAt.seconds), $completion);
     var secondsIntoPendingBlock = Math.max(0, randomEncounterAt.seconds - encounterStartOffsetSeconds);
     var blocksToAdvance = Math.floor(secondsIntoPendingBlock / 14400) + 1;
     camping.watchEncounterNextCheckOffsetSeconds = encounterStartOffsetSeconds + imul(blocksToAdvance, 14400) - randomEncounterAt.seconds | 0;
@@ -175590,6 +175591,7 @@ function *rest(game, dispatcher, campingActor, camping, skipWatch, skipDailyPrep
   }
   kmCampingRestInFlight.add(campingActor);
   try {
+    if (!globalThis.foundryvttKotlinPatches.campingRest.canStart(campingActor)) return _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.Unit_instancev9v8hjid95df;
     var latestCamping = getCamping(campingActor);
     if (latestCamping == null || kmCampingRestOperationVersion(latestCamping) !== expectedRestOperationVersion) {
       return _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.Unit_instancev9v8hjid95df;
@@ -175612,6 +175614,7 @@ function *rest(game, dispatcher, campingActor, camping, skipWatch, skipDailyPrep
     } else {
       yield* /*#__NOINLINE__*/beginRest_0(game, dispatcher, campingActor, camping, party, $completion);
     }
+    yield* (0,_kotlinx_coroutines_core_mjs__WEBPACK_IMPORTED_MODULE_3__.awaitd1m8y0em728c)(globalThis.foundryvttKotlinPatches.campingRest.finish(campingActor, camping), $completion);
     return _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.Unit_instancev9v8hjid95df;
   } finally {
     kmCampingRestInFlight.delete(campingActor);

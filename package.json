@@ -6,7 +6,7 @@
   "scripts": {
     "build": "node scripts/build-concurrency.mjs",
     "test": "node scripts/test.mjs",
-    "check": "node scripts/build-concurrency.mjs --check && node --check dist/api/patches.js && node --check dist/api/concurrency.js && node --check dist/api/encounter-conditions.js && node --check dist/main.js"
+    "check": "node scripts/build-concurrency.mjs --check && node --check dist/api/patches.js && node --check dist/api/concurrency.js && node --check dist/api/encounter-conditions.js && node --check dist/api/camping-rest.js && node --check dist/main.js"
   },
   "devDependencies": { "classic-level": "3.0.0" }
 }

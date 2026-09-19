@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [6.4.7] - 2026-09-19
+
+### Fixed
+
+* Mark rest-owned world-time advances so the camping time/fatigue listener does not count them as travel/exploration or invalidate the rest completion snapshot. Ordinary calendar updates and unrelated edits retain their existing behavior; genuine conflicting writes remain protected.
+* Save a GM-owned checkpoint before advancing rest time. A failed or uncertain rest remains paused for GM review across retries and client reloads instead of advancing the same interval again. Successful completion and night-ambush interruptions mark the checkpoint complete and allow the next intentional rest/continuation.
+* Add 17 regression tests executing the shipped rest coroutines, including the original self-conflict, new/resumed rest, ambushes, duplicate clicks, permission checks, delayed time events, failed saves and lost acknowledgements.
+* Foundry V14 only. No compendium changes or automatic migrations. Reload all clients after deployment. This release does not rewind time already advanced by earlier failures or repair old rest progress automatically; those require GM review. Live-world GM/player acceptance remains outstanding.
+
 ## [6.4.6] - 2026-09-18
 
 ### Fixed

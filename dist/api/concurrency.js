@@ -142,6 +142,9 @@
         if (data.key === 'camping-sheet' && !user.isGM && !equal(current.encounterConditions, next.encounterConditions)) {
           fail('Only a GM can change encounter conditions.');
         }
+        if (data.key === 'camping-sheet' && !user.isGM && !equal(current.restTimeGuard, next.restTimeGuard)) {
+          fail('Only a GM can change rest time checkpoints.');
+        }
         updates = serialize(data.key, current, next);
       } else if (packet.kind === 'encounterCondition') {
         if (!user.isGM || !adapter.isParty(actor)) fail('Only a GM can change encounter conditions.');
