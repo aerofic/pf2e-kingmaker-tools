@@ -658,6 +658,8 @@ globalThis.foundryvttKotlinPatches = {};
   const moduleId = 'pf2e-kingmaker-tools';
   const optionKey = 'kingmakerRestTime';
   const timeEvents = new Map();
+  const timeQueues = new WeakMap();
+  const pausedTime = new WeakMap();
   const concurrent = () => globalThis.foundryvttKotlinPatches.concurrency;
   const authority = () => game.users.find(user => user.active && user.isGM)?.id === game.user?.id;
   const reviewMessage = () => /^(cn|zh)/i.test(game.i18n.lang)
@@ -665,10 +667,39 @@ globalThis.foundryvttKotlinPatches = {};
     : 'The previous rest reached the time-advance stage but did not finish. Automatic retry is paused to prevent duplicate time. A GM must review world time and rest progress before recovery.';
 
   function canStart(actor) {
-    const guard = actor.getFlag(moduleId, 'camping-sheet')?.restTimeGuard;
-    if (!guard || guard.status === 'complete') return true;
-    ui.notifications.warn(reviewMessage());
-    return false;
+    // Failed attempts must not permanently block a user-requested retry.
+    // The live in-flight guard and time queue still prevent concurrent runs.
+    return true;
+  }
+
+  // Ordinary calendar ticks must not write a stale timer snapshot over rest
+  // completion. Drain earlier ticks, defer new ones, then replay them in order.
+  function trackTime(actor, work) {
+    if (!actor) return Promise.resolve();
+    const paused = pausedTime.get(actor);
+    if (paused) {
+      paused.push(work);
+      return Promise.resolve();
+    }
+    const next = (timeQueues.get(actor) ?? Promise.resolve()).then(work);
+    const settled = next.catch(error => concurrent().notify(error));
+    timeQueues.set(actor, settled);
+    settled.then(() => { if (timeQueues.get(actor) === settled) timeQueues.delete(actor); });
+    return settled;
+  }
+
+  async function begin(actor) {
+    if (!authority()) throw new Error('Only the authoritative GM may begin rest.');
+    if (pausedTime.has(actor)) throw new Error('Rest time tracking is already paused.');
+    pausedTime.set(actor, []);
+    await timeQueues.get(actor);
+  }
+
+  async function end(actor) {
+    const waiting = pausedTime.get(actor) ?? [];
+    pausedTime.delete(actor);
+    for (const work of waiting) trackTime(actor, work);
+    await timeQueues.get(actor);
   }
 
   function isRestTime(actor, delta, options, userId) {
@@ -684,8 +715,6 @@ globalThis.foundryvttKotlinPatches = {};
   async function advance(actor, camping, seconds) {
     if (!authority()) throw new Error('Only the authoritative GM may advance rest time.');
     if (!Number.isFinite(seconds) || seconds < 0) throw new Error('Invalid rest duration.');
-    const previous = actor.getFlag(moduleId, 'camping-sheet')?.restTimeGuard;
-    if (previous && previous.status !== 'complete') throw new Error(reviewMessage());
     const guard = {
       id: foundry.utils.randomID(24), userId: game.user.id, actorUuid: actor.uuid, status: 'pending',
       version: camping.restOperationVersion, seconds,
@@ -718,5 +747,5 @@ globalThis.foundryvttKotlinPatches = {};
     }
   }
 
-  globalThis.foundryvttKotlinPatches.campingRest = {canStart, isRestTime, advance, finish};
+  globalThis.foundryvttKotlinPatches.campingRest = {canStart, isRestTime, advance, finish, trackTime, begin, end};
 })();

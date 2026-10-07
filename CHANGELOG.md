@@ -7,6 +7,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [6.4.9] - 2026-09-27
+
+### Changed
+
+* Per requested retry policy, pending rest checkpoints no longer block manually continuing camp after an error. A retry can advance time again. In-flight duplicate suppression, GM authority, ordinary clock serialization and write-conflict checks remain enabled. No automatic retry or world migration is performed.
+
+## [6.4.8] - 2026-09-27
+
+### Fixed
+
+* Serialize ordinary calendar time-tracking callbacks per camping Actor. Drain earlier updates before rest takes its snapshot, defer ticks arriving during rest, and replay them after success or failure. This prevents a running clock from conflicting with rest completion without dropping ordinary elapsed time or weakening conflict checks for user edits.
+* Keep deferred time events bound to their original party when the active camping party changes. Always release the in-flight guard, including failures while releasing deferred work.
+* Add six regression tests including reproduction of the 6.4.7 ticking-clock conflict, delayed saves, repeated ticks, party switching, and failed rests. Incomplete persisted rest checkpoints still require explicit GM review; this update does not automatically replay effects, advance time, or clear old checkpoints. Foundry V14 only; reload clients after deployment.
+
 ## [6.4.7] - 2026-09-19
 
 ### Fixed

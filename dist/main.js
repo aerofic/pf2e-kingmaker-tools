@@ -117919,13 +117919,14 @@ class registerFatiguedHooks$lambda$slambda$slambda {
   }
 }
 class registerFatiguedHooks$lambda$slambda {
-  constructor($game, $deltaInSeconds) {
+  constructor($game, $deltaInSeconds, $campingActor) {
     this.t4k_1 = $game;
     this.u4k_1 = $deltaInSeconds;
+    this.campingActor = $campingActor;
   }
   *k3s($this$buildPromise, $completion) {
-    yield* /*#__NOINLINE__*/persistPassedTime_0(this.t4k_1, this.u4k_1, $completion);
-    var camping = getActiveCamping(this.t4k_1);
+    yield* /*#__NOINLINE__*/persistPassedTime_0(this.t4k_1, this.u4k_1, $completion, this.campingActor);
+    var camping = this.campingActor == null ? null : getCamping(this.campingActor);
     if (!(camping == null) && camping.autoApplyFatigued) {
       var currentWeatherType = getCurrentWeatherType(this.t4k_1);
       var fatiguedAfterTravellingSeconds = currentWeatherType.k3m_1 * 8 * 3600;
@@ -153009,8 +153010,8 @@ function *getFatigueDurationSeconds(_this__u8e3s4, recipes, $completion) {
   var increasedDuration = sum;
   return 57600 + increasedDuration | 0;
 }
-function *persistPassedTime_0(game, deltaInSeconds, $completion) {
-  var tmp0_safe_receiver = getActiveCampingActor(game);
+function *persistPassedTime_0(game, deltaInSeconds, $completion, campingActor = getActiveCampingActor(game)) {
+  var tmp0_safe_receiver = campingActor;
   if (tmp0_safe_receiver == null)
     null;
   else {
@@ -153044,8 +153045,8 @@ function registerFatiguedHooks$lambda$slambda$slambda_0($camping, $travelSeconds
   l.$arity = 1;
   return l;
 }
-function registerFatiguedHooks$lambda$slambda_0($game, $deltaInSeconds) {
-  var i = new registerFatiguedHooks$lambda$slambda($game, $deltaInSeconds);
+function registerFatiguedHooks$lambda$slambda_0($game, $deltaInSeconds, $campingActor) {
+  var i = new registerFatiguedHooks$lambda$slambda($game, $deltaInSeconds, $campingActor);
   var l = ($this$buildPromise, $completion) => i.k3s($this$buildPromise, $completion);
   l.$arity = 1;
   return l;
@@ -153054,8 +153055,9 @@ function registerFatiguedHooks$lambda($game) {
   return (_unused_var__etf5q3, deltaInSeconds, options, userId) => {
     var tmp;
     if (isFirstGM($game)) {
-      if (globalThis.foundryvttKotlinPatches.campingRest.isRestTime(getActiveCampingActor($game), deltaInSeconds, options, userId)) return;
-      buildPromise(registerFatiguedHooks$lambda$slambda_0($game, deltaInSeconds));
+      var campingActor = getActiveCampingActor($game);
+      if (globalThis.foundryvttKotlinPatches.campingRest.isRestTime(campingActor, deltaInSeconds, options, userId)) return;
+      globalThis.foundryvttKotlinPatches.campingRest.trackTime(campingActor, () => buildPromise(registerFatiguedHooks$lambda$slambda_0($game, deltaInSeconds, campingActor)));
       tmp = _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.Unit_instancev9v8hjid95df;
     }
     return _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.Unit_instancev9v8hjid95df;
@@ -175592,6 +175594,7 @@ function *rest(game, dispatcher, campingActor, camping, skipWatch, skipDailyPrep
   kmCampingRestInFlight.add(campingActor);
   try {
     if (!globalThis.foundryvttKotlinPatches.campingRest.canStart(campingActor)) return _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.Unit_instancev9v8hjid95df;
+    yield* (0,_kotlinx_coroutines_core_mjs__WEBPACK_IMPORTED_MODULE_3__.awaitd1m8y0em728c)(globalThis.foundryvttKotlinPatches.campingRest.begin(campingActor), $completion);
     var latestCamping = getCamping(campingActor);
     if (latestCamping == null || kmCampingRestOperationVersion(latestCamping) !== expectedRestOperationVersion) {
       return _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.Unit_instancev9v8hjid95df;
@@ -175617,7 +175620,11 @@ function *rest(game, dispatcher, campingActor, camping, skipWatch, skipDailyPrep
     yield* (0,_kotlinx_coroutines_core_mjs__WEBPACK_IMPORTED_MODULE_3__.awaitd1m8y0em728c)(globalThis.foundryvttKotlinPatches.campingRest.finish(campingActor, camping), $completion);
     return _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.Unit_instancev9v8hjid95df;
   } finally {
-    kmCampingRestInFlight.delete(campingActor);
+    try {
+      yield* (0,_kotlinx_coroutines_core_mjs__WEBPACK_IMPORTED_MODULE_3__.awaitd1m8y0em728c)(globalThis.foundryvttKotlinPatches.campingRest.end(campingActor), $completion);
+    } finally {
+      kmCampingRestInFlight.delete(campingActor);
+    }
   }
 }
 function getRestSecondsPerPlayer$lambda$slambda_0($it, $mealEffects) {

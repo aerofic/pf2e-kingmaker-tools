@@ -121,7 +121,7 @@ test('checkpoint save failure never advances time and is safe to retry', async (
   await h.rest(); assert.equal(h.advances.length, 1);
 });
 
-test('failure after time advancement blocks retry, including a fresh client', async () => {
+test('failure after time advancement permits an explicit retry, including a fresh client', async () => {
   const h = setup();
   h.f.beforeUpdate = async data => {
     if (data[`flags.${moduleId}.camping-sheet.watchSecondsRemaining`] === 0) throw Error('completion save failed');
@@ -131,21 +131,22 @@ test('failure after time advancement blocks retry, including a fresh client', as
   assert.equal(h.effects.length, 0);
   assert.equal(h.f.camping.restTimeGuard.status, 'pending');
   h.f.beforeUpdate = async () => {};
-  await h.rest();
-  assert.equal(h.advances.length, 1);
   const fresh = loadBundle();
-  fresh.ui.notifications.warn = message => h.warnings.push(message);
-  assert.equal(fresh.foundryvttKotlinPatches.campingRest.canStart(h.f.actor), false);
-  assert.equal(h.warnings.length, 2);
+  assert.equal(fresh.foundryvttKotlinPatches.campingRest.canStart(h.f.actor), true);
+  await h.rest();
+  assert.equal(h.advances.length, 2);
+  assert.equal(h.f.camping.restTimeGuard.status, 'complete');
+  assert.equal(h.warnings.length, 0);
 });
 
-test('lost time acknowledgement cannot cause duplicate advance', async () => {
+test('lost time acknowledgement permits user retry once the transport recovers', async () => {
   const h = setup(); const advance = h.c.game.time.advance;
   h.c.game.time.advance = async function (...args) {await advance.apply(this, args); throw Error('time response lost');};
   await assert.rejects(h.rest(), /time response lost/);
+  h.c.game.time.advance = advance;
   await h.rest();
-  assert.equal(h.advances.length, 1);
-  assert.equal(h.f.camping.restTimeGuard.status, 'pending');
+  assert.equal(h.advances.length, 2);
+  assert.equal(h.f.camping.restTimeGuard.status, 'complete');
 });
 
 test('conflicting edits stay protected after rest time', async () => {
@@ -158,15 +159,97 @@ test('conflicting edits stay protected after rest time', async () => {
   };
   await assert.rejects(h.rest(), /其他操作/);
   assert.equal(h.f.camping.secondsSpentTraveling, 141658);
-  await h.rest(); assert.equal(h.advances.length, 1);
+  await assert.rejects(h.rest(), /其他操作/); assert.equal(h.advances.length, 2);
 });
 
 test('original untagged time hook reproduces the reported self-conflict in the actual rest flow', async () => {
   const h = setup(); h.api.isRestTime = () => false;
+  h.api.trackTime = (_actor, work) => work(); // Reproduce the original uncoordinated hook.
   await assert.rejects(h.rest(), /其他操作/);
   assert.equal(h.advances.length, 1);
   assert.equal(h.f.camping.watchSecondsRemaining, 4683);
   assert.equal(h.f.camping.secondsSpentTraveling, 146340);
+});
+
+test('ordinary ticking clock during rest is deferred, preserved and cannot conflict with completion', async () => {
+  const h = setup(); const advance = h.c.game.time.advance;
+  h.c.game.time.advance = async function (...args) {
+    await advance.apply(this, args);
+    this.worldTime += 3;
+    h.c.timeHook(this.worldTime, 3, {}, 'gm');
+    this.worldTime += 3;
+    h.c.timeHook(this.worldTime, 3, {}, 'gm');
+  };
+  await h.rest();
+  assert.equal(h.f.camping.restTimeGuard.status, 'complete');
+  assert.equal(h.f.camping.watchSecondsRemaining, 0);
+  assert.equal(h.f.camping.secondsSpentTraveling, 6);
+  assert.equal(h.f.camping.secondsSpentHexploring, 6);
+  assert.equal(h.advances.length, 1);
+  assert.equal(h.f.errors.length, 0);
+  assert.deepEqual(h.effects, ['healing', 'provisions']);
+});
+
+test('6.4.7 direct ordinary time callbacks reproduce the concurrent rest save failure', async () => {
+  const h = setup(); const advance = h.c.game.time.advance;
+  h.api.trackTime = (_actor, work) => work();
+  h.c.game.time.advance = async function (...args) {
+    await advance.apply(this,args);
+    this.worldTime += 3;
+    h.c.timeHook(this.worldTime,3,{},'gm');
+  };
+  await assert.rejects(h.rest(), /其他操作/);
+  assert.equal(h.f.camping.watchSecondsRemaining,4683);
+  assert.equal(h.f.camping.restTimeGuard.status,'pending');
+  assert.equal(h.effects.length,0);
+});
+
+test('an already running calendar save drains before capturing the rest snapshot', async () => {
+  const h = setup(); let release;
+  const gate = new Promise(resolve => {release = resolve;});
+  let entered;
+  const started = new Promise(resolve => {entered = resolve;});
+  h.f.beforeUpdate = async data => {
+    if (data[`flags.${moduleId}.camping-sheet.secondsSpentTraveling`] === 141660) {entered(); await gate;}
+  };
+  h.c.timeHook(100003, 3, {}, 'gm');
+  await started;
+  const resting = h.rest();
+  assert.equal(h.advances.length, 0);
+  release(); await resting;
+  assert.equal(h.f.camping.restTimeGuard.status, 'complete');
+  assert.equal(h.f.camping.secondsSpentTraveling, 0);
+  assert.equal(h.f.errors.length, 0);
+});
+
+test('ordinary ticks are serialized even outside rest', async () => {
+  const h = setup();
+  for (let i=1;i<=10;i++) h.c.timeHook(100000+i*3,3,{},'gm');
+  await h.api.begin(h.f.actor); await h.api.end(h.f.actor);
+  assert.equal(h.f.camping.secondsSpentTraveling, 141687);
+  assert.equal(h.f.errors.length, 0);
+});
+
+test('deferred ticks keep their original party if the active camping party changes', async () => {
+  const h = setup();
+  await h.api.begin(h.f.actor);
+  h.c.timeHook(100003,3,{},'gm');
+  h.c.audit('getActiveCampingActor = () => null;');
+  await h.api.end(h.f.actor);
+  assert.equal(h.f.camping.secondsSpentTraveling, 141660);
+});
+
+test('a failing rest releases ordinary clock ticks and permits explicit retry', async () => {
+  const h = setup(); const advance = h.c.game.time.advance;
+  h.c.game.time.advance = async function (...args) {
+    await advance.apply(this,args);
+    h.c.timeHook(this.worldTime+3,3,{},'gm');
+    throw Error('time acknowledgement lost');
+  };
+  await assert.rejects(h.rest(),/acknowledgement lost/);
+  assert.equal(h.f.camping.secondsSpentTraveling,141660);
+  assert.equal(h.f.camping.restTimeGuard.status,'pending');
+  await assert.rejects(h.rest(),/acknowledgement lost/); assert.equal(h.advances.length,2);
 });
 
 test('unrelated edits made during rest survive final saves', async () => {
@@ -190,18 +273,19 @@ test('lost checkpoint acknowledgement does not advance and does not silently ret
     return result;
   };
   await assert.rejects(h.rest(), /checkpoint response lost/);
+  h.f.actor.update = update;
   await h.rest();
-  assert.equal(h.advances.length, 0);
-  assert.equal(h.f.camping.restTimeGuard.status, 'pending');
+  assert.equal(h.advances.length, 1);
+  assert.equal(h.f.camping.restTimeGuard.status, 'complete');
 });
 
-test('failed final checkpoint leaves rest paused instead of repeating effects', async () => {
+test('failed final checkpoint does not automatically repeat effects or block explicit retry', async () => {
   const h = setup();
   h.f.beforeUpdate = async data => {
     if (data[`flags.${moduleId}.camping-sheet.restTimeGuard.status`] === 'complete') throw Error('finish failed');
   };
   await assert.rejects(h.rest(), /finish failed/);
-  await h.rest();
+  assert.equal(h.api.canStart(h.f.actor), true);
   assert.equal(h.advances.length, 1);
   assert.deepEqual(h.effects, ['healing', 'provisions']);
   assert.equal(h.f.camping.restTimeGuard.status, 'pending');
