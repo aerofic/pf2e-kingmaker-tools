@@ -16,7 +16,7 @@
                 <tbody>
                 {{#each groups}}
                     <tr>
-                        <td>{{> formElement name}}</td>
+                        <td>{{#if id}}<input type="hidden" name="groups.{{@index}}.id" value="{{id}}">{{/if}}{{> formElement name}}</td>
                         <td>{{> formElement negotiationDC}}</td>
                         <td>{{> formElement atWar}}</td>
                         <td>{{> formElement preventPledgeOfFealty}}</td>

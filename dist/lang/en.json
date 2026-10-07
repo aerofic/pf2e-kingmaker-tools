@@ -1,5 +1,6 @@
 {
   "pf2e-kingmaker-tools": {
+    "projectLedger": "Project & Aid Records",
     "moduleName": "Kingdom Building, Camping &amp; Weather",
     "yes": "Yes",
     "no": "No",
@@ -4260,7 +4261,7 @@
       "request-foreign-aid-vk": {
         "title": "Request Foreign Aid (V&amp;K)",
         "description": "<p>When disaster strikes, you send out a call for help to another nation with whom you have diplomatic relations. The DC of this check starts at the other group’s Negotiation DC +2, but every subsequent Kingdom turn you Request Foreign Aid from the same group, the DC increases by 2. Every Kingdom turn that passes without Requesting Foreign Aid from that Group reduces the DC by 1 (until you reach the other group’s Negotiation DC +2). You may only attempt to request Foreign Aid with a given group once per Kingdom turn regardless of the number of leaders pursuing activities.</p>",
-        "automationNotes": "The +2/+4 modifier buttons are one-use bonuses for this Kingdom turn. The plugin applies them before a roll; if you decide after the die is rolled but before the result is known, enable the modifier only for that matching check. Repeated requests to the same group use a target-specific DC ledger; the result card can add a one-turn reminder, but the exact same-group DC increase/decay must still be updated manually. If you choose the RP option, do not click the bonus modifier.",
+        "automationNotes": "7.0 tracks one request per group per turn, Negotiation DC + 2, subsequent +2 increases and -1 per skipped turn. Renaming preserves history. Aid benefits remain on the original result card: success offers either RP or its one-use bonus, not both. Post-roll bonuses and excluding aid RP from XP still require GM review.",
         "requirement": "You have diplomatic relations with the group you are requesting aid from.",
         "criticalSuccess": {
           "msg": "<p>Your ally’s aid grants a +4 circumstance bonus to any one Kingdom skill check attempted during the remainder of this Kingdom turn. You can choose to apply this bonus to any Kingdom skill check after the die is rolled, but must do so before the result is known. In addition, @gain2RolledResourceDice; this RP does not accrue into XP at the end of the turn if you don’t spend it.</p>",
@@ -4289,7 +4290,7 @@
         "modifiers": {
           "sameGroupDcMemory": {
             "name": "Request Foreign Aid Same-Group DC Memory",
-            "buttonLabel": "Record Next Turn: Update Same-Group Aid DC Manually"
+            "buttonLabel": "Aid Reminder: DC Managed by Project & Aid Records"
           }
         }
       },
@@ -4708,7 +4709,7 @@
       "accelerate-project": {
         "title": "Accelerate Project",
         "description": "<p>You focus additional time and resources on attempting to complete a large construction project faster than normal. Choose a structure that has been started via a successful Build Structure activity but has not yet been completed. Attempt the skill check used to build that structure against the structure's construction DC + 2.</p>",
-        "automationNotes": "Set a custom DC equal to the chosen structure's construction DC + 2. Spending or delaying construction RP is not fully automated.",
+        "automationNotes": "Select an unfinished project in this kingdom; construction skills and DC + 2 are selected automatically. Once per structure per turn. Invest RP after success, or resume from Project & Aid Records. Critical failure reduces this turn's continuing construction allowance. The GM must still verify continuing-construction eligibility for projects without a recorded start turn.",
         "criticalSuccess": {
           "msg": "<p>Your efforts are spectacularly effective at accelerating the speed of construction. You may immediately spend RP up to one and a half times the size of the kingdom's Resource Die and apply it to the chosen structure. If this RP is enough to finish construction, the structure is completed immediately instead of during the Continuing Construction step. If the structure has the Edifice trait, you may only spend up to the size of the kingdom's Resource Die instead of one and a half.</p>"
         },

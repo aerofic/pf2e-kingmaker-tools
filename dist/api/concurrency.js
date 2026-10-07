@@ -123,7 +123,29 @@
       const receipt = receipts.find(entry => entry.id === packet.id);
       if (receipt) return receipt.result;
       let updates = {}, result = {};
-      if (packet.kind === 'write') {
+      if (packet.kind === 'projectSpend' || packet.kind === 'projectReconcile') {
+        if (!adapter.isParty(actor)) fail('Invalid kingdom actor.');
+        const service = globalThis.foundryvttKotlinPatches.turnProjects;
+        const targetId = data.paymentId ? service.ledger(actor).payments.find(p=>p.id===data.paymentId)?.targetId : data.targetId;
+        return queue(`project:${targetId}`, () => packet.kind === 'projectSpend' ? service.spend(actor,data,user,packet.id,checkedUpdate) : service.reconcile(actor,data,user,checkedUpdate));
+      } else if (packet.kind === 'projectGroups') {
+        if (!adapter.isParty(actor)) fail('Invalid kingdom actor.');
+        const groups = copy(actor.getFlag(moduleId,'kingdom-sheet')?.groups);
+        if (!Array.isArray(groups)) fail('Kingdom groups are unavailable.');
+        const ids = new Set();
+        for (const group of groups) {
+          if (!group.id || ids.has(group.id)) group.id = id();
+          ids.add(group.id);
+        }
+        const version = actor.getFlag(moduleId,'projectGroupIdsVersion') || 0;
+        if (version > 1) fail('Unsupported group identity version.');
+        if (version === 1 && equal(groups,actor.getFlag(moduleId,'kingdom-sheet').groups)) return {unchanged:true};
+        updates[`flags.${moduleId}.kingdom-sheet.groups`] = groups;
+        updates[`flags.${moduleId}.projectGroupIdsVersion`] = 1;
+      } else if (packet.kind === 'projectResult') {
+        if (!adapter.isParty(actor) || control.check?.id !== data.checkId || control.check?.userId !== user.id || control.check?.status !== 'pending' || !control.check?.target) fail('Targeted check changed.');
+        updates = globalThis.foundryvttKotlinPatches.turnProjects.record(actor,control.check,data.degree,user);
+      } else if (packet.kind === 'write') {
         if (!['camping-sheet', 'kingdom-sheet'].includes(data.key) || !Array.isArray(data.changes) || data.changes.length > 10000) fail('Invalid state patch.');
         const current = copy(actor.getFlag(moduleId, data.key) || {});
         const next = copy(current);
@@ -169,7 +191,8 @@
         if (['pending','review'].includes(control.check?.status)) fail(text('已有王国检定正在执行或等待核对，请稍后重试。', 'A kingdom check is running or awaiting GM review.'));
         const current = actor.getFlag(moduleId, 'kingdom-sheet');
         if (!Array.isArray(data.modifiers) || !equal(current?.modifiers || [], data.modifiers)) fail(text('检定调整值已变化，请重新打开检定窗口。', 'Check modifiers changed. Reopen the check dialog.'));
-        updates[`flags.${moduleId}.concurrentOps.check`] = {id:packet.id,status:'pending',userId:user.id,at:Date.now()};
+        const target = data.target ? globalThis.foundryvttKotlinPatches.turnProjects.validate(actor,data.target,user) : null;
+        updates[`flags.${moduleId}.concurrentOps.check`] = {id:packet.id,status:'pending',userId:user.id,at:Date.now(),...(target ? {target} : {})};
         result = {id:packet.id};
       } else if (packet.kind === 'failCheck' || packet.kind === 'resolveCheck') {
         if (packet.kind === 'resolveCheck' && (!user.isGM || activeChecks.has(actor.uuid))) fail('Only a GM can review an inactive kingdom check.');

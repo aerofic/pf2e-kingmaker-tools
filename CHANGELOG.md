@@ -7,6 +7,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [7.0.0] - 2026-10-07
+
+### Added
+
+* Integrated Accelerate Project target selection, construction skills/DC + 2, per-project turn records, degree-based RP limits and the Edifice exception. Successful checks offer RP investment; cancelled investment remains available in Project & Aid Records.
+* Foreign Aid records use stable group IDs, one attempt per group per turn, Negotiation DC + 2 and per-group increase/decay based on the committed kingdom turn counter. Renaming groups preserves history. No timers or chat-text parsing reset this state.
+* Project & Aid Records in the existing leadership section, including explicit resume and GM manual-reconciliation actions for interrupted payments.
+
+### Changed
+
+* Construction investment uses the authoritative GM coordinator. Party RP debit and payment intent commit together; structure HP progress and its receipt commit together. Retrying a recorded payment does not debit or advance twice. Continuing construction shares a cumulative per-turn allowance and applies Accelerate Project critical-failure penalties.
+* Optional group identity initialization is versioned and runs only from an explicit aid/records action, not at startup. Existing rules, activity enablement, camping and the kingdom panel layout are retained. Disable the external V&K turn helper before using the integrated targeted activities.
+* Aid benefits remain on the existing result cards. Post-roll bonuses, aid RP exclusion from XP, and construction start-turn eligibility remain GM checks; category-based construction cap changes are not part of this release. Historical manual aid DC adjustments are not imported automatically.
+* Foundry V14 only. All clients must reload after deployment. Back up world data before using the new records; code rollback alone does not undo RP, construction or ledger changes. Regression tests use document-boundary simulations, not a live-world acceptance claim.
+
 ## [6.4.9] - 2026-09-27
 
 ### Changed

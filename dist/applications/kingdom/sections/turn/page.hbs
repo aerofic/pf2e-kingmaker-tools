@@ -157,6 +157,7 @@
             <h2 id="{{actorUuid}}-km-turn-leadership" {{#unless activities.leadership}}hidden{{/unless}}>{{localizeKM
                     "kingdom.leadership" count=leadershipActivities}}</h2>
             {{> kingdom-activities activities=activities.leadership}}
+            <button type="button" data-action="project-ledger">{{localizeKM "projectLedger"}}</button>
         </section>
         <section class="km-kingdom-sheet-section">
             <h2 id="{{actorUuid}}-km-turn-region" {{#unless activities.region}}hidden{{/unless}}>{{localizeKM
