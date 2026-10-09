@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [7.0.1] - 2026-10-10
+
+### Changed
+
+* Remove "until the start of your next turn" from the Taunt army war action's critical-success and success descriptions in Chinese and English. Preserve Shaken 2 / Shaken 1, requirements, checks and critical-failure text. Apply the override to the loaded system compendium entry, existing world/army items, newly created items and item-sheet descriptions without editing the PF2e system pack on disk.
+* Foundry V14 only. Reload all clients after deployment. No world migration or automatic condition changes. Automated checks cover the shipped overrides; live-world UI acceptance remains outstanding.
+
+### Fixed
+
+* Canceling Foreign Aid group selection exits normally instead of reporting a missing group ID. Selected groups without an ID still require initialization. Includes the previously deployed 7.0.0 hotfix.
+
 ## [7.0.0] - 2026-10-07
 
 ### Added

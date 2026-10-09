@@ -162692,6 +162692,20 @@ var feintArmyActionId = 'Hi4LKGOKe6yMDOH5';
 var openingSalvoArmyTacticId = 'G6MAyRjG91I8iNLR';
 var mercilessArmyTacticId = 'QRwIcmCEHpDQm9DO';
 var allOutAssaultArmyActionId = 'Z6jMZgAxI1zRO7Sl';
+var tauntArmyActionId = 'ggVahjiAlVICpiPA';
+function isTauntArmyAction(item) {
+  return item != null && item.system != null && item.system.campaign === 'kingmaker' && item.system.category === 'army-war-action' && getArmyTacticSlug(item) === 'taunt';
+}
+function applyTauntArmyActionOverride(item) {
+  if (!isTauntArmyAction(item) || typeof item.updateSource !== 'function') return item;
+  var description = getProperty(item, 'system.description.value');
+  if (typeof description !== 'string') return item;
+  var updated = description.replace(/(<p(?:\s[^>]*)?>\s*<strong>\s*(?:Critical Success|Success|大成功|成功)\s*[:：]?\s*<\/strong>)([\s\S]*?)(<\/p>)/gi, (paragraph, heading, body, end) => {
+    return heading + body.replace(/[，,]?\s*直到(?:你的)?下(?:个|一)?回合开始|\s+until the start of your next turn/gi, '') + end;
+  });
+  if (updated !== description) item.updateSource({'system.description.value': updated});
+  return item;
+}
 function isCounterattackArmyAction(item) {
   return item != null && item.system != null && item.system.campaign === 'kingmaker' && item.system.category === 'army-war-action' && getArmyTacticSlug(item) === 'counterattack';
 }
@@ -162917,6 +162931,7 @@ function applyArmyTacticOverridesToActors(actors) {
     Array.from(actor.items || []).forEach((item) => {
       applyFlexibleArmyTacticOverride(item);
       applyDirtyFightingArmyActionOverride(item);
+      applyTauntArmyActionOverride(item);
       applyCounterattackArmyActionOverride(item);
       applyCoveringFireArmyActionOverride(item);
       applyRetreatArmyActionOverride(item);
@@ -162932,17 +162947,20 @@ function renderArmyTacticDescriptionOverrides(app, html) {
   var isFlexible = item != null && isFlexibleArmyTactic(item);
   var isCounterattack = item != null && isCounterattackArmyAction(item);
   var isDirtyFighting = isDirtyFightingArmyAction(item);
+  var isTaunt = isTauntArmyAction(item);
   var isCoveringFire = item != null && isCoveringFireArmyAction(item);
   var isFeint = item != null && isFeintArmyAction(item);
   var isOpeningSalvo = item != null && isOpeningSalvoArmyTactic(item);
   var isAllOutAssault = item != null && isAllOutAssaultArmyAction(item);
-  if (!isFlexible && !isCounterattack && !isDirtyFighting && !isCoveringFire && !isFeint && !isOpeningSalvo && !isAllOutAssault) {
+  if (!isFlexible && !isCounterattack && !isDirtyFighting && !isTaunt && !isCoveringFire && !isFeint && !isOpeningSalvo && !isAllOutAssault) {
     return;
   }
   if (isFlexible) {
     applyFlexibleArmyTacticOverride(item);
   } else if (isDirtyFighting) {
     applyDirtyFightingArmyActionOverride(item);
+  } else if (isTaunt) {
+    applyTauntArmyActionOverride(item);
   } else if (isCounterattack) {
     applyCounterattackArmyActionOverride(item);
   } else if (isCoveringFire) {
@@ -162970,6 +162988,7 @@ function registerArmyTacticOverrides() {
   Hooks.on('preCreateItem', (item) => {
     applyFlexibleArmyTacticOverride(item);
     applyDirtyFightingArmyActionOverride(item);
+    applyTauntArmyActionOverride(item);
     applyCounterattackArmyActionOverride(item);
     applyCoveringFireArmyActionOverride(item);
     applyRetreatArmyActionOverride(item);
@@ -162987,6 +163006,7 @@ function registerArmyTacticOverrides() {
     var pack = game.packs.get('pf2e.kingmaker-features');
     if (pack != null) {
       pack.getDocument(dirtyFightingArmyActionId).then(applyDirtyFightingArmyActionOverride).catch((error) => console.warn('pf2e-kingmaker-tools | Failed to apply the Dirty Fighting override.', error));
+      pack.getDocument(tauntArmyActionId).then(applyTauntArmyActionOverride).catch((error) => console.warn('pf2e-kingmaker-tools | Failed to apply the Taunt override.', error));
       pack.getDocument(flexibleArmyTacticId).then(applyFlexibleArmyTacticOverride).catch((error) => console.warn('pf2e-kingmaker-tools | Failed to apply the Flexible Tactics override.', error));
       pack.getDocument(counterattackArmyActionId).then(applyCounterattackArmyActionOverride).catch((error) => console.warn('pf2e-kingmaker-tools | Failed to apply the Counterattack override.', error));
       pack.getDocument(coveringFireArmyActionId).then(applyCoveringFireArmyActionOverride).catch((error) => console.warn('pf2e-kingmaker-tools | Failed to apply the Covering Fire override.', error));
@@ -162999,6 +163019,7 @@ function registerArmyTacticOverrides() {
     Array.from(game.items || []).forEach((item) => {
       applyFlexibleArmyTacticOverride(item);
       applyDirtyFightingArmyActionOverride(item);
+      applyTauntArmyActionOverride(item);
       applyCounterattackArmyActionOverride(item);
       applyCoveringFireArmyActionOverride(item);
       applyRetreatArmyActionOverride(item);
