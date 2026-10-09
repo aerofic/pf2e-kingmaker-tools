@@ -900,6 +900,7 @@ globalThis.foundryvttKotlinPatches = {};
     if (!['accelerate-project','request-foreign-aid-vk'].includes(activity.id)) return null;
     if (game.modules?.get('vk-kingdom-turn-helper')?.active) fail('请先停用外部王国回合辅助插件，避免同一活动重复结算。','Disable the external kingdom turn helper before using integrated activities.');
     if (activity.id==='request-foreign-aid-vk') {
+      if (!group) return false;
       if (!group?.id) fail('请先点击“工程与外援记录”初始化团体标识，再重新打开活动。','Open Project & Aid Records to initialize group IDs, then reopen this activity.');
       const state=ledger(actor), extra=aidExtra(state,group.id,turn(actor));
       const context={kind:'aid',turn:turn(actor),targetId:group.id,dc:group.negotiationDC+2+extra};

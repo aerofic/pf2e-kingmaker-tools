@@ -68,6 +68,20 @@ test('canceling target or payment dialog performs no writes',async()=>{
   await h.projects.payDialog(h.f.actor,h.target.uuid,null);
   assert.equal(h.f.updates.length,0);assert.equal(h.writes,0);
 });
+test('canceling foreign aid group selection exits without dialogs, writes or attempts',async()=>{
+  const h=setup();
+  for (const group of [null,undefined]) {
+    assert.equal(await h.projects.prepare(h.f.actor,{id:'request-foreign-aid-vk'},group),false);
+  }
+  assert.equal(h.f.updates.length,0);assert.equal(h.writes,0);
+  assert.equal(h.projects.ledger(h.f.actor).attempts.length,0);
+  assert.equal(h.f.kingdom.resourcePoints.now,40);
+});
+test('selected foreign aid group without an ID still fails validation',async()=>{
+  const h=setup();
+  await assert.rejects(h.projects.prepare(h.f.actor,{id:'request-foreign-aid-vk'},{name:'Ally',negotiationDC:18}),/初始化团体标识/);
+  assert.equal(h.f.updates.length,0);assert.equal(h.writes,0);
+});
 test('debit failure before commit leaves progress untouched and retry succeeds',async()=>{
   const h=setup(); h.f.beforeUpdate=async()=>{throw Error('offline');};
   const data={targetId:h.target.uuid,turn:11,amount:4};
