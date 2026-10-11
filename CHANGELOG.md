@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [7.0.3] - 2026-10-11
+
+### Fixed
+
+* Correct Recruit Monsters Chinese terminology, proficiency ranks, event names, outcome descriptions and modifier buttons. Preserve the activity mechanics and automation tags.
+* Foundry V14 only. Reload all clients after deployment. Translation-only correction, with no world migration or changes to activity mechanics. Live-world UI acceptance remains outstanding.
+
 ## [7.0.2] - 2026-10-11
 
 ### Changed
