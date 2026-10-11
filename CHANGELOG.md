@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [7.0.2] - 2026-10-11
+
+### Changed
+
+* While in anarchy, all kingdom check results are worsened by one degree except Quell Unrest. Remove the former Quell-Unrest-only activity restriction from the anarchy notice and update the Chinese/English penalty labels.
+* Foundry V14 only. Reload all clients after deployment. No migration or changes to world data. Regression tests execute the shipped modifier filtering and degree calculation; live-world UI acceptance remains outstanding.
+
 ## [7.0.1] - 2026-10-10
 
 ### Changed

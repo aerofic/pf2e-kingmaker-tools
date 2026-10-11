@@ -688,7 +688,7 @@
       "gainingPointsToRuins": "Gaining points to Ruin (distribute as you wish)",
       "losingHexOnFlatCheck": "Losing Hex on a Flat Check 11",
       "loseHexOfChoice": "You lose one hex of your choice",
-      "fallsIntoAnarchy": "Kingdom falls into anarchy, unless you spend all Fame/Infamy points. Only Quell Unrest leadership activities can be performed and all checks are worsened by a degree",
+      "fallsIntoAnarchy": "Kingdom falls into anarchy, unless you spend all Fame/Infamy points. While in anarchy, all kingdom checks except Quell Unrest have their results worsened by one degree.",
       "ignoringUnrestIncrease": "Ignoring any Unrest increase due to \"Envy of the World\" Kingdom Feature",
       "rulerVacantGainingUnrest": "Ruler is vacant, gaining Unrest",
       "gainingXp": "Gaining {count} XP",
@@ -1066,7 +1066,7 @@
       },
       "penalties": {
         "unrest": "Unrest",
-        "anarchy": "Anarchy worsens all checks by 1 degree",
+        "anarchy": "Anarchy worsens all kingdom checks except Quell Unrest by 1 degree",
         "mired": "{armyName} (Mired {count})",
         "weary": "{armyName} (Weary {count})",
         "favoredLand": "Favored Land",

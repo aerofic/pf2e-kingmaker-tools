@@ -650,7 +650,7 @@
       "gainingPointsToRuins": "获得毁灭点（随意分配）",
       "losingHexOnFlatCheck": "以纯骰检定 11 失去一个地域格",
       "loseHexOfChoice": "你失去一个你选择的地域格",
-      "fallsIntoAnarchy": "王国陷入无政府状态，除非你花费所有美名/恶名点数。只能执行平定动荡领导活动，且所有检定恶化一级。",
+      "fallsIntoAnarchy": "王国陷入无政府状态，除非你花费所有美名/恶名点数。无政府状态下，除减轻动荡检定外，所有王国检定的结果降低一级。",
       "ignoringUnrestIncrease": "忽略因「世界之嫉」王国特性造成的任何动荡增长。",
       "rulerVacantGainingUnrest": "元首空缺，获得动荡。",
       "gainingXp": "获得 {count} XP",
@@ -1049,7 +1049,7 @@
       },
       "penalties": {
         "unrest": "动荡",
-        "anarchy": "无政府状态使所有检定恶化1级",
+        "anarchy": "无政府状态使除减轻动荡外的所有王国检定结果降低1级",
         "mired": "{armyName} (陷入泥沼 {count})",
         "weary": "{armyName} (疲惫 {count})",
         "favoredLand": "偏好地形",
