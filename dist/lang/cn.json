@@ -620,7 +620,7 @@
       "investedAbility": "已投入 ({ability})",
       "heartland": "心仪之地",
       "skillIncrease": "技能提升",
-      "youCanIncreaseSkillsUpTo": "你可以将一个技能提升至 {proficiency}",
+      "youCanIncreaseSkillsUpTo": "你可以将一项王国技能的熟练等级提升至{proficiency}。",
       "government": "政府",
       "charter": "特许状",
       "supportedLeader": "受支持领袖",
@@ -747,6 +747,9 @@
       "roll": "掷骰",
       "rollWithFortune": "幸运掷骰",
       "addModifier": "添加调整值",
+      "editModifier": "编辑调整值",
+      "modifierDescriptionHelp": "留空时，根据当前数值和适用条件生成描述。",
+      "modifierEditHint": "已有事件条件、数值表达式等自动化信息会保留。数值栏修改固定值；若原有数值表达式，则仍优先使用表达式。",
       "deleteModifier": "删除调整值",
       "tactic": "战术",
       "learn": "学习",
@@ -832,9 +835,9 @@
       "worksitesAndResources": "工作场所与资源",
       "creation": "创建",
       "bonus": "奖励专长",
-      "pickBoosts": "选择 {count, plural, =1 {1 Boost} other {# 提升}}",
+      "pickBoosts": "选择 {count, plural, =1 {1 项属性提升} other {# 项属性提升}}",
       "prerequisites": "先决条件",
-      "pickRuinIncreases": "选择{count, plural, =1 {1 项毁灭} other {# 项毁灭}}以提升{value}",
+      "pickRuinIncreases": "选择 {count, plural, =1 {1 项毁灭类别} other {# 项毁灭类别}}，将其阈值提高 {value}",
       "addBonusFeat": "添加奖励专长",
       "selectCharter": "选择特许状",
       "chooseHeartland": "选择核心地域",
@@ -2038,8 +2041,8 @@
     },
     "features": {
       "ability-boosts": {
-        "name": "能力提升",
-        "description": "提升两个不同的王国属性值。你可以使用这些属性提升将王国的属性值提高到18以上。提升属性值时，若其初始值低于18，则增加2；若已达到18或以上，则增加1。"
+        "name": "属性提升",
+        "description": "按下方标示的数量，选择不同的王国属性进行提升。属性提升可以将属性值提高到 18 以上：若提升前低于 18，则增加 2；若已达到 18 或以上，则增加 1。"
       },
       "charter": {
         "name": "特许状",
@@ -2105,8 +2108,8 @@
         "description": "你的人民为你提供各种物质上的舒适。和优质生活相同，但所有 PC 领导人在王国境内都能享受奢华生活标准（《核心规则书》294 页）。当你位于王国境内时，你的制造（Craft） 和赚取收入（Earn Income）检定有+2 环境加值。"
       },
       "ruin-resistance": {
-        "name": "破坏抵抗",
-        "description": "你的王国变得更能抵抗毁灭。从四个毁灭类别中选择一个，并将其阈值增加2。当你这样做时，将毁灭的惩罚重置为0。"
+        "name": "毁灭抗力",
+        "description": "你的王国获得更强的毁灭抗力。从四种毁灭类别中选择一种，将其阈值提高 2，并将该类别的毁灭减值重置为 0。"
       },
       "settlement-construction-city": {
         "name": "定居点建立（城市）",
@@ -2126,7 +2129,7 @@
       },
       "skill-increase": {
         "name": "技能提升",
-        "description": "你的王国获得技能提升。你可以使用它来提高你的等级，以训练你的王国没有训练过的一项技能，或者提高你在一项技能中的等级"
+        "description": "你的王国获得一次技能提升。选择一项王国技能，将其熟练等级从未受训提升至受训，或将已受训技能的熟练等级提高一级。"
       }
     },
     "milestones": {

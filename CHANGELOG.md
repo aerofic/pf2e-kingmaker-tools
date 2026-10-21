@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [7.0.4] - 2026-10-21
+
+### Added
+
+* Edit existing kingdom modifiers in place, including name, value, type, selector, duration, enabled state, consumption, simple conditions and description. Preserve IDs, event conditions and other automation metadata; save through the permission-checked GM coordinator with stale-write protection.
+
+### Fixed
+
+* Fix Supernatural Solution's automatic Magic check dropping all modifiers by iterating its Kotlin modifier list correctly; preserve enabled selections and evaluate bonuses and penalties for Magic.
+* Correct the Chinese Ruin Resistance name to 毁灭抗力 and clarify skill-increase, ability-boost and ruin-threshold selection text. Ability-boost descriptions defer to the configured selection count. Localize the proficiency rank inserted into skill-increase descriptions instead of displaying enum names such as EXPERT.
+* Foundry V14 only. No world migration. Reload all clients after deployment. Live-world UI and multi-client acceptance remain outstanding.
+
 ## [7.0.3] - 2026-10-11
 
 ### Fixed

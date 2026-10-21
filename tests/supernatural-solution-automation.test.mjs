@@ -1,6 +1,46 @@
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import test from "node:test";
+import { loadBundle } from "./helpers/bundle-harness.mjs";
+
+test("automatic Magic check evaluates the real Kotlin modifier list and respects enabled selections", () => {
+  const runtime = loadBundle();
+  runtime.audit(`
+    const k = _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__;
+    const empty = k.emptySetcxexqki71qfa();
+    const modifiers = k.listOf1jh22dvmctj1r([
+      new Modifier('culture', ModifierType_ABILITY_getInstance(), 2, 'Culture'),
+      new Modifier('magic', ModifierType_PROFICIENCY_getInstance(), 6, 'Trained Magic'),
+      new Modifier('unrest', ModifierType_UNTYPED_getInstance(), -1, 'Unrest'),
+      new Modifier('disabled', ModifierType_UNTYPED_getInstance(), 100, 'Disabled')
+    ]);
+    createCheckContext = (dialog, phase, leader, skill) => {
+      if (skill !== KingdomSkill_MAGIC_getInstance()) throw Error('Expected Magic context');
+      return new ExpressionContext(skill, null, null, 'claim-hex', null, 4, 1,
+        empty, null, null, 20, false, null, null, null, null, null, 0);
+    };
+    withNoLeaderRollOption = options => options;
+    t_0 = key => key;
+    serializeB64Json = value => JSON.stringify(value);
+    rollCheck_1 = function*(...args) {
+      globalThis.capturedMagicRoll = {total: args[4], dc: args[8], pills: JSON.parse(args[7])};
+      return {};
+    };
+    const dialog = {
+      u5d_1: {modifiers: [
+        {id: 'culture', enabled: true}, {id: 'magic', enabled: true},
+        {id: 'unrest', enabled: true}, {id: 'disabled', enabled: false}
+      ], phase: 'region', leader: 'ruler'},
+      f5d_1: modifiers, j5d_1: empty, h5d_1: {k5c_1: null, r5c_1: empty}
+    };
+    const result = rollAutomaticSupernaturalMagicCheck(dialog, null, {id: 'claim-hex'},
+      19, {}, [], null, null, null).next();
+    if (!result.done) throw Error('Unexpected asynchronous boundary');
+  `);
+  assert.deepEqual(JSON.parse(JSON.stringify(runtime.capturedMagicRoll)), {
+    total: 7, dc: 19, pills: ['Culture +2', 'Trained Magic +6', 'Unrest -1'],
+  });
+});
 
 const moduleRoot = new URL("../", import.meta.url);
 const main = readFileSync(new URL("dist/main.js", moduleRoot), "utf8");

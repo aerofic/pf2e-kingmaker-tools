@@ -10,6 +10,7 @@
                     <td>{{localizeKM "applications.description"}}</td>
                     <td>{{localizeKM "kingdom.turns"}}</td>
                     <td>{{localizeKM "kingdom.consumed"}}</td>
+                    <td>{{localizeKM "applications.edit"}}</td>
                     <td>{{localizeKM "applications.delete"}}</td>
                 </tr>
                 </thead>
@@ -21,6 +22,9 @@
                         <td>{{description}}</td>
                         <td>{{turns}}</td>
                         <td>{{#if isConsumedAfterRoll}}<i class="fa-regular fa-circle-check"></i>{{/if}}</td>
+                        <td><button type="button" data-action="edit-modifier" data-index="{{@index}}" aria-label="{{localizeKM 'applications.edit'}}" title="{{localizeKM 'applications.edit'}}">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                        </button></td>
                         <td><button type="button" data-action="delete-modifier" data-index="{{@index}}">
                             <i class="fa-solid fa-trash"></i>
                         </button></td>
