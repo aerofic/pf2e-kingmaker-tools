@@ -177021,7 +177021,12 @@ function *d20Check(dc, modifier, flavor, rollMode, toChat, rollTwiceKeepHighest,
     tmp = '1d20';
   }
   var d20 = tmp;
-  var formula = modifier > 0 ? d20 + '+' + modifier : d20;
+  var formula = d20;
+  if (modifier > 0) {
+    formula += '+' + modifier;
+  } else if (modifier < 0) {
+    formula += modifier;
+  }
   var roll = yield* (0,_kotlinx_coroutines_core_mjs__WEBPACK_IMPORTED_MODULE_3__.awaitd1m8y0em728c)((new Roll(formula)).evaluate(), $completion);
   var dieValue = roll.total - modifier | 0;
   var tmp_0 = determineDegreeOfSuccess(dc, roll.total, dieValue);

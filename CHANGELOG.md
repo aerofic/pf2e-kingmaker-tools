@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [7.0.5] - 2026-11-06
+
+### Fixed
+
+* Include negative total modifiers in kingdom check rolls so both the check total and natural die result are used correctly when determining the degree of success.
+
 ## [7.0.4] - 2026-10-21
 
 ### Added
