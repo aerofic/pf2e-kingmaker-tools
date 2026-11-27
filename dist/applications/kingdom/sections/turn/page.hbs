@@ -9,7 +9,12 @@
         <h3>{{localizeKM "kingdom.vacancies"}}</h3>
         <p>{{localizeKM "kingdom.vacanciesHelp"}}</p>
         {{#each leadersContext}}
-            {{> formElement vacant }}
+            <div class="km-leader-turn-row">
+                <input type="checkbox" data-leader-acted="{{leader}}"
+                       aria-label="{{localizeKM "kingdom.leaderActed" role=label}}"
+                       title="{{localizeKM "kingdom.leaderActed" role=label}}">
+                {{> formElement vacant }}
+            </div>
         {{/each}}
         {{#useLeadershipModifiers}}
             <div class="km-leadership-modifier-info">

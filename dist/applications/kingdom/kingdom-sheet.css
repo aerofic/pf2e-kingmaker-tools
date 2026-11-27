@@ -508,6 +508,13 @@
 
     .km-kingdom-sheet-sidebar-turn {
         min-width: 300px;
+
+        .km-leader-turn-row {
+            display: grid;
+            grid-template-columns: auto minmax(0, 1fr);
+            align-items: center;
+            column-gap: .25rem;
+        }
     }
 
     .km-kingdom-sheet-content {
