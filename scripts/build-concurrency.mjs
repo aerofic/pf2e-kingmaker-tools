@@ -11,11 +11,13 @@ const coordinator = readFileSync(new URL('../dist/api/concurrency.js',import.met
 const encounters = readFileSync(new URL('../dist/api/encounter-conditions.js',import.meta.url),'utf8').replaceAll('\r\n','\n');
 const rest = readFileSync(new URL('../dist/api/camping-rest.js',import.meta.url),'utf8').replaceAll('\r\n','\n');
 const projects = readFileSync(new URL('../dist/api/turn-projects.js',import.meta.url),'utf8').replaceAll('\r\n','\n');
+const sheetPerf = readFileSync(new URL('../dist/api/kingdom-sheet-perf.js',import.meta.url),'utf8').replaceAll('\r\n','\n');
 const prefix = existing.split(marker)[0].trimEnd();
 const output = prefix + (prefix.endsWith(';') ? '' : ';') + marker + coordinator.trimEnd()
   + '\n// BEGIN GENERATED KINGMAKER ENCOUNTER CONDITIONS\n' + encounters.trimEnd()
   + '\n// BEGIN GENERATED KINGMAKER CAMPING REST\n' + rest.trimEnd()
-  + '\n// BEGIN GENERATED KINGMAKER TURN PROJECTS\n' + projects.trimEnd() + '\n';
+  + '\n// BEGIN GENERATED KINGMAKER TURN PROJECTS\n' + projects.trimEnd()
+  + '\n// BEGIN GENERATED KINGMAKER SHEET PERF\n' + sheetPerf.trimEnd() + '\n';
 if (process.argv.includes('--check')) {
   if (existing !== output) throw new Error('Coordinator bundle is stale; run npm run build');
 } else writeFileSync(target,output);

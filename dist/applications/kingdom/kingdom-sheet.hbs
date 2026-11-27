@@ -15,11 +15,11 @@
     {{> tabs mainNav}}
 
     <main class="km-kingdom-sheet-main" style="background-image: url({{sheetBackground}})">
-        {{> kingdom-character-sheet this}}
-        {{> kingdom-notes this}}
-        {{> kingdom-turn this}}
-        {{> kingdom-trade-agreements this}}
-        {{> kingdom-settlements this}}
-        {{> kingdom-modifiers this}}
+        {{#if (eq currentNavEntry 'kingdom')}}{{> kingdom-character-sheet this}}{{/if}}
+        {{#if (eq currentNavEntry 'notes')}}{{> kingdom-notes this}}{{/if}}
+        {{#if (eq currentNavEntry 'turn')}}{{> kingdom-turn this}}{{/if}}
+        {{#if (eq currentNavEntry 'tradeAgreements')}}{{> kingdom-trade-agreements this}}{{/if}}
+        {{#if (eq currentNavEntry 'settlements')}}{{> kingdom-settlements this}}{{/if}}
+        {{#if (eq currentNavEntry 'modifiers')}}{{> kingdom-modifiers this}}{{/if}}
     </main>
 </div>

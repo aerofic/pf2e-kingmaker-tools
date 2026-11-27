@@ -112103,6 +112103,7 @@ class App extends SaneHandlebarsApplicationV2 {
       TypedHooks_instance.v3u(hook.j3u_1, hook.k3u_1);
     }
     this.panelHooksDisposed = true;
+    globalThis.foundryvttKotlinPatches?.kingdomSheetPerf?.cancelScheduledRender?.(this);
   }
   constructor(config) {
     super(config);
@@ -113143,7 +113144,17 @@ class FormApp$onSubmit$slambda {
     this.u3z_1.g3x_1 = this.v3z_1.reportValidity();
     if (this.u3z_1.d3x_1) {
     }
-    var parsedData = parseFormData(value, this.u3z_1.f3x_1, FormApp$fixObject$ref(this.u3z_1));
+    var perf = globalThis.foundryvttKotlinPatches?.kingdomSheetPerf;
+    var parsedData = (this.u3z_1 instanceof KingdomSheet && perf?.mergePartialKingdomFormData)
+      ? perf.mergePartialKingdomFormData({
+          raw: value,
+          baseline: getKingdom_0(this.u3z_1),
+          filterBlanks: this.u3z_1.f3x_1,
+          parseFormDataFn: (obj, fb) => parseFormData(obj, fb, FormApp$fixObject$ref(this.u3z_1)),
+          activeLeader: get_pfrpg2eKingdomCampingWeather(this.u3z_1.q5q_1.settings).l4z(),
+          bonusFeat: this.u3z_1.x5q_1
+        })
+      : parseFormData(value, this.u3z_1.f3x_1, FormApp$fixObject$ref(this.u3z_1));
     if (this.u3z_1.d3x_1) {
     }
     var tmp;
@@ -114733,12 +114744,16 @@ class Select {
     var this_0 = this.e47_1;
     // Inline function 'kotlin.collections.mapTo' call
     var destination = _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.ArrayList3it5z8td81qkl.x1((0,_kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.collectionSizeOrDefault36dulx8yinfqm)(this_0, 10));
+    var selectedOptionClasses = '';
     var _iterator__ex2g4s = this_0.r1();
     while (_iterator__ex2g4s.s1()) {
       var item = _iterator__ex2g4s.t1();
       // Inline function 'at.posselt.pfrpg2e.app.forms.Option.Companion.invoke' call
       // Inline function 'at.posselt.pfrpg2e.app.forms.at_posselt_pfrpg2e_app_forms_Option_Companion_3lwk5e_invoke_jkqnwo' call
       var tmp$ret$2 = {label: item.r47_1, value: item.s47_1, selected: item.s47_1 === this.d47_1, classes: (0,_kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.joinToString1cxrrlmo0chqs)(item.t47_1, ' ')};
+      if (item.s47_1 === this.d47_1 && tmp$ret$2.classes) {
+        selectedOptionClasses = tmp$ret$2.classes;
+      }
       destination.n1(tmp$ret$2);
     }
     // Inline function 'kotlin.collections.toTypedArray' call
@@ -114760,7 +114775,7 @@ class Select {
     }
     // Inline function 'at.posselt.pfrpg2e.app.forms.FormElementContext.Companion.invoke' call
     // Inline function 'at.posselt.pfrpg2e.app.forms.at_posselt_pfrpg2e_app_forms_FormElementContext_Companion_tw5tvo_invoke_jkqnwo' call
-    return {label: tmp1_label, name: tmp2_name, help: tmp3_help, value: tmp4_value, required: tmp5_required, options: tmp9_options, hideLabel: tmp10_hideLabel, overrideType: tmp8_overrideType, isFormElement: true, elementClasses: tmp11_elementClasses, labelClasses: tmp12_labelClasses, disabled: tmp6_disabled, stacked: tmp7_stacked, link: tmp, escapeLabel: this.p47_1, labelElement: this.q47_1, readonly: false, type: 'select'};
+    return {label: tmp1_label, name: tmp2_name, help: tmp3_help, value: tmp4_value, required: tmp5_required, options: tmp9_options, selectedOptionClasses: selectedOptionClasses, hideLabel: tmp10_hideLabel, overrideType: tmp8_overrideType, isFormElement: true, elementClasses: tmp11_elementClasses, labelClasses: tmp12_labelClasses, disabled: tmp6_disabled, stacked: tmp7_stacked, link: tmp, escapeLabel: this.p47_1, labelElement: this.q47_1, readonly: false, type: 'select'};
   }
   toString() {
     return 'Select(label=' + this.b47_1 + ', name=' + this.c47_1 + ', value=' + this.d47_1 + ', options=' + (0,_kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.toString1pkumu07cwy4m)(this.e47_1) + ', required=' + this.f47_1 + ', overrideType=' + (0,_kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.toString30pk9tzaqopn)(this.g47_1) + ', help=' + this.h47_1 + ', hideLabel=' + this.i47_1 + ', elementClasses=' + (0,_kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.toString1pkumu07cwy4m)(this.j47_1) + ', labelClasses=' + (0,_kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.toString1pkumu07cwy4m)(this.k47_1) + ', disabled=' + this.l47_1 + ', stacked=' + this.m47_1 + ', actor=' + (0,_kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.toString30pk9tzaqopn)(this.n47_1) + ', item=' + (0,_kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.toString30pk9tzaqopn)(this.o47_1) + ', escapeLabel=' + this.p47_1 + ', labelElement=' + this.q47_1 + ')';
@@ -133475,7 +133490,8 @@ class KingdomSheet$lambda$slambda {
   }
   *u40($this$buildPromise, $completion) {
     yield* (0,_kotlinx_coroutines_core_mjs__WEBPACK_IMPORTED_MODULE_3__.awaitd1m8y0em728c)(this.q5r_1.movement.animation.ended, $completion);
-    return this.r5r_1.render();
+    var perf = globalThis.foundryvttKotlinPatches?.kingdomSheetPerf;
+    return perf?.scheduleRender ? perf.scheduleRender(this.r5r_1) : this.r5r_1.render();
   }
   lc(p1, $completion) {
     return this.u40((!(p1 == null) ? (0,_kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.isInterface3d6p8outrmvmk)(p1, _kotlinx_coroutines_core_mjs__WEBPACK_IMPORTED_MODULE_3__.CoroutineScopefcb5f5dwqcas) : false) ? p1 : (0,_kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.THROW_CCE2g6jy02ryeudk)(), $completion);
@@ -135433,7 +135449,10 @@ class KingdomSheet$_preparePartContext$slambda {
       }
     }
     var enabledGovernments = destination_3;
-    var notesContext = yield* toContext_19(kingdom.notes, $completion);
+    var currentNavKey = this.n5u_1.w5q_1.p3();
+    var notesContext = currentNavKey === 'notes'
+      ? (yield* toContext_19(kingdom.notes, $completion))
+      : {rawPublic: kingdom.notes.public, 'public': '', rawGm: kingdom.notes.gm, gm: ''};
     var government = getChosenGovernment(kingdom);
     var heartland = getChosenHeartland(kingdom);
     var charter = getChosenCharter(kingdom);
@@ -135515,14 +135534,18 @@ class KingdomSheet$_preparePartContext$slambda {
     var capitalInvestmentBankSettlements = countCapitalInvestmentBankSettlements(settlements.e4y_1);
     var tmp43_openedDetails = this.n5u_1.y5q_1;
     var tmp44_activeLeader = getActiveLeader(this.n5u_1.q5q_1);
-    var activities = yield* toActivitiesContext(tmp39_activities, tmp40_activityBlacklist, tmp41_unlockedActivities, kingdom, chosenFeats, tmp42_allowCapitalInvestment, kingdomSkillRanks, chosenFeatures, tmp43_openedDetails, tmp44_activeLeader, capitalInvestmentBankSettlements, $completion);
+    var activities = currentNavKey === 'turn'
+      ? (yield* toActivitiesContext(tmp39_activities, tmp40_activityBlacklist, tmp41_unlockedActivities, kingdom, chosenFeats, tmp42_allowCapitalInvestment, kingdomSkillRanks, chosenFeatures, tmp43_openedDetails, tmp44_activeLeader, capitalInvestmentBankSettlements, $completion))
+      : {commerce: [], leadership: [], region: [], civic: [], army: [], upkeep: []};
     var leadersContext = toContext_16(kingdom.leaders, leaderActors, defaultLeaderBonuses, vacancies_0);
     var automateStats = kingdom.settings.automateStats;
     var checks = yield* skillChecks(kingdom, settlements, kingdomSkillRanks, $completion);
     var abilityScores = parseAbilityScores(kingdom, charter, heartland, government, chosenFeatures);
     var automateResources = !(kingdom.settings.automateResources === AutomateResources_MANUAL_getInstance().p3());
     var isGM = this.n5u_1.q5q_1.user.isGM;
-    var ongoingEvents = yield* toContext_20(getOngoingEvents(kingdom), this.n5u_1.y5q_1, isGM, settlements, $completion);
+    var ongoingEvents = currentNavKey === 'turn'
+      ? (yield* toContext_20(getOngoingEvents(kingdom), this.n5u_1.y5q_1, isGM, settlements, $completion))
+      : [];
     var tmp46_label = t_0('kingdom.activeLeader');
     var tmp47_value = getActiveLeaderSetting(this.n5u_1.q5q_1);
     var settlementCouncilLabel = kmSettlementCouncilLabel(kingdom, settlements.g4y_1);
@@ -135779,7 +135802,7 @@ class KingdomSheet extends FormApp {
     onCanvasReady(this.s3u_1, KingdomSheet$lambda_9(this));
     onApplyTokenStatusEffect(this.s3u_1, KingdomSheet$lambda_10(this));
     onCloseKingmakerHexEdit(this.s3u_1, KingdomSheet$lambda_11(this));
-    onDeleteActor(this.s3u_1, KingdomSheet$lambda_12(this));
+    onDeleteActor(this.s3u_1, KingdomSheet$lambda_deleteActor(this));
     onUpdateActor(this.s3u_1, KingdomSheet$lambda_12(this));
     onUpdateItem(this.s3u_1, KingdomSheet$lambda_13(this));
     var tmp_0 = KingdomSheet$lambda_14;
@@ -136102,41 +136125,33 @@ class KingdomSheet extends FormApp {
   _preparePartContext(partId, context, options) {
     return this.j3x(partId, context, options);
   }
+  render(options, _options) {
+    var perf = globalThis.foundryvttKotlinPatches?.kingdomSheetPerf;
+    if (perf?.shouldSkipDocumentRender?.(this, options, _options, hasLeaderUuid, kmHasSettlementMayorUuid)) {
+      return Promise.resolve(this);
+    }
+    perf?.cancelScheduledRender?.(this);
+    return super.render(options, _options);
+  }
   a4i(partId, htmlElement, options) {
     super._attachPartListeners(partId, htmlElement, options);
-    // Inline function 'kotlin.collections.filterIsInstance' call
-    var tmp0 = (0,_kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.asList1pji8rwrhkggq)(htmlElement.querySelectorAll('.km-gain-lose'));
-    // Inline function 'kotlin.collections.filterIsInstanceTo' call
-    var destination = _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.ArrayList3it5z8td81qkl.m1();
-    var _iterator__ex2g4s = tmp0.r1();
-    while (_iterator__ex2g4s.s1()) {
-      var element = _iterator__ex2g4s.t1();
-      if (element instanceof HTMLElement) {
-        destination.n1(element);
-      }
-    }
-    // Inline function 'kotlin.collections.forEach' call
-    var _iterator__ex2g4s_0 = destination.r1();
-    while (_iterator__ex2g4s_0.s1()) {
-      var element_0 = _iterator__ex2g4s_0.t1();
-      element_0.addEventListener('click', KingdomSheet$_attachPartListeners$lambda(this, element_0));
-    }
-    // Inline function 'kotlin.collections.filterIsInstance' call
-    var tmp0_0 = (0,_kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.asList1pji8rwrhkggq)(htmlElement.querySelectorAll('.km-kingdom-details > details > summary'));
-    // Inline function 'kotlin.collections.filterIsInstanceTo' call
-    var destination_0 = _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.ArrayList3it5z8td81qkl.m1();
-    var _iterator__ex2g4s_1 = tmp0_0.r1();
-    while (_iterator__ex2g4s_1.s1()) {
-      var element_1 = _iterator__ex2g4s_1.t1();
-      if (element_1 instanceof HTMLElement) {
-        destination_0.n1(element_1);
-      }
-    }
-    // Inline function 'kotlin.collections.forEach' call
-    var _iterator__ex2g4s_2 = destination_0.r1();
-    while (_iterator__ex2g4s_2.s1()) {
-      var element_2 = _iterator__ex2g4s_2.t1();
-      element_2.addEventListener('click', KingdomSheet$_attachPartListeners$lambda_0(this));
+    if (!htmlElement.__kmDelegatedClickBound) {
+      htmlElement.__kmDelegatedClickBound = true;
+      htmlElement.addEventListener('click', (event) => {
+        var targetEl = event.target instanceof Element ? event.target : null;
+        if (!targetEl) return;
+        var toggleBtn = targetEl.closest('.km-detail-toggle');
+        if (toggleBtn && htmlElement.contains(toggleBtn)) {
+          event.preventDefault();
+          event.stopPropagation();
+          globalThis.foundryvttKotlinPatches?.kingdomSheetPerf?.toggleDetailCard?.(this, toggleBtn);
+          return;
+        }
+        var gainLoseEl = targetEl.closest('.km-gain-lose');
+        if (gainLoseEl instanceof HTMLElement && htmlElement.contains(gainLoseEl)) {
+          KingdomSheet$_attachPartListeners$lambda(this, gainLoseEl)(event);
+        }
+      });
     }
   }
   _attachPartListeners(partId, htmlElement, options) {
@@ -168931,7 +168946,14 @@ function KingdomSheet$_preparePartContext$slambda$lambda(a, b) {
   var tmp$ret$2 = b.level;
   return (0,_kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.compareValues1n2ayl87ihzfk)(tmp, tmp$ret$2);
 }
-function checkUpdateActorReRenders($this, actor) {
+function checkUpdateActorReRenders($this, actor, changed = null) {
+  var perf = globalThis.foundryvttKotlinPatches?.kingdomSheetPerf;
+  if (perf?.shouldHandleActorUpdate && perf?.scheduleRender) {
+    if (perf.shouldHandleActorUpdate($this, actor, changed, hasLeaderUuid, kmHasSettlementMayorUuid)) {
+      perf.scheduleRender($this);
+    }
+    return;
+  }
   var kingdom = getKingdom_0($this);
   if (actor.uuid === $this.r5q_1.uuid || hasLeaderUuid(kingdom, actor.uuid) || kmHasSettlementMayorUuid(kingdom, actor.uuid)) {
     $this.render();
@@ -169202,31 +169224,61 @@ function createKingdomSectionNav($this) {
   return (0,_kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.copyToArray2j022khrow2yi)(destination_0);
 }
 function KingdomSheet$lambda(this$0) {
-  return (_unused_var__etf5q3, _unused_var__etf5q3_0, _unused_var__etf5q3_1) => this$0.render();
+  return (scene, _unused_var__etf5q3, _unused_var__etf5q3_0) => {
+    var perf = globalThis.foundryvttKotlinPatches?.kingdomSheetPerf;
+    if (perf?.shouldHandleSceneHook && !perf.shouldHandleSceneHook(this$0, scene?.id, {isDeleteScene: true})) return _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.Unit_instancev9v8hjid95df;
+    return perf?.scheduleRender ? perf.scheduleRender(this$0) : this$0.render();
+  };
 }
 function KingdomSheet$lambda_0(this$0) {
-  return (_unused_var__etf5q3, _unused_var__etf5q3_0, _unused_var__etf5q3_1) => this$0.render();
+  return (doc, _unused_var__etf5q3, _unused_var__etf5q3_0) => {
+    var perf = globalThis.foundryvttKotlinPatches?.kingdomSheetPerf;
+    if (perf?.shouldHandleSceneHook && !perf.shouldHandleSceneHook(this$0, doc?.parent?.id)) return _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.Unit_instancev9v8hjid95df;
+    return perf?.scheduleRender ? perf.scheduleRender(this$0) : this$0.render();
+  };
 }
 function KingdomSheet$lambda_1(this$0) {
-  return (_unused_var__etf5q3, _unused_var__etf5q3_0, _unused_var__etf5q3_1, _unused_var__etf5q3_2) => this$0.render();
+  return (doc, _unused_var__etf5q3, _unused_var__etf5q3_0, _unused_var__etf5q3_1) => {
+    var perf = globalThis.foundryvttKotlinPatches?.kingdomSheetPerf;
+    if (perf?.shouldHandleSceneHook && !perf.shouldHandleSceneHook(this$0, doc?.parent?.id)) return _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.Unit_instancev9v8hjid95df;
+    return perf?.scheduleRender ? perf.scheduleRender(this$0) : this$0.render();
+  };
 }
 function KingdomSheet$lambda_2(this$0) {
-  return (_unused_var__etf5q3, _unused_var__etf5q3_0, _unused_var__etf5q3_1) => this$0.render();
+  return (doc, _unused_var__etf5q3, _unused_var__etf5q3_0) => {
+    var perf = globalThis.foundryvttKotlinPatches?.kingdomSheetPerf;
+    if (perf?.shouldHandleSceneHook && !perf.shouldHandleSceneHook(this$0, doc?.parent?.id)) return _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.Unit_instancev9v8hjid95df;
+    return perf?.scheduleRender ? perf.scheduleRender(this$0) : this$0.render();
+  };
 }
 function KingdomSheet$lambda_3(this$0) {
-  return (_unused_var__etf5q3, _unused_var__etf5q3_0, _unused_var__etf5q3_1) => this$0.render();
+  return (doc, _unused_var__etf5q3, _unused_var__etf5q3_0) => {
+    var perf = globalThis.foundryvttKotlinPatches?.kingdomSheetPerf;
+    if (perf?.shouldHandleSceneHook && !perf.shouldHandleSceneHook(this$0, doc?.parent?.id)) return _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.Unit_instancev9v8hjid95df;
+    return perf?.scheduleRender ? perf.scheduleRender(this$0) : this$0.render();
+  };
 }
 function KingdomSheet$lambda_4(this$0) {
-  return (_unused_var__etf5q3, _unused_var__etf5q3_0, _unused_var__etf5q3_1, _unused_var__etf5q3_2) => this$0.render();
+  return (doc, _unused_var__etf5q3, _unused_var__etf5q3_0, _unused_var__etf5q3_1) => {
+    var perf = globalThis.foundryvttKotlinPatches?.kingdomSheetPerf;
+    if (perf?.shouldHandleSceneHook && !perf.shouldHandleSceneHook(this$0, doc?.parent?.id)) return _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.Unit_instancev9v8hjid95df;
+    return perf?.scheduleRender ? perf.scheduleRender(this$0) : this$0.render();
+  };
 }
 function KingdomSheet$lambda_5(this$0) {
-  return (_unused_var__etf5q3, _unused_var__etf5q3_0, _unused_var__etf5q3_1) => this$0.render();
+  return (doc, _unused_var__etf5q3, _unused_var__etf5q3_0) => {
+    var perf = globalThis.foundryvttKotlinPatches?.kingdomSheetPerf;
+    if (perf?.shouldHandleSceneHook && !perf.shouldHandleSceneHook(this$0, doc?.parent?.id)) return _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.Unit_instancev9v8hjid95df;
+    return perf?.scheduleRender ? perf.scheduleRender(this$0) : this$0.render();
+  };
 }
 function KingdomSheet$lambda_6(this$0) {
   return (token, _unused_var__etf5q3, _unused_var__etf5q3_0) => {
     var tmp;
     if (isStructure(token)) {
-      this$0.render();
+      var perf = globalThis.foundryvttKotlinPatches?.kingdomSheetPerf;
+      if (perf?.scheduleRender) perf.scheduleRender(this$0);
+      else this$0.render();
       tmp = _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.Unit_instancev9v8hjid95df;
     }
     return _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.Unit_instancev9v8hjid95df;
@@ -169252,24 +169304,43 @@ function KingdomSheet$lambda_8(this$0) {
   return (token, _unused_var__etf5q3, _unused_var__etf5q3_0) => {
     var tmp;
     if (isStructure(token)) {
-      this$0.render();
+      var perf = globalThis.foundryvttKotlinPatches?.kingdomSheetPerf;
+      if (perf?.scheduleRender) perf.scheduleRender(this$0);
+      else this$0.render();
       tmp = _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.Unit_instancev9v8hjid95df;
     }
     return _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.Unit_instancev9v8hjid95df;
   };
 }
 function KingdomSheet$lambda_9(this$0) {
-  return (_unused_var__etf5q3) => this$0.render();
+  return (_unused_var__etf5q3) => {
+    var perf = globalThis.foundryvttKotlinPatches?.kingdomSheetPerf;
+    if (perf?.shouldHandleCanvasReady && !perf.shouldHandleCanvasReady(this$0)) return _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.Unit_instancev9v8hjid95df;
+    return perf?.scheduleRender ? perf.scheduleRender(this$0) : this$0.render();
+  };
 }
 function KingdomSheet$lambda_10(this$0) {
-  return (_unused_var__etf5q3, _unused_var__etf5q3_0, _unused_var__etf5q3_1) => this$0.render();
+  return (token, _unused_var__etf5q3_0, _unused_var__etf5q3_1) => {
+    var perf = globalThis.foundryvttKotlinPatches?.kingdomSheetPerf;
+    if (perf?.shouldHandleStatusEffectHook && !perf.shouldHandleStatusEffectHook(this$0, token, isStructure)) return _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.Unit_instancev9v8hjid95df;
+    return perf?.scheduleRender ? perf.scheduleRender(this$0) : this$0.render();
+  };
 }
 function KingdomSheet$lambda_11(this$0) {
-  return (_unused_var__etf5q3, _unused_var__etf5q3_0) => this$0.render();
+  return (_unused_var__etf5q3, _unused_var__etf5q3_0) => {
+    var perf = globalThis.foundryvttKotlinPatches?.kingdomSheetPerf;
+    return perf?.scheduleRender ? perf.scheduleRender(this$0) : this$0.render();
+  };
+}
+function KingdomSheet$lambda_deleteActor(this$0) {
+  return (actor, _unused_var__etf5q3, _unused_var__etf5q3_0) => {
+    checkUpdateActorReRenders(this$0, actor, null);
+    return _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.Unit_instancev9v8hjid95df;
+  };
 }
 function KingdomSheet$lambda_12(this$0) {
-  return (actor, _unused_var__etf5q3, _unused_var__etf5q3_0, _unused_var__etf5q3_1) => {
-    checkUpdateActorReRenders(this$0, actor);
+  return (actor, changed, _unused_var__etf5q3_0, _unused_var__etf5q3_1) => {
+    checkUpdateActorReRenders(this$0, actor, changed);
     return _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.Unit_instancev9v8hjid95df;
   };
 }
@@ -169278,7 +169349,7 @@ function KingdomSheet$lambda_13(this$0) {
     var actor = item.actor;
     var tmp;
     if (item.type === 'lore' && !(actor == null)) {
-      checkUpdateActorReRenders(this$0, actor);
+      checkUpdateActorReRenders(this$0, actor, {items: [item]});
       tmp = _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.Unit_instancev9v8hjid95df;
     }
     return _kotlin_kotlin_stdlib_mjs__WEBPACK_IMPORTED_MODULE_2__.Unit_instancev9v8hjid95df;

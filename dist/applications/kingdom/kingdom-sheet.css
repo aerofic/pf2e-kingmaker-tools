@@ -84,6 +84,7 @@
         }
 
         .km-kingdom-sheet-sub-content details:hover,
+        .km-kingdom-sheet-sub-content .km-kingdom-details:hover,
         .km-kingdom-sheet-sub-content .km-upkeep-button:hover{
             background-color: var(--color-light-1);
         }
@@ -678,7 +679,8 @@
             color: #ccc;
         }
 
-        details:hover {
+        details:hover,
+        .km-kingdom-details:hover {
             background-color: rgba(0, 0, 0, 0.5); 
             transition: background-color 0.15s ease; 
         }
@@ -807,14 +809,92 @@
         }
 
         .km-kingdom-details {
+            margin: .5em 0 0 0;
+            border: 1px solid #5c5c5c;
+            border-radius: .5em;
+            padding: .3em 1em;
+
+            .km-detail-header {
+                font-size: 1.2em;
+                display: flex;
+                align-items: center;
+                gap: .5em;
+                width: 100%;
+                min-width: 0;
+
+                .km-detail-controls {
+                    display: flex;
+                    margin-left: auto;
+                    flex: 0 0 auto;
+                }
+
+                button.km-detail-toggle {
+                    flex: 1 1 auto;
+                    min-width: 0;
+                    display: flex;
+                    align-items: center;
+                    gap: .45em;
+                    background: transparent;
+                    border: 0;
+                    box-shadow: none;
+                    color: inherit;
+                    margin: 0;
+                    padding: .15em 0;
+                    min-height: 0;
+                    width: auto;
+                    text-align: left;
+                    justify-content: flex-start;
+                    font-size: inherit;
+                    font-weight: inherit;
+                    line-height: inherit;
+                    cursor: pointer;
+
+                    &:hover,
+                    &:focus {
+                        box-shadow: none;
+                        background: transparent;
+                    }
+
+                    i.km-detail-caret {
+                        margin-left: 0;
+                        flex: 0 0 auto;
+                        transition: transform 0.12s ease;
+                    }
+                }
+
+                button:not(.km-icon-only):not(.km-detail-toggle) {
+                    i {
+                        margin-left: .25em;
+                    }
+                }
+            }
+
+            &.is-open > .km-detail-header i.km-detail-caret {
+                transform: rotate(90deg);
+            }
+
+            &:not(.is-open) > .km-detail-body {
+                display: none;
+            }
+
+            .km-detail-body .km-detail-description {
+                margin-top: .3em;
+                border-top: 1px solid #5c5c5c;
+            }
+
             .km-detail-label {
                 cursor: pointer;
                 overflow: hidden;
                 text-overflow: ellipsis;
                 white-space: nowrap;
+                min-width: 0;
             }
 
             details {
+                margin: 0;
+                border: 0;
+                padding: 0;
+
                 summary {
                     font-size: 1.2em;
                     display: flex;

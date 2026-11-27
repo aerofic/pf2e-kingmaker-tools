@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [8.0.0] - 2026-11-27
+
+### Changed
+
+* Render only the active Kingdom Sheet main tab and Kingdom character sub-tab in the DOM, and prune inactive-tab rich-text/activity/event context building until opened.
+* Merge partial Kingdom Sheet `FormDataExtended` submissions against the current kingdom actor baseline and active settings so unrendered tabs, arrays, level features, leader fields, and GM notes are never overwritten.
+* Replace `<details>`/`<summary>` nesting on kingdom activity and event lists with accessible `<button class="km-detail-toggle">` headers, lazy `<template class="km-detail-body-template">` bodies, and delegated click handling so expanding/collapsing details never rebuilds the entire sheet.
+* Filter `KingdomSheet` document/canvas/tile/drawing/status-effect/actor hooks to relevant scenes and attributes, skip unrelated `updateActor` ApplicationV2 document re-renders, and debounce burst hook refreshes.
+* Replace all `:has(option[...]:checked)` rules in `dist/style.css` with explicit `data-km-value` / `data-km-selected-class` attributes emitted by `Select` and updated via a single delegated `change` listener.
+* Foundry V14 only. No world migration. Reload all clients after deployment.
+
 ## [7.0.5] - 2026-11-06
 
 ### Fixed

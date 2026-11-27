@@ -79,8 +79,8 @@
         </ul>
     </nav>
     <div class="km-kingdom-sheet-sub-content km-kingdom-sheet-kingdom">
-        {{> kingdom-character-sheet-creation this}}
-        {{> kingdom-character-sheet-bonus this}}
+        {{#unless hideCreation}}{{> kingdom-character-sheet-creation this}}{{/unless}}
+        {{#unless hideBonus}}{{> kingdom-character-sheet-bonus this}}{{/unless}}
         {{> kingdom-character-sheet-levels this}}
     </div>
 </div>

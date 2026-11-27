@@ -41,25 +41,25 @@
 
 .km-degree-of-success {
     option[value="criticalSuccess"],
-    &:has(option[value="criticalSuccess"]:checked) {
+    &[data-km-value="criticalSuccess"] {
         color: white;
         background-color: var(--critical-success);
     }
 
     option[value="success"],
-    &:has(option[value="success"]:checked) {
+    &[data-km-value="success"] {
         color: white;
         background-color: var(--success);
     }
 
     option[value="failure"],
-    &:has(option[value="failure"]:checked) {
+    &[data-km-value="failure"] {
         color: white;
         background-color: var(--failure);
     }
 
     option[value="criticalFailure"],
-    &:has(option[value="criticalFailure"]:checked) {
+    &[data-km-value="criticalFailure"] {
         color: white;
         background-color: var(--critical-failure);
     }
@@ -68,32 +68,32 @@
 .km-rarity {
     option[value="common"],
     option.km-rarity-common,
-    &:has(option[value="common"]:checked),
-    &:has(option.km-rarity-common:checked) {
+    &[data-km-value="common"],
+    &[data-km-selected-class~="km-rarity-common"] {
         color: white;
         background-color: var(--rarity-common);
     }
 
     option[value="uncommon"],
     option.km-rarity-uncommon,
-    &:has(option[value="uncommon"]:checked),
-    &:has(option.km-rarity-uncommon:checked) {
+    &[data-km-value="uncommon"],
+    &[data-km-selected-class~="km-rarity-uncommon"] {
         color: white;
         background-color: var(--rarity-uncommon);
     }
 
     option[value="rare"],
     option.km-rarity-rare,
-    &:has(option[value="rare"]:checked),
-    &:has(option.km-rarity-rare:checked) {
+    &[data-km-value="rare"],
+    &[data-km-selected-class~="km-rarity-rare"] {
         color: white;
         background-color: var(--rarity-rare);
     }
 
     option[value="unique"],
     option.km-rarity-unique,
-    &:has(option[value="unique"]:checked),
-    &:has(option.km-rarity-unique:checked) {
+    &[data-km-value="unique"],
+    &[data-km-selected-class~="km-rarity-unique"] {
         color: white;
         background-color: var(--rarity-unique);
     }
@@ -104,9 +104,9 @@
     option[value="untrained"],
     option[value="0"],
     option.km-proficiency-untrained,
-    &:has(option[value="untrained"]:checked),
-    &:has(option[value="0"]:checked),
-    &:has(option.km-proficiency-untrained:checked) {
+    &[data-km-value="untrained"],
+    &[data-km-value="0"],
+    &[data-km-selected-class~="km-proficiency-untrained"] {
         color: white;
         background-color: var(--untrained);
     }
@@ -115,9 +115,9 @@
     option[value="trained"],
     option[value="1"],
     option.km-proficiency-trained,
-    &:has(option[value="trained"]:checked),
-    &:has(option[value="1"]:checked),
-    &:has(option.km-proficiency-trained:checked) {
+    &[data-km-value="trained"],
+    &[data-km-value="1"],
+    &[data-km-selected-class~="km-proficiency-trained"] {
         color: white;
         background-color: var(--trained);
     }
@@ -126,9 +126,9 @@
     option[value="expert"],
     option[value="2"],
     option.km-proficiency-expert,
-    &:has(option[value="expert"]:checked),
-    &:has(option[value="2"]:checked),
-    &:has(option.km-proficiency-expert:checked) {
+    &[data-km-value="expert"],
+    &[data-km-value="2"],
+    &[data-km-selected-class~="km-proficiency-expert"] {
         color: white;
         background-color: var(--expert);
     }
@@ -137,9 +137,9 @@
     option[value="master"],
     option[value="3"],
     option.km-proficiency-master,
-    &:has(option[value="master"]:checked),
-    &:has(option[value="3"]:checked),
-    &:has(option.km-proficiency-master:checked) {
+    &[data-km-value="master"],
+    &[data-km-value="3"],
+    &[data-km-selected-class~="km-proficiency-master"] {
         color: white;
         background-color: var(--master);
     }
@@ -148,9 +148,9 @@
     option[value="legendary"],
     option[value="4"],
     option.km-proficiency-legendary,
-    &:has(option[value="legendary"]:checked),
-    &:has(option[value="4"]:checked),
-    &:has(option.km-proficiency-legendary:checked) {
+    &[data-km-value="legendary"],
+    &[data-km-value="4"],
+    &[data-km-selected-class~="km-proficiency-legendary"] {
         color: white;
         background-color: var(--legendary);
     }

@@ -7,11 +7,13 @@
                 {{{notesContext.public}}}
             </prose-mirror>
         </section>
-        <section {{#unless isGM}}hidden{{/unless}}>
-            <h2>{{localizeKM "kingdom.gmNotes"}}</h2>
-            <prose-mirror name="notes.gm" value="{{notesContext.rawGm}}" data-document-u-u-i-d="{{actor.uuid}}" collaborate="true" toggled="true">
-                {{{notesContext.gm}}}
-            </prose-mirror>
-        </section>
+        {{#if isGM}}
+            <section>
+                <h2>{{localizeKM "kingdom.gmNotes"}}</h2>
+                <prose-mirror name="notes.gm" value="{{notesContext.rawGm}}" data-document-u-u-i-d="{{actor.uuid}}" collaborate="true" toggled="true">
+                    {{{notesContext.gm}}}
+                </prose-mirror>
+            </section>
+        {{/if}}
     </div>
 </div>

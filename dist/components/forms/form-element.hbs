@@ -5,7 +5,7 @@
     {{#if link}}
         <div class="km-select-with-link">
     {{/if}}
-        <select name="{{name}}" {{#if hideLabel}}aria-label="{{label}}"{{/if}} {{#if
+        <select name="{{name}}" {{#if value}}data-km-value="{{value}}"{{/if}} {{#if selectedOptionClasses}}data-km-selected-class="{{selectedOptionClasses}}"{{/if}} {{#if hideLabel}}aria-label="{{label}}"{{/if}} {{#if
                 required}}required{{/if}} {{#if overrideType}}data-dtype="{{overrideType}}"{{/if}} {{#if
                 elementClasses}}class="{{elementClasses}}"{{/if}} {{#if disabled}}disabled{{/if}}>
             {{#if required}}
